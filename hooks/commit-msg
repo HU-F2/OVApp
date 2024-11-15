@@ -13,7 +13,7 @@ validate_commit_message() {
         return 0
     else
         printf "\033[31m✘ The commit message does not meet the Conventional Commit standard.\033[0m\n"
-        printf "\nExpected format:\n"
+        printf "\n\033[2mExpected format:\n"
         printf "  <type>(<scope>): <description>\n\n"
         printf "Examples:\n"
         printf "  feat(auth): add the 'remember me' button\n"
