@@ -6,7 +6,7 @@ validate_branch_name() {
     local branch="$1"
     local regex="^(feature|bugfix)\/[0-9]+-[a-z0-9]+([-_][a-z0-9]+)*$|^(ci|chore|infra)\/[a-z0-9]+([-_][a-z0-9]+)*$"
     local error_message="
-    Invalid branch name detected:
+    \033[31m✘ Invalid branch name detected:
 
     Branch names must follow these rules:
     1. Feature or bugfix branches must include a numeric ticket ID and a short description:
@@ -19,7 +19,7 @@ validate_branch_name() {
     "
 
     if [[ ! "$branch" =~ $regex ]]; then
-        echo "$error_message" >&2
+        printf "%s" "$error_message" >&2
         exit 1
     fi
 }
@@ -27,7 +27,7 @@ validate_branch_name() {
 main() {
     local branch_name
     branch_name="$(git rev-parse --abbrev-ref HEAD)" || {
-        echo "Error: Failed to retrieve the current branch name." >&2
+        printf "\033[31m✘ Error: Failed to retrieve the current branch name." >&2
         exit 1
     }
     validate_branch_name "$branch_name"

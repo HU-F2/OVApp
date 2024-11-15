@@ -1,21 +1,48 @@
 #!/usr/bin/env bash
 
-# Create a regex for a conventional commit.
-conventional_commit_regex="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z \-]+\))?!?: .+$"
+set -euo pipefail  # Ensure robust error handling
 
-# Get the commit message (the parameter we're given is just the path to the
-# temporary file which holds the message).
-commit_message=$(cat "$1")
+# Regex for validating a Conventional Commit message
+conventional_commit_regex="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z0-9\-]+\))?!?: .+$"
 
-# Check the message, if we match, all good baby.
-if [[ "$commit_message" =~ $conventional_commit_regex ]]; then
-   printf "\033[31mCommit message meets Conventional Commit standards...\033[0m\n"
-   exit 0
-fi
+# Function to validate commit message
+validate_commit_message() {
+    local commit_message="$1"
+    if [[ "$commit_message" =~ $conventional_commit_regex ]]; then
+        printf "\033[32m✔ Commit message meets Conventional Commit standards.\033[0m\n"
+        return 0
+    else
+        printf "\033[31m✘ The commit message does not meet the Conventional Commit standard.\033[0m\n"
+        printf "\nExpected format:\n"
+        printf "  <type>(<scope>): <description>\n\n"
+        printf "Examples:\n"
+        printf "  feat(auth): add the 'remember me' button\n"
+        printf "  fix(cart): resolve issue with empty cart display\n\n"
+        printf "More details at: https://www.conventionalcommits.org/en/v1.0.0/#summary\n"
+        return 1
+    fi
+}
 
-# Uh-oh, this is not a conventional commit, show an example and link to the spec.
-printf "\033[31mThe commit message does not meet the Conventional Commit standard\033[0m\n"
-printf "An example of a valid message is: \n"
-printf "  feat(login): add the 'remember me' button\n"
-printf "More details at: https://www.conventionalcommits.org/en/v1.0.0/#summary"
-exit 1
+# Main script logic
+main() {
+    # Ensure a commit message file path is provided
+    if [[ $# -ne 1 ]]; then
+        printf "\033[31mError: Missing commit message file path.\033[0m\n"
+        exit 1
+    fi
+
+    local commit_message_file="$1"
+
+    # Ensure the commit message file exists and is readable
+    if [[ ! -f "$commit_message_file" ]]; then
+        printf "\033[31mError: Commit message file not found: %s\033[0m\n" "$commit_message_file"
+        exit 1
+    fi
+
+    local commit_message
+    commit_message=$(cat "$commit_message_file")
+
+    validate_commit_message "$commit_message"
+}
+
+main "$@"
