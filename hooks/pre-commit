@@ -1,16 +1,36 @@
 #!/usr/bin/env bash
+set -euo pipefail
 LC_ALL=C
 
-local_branch="$(git rev-parse --abbrev-ref HEAD)"
+validate_branch_name() {
+    local branch="$1"
+    local regex="^(feature|bugfix)\/[0-9]+-[a-z0-9]+([-_][a-z0-9]+)*$|^(ci|chore|infra)\/[a-z0-9]+([-_][a-z0-9]+)*$"
+    local error_message="
+    Invalid branch name detected:
 
-valid_branch_regex="^(feature|bugfix|improvement|ci|prerelease|release|hotfix)\/[a-z0-9._-]+$"
+    Branch names must follow these rules:
+    1. Feature or bugfix branches must include a numeric ticket ID and a short description:
+       - Example: feature/123-add-login, bugfix/456-fix-crash.
+    2. CI, chore, or infra branches must include a short description:
+       - Example: ci/add-linting, chore/update-dependencies, infra/refactor-deployment.
 
-message="There is something wrong with your branch name. Branch names in this project must adhere to this contract: $valid_branch_regex. Your commit will be rejected. You should rename your branch to a valid name and try again."
+    Your branch: '$branch' does not match these rules.
+    Please rename your branch and try again.
+    "
 
-if [[ ! $local_branch =~ $valid_branch_regex ]]
-then
-    echo "$message"
-    exit 1
-fi
+    if [[ ! "$branch" =~ $regex ]]; then
+        echo "$error_message" >&2
+        exit 1
+    fi
+}
 
-exit 0
+main() {
+    local branch_name
+    branch_name="$(git rev-parse --abbrev-ref HEAD)" || {
+        echo "Error: Failed to retrieve the current branch name." >&2
+        exit 1
+    }
+    validate_branch_name "$branch_name"
+}
+
+main "$@"
