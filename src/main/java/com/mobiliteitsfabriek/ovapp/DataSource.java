@@ -6,9 +6,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+/**
+ * Custom DataSource configuration for SQLite
+ */
 @Configuration
 public class DataSource {
 
+    /**
+     * Injects the env variables
+     */
     @Autowired
     private Environment env;
 
