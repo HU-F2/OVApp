@@ -87,10 +87,6 @@
                         <custom.configuration>true</custom.configuration>
                     </gitConfig>
 
-                    <installHooks>
-                        <commit-msg>commit-msg</commit-msg>
-                        <pre-commit>pre-commit</pre-commit>
-                    </installHooks>
                 </configuration>
                 <executions>
                     <execution>
