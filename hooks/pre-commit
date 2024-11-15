@@ -2,6 +2,13 @@
 set -euo pipefail
 LC_ALL=C
 
+# Configuration
+MAX_CHANGED_LINES=500
+CHECKSTYLE_CONFIG="checkstyle.xml"  # Path to Checkstyle configuration file
+BUILD_TOOL="maven"                 # Choose between 'maven' or 'gradle'
+TEST_COMMAND="mvn test"            # Adjust for your build tool (e.g., 'gradle test')
+
+# Validate branch name
 validate_branch_name() {
     local branch="$1"
     local regex="^(feature|bugfix)\/[0-9]+-[a-z0-9]+([-_][a-z0-9]+)*$|^(ci|chore|infra)\/[a-z0-9]+([-_][a-z0-9]+)*$"
@@ -22,15 +29,74 @@ validate_branch_name() {
         printf "%s" "$error_message" >&2
         exit 1
     fi
+    echo "✔ Branch name validation passed."
+}
+
+# Validate commit size
+validate_commit_size() {
+    echo "Validating commit size..."
+    changed_lines=$(git diff --cached --shortstat | awk '{print $4}')
+    if [[ -z "$changed_lines" ]]; then
+        changed_lines=0
+    fi
+    if [[ $changed_lines -gt $MAX_CHANGED_LINES ]]; then
+        echo -e "\033[31m✘ Too many changes ($changed_lines lines) in a single commit!"
+        echo "Please break your changes into smaller commits."
+        exit 1
+    fi
+    echo -e "\033[32m✔ Commit size validation passed."
+}
+
+# Run Checkstyle linter
+run_linter() {
+    echo "Running Checkstyle..."
+    if [[ "$BUILD_TOOL" == "maven" ]]; then
+        mvn checkstyle:check -D checkstyle.config.location="$CHECKSTYLE_CONFIG" || {
+            echo -e "\033[31m✘ Checkstyle validation failed. Fix issues before committing."
+            exit 1
+        }
+    elif [[ "$BUILD_TOOL" == "gradle" ]]; then
+        ./gradlew checkstyleMain || {
+            echo -e "\033[31m✘ Checkstyle validation failed. Fix issues before committing."
+            exit 1
+        }
+    else
+        echo -e "\033[31m✘ Unsupported build tool: $BUILD_TOOL"
+        exit 1
+    fi
+    echo -e "\033[32m✔ Checkstyle validation passed."
+}
+
+# Run tests
+run_tests() {
+    echo "Running tests..."
+    if $TEST_COMMAND; then
+        echo -e "\033[32m✔ All tests passed."
+    else
+        echo -e "\033[31m✘ Some tests failed. Fix the issues before committing."
+        exit 1
+    fi
 }
 
 main() {
+    # Validate branch name
     local branch_name
     branch_name="$(git rev-parse --abbrev-ref HEAD)" || {
-        printf "\033[31m✘ Error: Failed to retrieve the current branch name." >&2
+        echo -e "\033[31m✘ Error: Failed to retrieve the current branch name."
         exit 1
     }
     validate_branch_name "$branch_name"
+
+    # Validate commit size
+    validate_commit_size
+
+    # Run linter
+    run_linter
+
+    # Run tests
+    run_tests
+
+    echo -e "\033[32m✔ All pre-commit checks passed. Proceeding with commit."
 }
 
 main "$@"
