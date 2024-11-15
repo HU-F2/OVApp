@@ -78,6 +78,15 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.6.0</version>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                </configuration>
+            </plugin>
+
+            <plugin>
                 <groupId>com.rudikershaw.gitbuildhook</groupId>
                 <artifactId>git-build-hook-maven-plugin</artifactId>
                 <version>3.5.0</version>
