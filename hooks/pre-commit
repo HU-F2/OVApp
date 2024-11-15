@@ -8,7 +8,7 @@ validate_branch_name() {
     local error_message="
     \033[31m✘ Invalid branch name detected:
 
-    Branch names must follow these rules:
+    \033[2mBranch names must follow these rules:
     1. Feature or bugfix branches must include a numeric ticket ID and a short description:
        - Example: feature/123-add-login, bugfix/456-fix-crash.
     2. CI, chore, or infra branches must include a short description:
