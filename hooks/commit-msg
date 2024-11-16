@@ -1,48 +1,66 @@
 #!/usr/bin/env bash
+set -euo pipefail
+LC_ALL=C
 
-set -euo pipefail  # Ensure robust error handling
+# Configuration
+VERBOSE=false                       # Set to true for verbose mode
+CONVENTIONAL_COMMIT_REGEX="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z0-9\-]+\))?!?: .+$"
 
-# Regex for validating a Conventional Commit message
-conventional_commit_regex="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z0-9\-]+\))?!?: .+$"
+# Color codes
+COLOR_RESET="\033[0m\033[2m"
+COLOR_GREEN="\033[32m"
+COLOR_RED="\033[31m"
+COLOR_BLUE="\033[34m"
 
-# Function to validate commit message
+# Functions
+log() {
+    if [[ "$VERBOSE" == true ]]; then
+        printf "\n${COLOR_BLUE}[DEBUG]${COLOR_RESET} %s\n" "$1"
+    fi
+}
+
+# Validate commit message
 validate_commit_message() {
     local commit_message="$1"
-    if [[ "$commit_message" =~ $conventional_commit_regex ]]; then
-        printf "\033[32m✔ Commit message meets Conventional Commit standards.\033[0m\n"
-        return 0
+    log "Validating commit message..."
+    if [[ "$commit_message" =~ $CONVENTIONAL_COMMIT_REGEX ]]; then
+        # shellcheck disable=SC2059
+        printf "${COLOR_GREEN}✔ Commit message meets Conventional Commit standards.${COLOR_RESET}\n"
     else
-        printf "\033[31m✘ The commit message does not meet the Conventional Commit standard.\033[0m\n"
-        printf "\n\033[2mExpected format:\n"
-        printf "  <type>(<scope>): <description>\n\n"
-        printf "Examples:\n"
-        printf "  feat(auth): add the 'remember me' button\n"
-        printf "  fix(cart): resolve issue with empty cart display\n\n"
-        printf "More details at: https://www.conventionalcommits.org/en/v1.0.0/#summary\n"
+        # shellcheck disable=SC2059
+        printf "${COLOR_RED}✘ The commit message does not meet the Conventional Commit standard.${COLOR_RESET}\n"
+        # shellcheck disable=SC2059
+        printf "\n${COLOR_RESET}Expected format:\n  <type>(<scope>): <description>\n"
+        printf "\nExamples:\n  feat(auth): add the 'remember me' button\n  fix(cart): resolve issue with empty cart display\n"
+        printf "\nMore details at: https://www.conventionalcommits.org/en/v1.0.0/#summary\n"
         return 1
     fi
 }
 
-# Main script logic
 main() {
     # Ensure a commit message file path is provided
     if [[ $# -ne 1 ]]; then
-        printf "\033[31mError: Missing commit message file path.\033[0m\n"
+        # shellcheck disable=SC2059
+        printf "${COLOR_RED}✘ Missing commit message file path.${COLOR_RESET}\n"
         exit 1
     fi
 
     local commit_message_file="$1"
 
     # Ensure the commit message file exists and is readable
-    if [[ ! -f "$commit_message_file" ]]; then
-        printf "\033[31mError: Commit message file not found: %s\033[0m\n" "$commit_message_file"
+    if [[ ! -r "$commit_message_file" ]]; then
+        printf "${COLOR_RED}✘ Commit message file not found or not readable: %s${COLOR_RESET}\n" "$commit_message_file"
         exit 1
     fi
 
     local commit_message
-    commit_message=$(cat "$commit_message_file")
+    commit_message=$(<"$commit_message_file")
 
-    validate_commit_message "$commit_message"
+    # Validate commit message
+    validate_commit_message "$commit_message" || exit 1
+
+    # shellcheck disable=SC2059
+    printf "${COLOR_GREEN}✔ All pre-commit checks passed. Proceeding with commit.${COLOR_RESET}\n"
 }
 
 main "$@"
