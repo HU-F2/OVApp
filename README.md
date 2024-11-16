@@ -49,7 +49,7 @@ Navigating public transit can be a challenge, especially for people with mobilit
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/OVApp.git
+   git clone https://github.com/HU-F2/OVApp
    ```
 2. Navigate to the project directory:
    ```bash
