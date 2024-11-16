@@ -1,0 +1,139 @@
+#!/usr/bin/env bash
+set -euo pipefail
+LC_ALL=C
+
+# Configuration
+VERBOSE=false                       # Set to true for verbose mode
+BUILD_TOOL="maven"                  # Choose between 'maven' or 'gradle'
+
+# Color codes
+COLOR_RESET="\033[0m\033[2m"
+COLOR_GREEN="\033[32m"
+COLOR_RED="\033[31m"
+COLOR_BLUE="\033[34m"
+
+# Functions
+log() {
+    if [[ "$VERBOSE" == true ]]; then
+        printf "\n${COLOR_BLUE}[DEBUG]${COLOR_RESET} %s\n" "$1"
+    fi
+}
+
+# Determine the appropriate command flags based on verbose mode
+get_command_flags() {
+    if [[ "$VERBOSE" == true ]]; then
+        echo ""
+    else
+        echo "-q"
+    fi
+}
+
+# Validate branch name
+validate_branch_name() {
+    local branch="$1"
+    local regex="^(feature|bugfix)\/[0-9]+-[a-z0-9]+([-_][a-z0-9]+)*$|^(ci|chore|infra)\/[a-z0-9]+([-_][a-z0-9]+)*$"
+    local error_message="
+      ${COLOR_RED}✘ Invalid branch name detected:${COLOR_RESET}
+
+      ${COLOR_RESET}Branch names must follow these rules:
+      1. Feature or bugfix branches must include a numeric ticket ID and a short description:
+         - Example: feature/123-add-login, bugfix/456-fix-crash.
+      2. CI, chore, or infra branches must include a short description:
+         - Example: ci/add-linting, chore/update-dependencies, infra/refactor-deployment.
+
+      Your branch: '$branch' does not match these rules.
+      Please rename your branch and try again.${COLOR_RESET}
+      "
+
+    if [[ ! "$branch" =~ $regex ]]; then
+        # shellcheck disable=SC2059
+        printf "$error_message"
+        exit 1
+    fi
+
+    # shellcheck disable=SC2059
+    printf "${COLOR_GREEN}✔ Branch name validation passed.${COLOR_RESET}\n"
+}
+
+# Check for open merge requests or pull requests
+check_open_prs() {
+    local branch_name="$1"
+    log "Checking for open pull requests for branch: $branch_name"
+    # Use GitHub CLI to check for open PRs
+    if command -v gh &> /dev/null; then
+        if gh pr list --head "$branch_name" --repo "$(git config --get remote.origin.url)" | grep -q "$branch_name"; then
+            # shellcheck disable=SC2059
+            printf "${COLOR_YELLOW}⚠ Warning: There is an open pull request for branch '$branch_name'.${COLOR_RESET}\n"
+        fi
+    else
+        # shellcheck disable=SC2059
+        printf "${COLOR_YELLOW}⚠ Warning: GitHub CLI not found. Skipping PR check.${COLOR_RESET}\n"
+    fi
+    # shellcheck disable=SC2059
+    printf "${COLOR_GREEN}✔ No blocking issues found for branch '$branch_name'.${COLOR_RESET}\n"
+}
+
+# Run tests
+run_tests() {
+    local flags
+    flags=$(get_command_flags)
+    local test_command
+    if [[ "$BUILD_TOOL" == "maven" ]]; then
+        test_command="mvn test $flags"
+    elif [[ "$BUILD_TOOL" == "gradle" ]]; then
+        test_command="gradle test $flags"
+    else
+        printf "\n${COLOR_RED}✘ Unsupported build tool: %s${COLOR_RESET}\n" "$BUILD_TOOL"
+        exit 1
+    fi
+    log "Running tests with command: $test_command"
+
+    # Run the test command and capture output
+    local output
+    if output=$($test_command 2>&1); then
+        [[ "$VERBOSE" == true ]] && printf "%s\n" "$output"
+        # shellcheck disable=SC2059
+        printf "${COLOR_GREEN}✔ All tests passed.${COLOR_RESET}\n"
+    else
+        [[ "$VERBOSE" == true ]] && printf "%s\n" "$output"
+        # shellcheck disable=SC2059
+        printf "${COLOR_RED}✘ Some tests failed. Fix the issues before pushing.${COLOR_RESET}\n"
+        exit 1
+    fi
+}
+
+check_uncommitted_changes() {
+    if ! git diff-index --quiet HEAD --; then
+        # shellcheck disable=SC2059
+        printf "\n${COLOR_RED}✘ Uncommitted changes found. Please commit or stash them before pushing.${COLOR_RESET}\n"
+        exit 1
+    fi
+    # shellcheck disable=SC2059
+    printf "${COLOR_GREEN}✔ No uncommitted changes.${COLOR_RESET}\n"
+}
+
+main() {
+    # Validate branch name
+    local branch_name
+    if ! branch_name=$(git rev-parse --abbrev-ref HEAD); then
+        # shellcheck disable=SC2059
+        printf "${COLOR_RED}✘ Error: Failed to retrieve the current branch name.${COLOR_RESET}\n"
+        exit 1
+    fi
+    log "Current branch name: $branch_name"
+    validate_branch_name "$branch_name"
+
+    # Check for open merge requests or pull requests
+    check_open_prs "$branch_name"
+
+    check_uncommitted_changes
+
+    # Run tests
+    run_tests
+
+    # shellcheck disable=SC2059
+    printf "${COLOR_GREEN}✔ All pre-push checks passed. Proceeding with push.${COLOR_RESET}\n"
+    exit 1
+}
+
+main "$@"

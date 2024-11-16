@@ -3,10 +3,10 @@ set -euo pipefail
 LC_ALL=C
 
 # Configuration
-VERBOSE=false                     # Set to true for verbose mode
+VERBOSE=false                       # Set to true for verbose mode
 MAX_CHANGED_LINES=500
 CHECKSTYLE_CONFIG="checkstyle.xml"  # Path to Checkstyle configuration file
-BUILD_TOOL="maven"                 # Choose between 'maven' or 'gradle'
+BUILD_TOOL="maven"                  # Choose between 'maven' or 'gradle'
 
 # Color codes
 COLOR_RESET="\033[0m\033[2m"
@@ -15,7 +15,6 @@ COLOR_RED="\033[31m"
 COLOR_BLUE="\033[34m"
 
 # Functions
-
 log() {
     if [[ "$VERBOSE" == true ]]; then
         printf "\n${COLOR_BLUE}[DEBUG]${COLOR_RESET} %s\n" "$1"
@@ -31,30 +30,6 @@ get_command_flags() {
     fi
 }
 
-# Validate branch name
-validate_branch_name() {
-    local branch="$1"
-    local regex="^(feature|bugfix)\/[0-9]+-[a-z0-9]+([-_][a-z0-9]+)*$|^(ci|chore|infra)\/[a-z0-9]+([-_][a-z0-9]+)*$"
-    local error_message="
-      ${COLOR_RED}✘ Invalid branch name detected:${COLOR_RESET}
-
-      ${COLOR_RESET}Branch names must follow these rules:
-      1. Feature or bugfix branches must include a numeric ticket ID and a short description:
-         - Example: feature/123-add-login, bugfix/456-fix-crash.
-      2. CI, chore, or infra branches must include a short description:
-         - Example: ci/add-linting, chore/update-dependencies, infra/refactor-deployment.
-
-      Your branch: '$branch' does not match these rules.
-      Please rename your branch and try again.${COLOR_RESET}
-      "
-
-    if [[ ! "$branch" =~ $regex ]]; then
-        printf "%s" "$error_message" >&2
-        exit 1
-    fi
-    printf "${COLOR_GREEN}✔ Branch name validation passed.${COLOR_RESET}\n"
-}
-
 # Validate commit size
 validate_commit_size() {
     log "Validating commit size..."
@@ -66,9 +41,11 @@ validate_commit_size() {
     fi
     if (( changed_lines > MAX_CHANGED_LINES )); then
         printf "\n${COLOR_RED}✘ Too many changes (%s lines) in a single commit!${COLOR_RESET}\n" "$changed_lines"
+        # shellcheck disable=SC2059
         printf "${COLOR_RESET}Please break your changes into smaller commits.${COLOR_RESET}\n"
         exit 1
     fi
+    # shellcheck disable=SC2059
     printf "\n${COLOR_GREEN}✔ Commit size validation passed.${COLOR_RESET}\n"
 }
 
@@ -78,7 +55,9 @@ run_linter() {
     local flags
     flags=$(get_command_flags)
     if [[ "$BUILD_TOOL" == "maven" ]]; then
+        # shellcheck disable=SC2086
         if ! mvn checkstyle:check $flags -D checkstyle.config.location="$CHECKSTYLE_CONFIG"; then
+            # shellcheck disable=SC2059
             printf "\n${COLOR_RED}✘ Checkstyle validation failed. Fix issues before committing.${COLOR_RESET}\n"
             exit 1
         fi
@@ -86,55 +65,18 @@ run_linter() {
         printf "\n${COLOR_RED}✘ Unsupported build tool: %s${COLOR_RESET}\n" "$BUILD_TOOL"
         exit 1
     fi
+    # shellcheck disable=SC2059
     printf "${COLOR_GREEN}✔ Checkstyle validation passed.${COLOR_RESET}\n"
 }
 
-# Run tests
-run_tests() {
-    local flags
-    flags=$(get_command_flags)
-    local test_command
-    if [[ "$BUILD_TOOL" == "maven" ]]; then
-        test_command="mvn test $flags"
-    elif [[ "$BUILD_TOOL" == "gradle" ]]; then
-        test_command="gradle test $flags"
-    else
-        printf "\n${COLOR_RED}✘ Unsupported build tool: %s${COLOR_RESET}\n" "$BUILD_TOOL"
-        exit 1
-    fi
-    log "Running tests with command: $test_command"
-
-    # Run the test command and capture output
-    local output
-    if output=$($test_command 2>&1); then
-        [[ "$VERBOSE" == true ]] && printf "%s\n" "$output"
-        printf "${COLOR_GREEN}✔ All tests passed.${COLOR_RESET}\n"
-    else
-        [[ "$VERBOSE" == true ]] && printf "%s\n" "$output"
-        printf "${COLOR_RED}✘ Some tests failed. Fix the issues before committing.${COLOR_RESET}\n"
-        exit 1
-    fi
-}
-
 main() {
-    # Validate branch name
-    local branch_name
-    if ! branch_name=$(git rev-parse --abbrev-ref HEAD); then
-        printf "${COLOR_RED}✘ Error: Failed to retrieve the current branch name.${COLOR_RESET}\n"
-        exit 1
-    fi
-    log "Current branch name: $branch_name"
-    validate_branch_name "$branch_name"
-
     # Validate commit size
     validate_commit_size
 
     # Run linter
     run_linter
 
-    # Run tests - disabled, think its better suited for push hook
-    # run_tests
-
+    # shellcheck disable=SC2059
     printf "${COLOR_GREEN}✔ All pre-commit checks passed. Proceeding with commit.${COLOR_RESET}\n"
 }
 
