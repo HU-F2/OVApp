@@ -134,7 +134,6 @@ main() {
 
     # shellcheck disable=SC2059
     printf "${COLOR_GREEN}✔ All pre-push checks passed. Proceeding with push.${COLOR_RESET}\n"
-    exit 1
 }
 
 main "$@"
