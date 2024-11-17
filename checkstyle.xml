@@ -34,13 +34,7 @@
         <module name="LeftCurly"/>
 
         <!-- Imports -->
-        <module name="AvoidStarImport"/>
         <module name="UnusedImports"/>
-        <module name="ImportOrder">
-            <property name="groups" value="java,javax,org,com"/>
-            <property name="ordered" value="true"/>
-            <property name="separated" value="true"/>
-        </module>
 
         <!-- Whitespace -->
         <module name="WhitespaceAround"/>
