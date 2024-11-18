@@ -139,6 +139,7 @@ public class TransitServiceImpl implements TransitService {
      * @param url    the complete URL for the API endpoint
      * @param method the HTTP method to use (e.g., "GET")
      * @return a CompletableFuture containing the response body as a String
+     * voeg comment toe
      */
     private CompletableFuture<String> sendRequest(String url, String method) {
         final HttpRequest request = HttpRequest.newBuilder()
