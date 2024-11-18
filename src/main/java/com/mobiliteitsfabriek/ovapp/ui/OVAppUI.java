@@ -6,10 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class OVAppUI extends Application {
-    public static void launch() {
-        Application.launch();
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -17,7 +16,9 @@ public class OVAppUI extends Application {
         final BorderPane root = loader.load();
 
         final Scene scene = new Scene(root, 1200, 800);
-        scene.getStylesheets().add(getClass().getResource("/styles/styles.css").toExternalForm());
+        scene.getStylesheets()
+                .add(Objects.requireNonNull(getClass().getResource("/styles/styles.css"))
+                        .toExternalForm());
 
         primaryStage.setTitle("OV App");
         primaryStage.setScene(scene);
