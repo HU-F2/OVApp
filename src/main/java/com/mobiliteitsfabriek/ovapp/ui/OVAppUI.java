@@ -14,7 +14,7 @@ public class OVAppUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         final FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
         final BorderPane root = loader.load();
-
+        System.out.println("Max is boos.");
         final Scene scene = new Scene(root, 1200, 800);
         scene.getStylesheets()
                 .add(Objects.requireNonNull(getClass().getResource("/styles/styles.css"))
