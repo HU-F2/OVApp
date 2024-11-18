@@ -1,0 +1,842 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "NS-APP Stations API",
+        "description": "NS-APP Stations API",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "https://gateway.apiportal.ns.nl/nsapp-stations"
+        }
+    ],
+    "paths": {
+        "/v2": {
+            "get": {
+                "summary": "Stations V2",
+                "description": "A list of stations that can be used to plan trips.",
+                "operationId": "getStations",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "A minimum 2 characters are required when this parameter is provided.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "includeNonPlannableStations",
+                        "in": "query",
+                        "description": "Specify if you want to include stations that can't be used for planning a trip.",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    {
+                        "name": "countryCodes",
+                        "in": "query",
+                        "description": "A list of countryCodes to use as a filter.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "nl,d,b"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The limit is only applied when call is performed with q parameter. If invoked by countrycodes only, no limit is applied",
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of stations that can be used to plan trips",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StationsV2Response"
+                                },
+                                "example": {
+                                    "payload": [
+                                        {
+                                            "UICCode": "string",
+                                            "stationType": "LOCAL_TRAIN_STATION",
+                                            "EVACode": "string",
+                                            "cdCode": 0,
+                                            "code": "string",
+                                            "sporen": [
+                                                {
+                                                    "spoorNummer": "string"
+                                                }
+                                            ],
+                                            "synoniemen": [
+                                                "string"
+                                            ],
+                                            "heeftFaciliteiten": true,
+                                            "heeftVertrektijden": true,
+                                            "heeftReisassistentie": true,
+                                            "namen": {
+                                                "lang": "string",
+                                                "middel": "string",
+                                                "kort": "string",
+                                                "festive": "string"
+                                            },
+                                            "land": "string",
+                                            "lat": 0,
+                                            "lng": 0,
+                                            "radius": 0,
+                                            "naderenRadius": 0,
+                                            "distance": 0,
+                                            "ingangsDatum": "string",
+                                            "eindDatum": "string",
+                                            "nearbyMeLocationId": {
+                                                "value": "string",
+                                                "type": "string"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v2/nearest": {
+            "get": {
+                "summary": "Get V2 stations closest to provided coordinates",
+                "description": "Get V2 stations closest to provided coordinates",
+                "operationId": "getNearestStations",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitude",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "lng",
+                        "in": "query",
+                        "description": "Longitude",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit the results",
+                        "schema": {
+                            "type": "integer",
+                            "default": 2
+                        }
+                    },
+                    {
+                        "name": "includeNonPlannableStations",
+                        "in": "query",
+                        "description": "Specify if you want to include stations that can't be used for planning a trip.",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of plannable stations closest to provided coordinates",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StationsV2Response"
+                                },
+                                "example": {
+                                    "payload": [
+                                        {
+                                            "UICCode": "string",
+                                            "stationType": "LOCAL_TRAIN_STATION",
+                                            "EVACode": "string",
+                                            "cdCode": 0,
+                                            "code": "string",
+                                            "sporen": [
+                                                {
+                                                    "spoorNummer": "string"
+                                                }
+                                            ],
+                                            "synoniemen": [
+                                                "string"
+                                            ],
+                                            "heeftFaciliteiten": true,
+                                            "heeftVertrektijden": true,
+                                            "heeftReisassistentie": true,
+                                            "namen": {
+                                                "lang": "string",
+                                                "middel": "string",
+                                                "kort": "string",
+                                                "festive": "string"
+                                            },
+                                            "land": "string",
+                                            "lat": 0,
+                                            "lng": 0,
+                                            "radius": 0,
+                                            "naderenRadius": 0,
+                                            "distance": 0,
+                                            "ingangsDatum": "string",
+                                            "eindDatum": "string",
+                                            "nearbyMeLocationId": {
+                                                "value": "string",
+                                                "type": "string"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3": {
+            "get": {
+                "summary": "Stations V3",
+                "description": "A list of stations that can be used to plan trips.",
+                "operationId": "getStationsV3",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "A minimum 2 characters are required when this parameter is provided.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "includeNonPlannableStations",
+                        "in": "query",
+                        "description": "Specify if you want to include stations that can't be used for planning a trip.",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    },
+                    {
+                        "name": "countryCodes",
+                        "in": "query",
+                        "description": "A list of countryCodes to use as a filter.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "nl,d,b"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "The limit is only applied when call is performed with q parameter. If invoked by countrycodes only, no limit is applied",
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of stations that can be used to plan trips",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StationsV3Response"
+                                },
+                                "example": {
+                                    "payload": [
+                                        {
+                                            "id": {
+                                                "uicCode": "string",
+                                                "evaCode": "string",
+                                                "cdCode": 0,
+                                                "code": "string"
+                                            },
+                                            "stationType": "LOCAL_TRAIN_STATION",
+                                            "names": {
+                                                "long": "string",
+                                                "medium": "string",
+                                                "short": "string",
+                                                "festive": "string",
+                                                "synonyms": [
+                                                    "string"
+                                                ]
+                                            },
+                                            "location": {
+                                                "lat": 0,
+                                                "lng": 0
+                                            },
+                                            "tracks": [
+                                                "string"
+                                            ],
+                                            "hasKnownFacilities": true,
+                                            "availableForAccessibleTravel": true,
+                                            "hasTravelAssistance": true,
+                                            "areTracksIndependentlyAccessible": true,
+                                            "isBorderStop": true,
+                                            "country": "string",
+                                            "radius": 0,
+                                            "approachingRadius": 0,
+                                            "distance": 0,
+                                            "startDate": "string",
+                                            "endDate": "string",
+                                            "nearbyMeLocationId": {
+                                                "value": "string",
+                                                "type": "string"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/v3/nearest": {
+            "get": {
+                "summary": "Get V3 stations closest to provided coordinates",
+                "description": "Get V3 stations closest to provided coordinates",
+                "operationId": "getNearestStationsV3",
+                "parameters": [
+                    {
+                        "name": "lat",
+                        "in": "query",
+                        "description": "Latitude",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "lng",
+                        "in": "query",
+                        "description": "Longitude",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Limit the results",
+                        "schema": {
+                            "type": "integer",
+                            "default": 2
+                        }
+                    },
+                    {
+                        "name": "includeNonPlannableStations",
+                        "in": "query",
+                        "description": "Specify if you want to include stations that can't be used for planning a trip.",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of plannable stations closest to provided coordinates",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StationsV3Response"
+                                },
+                                "example": {
+                                    "payload": [
+                                        {
+                                            "id": {
+                                                "uicCode": "string",
+                                                "evaCode": "string",
+                                                "cdCode": 0,
+                                                "code": "string"
+                                            },
+                                            "stationType": "LOCAL_TRAIN_STATION",
+                                            "names": {
+                                                "long": "string",
+                                                "medium": "string",
+                                                "short": "string",
+                                                "festive": "string",
+                                                "synonyms": [
+                                                    "string"
+                                                ]
+                                            },
+                                            "location": {
+                                                "lat": 0,
+                                                "lng": 0
+                                            },
+                                            "tracks": [
+                                                "string"
+                                            ],
+                                            "hasKnownFacilities": true,
+                                            "availableForAccessibleTravel": true,
+                                            "hasTravelAssistance": true,
+                                            "areTracksIndependentlyAccessible": true,
+                                            "isBorderStop": true,
+                                            "country": "string",
+                                            "radius": 0,
+                                            "approachingRadius": 0,
+                                            "distance": 0,
+                                            "startDate": "string",
+                                            "endDate": "string",
+                                            "nearbyMeLocationId": {
+                                                "value": "string",
+                                                "type": "string"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "message": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Track": {
+                "required": [
+                    "spoorNummer"
+                ],
+                "type": "object",
+                "properties": {
+                    "spoorNummer": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "StationsNamen": {
+                "required": [
+                    "lang",
+                    "middel",
+                    "kort"
+                ],
+                "type": "object",
+                "properties": {
+                    "lang": {
+                        "type": "string"
+                    },
+                    "middel": {
+                        "type": "string"
+                    },
+                    "kort": {
+                        "type": "string"
+                    },
+                    "festive": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "NearbyMeLocationId": {
+                "required": [
+                    "value",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "value": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "StationType": {
+                "enum": [
+                    "LOCAL_TRAIN_STATION",
+                    "LOCAL_TRAIN_HUB_STATION",
+                    "EXPRESS_TRAIN_STATION",
+                    "EXPRESS_TRAIN_HUB_STATION",
+                    "INTERCITY_STATION",
+                    "INTERCITY_HUB_STATION",
+                    "MEGA_STATION",
+                    "OPTIONAL_STATION"
+                ],
+                "type": "string"
+            },
+            "StationV2": {
+                "required": [
+                    "UICCode",
+                    "stationType",
+                    "sporen",
+                    "synoniemen",
+                    "heeftFaciliteiten",
+                    "heeftVertrektijden",
+                    "heeftReisassistentie"
+                ],
+                "type": "object",
+                "properties": {
+                    "UICCode": {
+                        "type": "string"
+                    },
+                    "stationType": {
+                        "$ref": "#/components/schemas/StationType"
+                    },
+                    "EVACode": {
+                        "type": "string"
+                    },
+                    "cdCode": {
+                        "type": "number"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "sporen": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Track"
+                        }
+                    },
+                    "synoniemen": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "heeftFaciliteiten": {
+                        "type": "boolean"
+                    },
+                    "heeftVertrektijden": {
+                        "type": "boolean"
+                    },
+                    "heeftReisassistentie": {
+                        "type": "boolean"
+                    },
+                    "namen": {
+                        "$ref": "#/components/schemas/StationsNamen"
+                    },
+                    "land": {
+                        "type": "string"
+                    },
+                    "lat": {
+                        "type": "number"
+                    },
+                    "lng": {
+                        "type": "number"
+                    },
+                    "radius": {
+                        "type": "number"
+                    },
+                    "naderenRadius": {
+                        "type": "number"
+                    },
+                    "distance": {
+                        "type": "number"
+                    },
+                    "ingangsDatum": {
+                        "type": "string"
+                    },
+                    "eindDatum": {
+                        "type": "string"
+                    },
+                    "nearbyMeLocationId": {
+                        "$ref": "#/components/schemas/NearbyMeLocationId"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "StationsV2Response": {
+                "required": [
+                    "payload"
+                ],
+                "type": "object",
+                "properties": {
+                    "payload": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/StationV2"
+                        }
+                    }
+                },
+                "additionalProperties": false
+            },
+            "Coordinate": {
+                "required": [
+                    "lat",
+                    "lng"
+                ],
+                "type": "object",
+                "properties": {
+                    "lat": {
+                        "type": "number"
+                    },
+                    "lng": {
+                        "type": "number"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "StationIdentification": {
+                "required": [
+                    "uicCode"
+                ],
+                "type": "object",
+                "properties": {
+                    "uicCode": {
+                        "type": "string",
+                        "description": "Short UIC code for this station"
+                    },
+                    "evaCode": {
+                        "type": "string",
+                        "description": "EuroEVA code for this station, if present"
+                    },
+                    "cdCode": {
+                        "type": "number",
+                        "description": "Short code that is used for price computations (MRP)"
+                    },
+                    "code": {
+                        "type": "string",
+                        "description": "Short station code (e.g. UT for Utrecht Centraal)"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "StationNames": {
+                "required": [
+                    "long",
+                    "medium",
+                    "short",
+                    "synonyms"
+                ],
+                "type": "object",
+                "properties": {
+                    "long": {
+                        "type": "string"
+                    },
+                    "medium": {
+                        "type": "string"
+                    },
+                    "short": {
+                        "type": "string"
+                    },
+                    "festive": {
+                        "type": "string"
+                    },
+                    "synonyms": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of synonyms for this station"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "StationV3": {
+                "required": [
+                    "id",
+                    "stationType",
+                    "names",
+                    "tracks",
+                    "hasKnownFacilities",
+                    "availableForAccessibleTravel",
+                    "hasTravelAssistance",
+                    "areTracksIndependentlyAccessible",
+                    "isBorderStop",
+                    "country"
+                ],
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "$ref": "#/components/schemas/StationIdentification"
+                    },
+                    "stationType": {
+                        "$ref": "#/components/schemas/StationType"
+                    },
+                    "names": {
+                        "$ref": "#/components/schemas/StationNames"
+                    },
+                    "location": {
+                        "$ref": "#/components/schemas/Coordinate"
+                    },
+                    "tracks": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of tracks known to this station"
+                    },
+                    "hasKnownFacilities": {
+                        "type": "boolean",
+                        "description": "Indicates whether this station has known facilities"
+                    },
+                    "availableForAccessibleTravel": {
+                        "type": "boolean",
+                        "description": "Indicates whether this station is available for accessible travel (i.e. has travel assistance or tracks that are independently accessible)"
+                    },
+                    "hasTravelAssistance": {
+                        "type": "boolean",
+                        "description": "Indicates that NSRA (NS Reisassistentie) is available at this station"
+                    },
+                    "areTracksIndependentlyAccessible": {
+                        "type": "boolean",
+                        "description": "Indicates that the tracks at this station are accessible without assistance. Please note that when the train itself is not accessible without assistance, the traveller still needs assistance."
+                    },
+                    "isBorderStop": {
+                        "type": "boolean",
+                        "description": "Indicates whether this station is only used to mark a border between two countries"
+                    },
+                    "country": {
+                        "type": "string",
+                        "description": "Country that this station is in"
+                    },
+                    "radius": {
+                        "type": "number",
+                        "description": "Radius around the exact location of the station where a someone is considered to be at the station"
+                    },
+                    "approachingRadius": {
+                        "type": "number",
+                        "description": "Radius around a station where a train is considered to be approaching the station"
+                    },
+                    "distance": {
+                        "type": "number",
+                        "description": "Distance in meters to a requested coordinate (latitude, longitude)"
+                    },
+                    "startDate": {
+                        "type": "string",
+                        "description": "Start date for this station (ISO Format). If not set, the date is unknown and the station is supposed to be opened"
+                    },
+                    "endDate": {
+                        "type": "string",
+                        "description": "End date for this station (ISO Format). If not set, the date is unknown and the station is supposed to be opened."
+                    },
+                    "nearbyMeLocationId": {
+                        "$ref": "#/components/schemas/NearbyMeLocationId"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "StationsV3Response": {
+                "required": [
+                    "payload"
+                ],
+                "type": "object",
+                "properties": {
+                    "payload": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/StationV3"
+                        }
+                    }
+                },
+                "additionalProperties": false
+            }
+        },
+        "securitySchemes": {
+            "apiKeyHeader": {
+                "type": "apiKey",
+                "name": "Ocp-Apim-Subscription-Key",
+                "in": "header"
+            },
+            "apiKeyQuery": {
+                "type": "apiKey",
+                "name": "subscription-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "apiKeyHeader": []
+        },
+        {
+            "apiKeyQuery": []
+        }
+    ]
+}

@@ -1,0 +1,109 @@
+/* Root styles */
+.root {
+    -fx-primary: #1a73e8;
+    -fx-primary-dark: #1557b0;
+    -fx-accent: #ea4335;
+    -fx-grey-background: #f8f9fa;
+    -fx-text-color: #202124;
+    -fx-font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont;
+    font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont;
+}
+
+/* Menu Bar styling */
+.menu-bar {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 2);
+}
+
+.menu-bar .label {
+    -fx-text-fill: -fx-text-color;
+    -fx-font-size: 13px;
+    font-size: 13px;
+}
+
+.menu-item:hover {
+    -fx-background-color: -fx-grey-background;
+    background-color: #f8f9fa;
+}
+
+/* Navigation panel styling */
+.nav-panel {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 2, 0);
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #e8eaed;
+    border-width: 0 1px 0 0;
+    border-color: #e8eaed;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-text-fill: -fx-text-color;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    -fx-padding: 12 20;
+    padding: 12px 20px;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    border-radius: 8px;
+    -fx-font-weight: normal;
+    font-weight: normal;
+    -fx-alignment: CENTER-LEFT;
+}
+
+.nav-button:hover {
+    -fx-background-color: derive(-fx-grey-background, 50%);
+    background-color: #fbfbfc;
+}
+
+.nav-button:pressed {
+    -fx-background-color: derive(-fx-grey-background, 20%);
+    background-color: #f1f2f4;
+}
+
+/* Content area styling */
+.content-area {
+    -fx-background-color: -fx-grey-background;
+    background-color: #f8f9fa;
+}
+
+.welcome-text {
+    -fx-font-size: 28px;
+    font-size: 28px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-text-fill: -fx-text-color;
+}
+
+/* Status bar styling */
+.status-bar {
+    -fx-background-color: white;
+    background-color: white;
+    -fx-padding: 8 16;
+    padding: 8px 16px;
+    -fx-border-width: 1 0 0 0;
+    border-width: 1px 0 0 0;
+    -fx-border-color: #e8eaed;
+    border-color: #e8eaed;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 4, 0, 0, -2);
+}
+
+.status-label {
+    -fx-text-fill: #5f6368;
+    -fx-font-size: 12px;
+    font-size: 12px;
+}
+
+/* Add these new utility classes */
+.elevation-1 {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 1);
+}
+
+.rounded-panel {
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    border-radius: 12px;
+} 

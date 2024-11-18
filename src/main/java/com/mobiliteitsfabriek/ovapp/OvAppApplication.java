@@ -1,13 +1,11 @@
 package com.mobiliteitsfabriek.ovapp;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 
-@SpringBootApplication
 public class OvAppApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(OvAppApplication.class, args);
+        OVAppUI.launch(OVAppUI.class, args);
     }
 
 }
