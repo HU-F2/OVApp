@@ -7,60 +7,60 @@ assignees: ''
 
 ---
 
-## Description
+## Beschrijving
 
 <!--
-Provide a brief overview of what documentation is needed.
+Beschrijf een kort overzicht over welke documentatie nodig is.
 -->
 
-- **Type of Documentation:** [Project documentation / Code documentation / User interviews / Personas / Design guidelines, etc.]
-- **Topic/Feature:** [The specific topic or feature that needs documentation]
-- **Purpose:** [Why is this documentation needed? Who will benefit from it?]
+- **Type Documentatie:** [Project documentatie / Code documentatie / User interviews / Personas / Design guidelines, etc.]
+- **Onderwerp/Functionaliteit:** [Het specifieke onderwerp of functionaliteit dat gedocumenteerd moet worden]
+- **Doel:** [Waarom is deze documentatie nodig? Wie profiteert ervan?]
 
 ## Scope
 
 <!--
-Describe the scope of the documentation. Be specific about what should be included.
+Beschrijf de scope van de documentatie. Wees specifiek over wat erin moet.
 -->
 
-- **Include:** [List the specific aspects or sections that should be covered]
-- **Exclude:** [Optional: List aspects that are out of scope]
+- **Inclusief:** [Specificeer de specifieke aspecten of onderdelen die moeten worden behandeld]
+- **Uitsluitend:** [Optioneel: Specificeer de aspecten die buiten de scope vallen]
 
-## Acceptance Criteria
+## Acceptatiecriteria
 
 <!--
-Define what a completed documentation should include. Use checkboxes for clarity.
+Beschrijf wat de volledige documentatie nodig heeft. Gebruik checkboxes voor duidelijkheid.
 -->
 
-- [ ] Clear and concise explanation of [specific topic or feature]
-- [ ] Relevant diagrams, charts, or screenshots included
-- [ ] Examples or use cases provided
-- [ ] Any necessary links to external resources or references
+- [ ] Heldere en beknopte uitleg van [specifiek onderwerp of functie]  
+- [ ] Relevante diagrammen, grafieken of screenshots toegevoegd  
+- [ ] Voorbeelden of use cases opgenomen  
+- [ ] Eventuele links naar externe bronnen of referenties toegevoegd  
 
-## Tasks
+## Taken  
 
-<!--
-List the tasks required to complete the documentation. Use checkboxes for tracking.
--->
+<!--  
+Lijst met taken die nodig zijn om de documentatie af te ronden. Gebruik selectievakjes voor tracking.  
+-->  
 
-- [ ] Research the topic/feature
-- [ ] Draft the documentation
-- [ ] Review and edit the draft
-- [ ] Finalize and upload to the appropriate location
+- [ ] Onderzoek het onderwerp/de functie  
+- [ ] Schrijf een conceptversie van de documentatie  
+- [ ] Controleer en bewerk de conceptversie  
+- [ ] Finaliseer en upload naar de juiste locatie  
 
-## Related Issues or Resources
+## Gerelateerde Problemen of Bronnen  
 
-<!--
-Link to any related GitHub issues, pull requests, or external references.
--->
+<!--  
+Link naar gerelateerde GitHub-issues, pull requests of externe verwijzingen.  
+-->  
 
-- **Related Issues:** [#IssueNumber, if applicable]
-- **References:** [Links to relevant resources, style guides, or similar documentation]
+- **Gerelateerde Problemen:** [#IssueNumber, indien van toepassing]  
+- **Verwijzingen:** [Links naar relevante bronnen, stijlhandleidingen of soortgelijke documentatie]  
 
-## Additional Notes
+## Aanvullende Opmerkingen  
 
-<!--
-Include any other information that might help in completing the documentation.
--->
+<!--  
+Voeg eventuele andere informatie toe die kan helpen bij het afronden van de documentatie.  
+-->  
 
-- [Optional: Add any additional context, suggestions, or details here]
+- [Optioneel: Voeg hier extra context, suggesties of details toe]  
