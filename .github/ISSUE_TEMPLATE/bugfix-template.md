@@ -7,59 +7,59 @@ assignees: ''
 
 ---
 
-## User Story
+## User Story  
 
-<!--
-Describe the bug and its impact from the user's perspective.
--->
+<!--  
+Beschrijf de bug en de impact vanuit het perspectief van de gebruiker.  
+-->  
 
-_As a_ **[user role]**, _I want_ **[the bug fixed]** _so that_ **[desired outcome or benefit]**.
+_Als een_ **[gebruikersrol]**, _wil ik_ **[de bug opgelost]** _zodat_ **[gewenst resultaat of voordeel]**.  
 
-## Description
+## Beschrijving  
 
-<!--
-Provide a clear and concise description of the bug.
--->
+<!--  
+Geef een duidelijke en beknopte beschrijving van de bug.  
+-->  
 
-- **What Happens:** [Describe the unexpected behavior]
-- **What Should Happen:** [Describe the expected behavior]
+- **Wat Gebeurt Er:** [Beschrijf het onverwachte gedrag]  
+- **Wat Zou Er Moeten Gebeuren:** [Beschrijf het verwachte gedrag]  
 
-## Steps to Reproduce
+## Stappen om te Reproduceren  
 
-<!--
-Provide step-by-step instructions to reproduce the bug.
--->
+<!--  
+Geef stap-voor-stap instructies om de bug te reproduceren.  
+-->  
 
-1. **Step 1:** [Instruction]
-2. **Step 2:** [Instruction]
-3. **Step 3:** [Instruction]
+1. **Stap 1:** [Instructie]  
+2. **Stap 2:** [Instructie]  
+3. **Stap 3:** [Instructie]  
 
-## Acceptance Criteria
+## Acceptatiecriteria  
 
-<!--
-Define the conditions that must be met for the bug to be considered fixed. Use checkboxes for clarity.
--->
+<!--  
+Definieer de voorwaarden die voldaan moeten zijn voordat de bug als opgelost wordt beschouwd. Gebruik selectievakjes voor duidelijkheid.  
+-->  
 
-- [ ] **Criterion 1:** [Description of the expected fix]
-- [ ] **Criterion 2:** [Description of the expected fix]
-- [ ] **Criterion 3:** [Description of the expected fix]
+- [ ] **Criteria 1:** [Beschrijving van de verwachte oplossing]  
+- [ ] **Criteria 2:** [Beschrijving van de verwachte oplossing]  
+- [ ] **Criteria 3:** [Beschrijving van de verwachte oplossing]  
 
-## Tasks
+## Taken  
 
-<!--
-Break down the bug fix into actionable tasks. Use checkboxes for tracking progress.
--->
+<!--  
+Verdeel de bugfix in uitvoerbare taken. Gebruik selectievakjes om de voortgang te volgen.  
+-->  
 
-- [ ] **Task 1:** [Identify the root cause of the bug]
-- [ ] **Task 2:** [Implement the fix]
-- [ ] **Task 3:** [Test the fix]
-- [ ] **Task 4:** [Deploy and verify the fix]
+- [ ] **Taak 1:** [Identificeer de oorzaak van de bug]  
+- [ ] **Taak 2:** [Implementeer de oplossing]  
+- [ ] **Taak 3:** [Test de oplossing]  
+- [ ] **Taak 4:** [Deplooi en verifieer de oplossing]  
 
-## Related Issues or Resources
+## Gerelateerde Problemen of Bronnen  
 
-<!--
-Link to any related GitHub issues, pull requests, or external references.
--->
+<!--  
+Link naar gerelateerde GitHub-issues, pull requests of externe verwijzingen.  
+-->  
 
-- **Related Issues:** [#IssueNumber, if applicable]
-- **References:** [Links to relevant resources, documentation, or discussions]
+- **Gerelateerde Problemen:** [#IssueNummer, indien van toepassing]  
+- **Verwijzingen:** [Links naar relevante bronnen, documentatie of discussies]  

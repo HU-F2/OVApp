@@ -8,53 +8,54 @@ assignees: ''
 ---
 
 <!--
-Describe the feature from the perspective of the user.
+Beschrijf de functionaliteit vanuit het perspectief van de gebruiker.
 -->
-_As a_ **[user role]**, _I want_ **[desired feature or action]** _so that_ **[benefit or reason]**.
+_Als een_ **[gebruiker rol]**, _wil ik_ **[functionaliteit of actie]** _, zodat_ **[voordeel of reden]**.
 
-## Acceptance Criteria
+## Acceptatiecriteria
 
 <!--
-Define the conditions that must be met for this feature to be considered complete. Use checkboxes for clarity.
+Definieer de criteria die af moeten zijn om de functionaliteit als vervuld te zien. Gebruik checkboxes for duidelijkheid.
 -->
 
-- [ ] **Criterion 1:** [Specific condition that must be met]
-- [ ] **Criterion 2:** [Specific condition that must be met]
-- [ ] **Criterion 3:** [Specific condition that must be met]
+- [ ] **Criteria 1:** [Specifieke criteria die voldaan moet zijn]
+- [ ] **Criteria 2:** [Specifieke criteria die voldaan moet zijn]
+- [ ] **Criteria 3:** [Specifieke criteria die voldaan moet zijn]
 
-## Tasks
+## Taken  
+
+<!--  
+Verdeel de feature in uitvoerbare taken. Gebruik selectievakjes om de voortgang te volgen.  
+-->  
+
+- [ ] **Taak 1:** [Beschrijving van de taak]  
+- [ ] **Taak 2:** [Beschrijving van de taak]  
+- [ ] **Taak 3:** [Beschrijving van de taak]  
+
+## Wireframes (Als het relevant is)
 
 <!--
-Break down the feature into actionable tasks. Use checkboxes for tracking progress.
+Voeg relevante ontwerp materiaal toe zoals wireframes.
 -->
 
-- [ ] **Task 1:** [Description of the task]
-- [ ] **Task 2:** [Description of the task]
-- [ ] **Task 3:** [Description of the task]
+- [Voeg fotos toe of links naar ontwerp documenten]
 
-## Mockups or Wireframes (if applicable)
+## Extra Context
 
 <!--
-Include or link to any relevant design materials, such as mockups or wireframes.
+Geef extra informatie of context over de functionaliteit
 -->
 
-- [Attach images or links to design documents]
-
-## Additional Context
-
-<!--
-Provide any additional information or context about the feature request.
--->
-
-- **Why this is important:** [Explain the value or impact of this feature]
-- **Potential challenges:** [Describe any potential risks or constraints]
+- **Waarom is dit belangrijk:** [Beschrijf de waarde of impact van deze functionaliteit]
+- **Potentiële uitdagingen:** [Beschrijf potentiële risico's of belemmeringen]
 - **Dependencies:** [List any related features, systems, or libraries]
+- **Relaties:** [Maak een lijst van gerelateerde functionaliteiten]
 
-## Related Issues or Resources
+## Gerelateerde Issues
 
 <!--
-Link to any related GitHub issues, pull requests, or external references.
+Link naar gerelateerde GitHub issues, pull requests of iets anders.
 -->
 
-- **Related Issues:** [#IssueNumber, if applicable]
-- **References:** [Links to relevant resources, documentation, or discussions]
+- **Gerelateerde Issues:** [#IssueNummer, als het relevant is]
+- **Andere Links:** [Links naar relevante documentatie, or discussies]
