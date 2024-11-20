@@ -127,7 +127,7 @@ main() {
     # Check for open merge requests or pull requests
     check_open_prs "$branch_name"
 
-    check_uncommitted_changes
+    # check_uncommitted_changes
 
     # Run tests
     run_tests

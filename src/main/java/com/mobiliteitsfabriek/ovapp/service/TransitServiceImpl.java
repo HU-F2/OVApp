@@ -1,10 +1,5 @@
 package com.mobiliteitsfabriek.ovapp.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.mobiliteitsfabriek.ovapp.model.Journey;
-import com.mobiliteitsfabriek.ovapp.model.Station;
-
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -12,6 +7,12 @@ import java.net.http.HttpResponse;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.mobiliteitsfabriek.ovapp.exceptions.RuntimeParseException;
+import com.mobiliteitsfabriek.ovapp.model.Journey;
+import com.mobiliteitsfabriek.ovapp.model.Station;
 
 /**
  * Implementation of the TransitService interface that handles communication with the transit API.
@@ -67,10 +68,9 @@ public class TransitServiceImpl implements TransitService {
                     try {
                         return objectMapper.readValue(
                                 response,
-                                objectMapper.getTypeFactory().constructCollectionType(List.class, Station.class)
-                        );
+                                objectMapper.getTypeFactory().constructCollectionType(List.class, Station.class));
                     } catch (Exception e) {
-                        throw new RuntimeException("Failed to parse stations response", e);
+                        throw new RuntimeParseException("stations", e);
                     }
                 });
     }
@@ -88,8 +88,7 @@ public class TransitServiceImpl implements TransitService {
     public CompletableFuture<List<Journey>> planJourney(
             Station from,
             Station to,
-            LocalDateTime dateTime
-    ) {
+            LocalDateTime dateTime) {
         final String url = String.format("%s/journey?from=%s&to=%s&datetime=%s",
                 apiBaseUrl, from.getId(), to.getId(), dateTime);
         return sendRequest(url, "GET")
@@ -97,10 +96,9 @@ public class TransitServiceImpl implements TransitService {
                     try {
                         return objectMapper.readValue(
                                 response,
-                                objectMapper.getTypeFactory().constructCollectionType(List.class, Journey.class)
-                        );
+                                objectMapper.getTypeFactory().constructCollectionType(List.class, Journey.class));
                     } catch (Exception e) {
-                        throw new RuntimeException("Failed to parse journey response", e);
+                        throw new RuntimeParseException("journey", e);
                     }
                 });
     }
@@ -116,8 +114,7 @@ public class TransitServiceImpl implements TransitService {
     @Override
     public CompletableFuture<List<Journey>> getDepartures(
             Station station,
-            LocalDateTime dateTime
-    ) {
+            LocalDateTime dateTime) {
         final String url = String.format("%s/departures?station=%s&datetime=%s",
                 apiBaseUrl, station.getId(), dateTime);
         return sendRequest(url, "GET")
@@ -125,10 +122,9 @@ public class TransitServiceImpl implements TransitService {
                     try {
                         return objectMapper.readValue(
                                 response,
-                                objectMapper.getTypeFactory().constructCollectionType(List.class, Journey.class)
-                        );
+                                objectMapper.getTypeFactory().constructCollectionType(List.class, Journey.class));
                     } catch (Exception e) {
-                        throw new RuntimeException("Failed to parse departures response", e);
+                        throw new RuntimeParseException("departures", e);
                     }
                 });
     }
@@ -150,4 +146,4 @@ public class TransitServiceImpl implements TransitService {
         return httpClient.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body);
     }
-} 
+}

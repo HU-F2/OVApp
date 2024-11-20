@@ -3,6 +3,8 @@ package com.mobiliteitsfabriek.ovapp.ui.controllers;
 import com.mobiliteitsfabriek.ovapp.infrastructure.config.ApiConfig;
 import com.mobiliteitsfabriek.ovapp.service.TransitService;
 import com.mobiliteitsfabriek.ovapp.service.TransitServiceImpl;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -38,7 +40,7 @@ public class MainController {
      */
     @FXML
     private void handleSettings() {
-        updateStatus("Opening settings...");
+        updateStatus(TranslationHelper.get("status.settings"));
     }
 
     @FXML
@@ -48,22 +50,22 @@ public class MainController {
 
     @FXML
     private void handleAbout() {
-        updateStatus("OV App - Version 1.0");
+        updateStatus(TranslationHelper.get("status.about"));
     }
 
     @FXML
     private void handleJourneyPlanner() {
-        updateStatus("Opening journey planner...");
+        updateStatus(TranslationHelper.get("status.journey.planner"));
     }
 
     @FXML
     private void handleFavorites() {
-        updateStatus("Opening favorites...");
+        updateStatus(TranslationHelper.get("status.favorites"));
     }
 
     @FXML
     private void handleRecentTrips() {
-        updateStatus("Opening recent trips...");
+        updateStatus(TranslationHelper.get("status.recent.trips"));
     }
 
     /**
@@ -89,7 +91,7 @@ public class MainController {
                 })
                 .exceptionally(throwable -> {
                     Platform.runLater(() -> {
-                        updateStatus("Error: " + throwable.getMessage());
+                        updateStatus(TranslationHelper.get("status.error", throwable.getMessage()));
                     });
                     return null;
                 });

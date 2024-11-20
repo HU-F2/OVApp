@@ -88,6 +88,9 @@ For internal team members, please follow these steps to make changes:
 
 -
 
+## Documentatie
+   - [Vertalingen toevoegen](documentation/translations.md)
+   - [Uitleg Commit Types](documentation/commitTypes.md)
 
 ## License
 

@@ -1,6 +1,8 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
 import com.mobiliteitsfabriek.ovapp.model.Station;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -21,7 +23,7 @@ public class StationCard extends VBox {
             accessibilityInfo.getChildren().add(new Label("♿"));
         }
 
-        final Button detailsButton = new Button("Details");
+        final Button detailsButton = new Button(TranslationHelper.get("stationcard.button.details"));
         detailsButton.setOnAction(e -> showDetails(station));
 
         getChildren().addAll(nameLabel, accessibilityInfo, detailsButton);

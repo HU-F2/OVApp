@@ -1,9 +1,11 @@
 package com.mobiliteitsfabriek.ovapp.infrastructure.config;
 
-import lombok.Data;
-
 import java.io.InputStream;
 import java.util.Properties;
+
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+
+import lombok.Data;
 
 /**
  * Configuration class for API settings.
@@ -13,7 +15,7 @@ import java.util.Properties;
 public class ApiConfig {
     /** Base URL for the API endpoints */
     private String apiBaseUrl;
-    
+
     /** Authentication key for API access */
     private String apiKey;
 
@@ -35,7 +37,7 @@ public class ApiConfig {
 
             return config;
         } catch (Exception e) {
-            throw new RuntimeException("Failed to load API configuration", e);
+            throw new RuntimeException(TranslationHelper.get("error.api.configuration"), e);
         }
     }
-} 
+}
