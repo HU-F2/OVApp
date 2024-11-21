@@ -7,6 +7,7 @@
 2. **Vul het nieuwe bestand met vertalingen**:
 
     - De keys van de vertalingen moeten overeenkomen met die in de andere bestanden. De tekst moet worden aangepast naar de nieuwe taal.
+    *Je kan chatgpt gebruiken om deze stap voor je te doen.* 
     - Voorbeeld:
         ```properties
         status.settings=Opening settings...
