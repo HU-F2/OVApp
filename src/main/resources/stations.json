@@ -1,61 +1,5 @@
 [ {
   "id" : {
-    "uicCode" : "8000000",
-    "code" : "BERFL"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Berlin-Schönefeld Flugh.",
-    "medium" : "Berlin-Fl.",
-    "short" : "Berlin-Fl.",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.3915,
-    "lng" : 13.513
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "BERFL",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8001071",
-    "code" : "HAMH"
-  },
-  "stationType" : "INTERCITY_HUB_STATION",
-  "names" : {
-    "long" : "Hamburg Hbf",
-    "medium" : "Hamburg H",
-    "short" : "Hamburg H",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 53.5526394,
-    "lng" : 10.0067103
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "HAMH",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8002084",
     "evaCode" : "8000139",
     "code" : "MGZB"
@@ -168,90 +112,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "BSPD",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8006006",
-    "code" : "BADSCH"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Bad Schandau",
-    "medium" : "Bad Schand",
-    "short" : "Bad Schand",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.91851,
-    "lng" : 14.14
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "BADSCH",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8006050",
-    "code" : "DRESD"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Dresden Hbf",
-    "medium" : "Dresden H.",
-    "short" : "Dresden H.",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.04056,
-    "lng" : 13.73203
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "DRESD",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8006216",
-    "code" : "DRESDN"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Dresden-Neustadt",
-    "medium" : "Dresden-N",
-    "short" : "Dresden-N",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.065556,
-    "lng" : 13.740833
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "DRESDN",
     "type" : "stationV3"
   }
 }, {
@@ -720,34 +580,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8010113",
-    "code" : "FRANKO"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Frankfurt (Oder)",
-    "medium" : "Frankf(Od)",
-    "short" : "Frankf(Od)",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.336163,
-    "lng" : 14.546509
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "FRANKO",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8010263",
     "evaCode" : "8000286",
     "code" : "OBERH"
@@ -1098,62 +930,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8013241",
-    "code" : "BRAUNS"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Braunschweig Hbf",
-    "medium" : "Braunschw",
-    "short" : "Braunschw",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.25224,
-    "lng" : 10.53971
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "BRAUNS",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8013471",
-    "code" : "WTA"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Tantow",
-    "medium" : "Tantow",
-    "short" : "Tantow",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 53.26667,
-    "lng" : 14.33333
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "WTA",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8013552",
     "evaCode" : "8000152",
     "code" : "HANN"
@@ -1324,34 +1100,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "KARLSR",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8014277",
-    "code" : "RBB"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Baden-Baden",
-    "medium" : "Baden-B.",
-    "short" : "Baden-B.",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 48.790082,
-    "lng" : 8.190468
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "RBB",
     "type" : "stationV3"
   }
 }, {
@@ -1701,34 +1449,6 @@
   "startDate" : "2022-01-01",
   "nearbyMeLocationId" : {
     "value" : "HZ",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8015195",
-    "code" : "KOHL"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Kohlscheid",
-    "medium" : "Kohlscheid",
-    "short" : "Kohlscheid",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.831728,
-    "lng" : 6.074485
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "KOHL",
     "type" : "stationV3"
   }
 }, {
@@ -2108,34 +1828,6 @@
   "startDate" : "2013-05-29",
   "nearbyMeLocationId" : {
     "value" : "FMZ",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8019585",
-    "code" : "KMB"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Montabaur",
-    "medium" : "Montabaur",
-    "short" : "Montabaur",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.444834,
-    "lng" : 7.825333
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2013-05-29",
-  "nearbyMeLocationId" : {
-    "value" : "KMB",
     "type" : "stationV3"
   }
 }, {
@@ -3100,34 +2792,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8024069",
-    "code" : "LRW"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Rathenow",
-    "medium" : "Rathenow",
-    "short" : "Rathenow",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.599444,
-    "lng" : 12.354721
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "LRW",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8026294",
     "evaCode" : "8000309",
     "code" : "REGENB"
@@ -3273,34 +2937,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8029086",
-    "code" : "GEISL"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Geislingen",
-    "medium" : "Geislingen",
-    "short" : "Geislingen",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 48.6194774237368,
-    "lng" : 9.84184026718139
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "GEISL",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8029103",
     "evaCode" : "8000170",
     "code" : "TU"
@@ -3326,34 +2962,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "TU",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8031372",
-    "code" : "ASCH"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Aachen Schanz",
-    "medium" : "Aachen Sch",
-    "short" : "Aachen Sch",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.769871144942,
-    "lng" : 6.07383012771606
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "ASCH",
     "type" : "stationV3"
   }
 }, {
@@ -3502,34 +3110,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "BERHBL",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8065971",
-    "code" : "BPAF"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Berlin Südkreuz",
-    "medium" : "Berlin Süd",
-    "short" : "Berlin Süd",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.47611,
-    "lng" : 13.365
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "BPAF",
     "type" : "stationV3"
   }
 }, {
@@ -3867,34 +3447,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8821154",
-    "code" : "GMD"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Mortsel-Deurnesteenweg",
-    "medium" : "M-Deurnest",
-    "short" : "M-Deurnest",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.1825,
-    "lng" : 4.447222
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "GMD",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8821196",
     "evaCode" : "8800310",
     "code" : "FNZD"
@@ -3920,90 +3472,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "FNZD",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8821238",
-    "code" : "GMOG"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Mortsel-Oude God",
-    "medium" : "M-Oude God",
-    "short" : "M-Oude God",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.171111,
-    "lng" : 4.455833
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "GMOG",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8821311",
-    "code" : "FKI"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Kontich",
-    "medium" : "Kontich",
-    "short" : "Kontich",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.133889,
-    "lng" : 4.476667
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "FKI",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8821337",
-    "code" : "MHO"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Hove",
-    "medium" : "Hove",
-    "short" : "Hove",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.153611,
-    "lng" : 4.465278
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "MHO",
     "type" : "stationV3"
   }
 }, {
@@ -4238,90 +3706,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "MECH",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8822210",
-    "code" : "FDP"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Duffel",
-    "medium" : "Duffel",
-    "short" : "Duffel",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.091389,
-    "lng" : 4.493056
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "FDP",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8822228",
-    "code" : "FWA"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Sint-Katelijne-Waver",
-    "medium" : "Sint-Katel",
-    "short" : "Sint-Katel",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.07,
-    "lng" : 4.496111
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "FWA",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8822343",
-    "code" : "LNK"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Mechelen-Nekkerspoel",
-    "medium" : "Nekkersp",
-    "short" : "Nekkersp",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.03,
-    "lng" : 4.49
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "LNK",
     "type" : "stationV3"
   }
 }, {
@@ -5228,314 +4612,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "5100032",
-    "code" : "KUTNO"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Kutno",
-    "medium" : "Kutno",
-    "short" : "Kutno",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.22694,
-    "lng" : 19.34859
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "PL",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "KUTNO",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5100065",
-    "code" : "WARSZC"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Warszawa Centralna",
-    "medium" : "Warszawa C",
-    "short" : "Warszawa C",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.22886,
-    "lng" : 21.00323
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "PL",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "WARSZC",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5100066",
-    "code" : "WARSAW"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Warszawa Wschodnia",
-    "medium" : "Warszawa W",
-    "short" : "Warszawa W",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.25155,
-    "lng" : 21.05233
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "PL",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "WARSAW",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5100081",
-    "code" : "POZN"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Poznan Gl.",
-    "medium" : "Poznan Gl.",
-    "short" : "Poznan Gl.",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.40199,
-    "lng" : 16.91087
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "PL",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "POZN",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5100082",
-    "code" : "RZEPIN"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Rzepin",
-    "medium" : "Rzepin",
-    "short" : "Rzepin",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.35022,
-    "lng" : 14.81507
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "PL",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "RZEPIN",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5103310",
-    "code" : "KONIN"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Konin",
-    "medium" : "Konin",
-    "short" : "Konin",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 52.23702,
-    "lng" : 18.22069
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "PL",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "KONIN",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5453179",
-    "code" : "USTI"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Usti nad Labem",
-    "medium" : "Usti nad L",
-    "short" : "Usti nad L",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.65956,
-    "lng" : 14.04473
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "CZ",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "USTI",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5455659",
-    "code" : "DECIN"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Decin hl.n.",
-    "medium" : "Decin hl.n",
-    "short" : "Decin hl.n",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.77342,
-    "lng" : 14.20125
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "CZ",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "DECIN",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5457076",
-    "code" : "PRAHA"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Praha hl.n.",
-    "medium" : "Praha hl.n",
-    "short" : "Praha hl.n",
-    "synonyms" : [ "Praag" ]
-  },
-  "location" : {
-    "lat" : 50.08306,
-    "lng" : 14.435
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "CZ",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "PRAHA",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5457256",
-    "code" : "PRAHOL"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Praha-Holesovice",
-    "medium" : "Praha-Hol.",
-    "short" : "Praha-Hol.",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.1102,
-    "lng" : 14.44
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "CZ",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "PRAHOL",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "5510017",
-    "code" : "HBDP"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Budapest",
-    "medium" : "Budapest",
-    "short" : "Budapest",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.500278,
-    "lng" : 19.083889
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "H",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "HBDP",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "7015400",
     "evaCode" : "7004428",
     "code" : "STP"
@@ -5565,62 +4641,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "7015440",
-    "code" : "EBBS"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Ebbsfleet International",
-    "medium" : "Ebbsfleet",
-    "short" : "Ebbsfleet",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.44297,
-    "lng" : 0.32095
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "GB",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "EBBS",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "7054660",
-    "code" : "ASHFD"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Ashford International",
-    "medium" : "AshfordINT",
-    "short" : "AshfordINT",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.14371,
-    "lng" : 0.87612
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "GB",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "ASHFD",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "7401318",
     "evaCode" : "7400003",
     "code" : "HOJE"
@@ -5646,34 +4666,6 @@
   "startDate" : "2022-05-28",
   "nearbyMeLocationId" : {
     "value" : "HOJE",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101001",
-    "code" : "WIENW"
-  },
-  "stationType" : "INTERCITY_HUB_STATION",
-  "names" : {
-    "long" : "Wien Westbahnhof",
-    "medium" : "Wien Westb",
-    "short" : "Wien Westb",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 48.19687,
-    "lng" : 16.33727
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "WIENW",
     "type" : "stationV3"
   }
 }, {
@@ -5881,258 +4873,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8101134",
-    "code" : "BISCHO"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Bischofshofen",
-    "medium" : "Bischofsh.",
-    "short" : "Bischofsh.",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.41748,
-    "lng" : 13.21991
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "BISCHO",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101136",
-    "code" : "STJOHP"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "St. Johann im Pongau",
-    "medium" : "St.JohannP",
-    "short" : "St.JohannP",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.34811,
-    "lng" : 13.19486
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "STJOHP",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101137",
-    "code" : "SCHWAR"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Schwarzach-St. Veit",
-    "medium" : "Schwarzach",
-    "short" : "Schwarzach",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.31853,
-    "lng" : 13.15446
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "SCHWAR",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101145",
-    "code" : "ZELL"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Zell am See",
-    "medium" : "Zell am S.",
-    "short" : "Zell am S.",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.32053,
-    "lng" : 12.79658
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "ZELL",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101148",
-    "code" : "SAALF"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Saalfelden",
-    "medium" : "Saalfelden",
-    "short" : "Saalfelden",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.42684,
-    "lng" : 12.82942
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "SAALF",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101155",
-    "code" : "FIEBER"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Fieberbrunn",
-    "medium" : "Fieberbrun",
-    "short" : "Fieberbrun",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.49111,
-    "lng" : 12.528
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "FIEBER",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101157",
-    "code" : "STJOH"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "St. Johann in Tirol",
-    "medium" : "St. Johann",
-    "short" : "St. Johann",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.51962,
-    "lng" : 12.43079
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "STJOH",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101160",
-    "code" : "KITZB"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Kitzbühel",
-    "medium" : "Kitzbühel",
-    "short" : "Kitzbühel",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.45411,
-    "lng" : 12.39104
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "KITZB",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101163",
-    "code" : "KIRCHB"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "TUI Ski Express",
-    "medium" : "Ski Expres",
-    "short" : "Ski Expres",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.44921,
-    "lng" : 12.30953
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "KIRCHB",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8101168",
     "evaCode" : "8100059",
     "code" : "HOPF"
@@ -6245,90 +4985,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "INNSB",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101204",
-    "code" : "OETZ"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Verona Porta Nueva",
-    "medium" : "Verona",
-    "short" : "Verona",
-    "synonyms" : [ "Otztal" ]
-  },
-  "location" : {
-    "lat" : 47.23848,
-    "lng" : 10.85911
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "OETZ",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101212",
-    "code" : "LAND"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Venezia-Mestre",
-    "medium" : "Venezia",
-    "short" : "Venezia",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.14824,
-    "lng" : 10.57839
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "LAND",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8101230",
-    "code" : "BLUDEN"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Bludenz",
-    "medium" : "Bludenz",
-    "short" : "Bludenz",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.15473,
-    "lng" : 9.81456
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "BLUDEN",
     "type" : "stationV3"
   }
 }, {
@@ -6474,36 +5130,6 @@
   "startDate" : "2024-03-22",
   "nearbyMeLocationId" : {
     "value" : "LIVOR",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400002",
-    "code" : "RTNG"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "SSN Stoomdepot",
-    "medium" : "SSN",
-    "short" : "SSN",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.944273,
-    "lng" : 4.507198
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "radius" : 200,
-  "approachingRadius" : 1200,
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "RTNG",
     "type" : "stationV3"
   }
 }, {
@@ -6886,6 +5512,7 @@
   "radius" : 525,
   "approachingRadius" : 1200,
   "startDate" : "2017-02-01",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "ASD",
     "type" : "stationV3"
@@ -6982,6 +5609,7 @@
   "radius" : 260,
   "approachingRadius" : 1200,
   "startDate" : "2006-12-10",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "ASDZ",
     "type" : "stationV3"
@@ -7366,6 +5994,7 @@
   "radius" : 525,
   "approachingRadius" : 1200,
   "startDate" : "2011-05-01",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "ALM",
     "type" : "stationV3"
@@ -7398,6 +6027,7 @@
   "radius" : 200,
   "approachingRadius" : 1200,
   "startDate" : "2011-05-01",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "ALMB",
     "type" : "stationV3"
@@ -7432,31 +6062,6 @@
   "startDate" : "2011-05-01",
   "nearbyMeLocationId" : {
     "value" : "ALMM",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400085",
-    "cdCode" : 85,
-    "code" : "AHPD"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Arnhem Papendal",
-    "medium" : "Arnhem Papendal",
-    "short" : "Arnhem Papendal",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2015-03-18",
-  "nearbyMeLocationId" : {
-    "value" : "AHPD",
     "type" : "stationV3"
   }
 }, {
@@ -8037,31 +6642,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400123",
-    "cdCode" : 123,
-    "code" : "BLLS"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Bloemendaal Strand",
-    "medium" : "Bloemend. Strand",
-    "short" : "Bloemend. Strand",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2015-03-18",
-  "nearbyMeLocationId" : {
-    "value" : "BLLS",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400124",
     "evaCode" : "8400124",
     "cdCode" : 124,
@@ -8280,6 +6860,7 @@
   "radius" : 525,
   "approachingRadius" : 1200,
   "startDate" : "2018-04-09",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "BD",
     "type" : "stationV3"
@@ -9822,31 +8403,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400205",
-    "cdCode" : 205,
-    "code" : "EHAI"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Eindhoven Airport",
-    "medium" : "Eindh. Airport",
-    "short" : "Eindh. Airport",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2014-06-04",
-  "nearbyMeLocationId" : {
-    "value" : "EHAI",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400206",
     "evaCode" : "8400206",
     "cdCode" : 206,
@@ -10131,31 +8687,6 @@
   "startDate" : "2024-06-09",
   "nearbyMeLocationId" : {
     "value" : "EDN",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400220",
-    "cdCode" : 220,
-    "code" : "FVSG"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Visé (grens)",
-    "medium" : "Vise grens",
-    "short" : "Vise grens",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : true,
-  "country" : "NL",
-  "startDate" : "2024-06-09",
-  "nearbyMeLocationId" : {
-    "value" : "FVSG",
     "type" : "stationV3"
   }
 }, {
@@ -11148,31 +9679,6 @@
   "startDate" : "2020-09-01",
   "nearbyMeLocationId" : {
     "value" : "GK",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400268",
-    "cdCode" : 268,
-    "code" : "GG"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Gronau (grens)",
-    "medium" : "Gronau grens",
-    "short" : "Gronau grens",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : true,
-  "country" : "NL",
-  "startDate" : "2023-04-25",
-  "nearbyMeLocationId" : {
-    "value" : "GG",
     "type" : "stationV3"
   }
 }, {
@@ -12873,31 +11379,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400358",
-    "cdCode" : 358,
-    "code" : "HZG"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Herzogenrath (grens)",
-    "medium" : "Herzogenrath gr.",
-    "short" : "Herzogenrath gr.",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : true,
-  "country" : "NL",
-  "startDate" : "2023-04-25",
-  "nearbyMeLocationId" : {
-    "value" : "HZG",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400359",
     "evaCode" : "8400359",
     "cdCode" : 359,
@@ -13564,6 +12045,7 @@
   "radius" : 525,
   "approachingRadius" : 1200,
   "startDate" : "2023-12-10",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "LLS",
     "type" : "stationV3"
@@ -13790,31 +12272,6 @@
   "startDate" : "2020-05-13",
   "nearbyMeLocationId" : {
     "value" : "EMNZ",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400413",
-    "cdCode" : 413,
-    "code" : "HZDG"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Hazeldonk (grens)",
-    "medium" : "Hazeldonk (Gr)",
-    "short" : "Hazeldonk (Gr)",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : true,
-  "country" : "NL",
-  "startDate" : "2023-04-25",
-  "nearbyMeLocationId" : {
-    "value" : "HZDG",
     "type" : "stationV3"
   }
 }, {
@@ -14235,31 +12692,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400442",
-    "cdCode" : 442,
-    "code" : "AHOM"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Arnhem Openluchtmuseum",
-    "medium" : "Arnhem Openlmsm",
-    "short" : "Arnhem Openlmsm",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2015-04-15",
-  "nearbyMeLocationId" : {
-    "value" : "AHOM",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400446",
     "evaCode" : "8400077",
     "cdCode" : 446,
@@ -14512,31 +12944,6 @@
   "startDate" : "2020-09-01",
   "nearbyMeLocationId" : {
     "value" : "NSCH",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400458",
-    "cdCode" : 458,
-    "code" : "WRG"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Weener (grens)",
-    "medium" : "Weener grens",
-    "short" : "Weener grens",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : true,
-  "country" : "NL",
-  "startDate" : "2023-04-25",
-  "nearbyMeLocationId" : {
-    "value" : "WRG",
     "type" : "stationV3"
   }
 }, {
@@ -14925,31 +13332,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400485",
-    "cdCode" : 485,
-    "code" : "BHG"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Bentheim (grens)",
-    "medium" : "Bentheim grens",
-    "short" : "Bentheim grens",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : true,
-  "country" : "NL",
-  "startDate" : "2023-04-25",
-  "nearbyMeLocationId" : {
-    "value" : "BHG",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400486",
     "evaCode" : "8400486",
     "cdCode" : 486,
@@ -15010,31 +13392,6 @@
   "startDate" : "2020-05-13",
   "nearbyMeLocationId" : {
     "value" : "OMN",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400488",
-    "cdCode" : 488,
-    "code" : "AHBZ"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Arnhem Burgers Zoo",
-    "medium" : "Arnhem Burgs Zoo",
-    "short" : "Arnhem Burgs Zoo",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2015-04-15",
-  "nearbyMeLocationId" : {
-    "value" : "AHBZ",
     "type" : "stationV3"
   }
 }, {
@@ -15839,31 +14196,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400527",
-    "cdCode" : 527,
-    "code" : "RSDG"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Roosendaal (grens)",
-    "medium" : "Roosendaal grens",
-    "short" : "Roosendaal grens",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : true,
-  "country" : "NL",
-  "startDate" : "2020-05-13",
-  "nearbyMeLocationId" : {
-    "value" : "RSDG",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400529",
     "evaCode" : "8400529",
     "cdCode" : 529,
@@ -16408,34 +14740,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400559",
-    "code" : "SPV"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Simpelveld",
-    "medium" : "Simpelveld",
-    "short" : "Simpelveld",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.8314750744184,
-    "lng" : 5.97973823547363
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "SPV",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400561",
     "evaCode" : "8400561",
     "cdCode" : 561,
@@ -16464,31 +14768,6 @@
   "startDate" : "2017-02-01",
   "nearbyMeLocationId" : {
     "value" : "SHL",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400562",
-    "cdCode" : 562,
-    "code" : "BEBE"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Beekse Bergen",
-    "medium" : "Beekse Bergen",
-    "short" : "Beekse Bergen",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2015-04-15",
-  "nearbyMeLocationId" : {
-    "value" : "BEBE",
     "type" : "stationV3"
   }
 }, {
@@ -17293,36 +15572,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400608",
-    "code" : "WTM"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Eys-Wittem",
-    "medium" : "Eys-Witt",
-    "short" : "Eys-Witt",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.82317,
-    "lng" : 5.92479
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "radius" : 200,
-  "approachingRadius" : 1200,
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "WTM",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400613",
     "evaCode" : "8400039",
     "cdCode" : 613,
@@ -17931,31 +16180,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400645",
-    "cdCode" : 645,
-    "code" : "VLGR"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Venlo (grens)",
-    "medium" : "Venlo grens",
-    "short" : "Venlo grens",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : true,
-  "country" : "NL",
-  "startDate" : "2022-02-22",
-  "nearbyMeLocationId" : {
-    "value" : "VLGR",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400646",
     "evaCode" : "8400646",
     "cdCode" : 646,
@@ -18276,31 +16500,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400663",
-    "cdCode" : 663,
-    "code" : "MADU"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Madurodam",
-    "medium" : "Madurodam",
-    "short" : "Madurodam",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2015-04-15",
-  "nearbyMeLocationId" : {
-    "value" : "MADU",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400664",
     "evaCode" : "8400664",
     "cdCode" : 664,
@@ -18429,61 +16628,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400670",
-    "code" : "SPH"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Spekholzerheide",
-    "medium" : "Spekholzer",
-    "short" : "Spekholzer",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.85355,
-    "lng" : 6.02578
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "radius" : 200,
-  "approachingRadius" : 1200,
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "SPH",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400671",
-    "cdCode" : 671,
-    "code" : "EFT"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Efteling",
-    "medium" : "Efteling",
-    "short" : "Efteling",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2019-01-01",
-  "nearbyMeLocationId" : {
-    "value" : "EFT",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400674",
     "evaCode" : "8400674",
     "cdCode" : 674,
@@ -18608,31 +16752,6 @@
   "startDate" : "2020-09-01",
   "nearbyMeLocationId" : {
     "value" : "WFM",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400680",
-    "cdCode" : 680,
-    "code" : "SCHE"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Scheveningen",
-    "medium" : "Scheveningen",
-    "short" : "Scheveningen",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2015-04-15",
-  "nearbyMeLocationId" : {
-    "value" : "SCHE",
     "type" : "stationV3"
   }
 }, {
@@ -19181,36 +17300,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400712",
-    "code" : "WIJ"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Gulpen-Wijlre",
-    "medium" : "Gulpen-W",
-    "short" : "Gulpen-W",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.833056,
-    "lng" : 5.898056
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "radius" : 200,
-  "approachingRadius" : 1200,
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "WIJ",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400722",
     "evaCode" : "8400722",
     "cdCode" : 722,
@@ -19239,31 +17328,6 @@
   "startDate" : "2020-09-01",
   "nearbyMeLocationId" : {
     "value" : "IJT",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400724",
-    "cdCode" : 724,
-    "code" : "IJM"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "IJmuiden",
-    "medium" : "IJmuiden",
-    "short" : "IJmuiden",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2019-01-01",
-  "nearbyMeLocationId" : {
-    "value" : "IJM",
     "type" : "stationV3"
   }
 }, {
@@ -19748,31 +17812,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8400748",
-    "cdCode" : 748,
-    "code" : "EMG"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Emmerich (grens)",
-    "medium" : "Emmerich grens",
-    "short" : "Emmerich grens",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : true,
-  "country" : "NL",
-  "startDate" : "2023-04-25",
-  "nearbyMeLocationId" : {
-    "value" : "EMG",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8400752",
     "evaCode" : "8400752",
     "cdCode" : 752,
@@ -19801,31 +17840,6 @@
   "startDate" : "2011-05-01",
   "nearbyMeLocationId" : {
     "value" : "ZWD",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8400798",
-    "cdCode" : 798,
-    "code" : "TNZ"
-  },
-  "stationType" : "OPTIONAL_STATION",
-  "names" : {
-    "long" : "Terneuzen",
-    "medium" : "Terneuzen",
-    "short" : "Terneuzen",
-    "synonyms" : [ ]
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "NL",
-  "startDate" : "2019-01-01",
-  "nearbyMeLocationId" : {
-    "value" : "TNZ",
     "type" : "stationV3"
   }
 }, {
@@ -19913,62 +17927,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "BADENZ",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8509000",
-    "code" : "CHUR"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Chur",
-    "medium" : "Chur",
-    "short" : "Chur",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 46.853333,
-    "lng" : 9.528333
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "CH",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "CHUR",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8509002",
-    "code" : "LANDQ"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Landquart",
-    "medium" : "Landquart",
-    "short" : "Landquart",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 46.96722,
-    "lng" : 9.5538
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "CH",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "LANDQ",
     "type" : "stationV3"
   }
 }, {
@@ -20118,34 +18076,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8728600",
-    "code" : "LILLE"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Lille Flandres",
-    "medium" : "Lille F.",
-    "short" : "Lille F.",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.635556,
-    "lng" : 3.072222
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "F",
-  "startDate" : "2024-03-22",
-  "nearbyMeLocationId" : {
-    "value" : "LILLE",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8731896",
     "evaCode" : "8704918",
     "code" : "AVTGV"
@@ -20229,34 +18159,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "MARNE",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8767133",
-    "code" : "LOURD"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Lourdes",
-    "medium" : "Lourdes",
-    "short" : "Lourdes",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 43.100556,
-    "lng" : -0.041666
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "F",
-  "startDate" : "2018-12-16",
-  "nearbyMeLocationId" : {
-    "value" : "LOURD",
     "type" : "stationV3"
   }
 }, {

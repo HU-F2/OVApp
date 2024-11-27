@@ -5,7 +5,6 @@ import com.mobiliteitsfabriek.ovapp.model.Station;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.json.JSONArray;
@@ -31,7 +30,6 @@ public class StationService {
                 String name = namesObject.getString("long");
                 String country = jsonObject.getString("country");
 
-                System.out.println(name);
                 stations.add(new Station(id, name, country));
             }
         }catch(Exception e){

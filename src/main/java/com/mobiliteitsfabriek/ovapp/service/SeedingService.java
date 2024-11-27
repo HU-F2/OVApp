@@ -2,12 +2,16 @@ package com.mobiliteitsfabriek.ovapp.service;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mobiliteitsfabriek.infrastructure.DotenvConfig;
 
 
 public class SeedingService {
@@ -16,21 +20,11 @@ public class SeedingService {
             // Base URL
             String baseUrl = "https://gateway.apiportal.ns.nl/nsapp-stations/v3";
 
-            // Query parameters
-            String query = ""; 
-            boolean includeNonPlannableStations = true; 
-            String countryCodes = "NL"; 
-            int limit = 10; 
-
             // Construct URL with parameters
             String apiUrl = String.format(
-                "%s?includeNonPlannableStations=%b&countryCodes=%s&limit=%d",
-                baseUrl, includeNonPlannableStations, countryCodes, limit
+                "%s",
+                baseUrl
             );
-            // String apiUrl = String.format(
-            //     "%s?q=%s&includeNonPlannableStations=%b&countryCodes=%s&limit=%d",
-            //     baseUrl, query, includeNonPlannableStations, countryCodes, limit
-            // );
 
             URI uri = new URI(apiUrl);
             URL url = uri.toURL();
@@ -39,7 +33,7 @@ public class SeedingService {
             connection.setRequestMethod("GET");
 
             connection.setRequestProperty("Cache-Control", "no-cache");
-            connection.setRequestProperty("Ocp-Apim-Subscription-Key", "57e1df724be741f6bc8f926355646bd5");
+            connection.setRequestProperty("Ocp-Apim-Subscription-Key", DotenvConfig.NS_API_KEY);
             connection.setRequestProperty("Accept", "application/json");
 
             int responseCode = connection.getResponseCode();
@@ -56,8 +50,6 @@ public class SeedingService {
                 }
                 in.close();
 
-                // Print the response
-                System.out.println("Response: " + response.toString());
                 String filePath = "src/main/resources/stations.json";
                 ObjectMapper objectMapper = new ObjectMapper();
 
@@ -75,14 +67,14 @@ public class SeedingService {
                     } else {
                         System.out.println("Key 'payload' not found in the JSON.");
                     }
-                }catch (Exception e){
+                }catch (IOException e){
 
                 }
 
             } else {
                 System.out.println("GET request failed.");
             }
-        }catch(Exception e){
+        }catch(IOException | URISyntaxException e){
 
         }
     } 

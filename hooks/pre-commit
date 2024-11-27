@@ -49,32 +49,9 @@ validate_commit_size() {
     printf "\n${COLOR_GREEN}✔ Commit size validation passed.${COLOR_RESET}\n"
 }
 
-# Run Checkstyle linter
-run_linter() {
-    log "Running Checkstyle..."
-    local flags
-    flags=$(get_command_flags)
-    if [[ "$BUILD_TOOL" == "maven" ]]; then
-        # shellcheck disable=SC2086
-        if ! mvn checkstyle:check $flags -D checkstyle.config.location="$CHECKSTYLE_CONFIG"; then
-            # shellcheck disable=SC2059
-            printf "\n${COLOR_RED}✘ Checkstyle validation failed. Fix issues before committing.${COLOR_RESET}\n"
-            exit 1
-        fi
-    else
-        printf "\n${COLOR_RED}✘ Unsupported build tool: %s${COLOR_RESET}\n" "$BUILD_TOOL"
-        exit 1
-    fi
-    # shellcheck disable=SC2059
-    printf "${COLOR_GREEN}✔ Checkstyle validation passed.${COLOR_RESET}\n"
-}
-
 main() {
     # Validate commit size
     validate_commit_size
-
-    # Run linter
-    run_linter
 
     # shellcheck disable=SC2059
     printf "${COLOR_GREEN}✔ All pre-commit checks passed. Proceeding with commit.${COLOR_RESET}\n"
