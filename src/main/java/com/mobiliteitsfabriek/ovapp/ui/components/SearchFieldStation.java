@@ -1,5 +1,7 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.mobiliteitsfabriek.ovapp.model.Station;
@@ -7,36 +9,46 @@ import com.mobiliteitsfabriek.ovapp.service.StationService;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ComboBoxBase;
 
 public class SearchFieldStation extends VBox{
     private StationService stationService;
+    public ComboBox<String> startStation;
     private ObservableList<String> stationsNames = FXCollections.observableArrayList();
 
-    public SearchFieldStation(StationService service){
+    public SearchFieldStation(StationService service, List<String> stationNames, String stationType){
         this.stationService = service;
-        ListView<String> listView = new ListView<>();
-        listView.setItems(stationsNames);
-        listView.setVisible(false);
-        listView.setManaged(false);
 
-        TextField startStationInput = new TextField("Vul uw begin station in.");
-
-        startStationInput.textProperty().addListener((observable,oldValue,newValue)->{
-            if(newValue.isBlank()){
-                listView.setVisible(false);
-                listView.setManaged(false);
+        ComboBox<String> startStation = new ComboBox<>();
+        startStation.setPromptText("Vul uw " + stationType + " station in.");
+        startStation.getItems().addAll(stationNames);
+        startStation.setEditable(true);
+        startStation.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null || newValue.isEmpty()) {
+                startStation.hide();
                 return;
             }
-            List<Station> stations = stationService.getStationByName(newValue);
-            stationsNames.setAll(stations.stream().map((station)->station.getName()).toList());
-            listView.setVisible(true);
-            listView.setManaged(true);
+
+            ObservableList<String> filteredItems = FXCollections.observableArrayList();
+            for (String stationName : stationNames) {
+                if (stationName.toLowerCase().contains(newValue.toLowerCase())) {
+                    filteredItems.add(stationName);
+                }
+            }
+            startStation.setItems(filteredItems);
+            startStation.show();
         });
 
-        this.getChildren().addAll(startStationInput,listView);
+        this.getChildren().addAll(startStation);
+    }
+
+    public String getSelectedValue() {
+        if (startStation.getValue() != null){
+            return startStation.getValue();
+        }
+        return "";
     }
 }
+

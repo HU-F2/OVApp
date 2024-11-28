@@ -25,13 +25,12 @@ public class StationService {
 
                 // Json values to java classes
                 JSONObject idObject = jsonObject.getJSONObject("id");
-                String id = idObject.getString("uicCode");
+                String id = idObject.getString("code");
 
                 JSONObject namesObject = jsonObject.getJSONObject("names");
                 String name = namesObject.getString("long");
                 String country = jsonObject.getString("country");
 
-                System.out.println(name);
                 stations.add(new Station(id, name, country));
             }
         }catch(Exception e){
@@ -43,5 +42,12 @@ public class StationService {
         Pattern pattern = Pattern.compile(name,Pattern.CASE_INSENSITIVE);
         List<Station> result = stations.stream().filter((station ->pattern.matcher(station.getName()).find())).sorted((s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName())).toList();
         return result;
+    }
+
+    public List<String> getAllStationNames() {
+        return stations.stream()
+                .map(Station::getName)
+                .sorted(String::compareToIgnoreCase)
+                .toList();
     }
 }

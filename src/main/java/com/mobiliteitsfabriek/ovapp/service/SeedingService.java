@@ -13,10 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class SeedingService {
     public void getAllStations(){
         try{
-            // Base URL
             String baseUrl = "https://gateway.apiportal.ns.nl/nsapp-stations/v3";
 
-            // Query parameters
             String query = ""; 
             boolean includeNonPlannableStations = true; 
             String countryCodes = "NL"; 
@@ -56,8 +54,6 @@ public class SeedingService {
                 }
                 in.close();
 
-                // Print the response
-                System.out.println("Response: " + response.toString());
                 String filePath = "src/main/resources/stations.json";
                 ObjectMapper objectMapper = new ObjectMapper();
 
@@ -85,5 +81,63 @@ public class SeedingService {
         }catch(Exception e){
 
         }
-    } 
+    }
+
+    public void getRoutes(String startStationId, String endStationId){
+        String baseURL = "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/trips";
+        String urlString = baseURL + "?fromStation=" + startStationId + "&toStation=" + endStationId;
+
+        try{
+            URI uri = new URI(urlString);
+            URL url = uri.toURL();
+
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("GET");
+
+            connection.setRequestProperty("Cache-Control", "no-cache");
+            connection.setRequestProperty("Ocp-Apim-Subscription-Key", "57e1df724be741f6bc8f926355646bd5");
+            connection.setRequestProperty("Accept", "application/json");
+
+            int responseCode = connection.getResponseCode();
+            System.out.println(responseCode);
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // Read the response
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                String inputLine;
+                StringBuilder response = new StringBuilder();
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+                in.close();
+
+                String filePath = "src/main/resources/route.json";
+                ObjectMapper objectMapper = new ObjectMapper();
+
+                // Parse the JSON string into a JsonNode
+                try {
+                    JsonNode rootNode = objectMapper.readTree(response.toString());
+
+                    // Access the 'payload' key
+                    JsonNode payloadNode = rootNode.get("trips");
+                    if (payloadNode != null) {
+                        File outputFile = new File(filePath);
+                        objectMapper.writerWithDefaultPrettyPrinter().writeValue(outputFile, rootNode);
+
+                        System.out.println("Payload saved to " + outputFile.getAbsolutePath());
+                    } else {
+                        System.out.println("Key 'payload' not found in the JSON.");
+                    }
+                }catch (Exception e){
+
+                }
+
+            } else {
+                System.out.println("GET request failed.");
+            }
+
+        } catch (Exception e){
+            System.out.println(e);
+        }
+    }
 }

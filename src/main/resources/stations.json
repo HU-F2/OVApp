@@ -6886,6 +6886,7 @@
   "radius" : 525,
   "approachingRadius" : 1200,
   "startDate" : "2017-02-01",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "ASD",
     "type" : "stationV3"
@@ -6982,6 +6983,7 @@
   "radius" : 260,
   "approachingRadius" : 1200,
   "startDate" : "2006-12-10",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "ASDZ",
     "type" : "stationV3"
@@ -7366,6 +7368,7 @@
   "radius" : 525,
   "approachingRadius" : 1200,
   "startDate" : "2011-05-01",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "ALM",
     "type" : "stationV3"
@@ -7398,6 +7401,7 @@
   "radius" : 200,
   "approachingRadius" : 1200,
   "startDate" : "2011-05-01",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "ALMB",
     "type" : "stationV3"
@@ -8280,6 +8284,7 @@
   "radius" : 525,
   "approachingRadius" : 1200,
   "startDate" : "2018-04-09",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "BD",
     "type" : "stationV3"
@@ -13564,6 +13569,7 @@
   "radius" : 525,
   "approachingRadius" : 1200,
   "startDate" : "2023-12-10",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "LLS",
     "type" : "stationV3"
