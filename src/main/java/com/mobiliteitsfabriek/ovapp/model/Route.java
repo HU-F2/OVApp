@@ -1,27 +1,30 @@
 package com.mobiliteitsfabriek.ovapp.model;
 
-public class Route {
-    private String duration;
-    private String startStation;
-    private String endStation;
-    private int transfers;
-    private String status;
-    private String perronNumber;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
-    public Route(String duration, int transfers, String status, String perronNumber, String startStation, String endStation) {
+public class Route {
+    private int duration;
+    private int transfers;
+    private String platformNumber;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
+    
+    public Route(int duration, int transfers, String platformNumber, LocalDateTime startDateTime,
+            LocalDateTime endDateTime) {
         this.duration = duration;
         this.transfers = transfers;
-        this.status = status;
-        this.perronNumber = perronNumber;
-        this.startStation = startStation;
-        this.endStation = endStation;
+        this.platformNumber = platformNumber;
+        this.startDateTime = startDateTime;
+        this.endDateTime = endDateTime;
     }
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
@@ -33,21 +36,30 @@ public class Route {
         this.transfers = transfers;
     }
 
-    public String getStatus() {
-        return status;
+    public String getPlatformNumber() {
+        return platformNumber;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setPlatformNumber(String perronNumber) {
+        this.platformNumber = perronNumber;
     }
 
-    public String getPerronNumber() {
-        return perronNumber;
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
     }
 
-    public void setPerronNumber(String perronNumber) {
-        this.perronNumber = perronNumber;
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
+    }
+
+    public void setEndDateTime(LocalDateTime endDateTime) {
+        this.endDateTime = endDateTime;
+    }
+
+    
 
 }

@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ComboBoxBase;
 
-public class SearchFieldStation extends VBox{
+public class SearchFieldStation extends ComboBox<String>{
     private StationService stationService;
     public ComboBox<String> startStation;
     private ObservableList<String> stationsNames = FXCollections.observableArrayList();
@@ -21,13 +21,13 @@ public class SearchFieldStation extends VBox{
     public SearchFieldStation(StationService service, List<String> stationNames, String stationType){
         this.stationService = service;
 
-        ComboBox<String> startStation = new ComboBox<>();
-        startStation.setPromptText("Vul uw " + stationType + " station in.");
-        startStation.getItems().addAll(stationNames);
-        startStation.setEditable(true);
-        startStation.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+        // ComboBox<String> startStation = new ComboBox<>();
+        this.setPromptText("Vul uw " + stationType + " station in.");
+        this.getItems().addAll(stationNames);
+        this.setEditable(true);
+        this.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null || newValue.isEmpty()) {
-                startStation.hide();
+                this.hide();
                 return;
             }
 
@@ -37,18 +37,10 @@ public class SearchFieldStation extends VBox{
                     filteredItems.add(stationName);
                 }
             }
-            startStation.setItems(filteredItems);
-            startStation.show();
+            this.setItems(filteredItems);
+            this.show();
+
         });
-
-        this.getChildren().addAll(startStation);
-    }
-
-    public String getSelectedValue() {
-        if (startStation.getValue() != null){
-            return startStation.getValue();
-        }
-        return "";
     }
 }
 

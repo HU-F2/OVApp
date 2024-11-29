@@ -5,6 +5,7 @@ import com.mobiliteitsfabriek.ovapp.model.Station;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,4 +51,13 @@ public class StationService {
                 .sorted(String::compareToIgnoreCase)
                 .toList();
     }
+
+    public Station getStation(String name){
+        Optional<Station> stationValidation = stations.stream().filter((station)->station.getName().equals(name)).findFirst();
+        if(stationValidation.isPresent()){
+            return stationValidation.get();
+        }
+        return null;
+    }
+
 }

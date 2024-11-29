@@ -21,28 +21,16 @@ import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.SeedingService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
+import com.mobiliteitsfabriek.ovapp.ui.pages.HomePage;
 
 public class OVAppUI extends Application {
 
+    private static Stage stage;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
-        StationService stationService = new StationService();
-        RouteService routeService = new RouteService();
-        SeedingService seedingService = new SeedingService();
-
-        VBox root = new VBox();
-
-        SearchFieldStation startStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "begin");
-        SearchFieldStation endStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "eind");
-        Button submitBtn = new Button("Zoek");
-
-        submitBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            System.out.println(startStationField.getSelectedValue());
-        });
-        
-
-        root.getChildren().addAll(startStationField,endStationField,submitBtn);
-        final Scene scene = new Scene(root, 1200, 800);
+        stage = primaryStage;
+        final Scene scene = HomePage.getScene();
         scene.getStylesheets()
                 .add(Objects.requireNonNull(getClass().getResource("/styles/styles.css"))
                         .toExternalForm());
@@ -51,12 +39,13 @@ public class OVAppUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        RouteService myRouteService = new RouteService();
-        // test
         SeedingService service = new SeedingService();
         service.getAllStations();
-        System.out.println(startStationField.startStation);
-        StationService myStationService = new StationService();
-        List<Station> myStationList = myStationService.getStationByName("la");
     }
+
+    public static void switchToScene(Scene scene){
+        stage.setScene(scene);
+    }
+
+
 } 
