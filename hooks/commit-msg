@@ -4,7 +4,7 @@ LC_ALL=C
 
 # Configuration
 VERBOSE=false                       # Set to true for verbose mode
-CONVENTIONAL_COMMIT_REGEX="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-z0-9\-]+\))?!?: .+$"
+CONVENTIONAL_COMMIT_REGEX="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\([a-zA-Z0-9\-]+\))?!?: .+$"
 
 # Color codes
 COLOR_RESET="\033[0m\033[2m"

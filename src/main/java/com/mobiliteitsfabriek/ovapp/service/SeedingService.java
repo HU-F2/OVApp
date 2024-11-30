@@ -6,25 +6,24 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 public class SeedingService {
-    public void getAllStations(){
-        try{
+    public void getAllStations() {
+        try {
             String baseUrl = "https://gateway.apiportal.ns.nl/nsapp-stations/v3";
 
-            String query = ""; 
-            boolean includeNonPlannableStations = true; 
-            String countryCodes = "NL"; 
-            int limit = 10; 
+            // String query = "";
+            boolean includeNonPlannableStations = true;
+            String countryCodes = "NL";
+            int limit = 10;
 
             // Construct URL with parameters
             String apiUrl = String.format(
-                "%s?includeNonPlannableStations=%b&countryCodes=%s&limit=%d",
-                baseUrl, includeNonPlannableStations, countryCodes, limit
-            );
+                    "%s?includeNonPlannableStations=%b&countryCodes=%s&limit=%d",
+                    baseUrl, includeNonPlannableStations, countryCodes, limit);
             // String apiUrl = String.format(
             //     "%s?q=%s&includeNonPlannableStations=%b&countryCodes=%s&limit=%d",
             //     baseUrl, query, includeNonPlannableStations, countryCodes, limit
@@ -71,14 +70,14 @@ public class SeedingService {
                     } else {
                         System.out.println("Key 'payload' not found in the JSON.");
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
 
                 }
 
             } else {
                 System.out.println("GET request failed.");
             }
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
     }
