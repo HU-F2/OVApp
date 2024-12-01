@@ -32,7 +32,7 @@ get_command_flags() {
 # Validate branch name
 validate_branch_name() {
     local branch="$1"
-    local regex="^(feature|bugfix)\/[0-9]+-[a-z0-9]+([-_][a-z0-9]+)*$|^(ci|chore|infra)\/[a-z0-9]+([-_][a-z0-9]+)*$"
+    local regex="^(feature|bugfix)\/[0-9]+-[a-zA-Z0-9]+([-_][a-zA-Z0-9]+)*$|^(ci|chore|infra)\/[a-zA-Z0-9]+([-_][a-zA-Z0-9]+)*$"
     local error_message="
       ${COLOR_RED}✘ Invalid branch name detected:${COLOR_RESET}
 

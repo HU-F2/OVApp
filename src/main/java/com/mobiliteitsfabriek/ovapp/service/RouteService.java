@@ -1,15 +1,12 @@
 package com.mobiliteitsfabriek.ovapp.service;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,22 +14,15 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.mobiliteitsfabriek.ovapp.model.Route;
-import com.mobiliteitsfabriek.ovapp.model.Station;
 
 public class RouteService {
-    public RouteService(){
-        
-    }
 
-    public List<Route> getRoutes(String startStationId, String endStationId){
+    public List<Route> getRoutes(String startStationId, String endStationId) {
         String baseURL = "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/trips";
         String urlString = baseURL + "?fromStation=" + startStationId + "&toStation=" + endStationId;
 
-        try{
+        try {
             URI uri = new URI(urlString);
             URL url = uri.toURL();
 
@@ -62,19 +52,19 @@ public class RouteService {
                 System.out.println("GET request failed.");
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
         }
         return new ArrayList<>();
     }
 
-    private List<Route> parseRoutes(String jsonString){
+    private List<Route> parseRoutes(String jsonString) {
         JSONArray tripsArray = new JSONObject(new JSONTokener(jsonString)).getJSONArray("trips");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
         // JSONObject tripsArray = new JSONObject(new JSONTokener(jsonString));
         System.out.println(tripsArray);
         List<Route> result = new ArrayList<>();
-        for(int i = 0; i < tripsArray.length(); i++){
+        for (int i = 0; i < tripsArray.length(); i++) {
             JSONObject trip = tripsArray.getJSONObject(i);
             JSONArray legsArray = trip.getJSONArray("legs");
             JSONObject originFirstObject = legsArray.getJSONObject(0).getJSONObject("origin");

@@ -1,8 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 public class Route {
     private int duration;
@@ -10,7 +8,7 @@ public class Route {
     private String platformNumber;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
-    
+
     public Route(int duration, int transfers, String platformNumber, LocalDateTime startDateTime,
             LocalDateTime endDateTime) {
         this.duration = duration;
@@ -59,7 +57,5 @@ public class Route {
     public void setEndDateTime(LocalDateTime endDateTime) {
         this.endDateTime = endDateTime;
     }
-
-    
 
 }
