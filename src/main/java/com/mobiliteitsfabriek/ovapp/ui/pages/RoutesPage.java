@@ -3,6 +3,7 @@ package com.mobiliteitsfabriek.ovapp.ui.pages;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 
 import javafx.scene.Scene;
@@ -41,7 +42,7 @@ public class RoutesPage {
             root.getChildren().addAll(timeContainer, routeContainer);
         }
 
-        Scene scene = new Scene(root, 1200, 800);
+        Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         return scene;
     }
 }

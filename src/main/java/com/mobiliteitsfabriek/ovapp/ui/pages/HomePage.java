@@ -2,6 +2,7 @@ package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import java.util.List;
 
+import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
@@ -46,7 +47,7 @@ public class HomePage {
         });
 
         root.getChildren().addAll(startStationField, endStationField, submitBtn);
-        Scene scene = new Scene(root, 1200, 800);
+        Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         return scene;
     }
 }

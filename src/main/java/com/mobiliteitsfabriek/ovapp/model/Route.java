@@ -1,16 +1,21 @@
 package com.mobiliteitsfabriek.ovapp.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Route {
-    private int duration;
-    private int transfers;
     private String platformNumber;
+    private int transfers;
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
+    private int duration;
 
-    public Route(int duration, int transfers, String platformNumber, LocalDateTime startDateTime,
-            LocalDateTime endDateTime) {
+    private ArrayList<Stop> stops;
+    private int totalDuration;
+    private LocalDateTime travelDate;
+    private double totalCost;
+
+    public Route(int duration, int transfers, String platformNumber, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         this.duration = duration;
         this.transfers = transfers;
         this.platformNumber = platformNumber;
@@ -18,6 +23,14 @@ public class Route {
         this.endDateTime = endDateTime;
     }
 
+    public Route(ArrayList<Stop> stops, int totalDuration, LocalDateTime travelDate, double totalCost) {
+        this.stops = stops;
+        this.totalDuration = totalDuration;
+        this.travelDate = travelDate;
+        this.totalCost = totalCost;
+    }
+
+    // GETTERS AND SETTERS
     public int getDuration() {
         return duration;
     }
@@ -58,4 +71,11 @@ public class Route {
         this.endDateTime = endDateTime;
     }
 
+    public double getTotalCost() {
+        return totalCost;
+    }
+
+    public ArrayList<Stop> getStops() {
+        return stops;
+    }
 }
