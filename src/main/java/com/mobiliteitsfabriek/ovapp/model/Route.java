@@ -18,6 +18,12 @@ public class Route {
         this.endDateTime = endDateTime;
     }
 
+    @Override
+    public String toString() {
+        return "Route [duration=" + duration + ", transfers=" + transfers + ", platformNumber=" + platformNumber
+                + ", startDateTime=" + startDateTime + ", endDateTime=" + endDateTime + "]";
+    }
+
     public int getDuration() {
         return duration;
     }
