@@ -4,6 +4,11 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+hooks/pre-push
+hooks/
+hooks/pre-commit
+hooks/commit-msg
+
 ### STS ###
 .apt_generated
 .classpath
