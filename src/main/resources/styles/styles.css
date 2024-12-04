@@ -1,0 +1,27 @@
+.header-container{
+    -fx-padding:4px 0px 16px 0px;
+    -fx-font-size:24px;
+    -fx-font-weight:bold;
+}
+
+.route{
+    -fx-padding: 8px; 
+}
+
+.route:focused{
+    -fx-padding:24px;
+    -fx-font-weight: bold;
+}
+
+.route .hbox{
+    -fx-padding:0px 0px 0px 8px;
+}
+
+.route .time-container{
+    -fx-font-size: 24px; 
+}
+
+.route .info-container{
+    -fx-font-size: 18px; 
+}
+
