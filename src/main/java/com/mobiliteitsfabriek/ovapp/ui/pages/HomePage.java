@@ -14,17 +14,47 @@ public class HomePage {
         RouteService routeService = new RouteService();
 
         VBox root = new VBox();
+        root.getStyleClass().add("root");
 
         SearchFieldStation startStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "begin");
         SearchFieldStation endStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "eind");
         Button submitBtn = new Button("Zoek");
+        Button swapBtn = new Button("<->");
+
+        startStationField.getStyleClass().add("station-field");
+        endStationField.getStyleClass().add("station-field");
+        submitBtn.getStyleClass().add("submit-btn");
+        swapBtn.getStyleClass().add("submit-btn");
+
+        swapBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+
+            String startValue = startStationField.getValue();
+            String endValue = endStationField.getValue();
+
+
+            startStationField.setValue(endValue);
+            endStationField.setValue(startValue);
+
+            if (endValue != null) {
+                startStationField.getSelectionModel().select(endValue);
+            }
+            if (startValue != null) {
+                endStationField.getSelectionModel().select(startValue);
+            }
+
+            startStationField.hide();
+            endStationField.hide();
+        });
+
+
 
         submitBtn.setOnAction(event -> {
             RoutesPage.handleSearch(startStationField, endStationField, stationService, routeService);
         });
 
-        root.getChildren().addAll(startStationField, endStationField, submitBtn);
-        Scene scene = new Scene(root, 1200, 800);
+
+        root.getChildren().addAll(startStationField, endStationField, swapBtn, submitBtn);
+        Scene scene = new Scene(root, 500, 800);
         return scene;
     }
 }
