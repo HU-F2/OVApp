@@ -51,11 +51,13 @@ public class StationService {
     }
 
     public Station getStation(String name) {
-        Optional<Station> stationValidation = stations.stream().filter((station) -> station.getName().equals(name)).findFirst();
-        if (stationValidation.isPresent()) {
-            return stationValidation.get();
+        if (name == null || name.isBlank()) {
+            return null;
         }
-        return null;
+        Optional<Station> stationValidation = stations.stream()
+                .filter(station -> station.getName().equals(name))
+                .findFirst();
+        return stationValidation.orElse(null);
     }
 
 }
