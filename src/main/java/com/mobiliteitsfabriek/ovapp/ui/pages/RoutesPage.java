@@ -32,6 +32,7 @@ public class RoutesPage {
         HBox headerContainer = new HBox();
         // Backbutton
         Button backButton = new Button("<--");
+        backButton.getStyleClass().add("submit-btn");
         backButton.setOnAction((event)->handleBackButton(event));
         // Center
         HBox centerContainer = new HBox();
@@ -52,6 +53,7 @@ public class RoutesPage {
 
         // Search again
         Button searchButton = new Button("Zoek");
+        searchButton.getStyleClass().add("submit-btn");
         searchButton.setOnAction(event -> {
             handleSearch(startStationField, endStationField, stationService, routeService);
         });
@@ -67,7 +69,7 @@ public class RoutesPage {
             root.getChildren().addAll(routeElement);
         }
 
-        Scene scene = new Scene(root, 1200, 800);
+        Scene scene = new Scene(root, 500, 800);
         scene.getStylesheets().add(RoutesPage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;
     }
@@ -77,7 +79,6 @@ public class RoutesPage {
         Station startStation = stationService.getStation(startName);
         if (startStation == null) {
             // TODO: Add error message
-            // Maybe by adding it to the SearchFieldStation
             return;
         }
         String endName = endStationField.getEditor().textProperty().get();
@@ -93,6 +94,8 @@ public class RoutesPage {
     }
 
     public static void handleBackButton(ActionEvent event){
-        throw new UnsupportedOperationException();
+        Scene homePage = HomePage.getScene();
+        homePage.getStylesheets().add(RoutesPage.class.getResource("/styles/styles.css").toExternalForm());
+        OVAppUI.switchToScene(homePage);
     }
 }

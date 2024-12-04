@@ -6,6 +6,7 @@ import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 public class HomePage {
@@ -14,7 +15,7 @@ public class HomePage {
         RouteService routeService = new RouteService();
 
         VBox root = new VBox();
-        root.getStyleClass().add("root");
+        root.getStyleClass().add("container");
 
         SearchFieldStation startStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "begin");
         SearchFieldStation endStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "eind");
