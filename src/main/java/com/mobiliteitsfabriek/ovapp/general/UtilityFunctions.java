@@ -6,15 +6,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
-import com.mobiliteitsfabriek.ovapp.model.StopV3;
+import com.mobiliteitsfabriek.ovapp.model.RouteTransfersV3;
 
 public class UtilityFunctions {
     // Calculations
-    public static Integer getTransferBetweenStopsInMinutes(StopV3 stop1, StopV3 stop2) {
-        if (stop1 == null || stop2 == null) {
-            throw new IllegalArgumentException("getTransferBetweenStopsInMinutes, a stop can't be null.");
+    public static Integer getTransferTimeBetweenRouteTransfersInMinutes(RouteTransfersV3 routeTransfer1, RouteTransfersV3 routeTransfer2) {
+        if (routeTransfer1 == null || routeTransfer2 == null) {
+            throw new IllegalArgumentException("getTransferTimeBetweenRouteTransfersInMinutes, a routeTransfer can't be null.");
         }
-        return (int) Duration.between(stop1.getDepartureTime(), stop2.getArrivalTime()).toMinutes();
+        return (int) Duration.between(routeTransfer1.getDepartureTime(), routeTransfer2.getArrivalTime()).toMinutes();
     }
 
     public static int getMinutesDifference(LocalDateTime dateTime1, LocalDateTime dateTime2) {
@@ -22,6 +22,10 @@ public class UtilityFunctions {
     }
 
     // formattering
+    public static LocalDateTime getDateTimeFromNS(String dateTime) {
+        return LocalDateTime.parse(dateTime, GlobalConfig.NS_DATE_TIME_FORMATTER);
+    }    
+
     public static String formatDateTime(LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(GlobalConfig.DATE_TIME_FORMAT);
         return dateTime.format(formatter);
