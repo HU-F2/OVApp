@@ -1,6 +1,7 @@
 package com.mobiliteitsfabriek.ovapp.service;
 
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,15 +11,23 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
+import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 
 public class StationService {
+    private static ArrayList<Station> stations;
 
-    private List<Station> stations = new ArrayList<>();
+    static {
+        StationService.stations = geStationsFromFile(GlobalConfig.FILE_PATH_STATIONS);
+    }
 
-    public StationService() {
-        try (FileReader reader = new FileReader("src/main/resources/stations.json")) {
+    private static ArrayList<Station> geStationsFromFile(String filePath) {
+        ArrayList<Station> stations = new ArrayList<>();
+
+        try (FileReader reader = new FileReader(filePath)) {
             JSONArray stationsArray = new JSONArray(new JSONTokener(reader));
+
             for (int i = 0; i < stationsArray.length(); i++) {
                 JSONObject jsonObject = stationsArray.getJSONObject(i);
 
@@ -32,9 +41,11 @@ public class StationService {
 
                 stations.add(new Station(id, name, country));
             }
-        } catch (Exception e) {
-            System.out.println(e);
+            return stations;
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        return stations;
     }
 
     public List<Station> getStationByName(String name) {
@@ -51,11 +62,13 @@ public class StationService {
     }
 
     public Station getStation(String name) {
-        Optional<Station> stationValidation = stations.stream().filter((station) -> station.getName().equals(name)).findFirst();
-        if (stationValidation.isPresent()) {
-            return stationValidation.get();
+        if (UtilityFunctions.checkEmpty(name)) {
+            return null;
         }
-        return null;
+        Optional<Station> stationValidation = stations.stream()
+                .filter(station -> station.getName().equalsIgnoreCase(name))
+                .findFirst();
+        return stationValidation.orElse(null);
     }
 
 }

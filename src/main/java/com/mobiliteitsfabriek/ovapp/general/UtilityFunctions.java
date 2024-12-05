@@ -46,7 +46,7 @@ public class UtilityFunctions {
 
     // Checking
     public static boolean checkEmpty(String valueToCheck) {
-        return valueToCheck == null || valueToCheck.isEmpty();
+        return valueToCheck == null || valueToCheck.isBlank();
     }
 
     public static boolean checkEmpty(Integer valueToCheck) {
