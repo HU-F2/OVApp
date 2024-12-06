@@ -38,14 +38,14 @@ public class RouteService {
             JSONObject originFirstObject = legsArray.getJSONObject(0).getJSONObject("origin");
             JSONObject destinationLastObject = legsArray.getJSONObject(legsArray.length() - 1).getJSONObject("destination");
 
-            LocalDateTime plannedDepartureTime = UtilityFunctions.getDateTimeFromNS(originFirstObject.getString("plannedDateTime"));
+            LocalDateTime plannedDepartureDateTime = UtilityFunctions.getDateTimeFromNS(originFirstObject.getString("plannedDateTime"));
             LocalDateTime plannedArrivalTime = UtilityFunctions.getDateTimeFromNS(destinationLastObject.getString("plannedDateTime"));
             String departurePlatform = originFirstObject.optString("plannedTrack", "");
 
             int plannedDurationInMinutes = trip.getInt("plannedDurationInMinutes");
             int transfersAmount = trip.getInt("transfers");
 
-            Route myRoute = new Route(plannedDurationInMinutes, transfersAmount, departurePlatform, plannedDepartureTime, plannedArrivalTime);
+            Route myRoute = new Route(plannedDurationInMinutes, transfersAmount, departurePlatform, plannedDepartureDateTime, plannedArrivalTime);
             result.add(myRoute);
         }
         return result;
@@ -85,14 +85,14 @@ public class RouteService {
                 String departureLocationDetails = leg.getJSONObject("origin").getString("plannedTrack");
                 String arrivalLocationDetails = leg.getJSONObject("destination").getString("plannedTrack");
 
-                LocalDateTime departureTime = UtilityFunctions.getDateTimeFromNS(leg.getJSONObject("origin").getString("plannedDateTime"));
-                LocalDateTime arrivalTime = UtilityFunctions.getDateTimeFromNS(leg.getJSONObject("destination").getString("plannedDateTime"));
+                LocalDateTime plannedDepartureDateTime = UtilityFunctions.getDateTimeFromNS(leg.getJSONObject("origin").getString("plannedDateTime"));
+                LocalDateTime plannedArrivalDateTime = UtilityFunctions.getDateTimeFromNS(leg.getJSONObject("destination").getString("plannedDateTime"));
 
                 String transportType = leg.getJSONObject("product").getString("longCategoryName");
                 String transportName = leg.getJSONObject("product").getString("displayName");
                 String transportDirection = leg.getString("direction");
 
-                RouteTransfersV3 routeTransfersV3 = new RouteTransfersV3(departureLocation, arrivalLocation, departureLocationDetails, arrivalLocationDetails, departureTime, arrivalTime, transportType, transportName, transportDirection);
+                RouteTransfersV3 routeTransfersV3 = new RouteTransfersV3(departureLocation, arrivalLocation, departureLocationDetails, arrivalLocationDetails, plannedDepartureDateTime, plannedArrivalDateTime, transportType, transportName, transportDirection);
                 routeTransfers.add(routeTransfersV3);
             }
 

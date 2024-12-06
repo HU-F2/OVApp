@@ -1,5 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.general;
 
+import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -14,7 +15,7 @@ public class UtilityFunctions {
         if (routeTransfer1 == null || routeTransfer2 == null) {
             throw new IllegalArgumentException("getTransferTimeBetweenRouteTransfersInMinutes, a routeTransfer can't be null.");
         }
-        return (int) Duration.between(routeTransfer1.getDepartureTime(), routeTransfer2.getArrivalTime()).toMinutes();
+        return (int) Duration.between(routeTransfer1.getPlannedDepartureDateTime(), routeTransfer2.getPlannedArrivalDateTime()).toMinutes();
     }
 
     public static int getMinutesDifference(LocalDateTime dateTime1, LocalDateTime dateTime2) {
@@ -24,7 +25,7 @@ public class UtilityFunctions {
     // formattering
     public static LocalDateTime getDateTimeFromNS(String dateTime) {
         return LocalDateTime.parse(dateTime, GlobalConfig.NS_DATE_TIME_FORMATTER);
-    }    
+    }
 
     public static String formatDateTime(LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(GlobalConfig.DATE_TIME_FORMAT);
@@ -36,16 +37,33 @@ public class UtilityFunctions {
         return dateTime.format(formatter);
     }
 
-    public static String formatDuration(int durationMinutes) {
-        long hours = durationMinutes / 60;
-        long minutes = durationMinutes % 60;
+    public static String formatDuration(int plannedDurationMinutes) {
+        long hours = plannedDurationMinutes / 60;
+        long minutes = plannedDurationMinutes % 60;
         return String.format("%02d:%02d uur", hours, minutes);
     }
 
     public static String formatValueAsCurrency(double value) {
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(GlobalConfig.NETHERLANDS_LOCAL);
-
         return currencyFormatter.format(value);
+    }
+
+    public static String formatTransport(String transportName, String transportType, String transportDirection) {
+        if (transportType != null && transportDirection != null) {
+            return MessageFormat.format("{1}, {2} ({0})", transportType, transportName, transportDirection);
+        } else if (transportDirection != null) {
+            return MessageFormat.format("{0}, {1}", transportName, transportDirection);
+        } else if (transportType != null) {
+            return MessageFormat.format("{0} ({1})", transportName, transportType);
+        }
+        return transportName;
+    }
+
+    public static String formatLocationAndDetails(String location, String details) {
+        if (UtilityFunctions.checkEmpty(details)) {
+            return location;
+        }
+        return MessageFormat.format("{0}, {1}", location, details);
     }
 
     // Checking

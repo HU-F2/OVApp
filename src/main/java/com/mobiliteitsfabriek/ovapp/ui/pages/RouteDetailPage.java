@@ -78,7 +78,7 @@ public class RouteDetailPage {
 
             VBox stopDetails = new VBox();
             Label location = new Label(MessageFormat.format("{0} → {1}", routeTransfer.getDepartureLocationAndDetails(), routeTransfer.getArrivalLocationAndDetails()));
-            Label time = new Label(MessageFormat.format("Vertrek: {0} | Aankomst: {1} | {2} minuten", UtilityFunctions.formatTime(routeTransfer.getDepartureTime()), UtilityFunctions.formatTime(routeTransfer.getArrivalTime()), routeTransfer.getDurationMinutes()));
+            Label time = new Label(MessageFormat.format("Vertrek: {0} | Aankomst: {1} | {2} minuten", UtilityFunctions.formatTime(routeTransfer.getPlannedDepartureDateTime()), UtilityFunctions.formatTime(routeTransfer.getPlannedArrivalDateTime()), routeTransfer.getPlannedDurationMinutes()));
             Label details = new Label(MessageFormat.format("{0}", routeTransfer.getCombinedTransport()));
 
             stopDetails.getChildren().addAll(location, time, details);
