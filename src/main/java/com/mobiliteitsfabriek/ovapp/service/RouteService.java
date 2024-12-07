@@ -1,9 +1,11 @@
 package com.mobiliteitsfabriek.ovapp.service;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -52,7 +54,7 @@ public class RouteService {
                 System.out.println("GET request failed.");
             }
 
-        } catch (Exception e) {
+        } catch (IOException | URISyntaxException e) {
             System.out.println(e);
         }
         return new ArrayList<>();
@@ -61,9 +63,8 @@ public class RouteService {
     private List<Route> parseRoutes(String jsonString) {
         JSONArray tripsArray = new JSONObject(new JSONTokener(jsonString)).getJSONArray("trips");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
-        // JSONObject tripsArray = new JSONObject(new JSONTokener(jsonString));
-        System.out.println(tripsArray);
-        List<Route> result = new ArrayList<>();
+
+        List<Route> routeList = new ArrayList<>();
         for (int i = 0; i < tripsArray.length(); i++) {
             JSONObject trip = tripsArray.getJSONObject(i);
             JSONArray legsArray = trip.getJSONArray("legs");
@@ -71,13 +72,17 @@ public class RouteService {
             JSONObject destinationLastObject = legsArray.getJSONObject(legsArray.length() - 1).getJSONObject("destination");
             LocalDateTime plannedDepartureTime = LocalDateTime.parse(originFirstObject.getString("plannedDateTime"), formatter);
             LocalDateTime plannedArrivalTime = LocalDateTime.parse(destinationLastObject.getString("plannedDateTime"), formatter);
-            String departurePlatform = originFirstObject.getString("plannedTrack");
+            String departurePlatform = originFirstObject.optString("plannedTrack", "");
             int plannedDurationInMinutes = trip.getInt("plannedDurationInMinutes");
             int transfersAmount = trip.getInt("transfers");
-            Route myRoute = new Route(plannedDurationInMinutes, transfersAmount, departurePlatform, plannedDepartureTime, plannedArrivalTime);
-            result.add(myRoute);
+
+            String startStationName = originFirstObject.getString("name");
+            String endStationName = destinationLastObject.getString("name");
+
+            Route myRoute = new Route(startStationName,endStationName,plannedDurationInMinutes, transfersAmount, departurePlatform, plannedDepartureTime, plannedArrivalTime);
+            routeList.add(myRoute);
         }
-        return result;
+        return routeList;
     }
 
 }

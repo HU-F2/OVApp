@@ -1,12 +1,7 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
-import java.util.List;
-
-import com.mobiliteitsfabriek.ovapp.model.Route;
-import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
-import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 
 import javafx.scene.Scene;
@@ -20,7 +15,7 @@ public class HomePage {
         RouteService routeService = new RouteService();
 
         VBox root = new VBox();
-        root.getStyleClass().add("root");
+        root.getStyleClass().add("container");
 
         SearchFieldStation startStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "begin");
         SearchFieldStation endStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "eind");
@@ -54,23 +49,8 @@ public class HomePage {
 
 
 
-        submitBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            String startName = startStationField.getValue();
-            Station startStation = stationService.getStation(startName);
-            if (startStation == null) {
-                // TODO: Add error message
-                return;
-            }
-            String endName = endStationField.getValue();
-            Station endStation = stationService.getStation(endName);
-            if (endStation == null) {
-                // TODO: Add error message
-                return;
-            }
-
-            List<Route> routes = routeService.getRoutes(startStation.getId(), endStation.getId());
-            Scene routesPage = RoutesPage.getScene(routes);
-            OVAppUI.switchToScene(routesPage);
+        submitBtn.setOnAction(event -> {
+            RoutesPage.handleSearch(startStationField, endStationField, stationService, routeService);
         });
 
 
