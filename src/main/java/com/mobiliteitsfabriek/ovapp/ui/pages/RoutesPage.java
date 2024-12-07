@@ -11,6 +11,7 @@ import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.RouteElement;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
+import com.mobiliteitsfabriek.ovapp.ui.enums.SearchFieldStationTypes;
 
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -43,8 +44,8 @@ public class RoutesPage {
 
         // Locations
         VBox locationContainer = new VBox();
-        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), "begin", firstRoute.getStartLocation());
-        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), "end", firstRoute.getEndLocation());
+        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), SearchFieldStationTypes.DEPARTURE_DESTINATION, firstRoute.getStartLocation());
+        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), SearchFieldStationTypes.FINAL_DESTINATION, firstRoute.getEndLocation());
         locationContainer.getChildren().addAll(startStationField, endStationField);
         centerContainer.getChildren().addAll(dateTimeContainer, locationContainer);
         centerContainer.setAlignment(Pos.CENTER);

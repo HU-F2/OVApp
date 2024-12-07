@@ -3,6 +3,7 @@ package com.mobiliteitsfabriek.ovapp.ui.pages;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
+import com.mobiliteitsfabriek.ovapp.ui.enums.SearchFieldStationTypes;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,8 +15,8 @@ public class HomePage {
         VBox root = new VBox();
         root.getStyleClass().add("container");
 
-        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), "begin");
-        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), "eind");
+        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), SearchFieldStationTypes.DEPARTURE_DESTINATION);
+        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), SearchFieldStationTypes.FINAL_DESTINATION);
         Button submitBtn = new Button("Zoek");
         Button swapBtn = new Button("<->");
 
@@ -29,15 +30,8 @@ public class HomePage {
             String startValue = startStationField.getValue();
             String endValue = endStationField.getValue();
 
-            startStationField.setValue(endValue);
-            endStationField.setValue(startValue);
-
-            if (endValue != null) {
-                startStationField.getSelectionModel().select(endValue);
-            }
-            if (startValue != null) {
-                endStationField.getSelectionModel().select(startValue);
-            }
+            startStationField.safeSetValue(endValue);
+            endStationField.safeSetValue(startValue);
 
             startStationField.hide();
             endStationField.hide();
