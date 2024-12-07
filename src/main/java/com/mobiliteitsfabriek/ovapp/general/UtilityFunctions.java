@@ -7,11 +7,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
-import com.mobiliteitsfabriek.ovapp.model.RouteTransfersV3;
+import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
+import com.mobiliteitsfabriek.ovapp.model.Station;
 
 public class UtilityFunctions {
     // Calculations
-    public static Integer getTransferTimeBetweenRouteTransfersInMinutes(RouteTransfersV3 routeTransfer1, RouteTransfersV3 routeTransfer2) {
+    public static Integer getTransferTimeBetweenRouteTransfersInMinutes(RouteTransfers routeTransfer1, RouteTransfers routeTransfer2) {
         if (routeTransfer1 == null || routeTransfer2 == null) {
             throw new IllegalArgumentException("getTransferTimeBetweenRouteTransfersInMinutes, a routeTransfer can't be null.");
         }
@@ -73,5 +74,13 @@ public class UtilityFunctions {
 
     public static boolean checkEmpty(Integer valueToCheck) {
         return valueToCheck == null;
+    }
+
+    public static boolean checkEmpty(Double valueToCheck) {
+        return valueToCheck == null;
+    }
+
+    public static boolean checkEmpty(Station valueToCheck) {
+        return valueToCheck == null || UtilityFunctions.checkEmpty(valueToCheck.getId()) || UtilityFunctions.checkEmpty(valueToCheck.getName());
     }
 }

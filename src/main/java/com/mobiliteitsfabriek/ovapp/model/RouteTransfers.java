@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 
-public class RouteTransfersV3 {
+public class RouteTransfers {
     private String departureLocation;
     private String arrivalLocation;
     private LocalDateTime plannedDepartureDateTime;
@@ -18,7 +18,7 @@ public class RouteTransfersV3 {
     private String transportName;
     private String transportDirection;
 
-    public RouteTransfersV3(String departureLocation, String arrivalLocation, String departureLocationDetails, String arrivalLocationDetails, LocalDateTime plannedDepartureDateTime, LocalDateTime plannedArrivalDateTime, String transportType, String transportName, String transportDirection) {
+    public RouteTransfers(String departureLocation, String arrivalLocation, String departureLocationDetails, String arrivalLocationDetails, LocalDateTime plannedDepartureDateTime, LocalDateTime plannedArrivalDateTime, String transportType, String transportName, String transportDirection) {
         this.departureLocation = departureLocation;
         this.arrivalLocation = arrivalLocation;
         this.departureLocationDetails = departureLocationDetails;

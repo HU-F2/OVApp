@@ -1,7 +1,7 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import java.time.format.DateTimeFormatter;
-import java.util.List;
+import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.Route;
@@ -21,10 +21,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class RoutesPage {
-    public static Scene getScene(List<Route> routes) {
-        StationService stationService = new StationService();
-        RouteService routeService = new RouteService();
-
+    public static Scene getScene(ArrayList<Route> routes) {
         Route firstRoute = routes.get(0);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -34,39 +31,39 @@ public class RoutesPage {
         // Backbutton
         Button backButton = new Button("<--");
         backButton.getStyleClass().add("submit-btn");
-        backButton.setOnAction((event)->handleBackButton(event));
+        backButton.setOnAction((event) -> handleBackButton(event));
         // Center
         HBox centerContainer = new HBox();
-        // Datetime picker
+
+        // Route date and time fields
         VBox dateTimeContainer = new VBox();
-        Button timePicker = new Button("13:00");// TODO: replace with future time picker element
-        Button datePicker = new Button(firstRoute.getStartDateTime().format(dateFormatter));// TODO: replace with future date picker element
-        dateTimeContainer.getChildren().addAll(timePicker,datePicker);
+        Button timePicker = new Button("13:00"); // TODO: replace with future time picker element
+        Button datePicker = new Button(firstRoute.getStartDateTime().format(dateFormatter)); // TODO: replace with future date picker element
+        dateTimeContainer.getChildren().addAll(timePicker, datePicker);
+
         // Locations
         VBox locationContainer = new VBox();
-        SearchFieldStation startStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), 
-            "begin",firstRoute.getStartStation());
-        SearchFieldStation endStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), 
-            "end", firstRoute.getEndStation());
-        locationContainer.getChildren().addAll(startStationField,endStationField);
-        centerContainer.getChildren().addAll(dateTimeContainer,locationContainer);
+        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), "begin", firstRoute.getStartLocation());
+        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), "end", firstRoute.getEndLocation());
+        locationContainer.getChildren().addAll(startStationField, endStationField);
+        centerContainer.getChildren().addAll(dateTimeContainer, locationContainer);
         centerContainer.setAlignment(Pos.CENTER);
 
         // Search again
         Button searchButton = new Button("Zoek");
         searchButton.getStyleClass().add("submit-btn");
         searchButton.setOnAction(event -> {
-            handleSearch(startStationField, endStationField, stationService, routeService);
+            handleSearch(startStationField, endStationField);
         });
-        headerContainer.getChildren().addAll(backButton,centerContainer,searchButton);
+        headerContainer.getChildren().addAll(backButton, centerContainer, searchButton);
         HBox.setHgrow(centerContainer, Priority.ALWAYS);
-        headerContainer.getStyleClass().add("header-container");        
- 
+        headerContainer.getStyleClass().add("header-container");
+
         root.getChildren().addAll(headerContainer);
 
-        for (int i = 0; i < routes.size()-1; i++) {
+        for (int i = 0; i < routes.size() - 1; i++) {
             Route route = routes.get(i);
-            RouteElement routeElement = new RouteElement(route, i == routes.size()-2);
+            RouteElement routeElement = new RouteElement(route, i == routes.size() - 2);
             root.getChildren().addAll(routeElement);
         }
 
@@ -75,28 +72,28 @@ public class RoutesPage {
         return scene;
     }
 
-    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField,StationService stationService, RouteService routeService){
+    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField) {
         String startName = startStationField.getEditor().textProperty().get();
-        Station startStation = stationService.getStation(startName);
+        Station startStation = StationService.getStation(startName);
         if (startStation == null) {
             // TODO: Add error message
             return;
         }
         String endName = endStationField.getEditor().textProperty().get();
-        Station endStation = stationService.getStation(endName);
+        Station endStation = StationService.getStation(endName);
         if (endStation == null) {
             // TODO: Add error message
             return;
         }
 
-        List<Route> newRoutes = routeService.getRoutes(startStation.getId(), endStation.getId());
+        ArrayList<Route> newRoutes = RouteService.getRoutes(startStation.getId(), endStation.getId());
         Scene routesPage = RoutesPage.getScene(newRoutes);
         OVAppUI.switchToScene(routesPage);
     }
 
-    public static void handleBackButton(ActionEvent event){
+    public static void handleBackButton(ActionEvent event) {
         Scene homePage = HomePage.getScene();
-        homePage.getStylesheets().add(RoutesPage.class.getResource("/styles/styles.css").toExternalForm());
+
         OVAppUI.switchToScene(homePage);
     }
 }

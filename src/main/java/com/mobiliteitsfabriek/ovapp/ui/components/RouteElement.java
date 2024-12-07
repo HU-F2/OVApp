@@ -3,6 +3,8 @@ package com.mobiliteitsfabriek.ovapp.ui.components;
 import java.time.format.DateTimeFormatter;
 
 import com.mobiliteitsfabriek.ovapp.model.Route;
+import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
+import com.mobiliteitsfabriek.ovapp.ui.pages.RouteDetailPage;
 
 import javafx.geometry.Insets;
 import javafx.scene.input.KeyCode;
@@ -36,8 +38,8 @@ public class RouteElement extends VBox {
 
         // Duration
         HBox infoContainer = new HBox();
-        Text durationText = new Text(route.getDuration() + " minuten | ");
-        Text transfersText = new Text(route.getTransfers() + " overstappen | ");
+        Text durationText = new Text(route.getPlannedDurationInMinutes() + " minuten | ");
+        Text transfersText = new Text(route.getTransfersAmount() + " overstappen | ");
         Text platformNumberText = new Text("platform " + route.getPlatformNumber());
         infoContainer.getChildren().addAll(durationText, transfersText, platformNumberText);
         infoContainer.getStyleClass().add("info-container");
@@ -59,8 +61,8 @@ public class RouteElement extends VBox {
         });
     }
 
-    //TODO: implementeer de detailedRoute pagina
     public static void handleGoToDetailedRoute(Route route) {
-        throw new UnsupportedOperationException();
+        RouteDetailPage routeDetailPage = new RouteDetailPage(route);
+        OVAppUI.switchToScene(routeDetailPage.createRouteDetailScene());
     }
 }

@@ -3,7 +3,6 @@ package com.mobiliteitsfabriek.ovapp.service;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,13 +10,12 @@ import org.json.JSONTokener;
 
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
-import com.mobiliteitsfabriek.ovapp.model.RouteTransfersV3;
-import com.mobiliteitsfabriek.ovapp.model.RouteV3;
+import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
 
 public class RouteService {
     private static final String BASE_URL = "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/trips";
 
-    public List<Route> getRoutes(String startStationId, String endStationId) {
+    public static ArrayList<Route> getRoutes(String startStationId, String endStationId) {
         String queryParams = MessageFormat.format("?fromStation={0}&toStation={1}", startStationId, endStationId);
         String data = GeneralService.sendApiRequest(BASE_URL, queryParams);
 
@@ -28,37 +26,10 @@ public class RouteService {
         return parseRoutes(data);
     }
 
-    private List<Route> parseRoutes(String jsonString) {
+    private static ArrayList<Route> parseRoutes(String jsonString) {
         JSONArray tripsArray = new JSONObject(new JSONTokener(jsonString)).getJSONArray("trips");
 
-        List<Route> result = new ArrayList<>();
-        for (int i = 0; i < tripsArray.length(); i++) {
-            JSONObject trip = tripsArray.getJSONObject(i);
-            JSONArray legsArray = trip.getJSONArray("legs");
-            JSONObject originFirstObject = legsArray.getJSONObject(0).getJSONObject("origin");
-            JSONObject destinationLastObject = legsArray.getJSONObject(legsArray.length() - 1).getJSONObject("destination");
-
-            LocalDateTime plannedDepartureDateTime = UtilityFunctions.getDateTimeFromNS(originFirstObject.getString("plannedDateTime"));
-            LocalDateTime plannedArrivalTime = UtilityFunctions.getDateTimeFromNS(destinationLastObject.getString("plannedDateTime"));
-            String departurePlatform = originFirstObject.optString("plannedTrack", "");
-
-            int plannedDurationInMinutes = trip.getInt("plannedDurationInMinutes");
-            int transfersAmount = trip.getInt("transfers");
-
-            String startLocation = originFirstObject.getString("name");
-            String endLocation = destinationLastObject.getString("name");
-
-            Route myRoute = new Route(startLocation, endLocation, plannedDurationInMinutes, transfersAmount, departurePlatform, plannedDepartureDateTime, plannedArrivalTime);
-            result.add(myRoute);
-        }
-        return result;
-    }
-
-    // TODO: make a connection between the models, page's and API. 
-    private List<RouteV3> parseRoutesV3(String jsonString) {
-        JSONArray tripsArray = new JSONObject(new JSONTokener(jsonString)).getJSONArray("trips");
-
-        List<RouteV3> result = new ArrayList<>();
+        ArrayList<Route> result = new ArrayList<>();
         for (int i = 0; i < tripsArray.length(); i++) {
             JSONObject trip = tripsArray.getJSONObject(i);
             JSONArray legsArray = trip.getJSONArray("legs");
@@ -78,9 +49,9 @@ public class RouteService {
             // TODO: kosten uit de kosten api ophalen en deze hier toevoegen.
             Double cost = null;
 
-            ArrayList<RouteTransfersV3> routeTransfers = new ArrayList<>();
+            ArrayList<RouteTransfers> routeTransfers = new ArrayList<>();
             for (int j = 0; j < legsArray.length(); j++) {
-                JSONObject leg = legsArray.getJSONObject(i);
+                JSONObject leg = legsArray.getJSONObject(j);
 
                 String departureLocation = leg.getJSONObject("origin").getString("name");
                 String arrivalLocation = leg.getJSONObject("destination").getString("name");
@@ -95,12 +66,11 @@ public class RouteService {
                 String transportName = leg.getJSONObject("product").getString("displayName");
                 String transportDirection = leg.getString("direction");
 
-                RouteTransfersV3 routeTransfersV3 = new RouteTransfersV3(departureLocation, arrivalLocation, departureLocationDetails, arrivalLocationDetails, plannedDepartureDateTime, plannedArrivalDateTime, transportType, transportName, transportDirection);
+                RouteTransfers routeTransfersV3 = new RouteTransfers(departureLocation, arrivalLocation, departureLocationDetails, arrivalLocationDetails, plannedDepartureDateTime, plannedArrivalDateTime, transportType, transportName, transportDirection);
                 routeTransfers.add(routeTransfersV3);
             }
 
-            // RouteV3 myRoute = new RouteV3(startLocation, endLocation, cost, routeTransfers);
-            RouteV3 myRoute = new RouteV3(routeTransfers, ctxRecon, startLocation, endLocation, startDateTime, endDateTime, plannedDurationInMinutes, transfersAmount, cost);
+            Route myRoute = new Route(routeTransfers, ctxRecon, startLocation, endLocation, startDateTime, endDateTime, plannedDurationInMinutes, transfersAmount, cost);
             result.add(myRoute);
         }
         return result;

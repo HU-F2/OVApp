@@ -1,37 +1,70 @@
 package com.mobiliteitsfabriek.ovapp.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Route {
-    private String startStation;
-    private String endStation;
-    private String platformNumber;
-    private int transfers;
+    // TODO: get a single trip using ctxRecon
+    private String ctxRecon;
+
+    private String startLocation;
+    private String endLocation;
+
+    private Double cost;
+    private ArrayList<RouteTransfers> routeTransfers;
+
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
-    private int duration;
+    private int plannedDurationInMinutes;
+    //FIXME: both startlocation and endLocation can have a platform number
+    private String platformNumber;
+    private int transfersAmount;
 
-    public Route(String startStation, String endStation, int duration, int transfers, String platformNumber, LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        this.startStation = startStation;
-        this.endStation = endStation;
-        this.duration = duration;
-        this.transfers = transfers;
-        this.platformNumber = platformNumber;
+    public Route(ArrayList<RouteTransfers> routeTransfers, String ctxRecon, String startLocation, String endLocation, LocalDateTime startDateTime, LocalDateTime endDateTime, int plannedDurationInMinutes, int transfersAmount, Double cost) {
+        this.ctxRecon = ctxRecon;
+        this.startLocation = startLocation;
+        this.endLocation = endLocation;
+        this.cost = cost;
+        this.routeTransfers = routeTransfers;
+
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
+        this.plannedDurationInMinutes = plannedDurationInMinutes;
+        this.transfersAmount = transfersAmount;
+        this.platformNumber = null;
     }
 
     // GETTERS AND SETTERS
-    public int getDuration() {
-        return duration;
+    public String getCtxRecon() {
+        return ctxRecon;
     }
 
-    public int getTransfers() {
-        return transfers;
+    public String getStartLocation() {
+        return startLocation;
+    }
+
+    public String getEndLocation() {
+        return endLocation;
+    }
+
+    public int getPlannedDurationInMinutes() {
+        return plannedDurationInMinutes;
+    }
+
+    public Double getCost() {
+        return cost;
+    }
+
+    public ArrayList<RouteTransfers> getRouteTransfers() {
+        return routeTransfers;
     }
 
     public String getPlatformNumber() {
         return platformNumber;
+    }
+
+    public int getTransfersAmount() {
+        return transfersAmount;
     }
 
     public LocalDateTime getStartDateTime() {
@@ -41,13 +74,4 @@ public class Route {
     public LocalDateTime getEndDateTime() {
         return endDateTime;
     }
-
-    public String getStartStation() {
-        return startStation;
-    }
-
-    public String getEndStation() {
-        return endStation;
-    }
-
 }

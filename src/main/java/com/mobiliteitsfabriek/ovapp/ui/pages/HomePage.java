@@ -1,7 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
-import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 
@@ -12,14 +11,11 @@ import javafx.scene.layout.VBox;
 
 public class HomePage {
     public static Scene getScene() {
-        StationService stationService = new StationService();
-        RouteService routeService = new RouteService();
-
         VBox root = new VBox();
         root.getStyleClass().add("container");
 
-        SearchFieldStation startStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "begin");
-        SearchFieldStation endStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "eind");
+        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), "begin");
+        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), "eind");
         Button submitBtn = new Button("Zoek");
         Button swapBtn = new Button("<->");
 
@@ -48,11 +44,12 @@ public class HomePage {
         });
 
         submitBtn.setOnAction(event -> {
-            RoutesPage.handleSearch(startStationField, endStationField, stationService, routeService);
+            RoutesPage.handleSearch(startStationField, endStationField);
         });
 
         root.getChildren().addAll(startStationField, endStationField, swapBtn, submitBtn);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
+        scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;
     }
 }

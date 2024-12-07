@@ -3,7 +3,6 @@ package com.mobiliteitsfabriek.ovapp.service;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
@@ -48,20 +47,20 @@ public class StationService {
         return stations;
     }
 
-    public List<Station> getStationByName(String name) {
+    public static ArrayList<Station> getStationByName(String name) {
         Pattern pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
-        List<Station> result = stations.stream().filter((station -> pattern.matcher(station.getName()).find())).sorted((s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName())).toList();
+        ArrayList<Station> result = new ArrayList<>(stations.stream().filter((station -> pattern.matcher(station.getName()).find())).sorted((s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName())).toList());
         return result;
     }
 
-    public List<String> getAllStationNames() {
-        return stations.stream()
+    public static ArrayList<String> getAllStationNames() {
+        return new ArrayList<>(stations.stream()
                 .map(Station::getName)
                 .sorted(String::compareToIgnoreCase)
-                .toList();
+                .toList());
     }
 
-    public Station getStation(String name) {
+    public static Station getStation(String name) {
         if (UtilityFunctions.checkEmpty(name)) {
             return null;
         }

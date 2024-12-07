@@ -4,8 +4,8 @@ import java.text.MessageFormat;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
-import com.mobiliteitsfabriek.ovapp.model.RouteTransfersV3;
-import com.mobiliteitsfabriek.ovapp.model.RouteV3;
+import com.mobiliteitsfabriek.ovapp.model.Route;
+import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
 import com.mobiliteitsfabriek.ovapp.ui.controllers.RouteDetailController;
 
 import javafx.geometry.Insets;
@@ -23,7 +23,7 @@ public class RouteDetailPage {
 
     private final RouteDetailController controller;
 
-    public RouteDetailPage(RouteV3 route) {
+    public RouteDetailPage(Route route) {
         this.controller = new RouteDetailController(route);
     }
 
@@ -31,12 +31,12 @@ public class RouteDetailPage {
     // TODO: add translations
     // TODO: add screanreader suport
     public Scene createRouteDetailScene() {
-        RouteV3 route = controller.getRouteV3();
+        Route route = controller.getRoute();
 
         // Header
         HBox header = createHeader(route);
 
-        // List group for routeTransfers and transfers
+        // Javafx list group for routeTransfers
         VBox listGroup = createListGroup(route);
 
         // Back button
@@ -54,11 +54,16 @@ public class RouteDetailPage {
         return new Scene(layout, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
     }
 
-    private HBox createHeader(RouteV3 route) {
+    private HBox createHeader(Route route) {
         Label title = new Label("Route Details");
         title.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
 
-        Label travelInfo = new Label(MessageFormat.format("{0} → {1} | Kosten: {2}", route.getStartLocation(), route.getEndLocation(), UtilityFunctions.formatValueAsCurrency(route.getCost())));
+        Label travelInfo;
+        if (UtilityFunctions.checkEmpty(route.getCost())) {
+            travelInfo = new Label(MessageFormat.format("{0} → {1}", route.getStartLocation(), route.getEndLocation()));
+        } else {
+            travelInfo = new Label(MessageFormat.format("{0} → {1} | Kosten: {2}", route.getStartLocation(), route.getEndLocation(), UtilityFunctions.formatValueAsCurrency(route.getCost())));
+        }
         travelInfo.setStyle("-fx-font-size: 16px;");
 
         VBox headerContent = new VBox(title, travelInfo);
@@ -70,10 +75,10 @@ public class RouteDetailPage {
         return header;
     }
 
-    private VBox createListGroup(RouteV3 route) {
+    private VBox createListGroup(Route route) {
         VBox listGroup = new VBox();
 
-        for (RouteTransfersV3 routeTransfer : route.getRouteTransfers()) {
+        for (RouteTransfers routeTransfer : route.getRouteTransfers()) {
             HBox listItem = new HBox();
 
             VBox stopDetails = new VBox();
