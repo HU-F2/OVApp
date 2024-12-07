@@ -11,10 +11,13 @@ import javafx.scene.control.ComboBox;
 public class SearchFieldStation extends ComboBox<String> {
     public ComboBox<String> startStation;
 
-    public SearchFieldStation(StationService service, List<String> stationNames, String stationType) {
+    public SearchFieldStation(StationService service, List<String> stationNames, String stationType,String defaultValue) {
         // ComboBox<String> startStation = new ComboBox<>();
         this.setPromptText("Vul uw " + stationType + " station in.");
         this.getItems().addAll(stationNames);
+        if(defaultValue != null){
+            this.getEditor().textProperty().set(defaultValue);
+        }
         this.setEditable(true);
         this.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null || newValue.isEmpty()) {
@@ -31,5 +34,9 @@ public class SearchFieldStation extends ComboBox<String> {
             this.setItems(filteredItems);
             this.show();
         });
+    }
+
+    public SearchFieldStation(StationService service, List<String> stationNames, String stationType) {
+        this(service,stationNames,stationType,null);
     }
 }

@@ -45,7 +45,10 @@ public class RouteService {
             int plannedDurationInMinutes = trip.getInt("plannedDurationInMinutes");
             int transfersAmount = trip.getInt("transfers");
 
-            Route myRoute = new Route(plannedDurationInMinutes, transfersAmount, departurePlatform, plannedDepartureDateTime, plannedArrivalTime);
+            String startLocation = originFirstObject.getString("name");
+            String endLocation = destinationLastObject.getString("name");
+
+            Route myRoute = new Route(startLocation, endLocation, plannedDurationInMinutes, transfersAmount, departurePlatform, plannedDepartureDateTime, plannedArrivalTime);
             result.add(myRoute);
         }
         return result;
