@@ -1,11 +1,17 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
+import java.time.LocalDate;
+
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
+import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
@@ -13,12 +19,14 @@ public class HomePage {
     public static Scene getScene() {
         StationService stationService = new StationService();
         RouteService routeService = new RouteService();
-
+        DateTimePicker dateTimeComponent = new DateTimePicker();
+        
         VBox root = new VBox();
         root.getStyleClass().add("container");
 
         SearchFieldStation startStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "begin");
         SearchFieldStation endStationField = new SearchFieldStation(stationService, stationService.getAllStationNames(), "eind");
+
         Button submitBtn = new Button("Zoek");
         Button swapBtn = new Button("<->");
 
@@ -31,7 +39,6 @@ public class HomePage {
 
             String startValue = startStationField.getValue();
             String endValue = endStationField.getValue();
-
 
             startStationField.setValue(endValue);
             endStationField.setValue(startValue);
@@ -47,14 +54,11 @@ public class HomePage {
             endStationField.hide();
         });
 
-
-
         submitBtn.setOnAction(event -> {
-            RoutesPage.handleSearch(startStationField, endStationField, stationService, routeService);
+            RoutesPage.handleSearch(startStationField, endStationField, stationService, routeService, dateTimeComponent);
         });
 
-
-        root.getChildren().addAll(startStationField, endStationField, swapBtn, submitBtn);
+        root.getChildren().addAll(startStationField, endStationField, dateTimeComponent, swapBtn, submitBtn);
         Scene scene = new Scene(root, 500, 800);
         return scene;
     }

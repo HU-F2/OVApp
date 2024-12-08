@@ -20,9 +20,9 @@ import com.mobiliteitsfabriek.ovapp.model.Route;
 
 public class RouteService {
 
-    public List<Route> getRoutes(String startStationId, String endStationId) {
+    public List<Route> getRoutes(String startStationId, String endStationId, String dateTime) {
         String baseURL = "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/trips";
-        String urlString = baseURL + "?fromStation=" + startStationId + "&toStation=" + endStationId;
+        String urlString = baseURL + "?fromStation=" + startStationId + "&toStation=" + endStationId + "&dateTime=" + dateTime;
 
         try {
             URI uri = new URI(urlString);
