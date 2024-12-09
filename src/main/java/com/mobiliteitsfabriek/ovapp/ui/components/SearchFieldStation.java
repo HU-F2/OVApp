@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 public class SearchFieldStation extends ComboBox<String> {
     public ComboBox<String> startStation;
 
-    public SearchFieldStation(StationService service, List<String> stationNames, String stationType,String defaultValue) {
+    public SearchFieldStation(List<String> stationNames, String stationType,String defaultValue) {
         // ComboBox<String> startStation = new ComboBox<>();
         this.setPromptText("Vul uw " + stationType + " station in.");
         this.getItems().addAll(stationNames);
@@ -36,7 +36,7 @@ public class SearchFieldStation extends ComboBox<String> {
         });
     }
 
-    public SearchFieldStation(StationService service, List<String> stationNames, String stationType) {
-        this(service,stationNames,stationType,null);
+    public SearchFieldStation(List<String> stationNames, String stationType) {
+        this(stationNames,stationType,null);
     }
 }
