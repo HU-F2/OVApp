@@ -3,6 +3,9 @@ package com.mobiliteitsfabriek.ovapp.config;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import com.mobiliteitsfabriek.ovapp.translation.Language;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+
 public class GlobalConfig {
     public static final int SCENE_WIDTH = 800; //eerst 1200
     public static final int SCENE_HEIGHT = 600; //eerst 800
@@ -21,4 +24,20 @@ public class GlobalConfig {
 
     // Data File Paths
     public static final String FILE_PATH_STATIONS = "src/main/resources/stations.json";
+
+    // console output
+    public static final Boolean NO_TRANSLATION_KEY_ERROR_CONSOLE = false;
+
+    // Standaard taal van de applicatie.
+    // deze taal wordt gebruikt als de vertaling niet bestaat in de applicatie taal.
+    public static final Language DEFAULT_LANGUAGE = Language.DUTCH;
+
+    // Huidige taal (kan tijdens runtime veranderen)
+    public static Language currentLanguage = DEFAULT_LANGUAGE;
+
+    // Methode om de huidige taal te wijzigen
+    public static void setLanguage(Language language) {
+        currentLanguage = language;
+        TranslationHelper.setLanguage(language);
+    }
 }

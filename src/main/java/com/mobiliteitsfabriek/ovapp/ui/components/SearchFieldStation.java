@@ -2,8 +2,6 @@ package com.mobiliteitsfabriek.ovapp.ui.components;
 
 import java.util.List;
 
-import com.mobiliteitsfabriek.ovapp.service.StationService;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -11,11 +9,11 @@ import javafx.scene.control.ComboBox;
 public class SearchFieldStation extends ComboBox<String> {
     public ComboBox<String> startStation;
 
-    public SearchFieldStation(List<String> stationNames, String stationType,String defaultValue) {
+    public SearchFieldStation(List<String> stationNames, String stationType, String defaultValue) {
         // ComboBox<String> startStation = new ComboBox<>();
         this.setPromptText("Vul uw " + stationType + " station in.");
         this.getItems().addAll(stationNames);
-        if(defaultValue != null){
+        if (defaultValue != null) {
             this.getEditor().textProperty().set(defaultValue);
         }
         this.setEditable(true);
@@ -37,6 +35,6 @@ public class SearchFieldStation extends ComboBox<String> {
     }
 
     public SearchFieldStation(List<String> stationNames, String stationType) {
-        this(stationNames,stationType,null);
+        this(stationNames, stationType, null);
     }
 }

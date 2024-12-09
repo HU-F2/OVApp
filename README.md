@@ -7,13 +7,14 @@
 ## Table of Contents
 
 1. [About the Project](#about-the-project)
-2. [Features](#features)
-3. [Getting Started](#getting-started)
-4. [Usage](#usage)
-5. [Internal Development](#internal-development)
-6. [Roadmap](#roadmap)
-7. [License](#license)
-8. [Contact](#contact)
+2. [Documentatie](#documentatie)
+3. [Features](#features)
+4. [Getting Started](#getting-started)
+5. [Usage](#usage)
+6. [Internal Development](#internal-development)
+7. [Roadmap](#roadmap)
+8. [License](#license)
+9. [Contact](#contact)
 
 
 ## About the Project
@@ -26,6 +27,9 @@ Navigating public transit can be a challenge, especially for people with mobilit
 - Provide real-time transit information.
 - Design an inclusive user interface with features like voice navigation and high contrast modes.
 
+## Documentatie
+   - [Vertalingen toevoegen](documentation/translations.md)
+   - [Uitleg Commit Types](documentation/commitTypes.md)
 
 ## Features
 
@@ -87,7 +91,6 @@ For internal team members, please follow these steps to make changes:
 ## Roadmap
 
 -
-
 
 ## License
 

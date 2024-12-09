@@ -3,6 +3,7 @@ package com.mobiliteitsfabriek.ovapp.ui;
 import java.util.Objects;
 
 import com.mobiliteitsfabriek.ovapp.service.SeedingService;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.pages.HomePage;
 
 import javafx.application.Application;
@@ -21,7 +22,7 @@ public class OVAppUI extends Application {
                 .add(Objects.requireNonNull(getClass().getResource("/styles/styles.css"))
                         .toExternalForm());
 
-        primaryStage.setTitle("OV App");
+        primaryStage.setTitle(TranslationHelper.get("app.window.title"));
         primaryStage.setScene(scene);
         primaryStage.show();
 
