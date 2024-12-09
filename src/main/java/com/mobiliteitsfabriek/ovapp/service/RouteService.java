@@ -46,6 +46,8 @@ public class RouteService {
             int plannedDurationInMinutes = trip.getInt("plannedDurationInMinutes");
             int transfersAmount = trip.getInt("transfers");
 
+            String platformNumber = firstOriginObject.getString("plannedTrack");
+
             // TODO: kosten uit de kosten api ophalen en deze hier toevoegen.
             Double cost = null;
 
@@ -70,7 +72,7 @@ public class RouteService {
                 routeTransfers.add(routeTransfersV3);
             }
 
-            Route myRoute = new Route(routeTransfers, ctxRecon, startLocation, endLocation, startDateTime, endDateTime, plannedDurationInMinutes, transfersAmount, cost);
+            Route myRoute = new Route(routeTransfers, ctxRecon, startLocation, endLocation, platformNumber, startDateTime, endDateTime, plannedDurationInMinutes, transfersAmount, cost);
             result.add(myRoute);
         }
         return result;

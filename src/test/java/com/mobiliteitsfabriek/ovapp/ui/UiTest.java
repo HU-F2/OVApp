@@ -69,7 +69,7 @@ public class UiTest {
         // Maak een route aan
         ArrayList<RouteTransfers> routeTransfers = new ArrayList<>(List.of(routeTransfer1, routeTransfer2, stop3, stop4));
 
-        Route route = new Route(routeTransfers, null, "Station Arnhem Centraal", "Station Amsterdam Centraal", LocalDateTime.of(2024, 12, 1, 9, 16), LocalDateTime.of(2024, 12, 1, 9, 20), 20, 4, 15.0);
+        Route route = new Route(routeTransfers, null, "Station Arnhem Centraal", "Station Amsterdam Centraal", "spoor 11", LocalDateTime.of(2024, 12, 1, 9, 16), LocalDateTime.of(2024, 12, 1, 9, 20), 20, 4, 15.0);
 
         // Toon de route details
         return route;

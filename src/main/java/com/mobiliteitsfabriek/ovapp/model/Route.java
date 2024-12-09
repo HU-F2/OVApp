@@ -16,11 +16,11 @@ public class Route {
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
     private int plannedDurationInMinutes;
-    //FIXME: both startlocation and endLocation can have a platform number
+    //FIXME: both startlocation and endLocation can have a platform number. Maybe clarify name, at/remove plantformnumber.
     private String platformNumber;
     private int transfersAmount;
 
-    public Route(ArrayList<RouteTransfers> routeTransfers, String ctxRecon, String startLocation, String endLocation, LocalDateTime startDateTime, LocalDateTime endDateTime, int plannedDurationInMinutes, int transfersAmount, Double cost) {
+    public Route(ArrayList<RouteTransfers> routeTransfers, String ctxRecon, String startLocation, String endLocation, String platformNumber, LocalDateTime startDateTime, LocalDateTime endDateTime, int plannedDurationInMinutes, int transfersAmount, Double cost) {
         this.ctxRecon = ctxRecon;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
