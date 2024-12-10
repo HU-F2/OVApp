@@ -28,17 +28,16 @@ public class HomePage {
         swapBtn.getStyleClass().add("submit-btn");
 
         swapBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-
-            String startValue = startStationField.getValue();
-            String endValue = endStationField.getValue();
-
+            String startValue = startStationField.getValue().replace("'", "’");
+            String endValue = endStationField.getValue().replace("'", "’");
 
             startStationField.setValue(endValue);
             endStationField.setValue(startValue);
-
+            
             if (endValue != null) {
                 startStationField.getSelectionModel().select(endValue);
             }
+
             if (startValue != null) {
                 endStationField.getSelectionModel().select(startValue);
             }
@@ -47,12 +46,9 @@ public class HomePage {
             endStationField.hide();
         });
 
-
-
         submitBtn.setOnAction(event -> {
             RoutesPage.handleSearch(startStationField, endStationField, stationService, routeService);
         });
-
 
         root.getChildren().addAll(startStationField, endStationField, swapBtn, submitBtn);
         Scene scene = new Scene(root, 500, 800);

@@ -75,15 +75,20 @@ public class RoutesPage {
     }
 
     public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField,StationService stationService, RouteService routeService){
-        String startName = startStationField.getEditor().textProperty().get();
+        String startName = startStationField.getEditor().textProperty().get().replace("’","'");
         Station startStation = stationService.getStation(startName);
         if (startStation == null) {
             // TODO: Add error message
             return;
         }
-        String endName = endStationField.getEditor().textProperty().get();
+        String endName = endStationField.getEditor().textProperty().get().replace("’","'");;
         Station endStation = stationService.getStation(endName);
         if (endStation == null) {
+            // TODO: Add error message
+            return;
+        }
+
+        if(startName.equalsIgnoreCase(endName)){
             // TODO: Add error message
             return;
         }
