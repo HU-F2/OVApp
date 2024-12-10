@@ -46,7 +46,7 @@ public class RouteService {
             int plannedDurationInMinutes = trip.getInt("plannedDurationInMinutes");
             int transfersAmount = trip.getInt("transfers");
 
-            String platformNumber = firstOriginObject.getString("plannedTrack");
+            String platformNumber = firstOriginObject.optString("plannedTrack","");
 
             // TODO: kosten uit de kosten api ophalen en deze hier toevoegen.
             Double cost = null;
@@ -58,8 +58,8 @@ public class RouteService {
                 String departureLocation = leg.getJSONObject("origin").getString("name");
                 String arrivalLocation = leg.getJSONObject("destination").getString("name");
 
-                String departureLocationDetails = leg.getJSONObject("origin").getString("plannedTrack");
-                String arrivalLocationDetails = leg.getJSONObject("destination").getString("plannedTrack");
+                String departureLocationDetails = leg.getJSONObject("origin").optString("plannedTrack","");
+                String arrivalLocationDetails = leg.getJSONObject("destination").optString("plannedTrack","");
 
                 LocalDateTime plannedDepartureDateTime = UtilityFunctions.getDateTimeFromNS(leg.getJSONObject("origin").getString("plannedDateTime"));
                 LocalDateTime plannedArrivalDateTime = UtilityFunctions.getDateTimeFromNS(leg.getJSONObject("destination").getString("plannedDateTime"));

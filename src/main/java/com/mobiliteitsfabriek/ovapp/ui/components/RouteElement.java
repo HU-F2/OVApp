@@ -40,7 +40,7 @@ public class RouteElement extends VBox {
         HBox infoContainer = new HBox();
         Text durationText = new Text(route.getPlannedDurationInMinutes() + " minuten | ");
         Text transfersText = new Text(route.getTransfersAmount() + " overstappen | ");
-        Text platformNumberText = new Text("platform " + route.getPlatformNumber());
+        Text platformNumberText = new Text("startplatform " + route.getPlatformNumber());
         infoContainer.getChildren().addAll(durationText, transfersText, platformNumberText);
         infoContainer.getStyleClass().add("info-container");
 

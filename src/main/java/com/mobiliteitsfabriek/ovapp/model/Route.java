@@ -16,7 +16,6 @@ public class Route {
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
     private int plannedDurationInMinutes;
-    //FIXME: both startlocation and endLocation can have a platform number. Maybe clarify name, at/remove plantformnumber.
     private String platformNumber;
     private int transfersAmount;
 
@@ -31,7 +30,7 @@ public class Route {
         this.endDateTime = endDateTime;
         this.plannedDurationInMinutes = plannedDurationInMinutes;
         this.transfersAmount = transfersAmount;
-        this.platformNumber = null;
+        this.platformNumber = platformNumber;
     }
 
     // GETTERS AND SETTERS

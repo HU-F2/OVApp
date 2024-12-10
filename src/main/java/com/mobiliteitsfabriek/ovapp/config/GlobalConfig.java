@@ -7,8 +7,8 @@ import com.mobiliteitsfabriek.ovapp.translation.Language;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
 public class GlobalConfig {
-    public static final int SCENE_WIDTH = 800; //eerst 1200
-    public static final int SCENE_HEIGHT = 600; //eerst 800
+    public static final int SCENE_WIDTH = 500; //eerst 1200
+    public static final int SCENE_HEIGHT = 800; //eerst 800
 
     // UtilityFunctions
     public static final String DATE_TIME_FORMAT = "dd-MM-yyyy HH:mm";
