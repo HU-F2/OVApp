@@ -1,7 +1,5 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
-import java.text.MessageFormat;
-
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
@@ -50,17 +48,17 @@ public class RouteDetailPage {
     }
 
     private HBox createHeader(Route route) {
-        Label title = new Label(TranslationHelper.get("app.detail.title"));
+        Label title = new Label(TranslationHelper.get("detail.title"));
         title.getStyleClass().add("title");
         title.setFocusTraversable(true);
 
         Label travelInfo;
         if (UtilityFunctions.checkEmpty(route.getCost())) {
-            travelInfo = new Label(MessageFormat.format("{0} → {1}", route.getStartLocation(), route.getEndLocation()));
-            travelInfo.setAccessibleText(MessageFormat.format(TranslationHelper.get("app.detail.travelInfo.tts"), route.getStartLocation(), route.getEndLocation()));
+            travelInfo = new Label(TranslationHelper.get("detail.travelInfo", route.getStartLocation(), route.getEndLocation()));
+            travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfo.accessibleText", route.getStartLocation(), route.getEndLocation()));
         } else {
-            travelInfo = new Label(MessageFormat.format(TranslationHelper.get("app.detail.travelInfoPrice"), route.getStartLocation(),route.getEndLocation()));
-            travelInfo.setAccessibleText(MessageFormat.format(TranslationHelper.get("app.detail.travelInfoPrice.tts"), route.getStartLocation(),route.getEndLocation()));
+            travelInfo = new Label(TranslationHelper.get("detail.travelInfoPrice", route.getStartLocation(),route.getEndLocation(),UtilityFunctions.formatValueAsCurrency(route.getCost())));
+            travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfoPrice.accessibleText", route.getStartLocation(),route.getEndLocation(),UtilityFunctions.formatValueAsCurrency(route.getCost())));
         }
         travelInfo.getStyleClass().add("info");
         travelInfo.setFocusTraversable(true);
@@ -80,18 +78,18 @@ public class RouteDetailPage {
             HBox listItem = new HBox();
             listItem.setFocusTraversable(true);
             listItem.setAccessibleRole(AccessibleRole.TEXT);
-            listItem.setAccessibleText(MessageFormat.format(TranslationHelper.get("app.detail.transfer"), routeTransfer.getTransportType()));
+            listItem.setAccessibleText(TranslationHelper.get("detail.transfer", routeTransfer.getTransportType()));
 
             VBox stopDetails = new VBox();
-            Label location = new Label(MessageFormat.format("{0} → {1}", routeTransfer.getDepartureLocationAndDetails(), routeTransfer.getArrivalLocationAndDetails()));
+            Label location = new Label(TranslationHelper.get("detail.transfer.location", routeTransfer.getDepartureLocationAndDetails(), routeTransfer.getArrivalLocationAndDetails()));
             location.setFocusTraversable(true);
-            location.setAccessibleText(MessageFormat.format(TranslationHelper.get("app.detail.transfer.location.tts"), routeTransfer.getDepartureLocation(), routeTransfer.getDepartureLocationDetails() ,routeTransfer.getArrivalLocation(),routeTransfer.getArrivalLocationDetails()));
-            Label time = new Label(MessageFormat.format(TranslationHelper.get("app.detail.transfer.time"), UtilityFunctions.formatTime(routeTransfer.getPlannedDepartureDateTime()), UtilityFunctions.formatTime(routeTransfer.getPlannedArrivalDateTime()), routeTransfer.getPlannedDurationMinutes()));
+            location.setAccessibleText(TranslationHelper.get("detail.transfer.location.accessibleText", routeTransfer.getDepartureLocation(), routeTransfer.getDepartureLocationDetails() ,routeTransfer.getArrivalLocation(),routeTransfer.getArrivalLocationDetails()));
+            Label time = new Label(TranslationHelper.get("detail.transfer.time", UtilityFunctions.formatTime(routeTransfer.getPlannedDepartureDateTime()), UtilityFunctions.formatTime(routeTransfer.getPlannedArrivalDateTime()), routeTransfer.getPlannedDurationMinutes()));
             time.setFocusTraversable(true);
-            time.setAccessibleText(MessageFormat.format(TranslationHelper.get("app.detail.transfer.time.tts"), UtilityFunctions.formatTime(routeTransfer.getPlannedDepartureDateTime()), UtilityFunctions.formatTime(routeTransfer.getPlannedArrivalDateTime()), routeTransfer.getPlannedDurationMinutes()));
-            Label details = new Label(MessageFormat.format("{0}", routeTransfer.getCombinedTransport()));
+            time.setAccessibleText(TranslationHelper.get("detail.transfer.time.accessibleText", UtilityFunctions.formatTime(routeTransfer.getPlannedDepartureDateTime()), UtilityFunctions.formatTime(routeTransfer.getPlannedArrivalDateTime()), routeTransfer.getPlannedDurationMinutes()));
+            Label details = new Label(TranslationHelper.get("detail.transfer.details", routeTransfer.getCombinedTransport()));
             details.setFocusTraversable(true);
-            details.setAccessibleText(MessageFormat.format(TranslationHelper.get("app.detail.transfer.details.tts"), routeTransfer.getTransportType()));
+            details.setAccessibleText(TranslationHelper.get("detail.transfer.details.accessibleText", routeTransfer.getTransportType()));
 
             stopDetails.getChildren().addAll(location, time, details);
             stopDetails.setSpacing(5);

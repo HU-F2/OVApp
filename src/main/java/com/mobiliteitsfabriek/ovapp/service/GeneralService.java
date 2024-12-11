@@ -15,6 +15,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.exceptions.ApiRequestException;
+import com.mobiliteitsfabriek.ovapp.exceptions.MissingKeyException;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
 public class GeneralService {
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -34,10 +36,12 @@ public class GeneralService {
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 return GeneralService.getResponseAsString(connection);
             } else {
-                throw new ApiRequestException("API error: " + connection.getResponseCode() + " - " + connection.getResponseMessage());
+                throw new ApiRequestException(TranslationHelper.get("error.apiRequestError",connection.getResponseCode(),connection.getResponseMessage()));
             }
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
+        }catch(ApiRequestException e){
+            System.err.println(e.getMessage());
         }
         return null;
     }
@@ -48,16 +52,15 @@ public class GeneralService {
 
             JsonNode payloadNode = rootNode.get("payload");
             if (payloadNode == null) {
-                System.out.println("Key 'payload' not found in the JSON.");
-                return;
+                throw new MissingKeyException("payload",filePath);
             }
 
             File outputFile = new File(filePath);
             GeneralService.getObjectMapper().writerWithDefaultPrettyPrinter().writeValue(outputFile, payloadNode);
 
-            System.out.println("Payload saved to " + outputFile.getAbsolutePath());
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(TranslationHelper.get("io.fileSaved",outputFile.getAbsolutePath()));
+        } catch (IOException | MissingKeyException e) {
+            System.err.println(e.getMessage());
         }
     }
 
