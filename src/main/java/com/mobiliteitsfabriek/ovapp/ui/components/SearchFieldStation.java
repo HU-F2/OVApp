@@ -1,22 +1,19 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
-import java.util.List;
-
-import com.mobiliteitsfabriek.ovapp.service.StationService;
+import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
 public class SearchFieldStation extends ComboBox<String> {
-    public ComboBox<String> startStation;
 
-    public SearchFieldStation(StationService service, List<String> stationNames, String stationType,String defaultValue) {
+    public SearchFieldStation(ArrayList<String> stationNames, String stationType, String defaultValue) {
         this.setPromptText("Vul uw " + stationType + " station in.");
 
         this.setEditable(true);
         this.getItems().addAll(stationNames);
-        if(defaultValue != null){
+        if (defaultValue != null) {
             this.getEditor().textProperty().set(defaultValue);
         }
 
@@ -26,7 +23,7 @@ public class SearchFieldStation extends ComboBox<String> {
                 return;
             }
 
-            if(this.getValue() != null && !newValue.equals(this.getValue())){
+            if (this.getValue() != null && !newValue.equals(this.getValue())) {
                 this.setValue(null);
                 this.getEditor().setText(newValue);
                 this.getEditor().selectPositionCaret(newValue.length());
@@ -43,7 +40,7 @@ public class SearchFieldStation extends ComboBox<String> {
         });
     }
 
-    public SearchFieldStation(StationService service, List<String> stationNames, String stationType) {
-        this(service,stationNames,stationType,null);
+    public SearchFieldStation(ArrayList<String> stationNames, String stationType) {
+        this(stationNames, stationType, null);
     }
 }

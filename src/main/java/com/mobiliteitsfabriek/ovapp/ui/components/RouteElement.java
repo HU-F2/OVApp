@@ -1,8 +1,11 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
+import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
+import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
+import com.mobiliteitsfabriek.ovapp.ui.pages.RouteDetailPage;
 
 import javafx.geometry.Insets;
 import javafx.scene.input.KeyCode;
@@ -18,50 +21,48 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class RouteElement extends VBox {
-    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-    public RouteElement(Route route, boolean lastElement){
+    public RouteElement(Route route, boolean lastElement, ArrayList<Route> routes) {
         this.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK,
-            BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE, 
-            lastElement ? BorderStrokeStyle.SOLID : BorderStrokeStyle.NONE, BorderStrokeStyle.NONE,
-            CornerRadii.EMPTY, new BorderWidths(1), Insets.EMPTY)));
-            
+                BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
+                lastElement ? BorderStrokeStyle.SOLID : BorderStrokeStyle.NONE, BorderStrokeStyle.NONE,
+                CornerRadii.EMPTY, new BorderWidths(1), Insets.EMPTY)));
+
         // Time
         HBox timeContainer = new HBox();
-        Text startTimeText = new Text(route.getStartDateTime().format(timeFormatter));
+        Text startTimeText = new Text(UtilityFunctions.formatTime(route.getStartDateTime()));
         Text arrowSign = new Text(" --> ");
-        Text endTimeText = new Text(route.getEndDateTime().format(timeFormatter));
+        Text endTimeText = new Text(UtilityFunctions.formatTime(route.getEndDateTime()));
         timeContainer.getChildren().addAll(startTimeText, arrowSign, endTimeText);
         timeContainer.getStyleClass().add("time-container");
-        
+
         // Duration
         HBox infoContainer = new HBox();
-        Text durationText = new Text(route.getDuration() + " minuten | ");
-        Text transfersText = new Text(route.getTransfers() + " overstappen | ");
-        Text platformNumberText = new Text("platform " + route.getPlatformNumber());
-        infoContainer.getChildren().addAll(durationText,transfersText,platformNumberText);
+        Text durationText = new Text(route.getPlannedDurationInMinutes() + " minuten | ");
+        Text transfersText = new Text(route.getTransfersAmount() + " overstappen | ");
+        Text platformNumberText = new Text("startplatform " + route.getDeparturePlatformNumber());
+        infoContainer.getChildren().addAll(durationText, transfersText, platformNumberText);
         infoContainer.getStyleClass().add("info-container");
-        
-        this.getChildren().addAll(timeContainer,infoContainer);
+
+        this.getChildren().addAll(timeContainer, infoContainer);
         this.getStyleClass().add("route");
-        
-        this.setOnMouseClicked((e)->{
+
+        this.setOnMouseClicked((e) -> {
             this.requestFocus();
-            handleGoToDetailedRoute(route);
+            handleGoToDetailedRoute(route, routes);
         });
-        
+
         this.setFocusTraversable(true);
         this.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                handleGoToDetailedRoute(route);
+                handleGoToDetailedRoute(route, routes);
                 event.consume();
             }
         });
     }
 
-    //TODO: implementeer de detailedRoute pagina
-    public static void handleGoToDetailedRoute(Route route){
-        System.out.println(route);
-        throw new UnsupportedOperationException();
+    public static void handleGoToDetailedRoute(Route route, ArrayList<Route> routes) {
+        RouteDetailPage routeDetailPage = new RouteDetailPage(route, routes);
+        OVAppUI.switchToScene(routeDetailPage.createRouteDetailScene());
     }
 }

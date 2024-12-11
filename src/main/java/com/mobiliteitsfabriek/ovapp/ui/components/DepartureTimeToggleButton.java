@@ -1,18 +1,16 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
+import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 
-public class DepartureTimeToggleButton {    
+public class DepartureTimeToggleButton {
     private ToggleButton selectedButton;
-    
-    public DepartureTimeToggleButton(){
 
-    }
-
-    public HBox departureToggleButton(){
+    public HBox departureToggleButton() {
         ToggleGroup toggleGroup = new ToggleGroup();
 
         ToggleButton vertrekButton = new ToggleButton("Vertrek");
@@ -35,15 +33,16 @@ public class DepartureTimeToggleButton {
         return toggleContainer;
     }
 
-    public boolean isToggleDeparture(){
-        String buttonText = selectedButton.getText();
-        if (buttonText.equals("Vertrek") || buttonText.equals("Departure")){
-            return false;
-        } else if (buttonText.equals("Aankomst") || buttonText.equals("Arrival")) {
-            return true;
-        } else {
+    public boolean isToggleDeparture() {
+        if (selectedButton == null) {
             return true;
         }
+        String buttonText = selectedButton.getText();
+        // FIXME: Hier moet een betere oplossing voor komen, want dit is erg foutgevoelig.
+        if (UtilityFunctions.checkStringInArrayList(buttonText, "Vertrek", "Departure")) {
+            return false;
+        }
+        return true;
     }
 
 }

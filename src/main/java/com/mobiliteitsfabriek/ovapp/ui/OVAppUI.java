@@ -31,7 +31,10 @@ public class OVAppUI extends Application {
     }
 
     public static void switchToScene(Scene scene) {
+        // FIXME: setIconified true and then false is the only way i got the screenreader to start reading again
+        //       after scene switch, if you find a better way please fix. 
+        stage.setIconified(true);
         stage.setScene(scene);
+        stage.setIconified(false);
     }
-
 }
