@@ -30,7 +30,7 @@ public class GlobalConfig {
 
     // Standaard taal van de applicatie.
     // deze taal wordt gebruikt als de vertaling niet bestaat in de applicatie taal.
-    public static final Language DEFAULT_LANGUAGE = Language.DUTCH;
+    public static final Language DEFAULT_LANGUAGE = Language.ENGLISH;
 
     // Huidige taal (kan tijdens runtime veranderen)
     public static Language currentLanguage = DEFAULT_LANGUAGE;

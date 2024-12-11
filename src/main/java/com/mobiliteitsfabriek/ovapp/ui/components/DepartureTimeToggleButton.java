@@ -1,5 +1,7 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -15,8 +17,8 @@ public class DepartureTimeToggleButton {
     public HBox departureToggleButton(){
         ToggleGroup toggleGroup = new ToggleGroup();
 
-        ToggleButton vertrekButton = new ToggleButton("Vertrek");
-        ToggleButton aankomstButton = new ToggleButton("Aankomst");
+        ToggleButton vertrekButton = new ToggleButton(TranslationHelper.get("departureTimeToggle.departure"));
+        ToggleButton aankomstButton = new ToggleButton(TranslationHelper.get("departureTimeToggle.arrival"));
 
         vertrekButton.setToggleGroup(toggleGroup);
         aankomstButton.setToggleGroup(toggleGroup);
@@ -35,15 +37,10 @@ public class DepartureTimeToggleButton {
         return toggleContainer;
     }
 
-    public boolean isToggleDeparture(){
+    public boolean isArrival(){
         String buttonText = selectedButton.getText();
-        if (buttonText.equals("Vertrek") || buttonText.equals("Departure")){
-            return false;
-        } else if (buttonText.equals("Aankomst") || buttonText.equals("Arrival")) {
-            return true;
-        } else {
-            return true;
-        }
+        String arrival = TranslationHelper.get("departureTimeToggle.arrival");
+        return buttonText.equals(arrival);
     }
 
 }

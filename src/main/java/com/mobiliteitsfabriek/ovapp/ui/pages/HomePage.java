@@ -3,6 +3,7 @@ package com.mobiliteitsfabriek.ovapp.ui.pages;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
@@ -22,9 +23,9 @@ public class HomePage {
         VBox root = new VBox();
         root.getStyleClass().add("container");
 
-        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), "begin");
-        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), "eind");
-        Button submitBtn = new Button("Zoek");
+        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"));
+        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"));
+        Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
         Button swapBtn = new Button("<->");
 
         startStationField.getStyleClass().add("station-field");
