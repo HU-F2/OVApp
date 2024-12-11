@@ -1,7 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
@@ -25,12 +24,7 @@ import javafx.scene.layout.VBox;
 
 public class RoutesPage {
     public static Scene getScene(List<Route> routes, LocalDate defaultDate, String defaultTime) {
-        StationService stationService = new StationService();
-        RouteService routeService = new RouteService();
-
-
         Route firstRoute = routes.get(0);
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
         VBox root = new VBox();
 
@@ -60,7 +54,7 @@ public class RoutesPage {
         Button searchButton = new Button("Zoek");
         searchButton.getStyleClass().add("submit-btn");
         searchButton.setOnAction(event -> {
-            handleSearch(startStationField, endStationField, stationService, routeService, dateTimePicker, departureTimeToggleButton);
+            handleSearch(startStationField, endStationField, dateTimePicker, departureTimeToggleButton);
         });
         headerContainer.getChildren().addAll(backButton, centerContainer, searchButton);
         HBox.setHgrow(centerContainer, Priority.ALWAYS);
@@ -70,7 +64,7 @@ public class RoutesPage {
 
         for (int i = 0; i < routes.size() - 1; i++) {
             Route route = routes.get(i);
-            RouteElement routeElement = new RouteElement(route, i == routes.size() - 2,routes);
+            RouteElement routeElement = new RouteElement(route, i == routes.size() - 2, routes);
             root.getChildren().addAll(routeElement);
         }
 
@@ -79,21 +73,22 @@ public class RoutesPage {
         return scene;
     }
 
-    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField,StationService stationService, RouteService routeService, DateTimePicker dateTimePicker, DepartureTimeToggleButton departureTimeToggleButton){
-        String startName = startStationField.getEditor().textProperty().get().replace("’","'");
-        Station startStation = stationService.getStation(startName);
+    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField, DateTimePicker dateTimePicker, DepartureTimeToggleButton departureTimeToggleButton) {
+        String startName = startStationField.getEditor().textProperty().get().replace("’", "'");
+        Station startStation = StationService.getStation(startName);
         if (startStation == null) {
             // TODO: Add error message
             return;
         }
-        String endName = endStationField.getEditor().textProperty().get().replace("’","'");;
-        Station endStation = stationService.getStation(endName);
+        String endName = endStationField.getEditor().textProperty().get().replace("’", "'");
+        ;
+        Station endStation = StationService.getStation(endName);
         if (endStation == null) {
             // TODO: Add error message
             return;
         }
 
-        if(startName.equalsIgnoreCase(endName)){
+        if (startName.equalsIgnoreCase(endName)) {
             // TODO: Add error message
             return;
         }
@@ -102,7 +97,7 @@ public class RoutesPage {
         String selectedTime = dateTimePicker.getTimeSpinner().getValue();
         List<Route> newRoutes = RouteService.getRoutes(startStation.getId(), endStation.getId(), dateTimePicker.getDateTimeRFC3339Format(), departureTimeToggleButton.isToggleDeparture());
         Scene routesPage = RoutesPage.getScene(newRoutes, selectedDate, selectedTime);
-        
+
         OVAppUI.switchToScene(routesPage);
     }
 

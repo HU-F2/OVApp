@@ -26,14 +26,6 @@ public class RouteDetailController {
     }
 
     public void handleBackButton(ActionEvent actionEvent,List<Route> routes) {
-        // Station startStation = StationService.getStation(getRoute().getStartLocation());
-        // Station endStation = StationService.getStation(getRoute().getEndLocation());
-
-        // if (UtilityFunctions.checkEmpty(startStation) || UtilityFunctions.checkEmpty(startStation)) {
-        //     throw new IllegalArgumentException("Cannot go to route overview page, departure destination or final destination cannot be found.");
-        // }
-
-        // List<Route> newRoutes = RouteService.getRoutes(startStation.getId(), endStation.getId(),dateTimePicker.getDateTimeRFC3339Format(),departureTimeToggleButton.isToggleDeparture());
         LocalDateTime date = LocalDateTime.now();
         String time = UtilityFunctions.formatTime(date);
         
