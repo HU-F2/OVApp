@@ -1,12 +1,10 @@
 package com.mobiliteitsfabriek.ovapp.ui.controllers;
 
-import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
-import com.mobiliteitsfabriek.ovapp.model.Station;
-import com.mobiliteitsfabriek.ovapp.service.RouteService;
-import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.pages.RoutesPage;
 
@@ -27,16 +25,19 @@ public class RouteDetailController {
         return this.route;
     }
 
-    public void handleBackButton(ActionEvent actionEvent) {
-        Station startStation = StationService.getStation(getRoute().getStartLocation());
-        Station endStation = StationService.getStation(getRoute().getEndLocation());
+    public void handleBackButton(ActionEvent actionEvent,List<Route> routes) {
+        // Station startStation = StationService.getStation(getRoute().getStartLocation());
+        // Station endStation = StationService.getStation(getRoute().getEndLocation());
 
-        if (UtilityFunctions.checkEmpty(startStation) || UtilityFunctions.checkEmpty(startStation)) {
-            throw new IllegalArgumentException("Cannot go to route overview page, departure destination or final destination cannot be found.");
-        }
+        // if (UtilityFunctions.checkEmpty(startStation) || UtilityFunctions.checkEmpty(startStation)) {
+        //     throw new IllegalArgumentException("Cannot go to route overview page, departure destination or final destination cannot be found.");
+        // }
 
-        ArrayList<Route> newRoutes = RouteService.getRoutes(startStation.getId(), endStation.getId());
-        Scene routesPage = RoutesPage.getScene(newRoutes);
+        // List<Route> newRoutes = RouteService.getRoutes(startStation.getId(), endStation.getId(),dateTimePicker.getDateTimeRFC3339Format(),departureTimeToggleButton.isToggleDeparture());
+        LocalDateTime date = LocalDateTime.now();
+        String time = UtilityFunctions.formatTime(date);
+        
+        Scene routesPage = RoutesPage.getScene(routes,date.toLocalDate(),time);
         OVAppUI.switchToScene(routesPage);
     }
 }

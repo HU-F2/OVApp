@@ -1,7 +1,8 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.Route;
@@ -9,6 +10,8 @@ import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
+import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
+import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.RouteElement;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 
@@ -21,7 +24,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class RoutesPage {
-    public static Scene getScene(ArrayList<Route> routes) {
+    public static Scene getScene(List<Route> routes, LocalDate defaultDate, String defaultTime) {
+        StationService stationService = new StationService();
+        RouteService routeService = new RouteService();
+
+
         Route firstRoute = routes.get(0);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
@@ -34,12 +41,10 @@ public class RoutesPage {
         backButton.setOnAction((event) -> handleBackButton(event));
         // Center
         HBox centerContainer = new HBox();
-
-        // Route date and time fields
-        VBox dateTimeContainer = new VBox();
-        Button timePicker = new Button("13:00"); // TODO: replace with future time picker element
-        Button datePicker = new Button(firstRoute.getStartDateTime().format(dateFormatter)); // TODO: replace with future date picker element
-        dateTimeContainer.getChildren().addAll(timePicker, datePicker);
+        // Datetime picker
+        DateTimePicker dateTimeContainer = new DateTimePicker();
+        dateTimeContainer.getDatePicker().setValue(defaultDate);
+        dateTimeContainer.getTimeSpinner().getValueFactory().setValue(defaultTime);
 
         // Locations
         VBox locationContainer = new VBox();
@@ -49,11 +54,13 @@ public class RoutesPage {
         centerContainer.getChildren().addAll(dateTimeContainer, locationContainer);
         centerContainer.setAlignment(Pos.CENTER);
 
+        DateTimePicker dateTimePicker = new DateTimePicker(true);
+        DepartureTimeToggleButton departureTimeToggleButton = new DepartureTimeToggleButton();
         // Search again
         Button searchButton = new Button("Zoek");
         searchButton.getStyleClass().add("submit-btn");
         searchButton.setOnAction(event -> {
-            handleSearch(startStationField, endStationField);
+            handleSearch(startStationField, endStationField, stationService, routeService, dateTimePicker, departureTimeToggleButton);
         });
         headerContainer.getChildren().addAll(backButton, centerContainer, searchButton);
         HBox.setHgrow(centerContainer, Priority.ALWAYS);
@@ -63,7 +70,7 @@ public class RoutesPage {
 
         for (int i = 0; i < routes.size() - 1; i++) {
             Route route = routes.get(i);
-            RouteElement routeElement = new RouteElement(route, i == routes.size() - 2);
+            RouteElement routeElement = new RouteElement(route, i == routes.size() - 2,routes);
             root.getChildren().addAll(routeElement);
         }
 
@@ -72,22 +79,30 @@ public class RoutesPage {
         return scene;
     }
 
-    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField) {
-        String startName = startStationField.getEditor().textProperty().get();
-        Station startStation = StationService.getStation(startName);
+    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField,StationService stationService, RouteService routeService, DateTimePicker dateTimePicker, DepartureTimeToggleButton departureTimeToggleButton){
+        String startName = startStationField.getEditor().textProperty().get().replace("’","'");
+        Station startStation = stationService.getStation(startName);
         if (startStation == null) {
             // TODO: Add error message
             return;
         }
-        String endName = endStationField.getEditor().textProperty().get();
-        Station endStation = StationService.getStation(endName);
+        String endName = endStationField.getEditor().textProperty().get().replace("’","'");;
+        Station endStation = stationService.getStation(endName);
         if (endStation == null) {
             // TODO: Add error message
             return;
         }
 
-        ArrayList<Route> newRoutes = RouteService.getRoutes(startStation.getId(), endStation.getId());
-        Scene routesPage = RoutesPage.getScene(newRoutes);
+        if(startName.equalsIgnoreCase(endName)){
+            // TODO: Add error message
+            return;
+        }
+
+        LocalDate selectedDate = dateTimePicker.getDatePicker().getValue();
+        String selectedTime = dateTimePicker.getTimeSpinner().getValue();
+        List<Route> newRoutes = RouteService.getRoutes(startStation.getId(), endStation.getId(), dateTimePicker.getDateTimeRFC3339Format(), departureTimeToggleButton.isToggleDeparture());
+        Scene routesPage = RoutesPage.getScene(newRoutes, selectedDate, selectedTime);
+        
         OVAppUI.switchToScene(routesPage);
     }
 

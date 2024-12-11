@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
 import com.mobiliteitsfabriek.ovapp.model.Route;
+import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
+import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
 import com.mobiliteitsfabriek.ovapp.ui.pages.RouteDetailPage;
 
 import javafx.application.Application;
@@ -53,7 +55,7 @@ public class UiTest {
     @Test
     void testRouteDetailPageV4WithCustomTestData() {
         UiTest.startJavaFXThread(() -> {
-            RouteDetailPage routeDetailPage = new RouteDetailPage(createTestData());
+            RouteDetailPage routeDetailPage = new RouteDetailPage(createTestData(),new ArrayList<>());
             Scene routeDetailPageScene = routeDetailPage.createRouteDetailScene();
             OVAppUI.switchToScene(routeDetailPageScene);
         });

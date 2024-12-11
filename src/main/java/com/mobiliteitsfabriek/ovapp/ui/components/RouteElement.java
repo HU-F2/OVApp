@@ -1,6 +1,7 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
@@ -22,7 +23,7 @@ import javafx.scene.text.Text;
 public class RouteElement extends VBox {
     private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-    public RouteElement(Route route, boolean lastElement) {
+    public RouteElement(Route route, boolean lastElement,List<Route> routes) {
         this.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK,
                 BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
                 lastElement ? BorderStrokeStyle.SOLID : BorderStrokeStyle.NONE, BorderStrokeStyle.NONE,
@@ -49,20 +50,20 @@ public class RouteElement extends VBox {
 
         this.setOnMouseClicked((e) -> {
             this.requestFocus();
-            handleGoToDetailedRoute(route);
+            handleGoToDetailedRoute(route,routes);
         });
 
         this.setFocusTraversable(true);
         this.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                handleGoToDetailedRoute(route);
+                handleGoToDetailedRoute(route,routes);
                 event.consume();
             }
         });
     }
 
-    public static void handleGoToDetailedRoute(Route route) {
-        RouteDetailPage routeDetailPage = new RouteDetailPage(route);
+    public static void handleGoToDetailedRoute(Route route,List<Route> routes) {
+        RouteDetailPage routeDetailPage = new RouteDetailPage(route,routes);
         OVAppUI.switchToScene(routeDetailPage.createRouteDetailScene());
     }
 }

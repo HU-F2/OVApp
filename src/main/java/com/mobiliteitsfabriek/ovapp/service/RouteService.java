@@ -3,6 +3,7 @@ package com.mobiliteitsfabriek.ovapp.service;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -15,8 +16,8 @@ import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
 public class RouteService {
     private static final String BASE_URL = "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/trips";
 
-    public static ArrayList<Route> getRoutes(String startStationId, String endStationId) {
-        String queryParams = MessageFormat.format("?fromStation={0}&toStation={1}", startStationId, endStationId);
+    public static List<Route> getRoutes(String startStationId, String endStationId, String dateTime, Boolean isArrival) {
+        String queryParams = MessageFormat.format("?fromStation={0}&toStation={1}&dateTime={2}&searchForArrival={3}", startStationId, endStationId,dateTime,isArrival.toString());
         String data = GeneralService.sendApiRequest(BASE_URL, queryParams);
 
         if (data == null) {
@@ -26,10 +27,11 @@ public class RouteService {
         return parseRoutes(data);
     }
 
-    private static ArrayList<Route> parseRoutes(String jsonString) {
+    private static List<Route> parseRoutes(String jsonString) {
         JSONArray tripsArray = new JSONObject(new JSONTokener(jsonString)).getJSONArray("trips");
 
-        ArrayList<Route> result = new ArrayList<>();
+        List<Route> routeList = new ArrayList<>();
+
         for (int i = 0; i < tripsArray.length(); i++) {
             JSONObject trip = tripsArray.getJSONObject(i);
             JSONArray legsArray = trip.getJSONArray("legs");
@@ -73,9 +75,9 @@ public class RouteService {
             }
 
             Route myRoute = new Route(routeTransfers, ctxRecon, startLocation, endLocation, platformNumber, startDateTime, endDateTime, plannedDurationInMinutes, transfersAmount, cost);
-            result.add(myRoute);
+            routeList.add(myRoute);
         }
-        return result;
+        return routeList;
     }
 
 }

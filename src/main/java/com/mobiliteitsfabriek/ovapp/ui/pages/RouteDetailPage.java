@@ -1,5 +1,7 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
+import java.util.List;
+
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
@@ -17,9 +19,11 @@ import javafx.scene.layout.VBox;
 public class RouteDetailPage {
 
     private final RouteDetailController controller;
+    private final List<Route> previousRoutes;
 
-    public RouteDetailPage(Route route) {
+    public RouteDetailPage(Route route,List<Route> routes) {
         this.controller = new RouteDetailController(route);
+        this.previousRoutes = routes;
     }
 
     public Scene createRouteDetailScene() {
@@ -33,7 +37,9 @@ public class RouteDetailPage {
 
         // Back button
         Button backButton = new Button(TranslationHelper.get("app.common.back"));
-        backButton.setOnAction(controller::handleBackButton);
+        backButton.setOnAction((actionEvent)->{
+            controller.handleBackButton(actionEvent,previousRoutes);
+        });
         backButton.setPrefSize(120, 40);
 
         VBox layoutData = new VBox(0, header, listGroup);
