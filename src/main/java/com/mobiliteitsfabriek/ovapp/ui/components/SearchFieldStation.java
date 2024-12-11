@@ -12,17 +12,24 @@ public class SearchFieldStation extends ComboBox<String> {
     public ComboBox<String> startStation;
 
     public SearchFieldStation(StationService service, List<String> stationNames, String stationType,String defaultValue) {
-        // ComboBox<String> startStation = new ComboBox<>();
         this.setPromptText("Vul uw " + stationType + " station in.");
+
+        this.setEditable(true);
         this.getItems().addAll(stationNames);
         if(defaultValue != null){
             this.getEditor().textProperty().set(defaultValue);
         }
-        this.setEditable(true);
+
         this.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null || newValue.isEmpty()) {
                 this.hide();
                 return;
+            }
+
+            if(this.getValue() != null && !newValue.equals(this.getValue())){
+                this.setValue(null);
+                this.getEditor().setText(newValue);
+                this.getEditor().selectPositionCaret(newValue.length());
             }
 
             ObservableList<String> filteredItems = FXCollections.observableArrayList();
