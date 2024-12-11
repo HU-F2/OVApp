@@ -20,9 +20,9 @@ import com.mobiliteitsfabriek.ovapp.model.Route;
 
 public class RouteService {
 
-    public List<Route> getRoutes(String startStationId, String endStationId) {
+    public List<Route> getRoutes(String startStationId, String endStationId, String dateTime, Boolean isArrival) {
         String baseURL = "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/trips";
-        String urlString = baseURL + "?fromStation=" + startStationId + "&toStation=" + endStationId;
+        String urlString = baseURL + "?fromStation=" + startStationId + "&toStation=" + endStationId + "&dateTime=" + dateTime + "&searchForArrival=" + isArrival.toString();
 
         try {
             URI uri = new URI(urlString);
@@ -65,6 +65,7 @@ public class RouteService {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssZ");
 
         List<Route> routeList = new ArrayList<>();
+
         for (int i = 0; i < tripsArray.length(); i++) {
             JSONObject trip = tripsArray.getJSONObject(i);
             JSONArray legsArray = trip.getJSONArray("legs");
