@@ -49,7 +49,7 @@ public class HomePage {
         });
 
         submitBtn.setOnAction(event -> {
-            RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent);
+            RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent.isToggleDeparture());
         });
 
         root.getChildren().addAll(startStationField, endStationField, dateTimeComponent, departureToggleComponent.departureToggleButton(), swapBtn, submitBtn);

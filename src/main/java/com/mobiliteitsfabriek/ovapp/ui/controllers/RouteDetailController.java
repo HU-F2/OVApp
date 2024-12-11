@@ -1,7 +1,7 @@
 package com.mobiliteitsfabriek.ovapp.ui.controllers;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
@@ -25,11 +25,11 @@ public class RouteDetailController {
         return this.route;
     }
 
-    public void handleBackButton(ActionEvent actionEvent,List<Route> routes) {
+    public void handleBackButton(ActionEvent actionEvent, ArrayList<Route> routes) {
         LocalDateTime date = LocalDateTime.now();
         String time = UtilityFunctions.formatTime(date);
-        
-        Scene routesPage = RoutesPage.getScene(routes,date.toLocalDate(),time);
+
+        Scene routesPage = RoutesPage.getScene(routes, date.toLocalDate(), time);
         OVAppUI.switchToScene(routesPage);
     }
 }

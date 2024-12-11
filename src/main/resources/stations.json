@@ -3042,6 +3042,30 @@
   }
 }, {
   "id" : {
+    "uicCode" : "8022610",
+    "code" : "NAH"
+  },
+  "stationType" : "OPTIONAL_STATION",
+  "names" : {
+    "long" : "Aschaffenburg",
+    "medium" : "Aschaffenburg",
+    "short" : "Aschaffenburg",
+    "synonyms" : [ ]
+  },
+  "tracks" : [ ],
+  "hasKnownFacilities" : true,
+  "availableForAccessibleTravel" : false,
+  "hasTravelAssistance" : false,
+  "areTracksIndependentlyAccessible" : false,
+  "isBorderStop" : false,
+  "country" : "D",
+  "startDate" : "2024-12-10",
+  "nearbyMeLocationId" : {
+    "value" : "NAH",
+    "type" : "stationV3"
+  }
+}, {
+  "id" : {
     "uicCode" : "8023783",
     "evaCode" : "8004173",
     "code" : "ENHF"
@@ -3267,6 +3291,7 @@
   "isBorderStop" : false,
   "country" : "D",
   "startDate" : "2018-12-16",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "TGO",
     "type" : "stationV3"
@@ -6142,6 +6167,7 @@
   "isBorderStop" : false,
   "country" : "A",
   "startDate" : "2018-12-16",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "KIRCHB",
     "type" : "stationV3"
@@ -6314,6 +6340,7 @@
   "isBorderStop" : false,
   "country" : "A",
   "startDate" : "2018-12-16",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "LAND",
     "type" : "stationV3"
@@ -6458,6 +6485,7 @@
   "isBorderStop" : false,
   "country" : "I",
   "startDate" : "2022-07-01",
+  "endDate" : "2024-12-14",
   "nearbyMeLocationId" : {
     "value" : "ALESS",
     "type" : "stationV3"
@@ -20648,14 +20676,19 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8891009"
+    "uicCode" : "8891009",
+    "evaCode" : "8800029"
   },
-  "stationType" : "OPTIONAL_STATION",
+  "stationType" : "INTERCITY_STATION",
   "names" : {
     "long" : "Brugge",
     "medium" : "Brugge",
     "short" : "Brugge",
     "synonyms" : [ ]
+  },
+  "location" : {
+    "lat" : 51.1976707,
+    "lng" : 3.217851
   },
   "tracks" : [ ],
   "hasKnownFacilities" : true,

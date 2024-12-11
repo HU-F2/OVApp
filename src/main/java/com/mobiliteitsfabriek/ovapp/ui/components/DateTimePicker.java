@@ -1,13 +1,11 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.List;
+
+import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
@@ -17,12 +15,12 @@ import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class DateTimePicker extends VBox{
+public class DateTimePicker extends VBox {
     private final DatePicker datePicker;
     private final Spinner<String> timeSpinner;
-    private static List<String> timeOptions = new ArrayList<>();
+    private static ArrayList<String> timeOptions = new ArrayList<>();
 
-    public DateTimePicker(boolean isHorizontal){
+    public DateTimePicker(boolean isHorizontal) {
         HBox horizontalContainer = new HBox();
         datePicker = new DatePicker();
         datePicker.setPromptText("Kies een datum.");
@@ -34,7 +32,7 @@ public class DateTimePicker extends VBox{
         timeSpinner.setEditable(true);
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        if (timeOptions.isEmpty()){
+        if (timeOptions.isEmpty()) {
             for (int hour = 0; hour < 24; hour++) {
                 for (int minute = 0; minute < 60; minute++) {
                     timeOptions.add(String.format("%02d:%02d", hour, minute));
@@ -43,8 +41,7 @@ public class DateTimePicker extends VBox{
         }
 
         timeSpinner.setValueFactory(new SpinnerValueFactory.ListSpinnerValueFactory<>(
-                FXCollections.observableArrayList(timeOptions)
-        ));
+                FXCollections.observableArrayList(timeOptions)));
 
         LocalTime currentTime = LocalTime.now();
         String formattedCurrentTime = currentTime.format(timeFormatter);
@@ -52,16 +49,16 @@ public class DateTimePicker extends VBox{
         timeSpinner.setPrefWidth(100);
         this.setAlignment(Pos.CENTER);
         this.setSpacing(0);
-        if(isHorizontal){
+        if (isHorizontal) {
             horizontalContainer.setAlignment(Pos.CENTER);
             horizontalContainer.getChildren().addAll(datePicker, timeSpinner);
             this.getChildren().add(horizontalContainer);
-        }else{
+        } else {
             this.getChildren().addAll(datePicker, timeSpinner);
         }
     }
 
-    public DateTimePicker(){
+    public DateTimePicker() {
         this(false);
     }
 
@@ -69,29 +66,13 @@ public class DateTimePicker extends VBox{
         LocalDate selectedDate = datePicker.getValue();
         String selectedTime = timeSpinner.getValue();
 
-        // Get selected time
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime selectedLocalTime = LocalTime.parse(selectedTime, timeFormatter);
-
-        // Combine date and time into LocalDateTime
-        LocalDateTime localDateTime = LocalDateTime.of(selectedDate, selectedLocalTime);
-        return getDateString(localDateTime);
-        
-    }
-
-    public static String getDateString(LocalDateTime localDateTime){
-        // Convert to Amsterdam timezone
-        ZonedDateTime amsterdamDateTime = localDateTime.atZone(ZoneId.of("Europe/Amsterdam"));
-
-        // Format to RFC3339
-        DateTimeFormatter rfc3339Formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
-        return amsterdamDateTime.format(rfc3339Formatter);
+        return UtilityFunctions.getDateTimeRFC3339Format(selectedDate, selectedTime);
     }
 
     public DatePicker getDatePicker() {
         return datePicker;
     }
-    
+
     public Spinner<String> getTimeSpinner() {
         return timeSpinner;
     }
