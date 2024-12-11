@@ -24,8 +24,8 @@ public class StationService {
 
                 // Json values to java classes
                 JSONObject idObject = jsonObject.getJSONObject("id");
-                String id = idObject.getString("code");
-
+                String id = idObject.optString("code","");
+                
                 JSONObject namesObject = jsonObject.getJSONObject("names");
                 String name = namesObject.getString("long");
                 String country = jsonObject.getString("country");
