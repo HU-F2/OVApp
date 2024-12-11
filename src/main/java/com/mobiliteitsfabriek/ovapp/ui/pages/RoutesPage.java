@@ -10,6 +10,7 @@ import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
+import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.RouteElement;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 
@@ -25,6 +26,8 @@ public class RoutesPage {
     public static Scene getScene(List<Route> routes, LocalDate defaultDate, String defaultTime) {
         StationService stationService = new StationService();
         RouteService routeService = new RouteService();
+
+        System.out.println(routes.size());
 
         Route firstRoute = routes.get(0);
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -57,13 +60,13 @@ public class RoutesPage {
         centerContainer.getChildren().addAll(dateTimeContainer,locationContainer);
         centerContainer.setAlignment(Pos.CENTER);
 
-        DateTimePicker dateTimePicker = new DateTimePicker();
-
+        DateTimePicker dateTimePicker = new DateTimePicker(true);
+        DepartureTimeToggleButton departureTimeToggleButton = new DepartureTimeToggleButton();
         // Search again
         Button searchButton = new Button("Zoek");
         searchButton.getStyleClass().add("submit-btn");
         searchButton.setOnAction(event -> {
-            handleSearch(startStationField, endStationField, stationService, routeService, dateTimePicker);
+            handleSearch(startStationField, endStationField, stationService, routeService, dateTimePicker, departureTimeToggleButton);
         });
         headerContainer.getChildren().addAll(backButton,centerContainer,searchButton);
         HBox.setHgrow(centerContainer, Priority.ALWAYS);
@@ -82,7 +85,7 @@ public class RoutesPage {
         return scene;
     }
 
-    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField,StationService stationService, RouteService routeService, DateTimePicker dateTimePicker){
+    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField,StationService stationService, RouteService routeService, DateTimePicker dateTimePicker, DepartureTimeToggleButton departureTimeToggleButton){
         String startName = startStationField.getEditor().textProperty().get();
         Station startStation = stationService.getStation(startName);
         if (startStation == null) {
@@ -98,7 +101,7 @@ public class RoutesPage {
 
         LocalDate selectedDate = dateTimePicker.getDatePicker().getValue();
         String selectedTime = dateTimePicker.getTimeSpinner().getValue();
-        List<Route> newRoutes = routeService.getRoutes(startStation.getId(), endStation.getId(), dateTimePicker.getDateTimeRFC3339Format());
+        List<Route> newRoutes = routeService.getRoutes(startStation.getId(), endStation.getId(), dateTimePicker.getDateTimeRFC3339Format(), departureTimeToggleButton.isToggleDeparture());
         Scene routesPage = RoutesPage.getScene(newRoutes, selectedDate, selectedTime);
         OVAppUI.switchToScene(routesPage);
     }

@@ -14,13 +14,15 @@ import javafx.geometry.Pos;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class DateTimePicker extends VBox{
     private final DatePicker datePicker;
     private final Spinner<String> timeSpinner;
 
-    public DateTimePicker(){
+    public DateTimePicker(boolean isHorizontal){
+        HBox horizontalContainer = new HBox();
         datePicker = new DatePicker();
         datePicker.setPromptText("Kies een datum.");
         datePicker.setValue(LocalDate.now());
@@ -46,9 +48,18 @@ public class DateTimePicker extends VBox{
         String formattedCurrentTime = currentTime.format(timeFormatter);
         timeSpinner.getValueFactory().setValue(formattedCurrentTime);
         timeSpinner.setPrefWidth(100);
-        this.getChildren().addAll(datePicker, timeSpinner);
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
+        if(isHorizontal){
+            horizontalContainer.getChildren().addAll(datePicker, timeSpinner);
+            this.getChildren().add(horizontalContainer);
+        }else{
+            this.getChildren().addAll(datePicker, timeSpinner);
+        }
+    }
+
+    public DateTimePicker(){
+        this(false);
     }
 
     public String getDateTimeRFC3339Format() {

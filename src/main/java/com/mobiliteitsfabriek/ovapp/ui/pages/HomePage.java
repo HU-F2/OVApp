@@ -1,17 +1,13 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
-import java.time.LocalDate;
-
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
+import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
@@ -19,8 +15,9 @@ public class HomePage {
     public static Scene getScene() {
         StationService stationService = new StationService();
         RouteService routeService = new RouteService();
-        DateTimePicker dateTimeComponent = new DateTimePicker();
-        
+        DateTimePicker dateTimeComponent = new DateTimePicker(true);
+        DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
+
         VBox root = new VBox();
         root.getStyleClass().add("container");
 
@@ -55,10 +52,10 @@ public class HomePage {
         });
 
         submitBtn.setOnAction(event -> {
-            RoutesPage.handleSearch(startStationField, endStationField, stationService, routeService, dateTimeComponent);
+            RoutesPage.handleSearch(startStationField, endStationField, stationService, routeService, dateTimeComponent, departureToggleComponent);
         });
 
-        root.getChildren().addAll(startStationField, endStationField, dateTimeComponent, swapBtn, submitBtn);
+        root.getChildren().addAll(startStationField, endStationField, dateTimeComponent, departureToggleComponent.departureToggleButton(), swapBtn, submitBtn);
         Scene scene = new Scene(root, 500, 800);
         return scene;
     }
