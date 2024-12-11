@@ -20,6 +20,7 @@ import javafx.scene.layout.VBox;
 public class DateTimePicker extends VBox{
     private final DatePicker datePicker;
     private final Spinner<String> timeSpinner;
+    private static List<String> timeOptions = new ArrayList<>();
 
     public DateTimePicker(boolean isHorizontal){
         HBox horizontalContainer = new HBox();
@@ -33,10 +34,11 @@ public class DateTimePicker extends VBox{
         timeSpinner.setEditable(true);
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
-        List<String> timeOptions = new ArrayList<>();
-        for (int hour = 0; hour < 24; hour++) {
-            for (int minute = 0; minute < 60; minute++) {
-                timeOptions.add(String.format("%02d:%02d", hour, minute));
+        if (timeOptions.isEmpty()){
+            for (int hour = 0; hour < 24; hour++) {
+                for (int minute = 0; minute < 60; minute++) {
+                    timeOptions.add(String.format("%02d:%02d", hour, minute));
+                }
             }
         }
 
