@@ -51,8 +51,9 @@ public class DateTimePicker extends VBox{
         timeSpinner.getValueFactory().setValue(formattedCurrentTime);
         timeSpinner.setPrefWidth(100);
         this.setAlignment(Pos.CENTER);
-        this.setSpacing(10);
+        this.setSpacing(0);
         if(isHorizontal){
+            horizontalContainer.setAlignment(Pos.CENTER);
             horizontalContainer.getChildren().addAll(datePicker, timeSpinner);
             this.getChildren().add(horizontalContainer);
         }else{
