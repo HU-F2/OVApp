@@ -1,6 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class RouteElement extends VBox {
-    public RouteElement(Route route, boolean lastElement,List<Route> routes) {
+    public RouteElement(Route route, boolean lastElement,ArrayList<Route> routes) {
         this.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK,
                 BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
                 lastElement ? BorderStrokeStyle.SOLID : BorderStrokeStyle.NONE, BorderStrokeStyle.NONE,
@@ -32,7 +32,7 @@ public class RouteElement extends VBox {
         timeLabel.getStyleClass().add("time-container");
 
         // Duration
-        Label infoLabel = new Label(TranslationHelper.get("route.info",route.getPlannedDurationInMinutes(),route.getTransfersAmount(),route.getPlatformNumber()));
+        Label infoLabel = new Label(TranslationHelper.get("route.info",route.getPlannedDurationInMinutes(),route.getTransfersAmount(),route.getDeparturePlatformNumber()));
         infoLabel.getStyleClass().add("info-container");
 
         this.getChildren().addAll(timeLabel, infoLabel);
@@ -40,20 +40,20 @@ public class RouteElement extends VBox {
 
         this.setOnMouseClicked((e) -> {
             this.requestFocus();
-            handleGoToDetailedRoute(route,routes);
+            handleGoToDetailedRoute(route, routes);
         });
 
         this.setFocusTraversable(true);
         this.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                handleGoToDetailedRoute(route,routes);
+                handleGoToDetailedRoute(route, routes);
                 event.consume();
             }
         });
     }
 
-    public static void handleGoToDetailedRoute(Route route,List<Route> routes) {
-        RouteDetailPage routeDetailPage = new RouteDetailPage(route,routes);
+    public static void handleGoToDetailedRoute(Route route, ArrayList<Route> routes) {
+        RouteDetailPage routeDetailPage = new RouteDetailPage(route, routes);
         OVAppUI.switchToScene(routeDetailPage.createRouteDetailScene());
     }
 }

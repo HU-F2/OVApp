@@ -1,6 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
@@ -19,9 +19,9 @@ import javafx.scene.layout.VBox;
 public class RouteDetailPage {
 
     private final RouteDetailController controller;
-    private final List<Route> previousRoutes;
+    private final ArrayList<Route> previousRoutes;
 
-    public RouteDetailPage(Route route,List<Route> routes) {
+    public RouteDetailPage(Route route, ArrayList<Route> routes) {
         this.controller = new RouteDetailController(route);
         this.previousRoutes = routes;
     }
@@ -31,14 +31,14 @@ public class RouteDetailPage {
 
         // Header
         HBox header = createHeader(route);
-        
+
         // Javafx list group for routeTransfers
         VBox listGroup = createListGroup(route);
 
         // Back button
         Button backButton = new Button(TranslationHelper.get("app.common.back"));
-        backButton.setOnAction((actionEvent)->{
-            controller.handleBackButton(actionEvent,previousRoutes);
+        backButton.setOnAction((actionEvent) -> {
+            controller.handleBackButton(actionEvent, previousRoutes);
         });
         backButton.setPrefSize(120, 40);
 
@@ -63,8 +63,8 @@ public class RouteDetailPage {
             travelInfo = new Label(TranslationHelper.get("detail.travelInfo", route.getStartLocation(), route.getEndLocation()));
             travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfo.accessibleText", route.getStartLocation(), route.getEndLocation()));
         } else {
-            travelInfo = new Label(TranslationHelper.get("detail.travelInfoPrice", route.getStartLocation(),route.getEndLocation(),UtilityFunctions.formatValueAsCurrency(route.getCost())));
-            travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfoPrice.accessibleText", route.getStartLocation(),route.getEndLocation(),UtilityFunctions.formatValueAsCurrency(route.getCost())));
+            travelInfo = new Label(TranslationHelper.get("detail.travelInfoPrice", route.getStartLocation(), route.getEndLocation(), UtilityFunctions.formatValueAsCurrency(route.getCost())));
+            travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfoPrice.accessibleText", route.getStartLocation(), route.getEndLocation(), UtilityFunctions.formatValueAsCurrency(route.getCost())));
         }
         travelInfo.getStyleClass().add("info");
         travelInfo.setFocusTraversable(true);
@@ -89,7 +89,7 @@ public class RouteDetailPage {
             VBox stopDetails = new VBox();
             Label location = new Label(TranslationHelper.get("detail.transfer.location", routeTransfer.getDepartureLocationAndDetails(), routeTransfer.getArrivalLocationAndDetails()));
             location.setFocusTraversable(true);
-            location.setAccessibleText(TranslationHelper.get("detail.transfer.location.accessibleText", routeTransfer.getDepartureLocation(), routeTransfer.getDepartureLocationDetails() ,routeTransfer.getArrivalLocation(),routeTransfer.getArrivalLocationDetails()));
+            location.setAccessibleText(TranslationHelper.get("detail.transfer.location.accessibleText", routeTransfer.getDepartureLocation(), routeTransfer.getDepartureLocationDetails(), routeTransfer.getArrivalLocation(), routeTransfer.getArrivalLocationDetails()));
             Label time = new Label(TranslationHelper.get("detail.transfer.time", UtilityFunctions.formatTime(routeTransfer.getPlannedDepartureDateTime()), UtilityFunctions.formatTime(routeTransfer.getPlannedArrivalDateTime()), routeTransfer.getPlannedDurationMinutes()));
             time.setFocusTraversable(true);
             time.setAccessibleText(TranslationHelper.get("detail.transfer.time.accessibleText", UtilityFunctions.formatTime(routeTransfer.getPlannedDepartureDateTime()), UtilityFunctions.formatTime(routeTransfer.getPlannedArrivalDateTime()), routeTransfer.getPlannedDurationMinutes()));

@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
 
 public class SearchFieldStation extends ComboBox<String> {
-    public ComboBox<String> startStation;
 
     public SearchFieldStation(List<String> stationNames, String stationType, String defaultValue) {
         this.setPromptText(TranslationHelper.get("searchFieldStation.prompt",stationType));
@@ -26,7 +25,7 @@ public class SearchFieldStation extends ComboBox<String> {
                 return;
             }
 
-            if(this.getValue() != null && !newValue.equals(this.getValue())){
+            if (this.getValue() != null && !newValue.equals(this.getValue())) {
                 this.setValue(null);
                 this.getEditor().setText(newValue);
                 this.getEditor().selectPositionCaret(newValue.length());

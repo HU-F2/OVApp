@@ -16,10 +16,10 @@ public class Route {
     private LocalDateTime startDateTime;
     private LocalDateTime endDateTime;
     private int plannedDurationInMinutes;
-    private String platformNumber;
+    private String departurePlatformNumber;
     private int transfersAmount;
 
-    public Route(ArrayList<RouteTransfers> routeTransfers, String ctxRecon, String startLocation, String endLocation, String platformNumber, LocalDateTime startDateTime, LocalDateTime endDateTime, int plannedDurationInMinutes, int transfersAmount, Double cost) {
+    public Route(ArrayList<RouteTransfers> routeTransfers, String ctxRecon, String startLocation, String endLocation, String departurePlatformNumber, LocalDateTime startDateTime, LocalDateTime endDateTime, int plannedDurationInMinutes, int transfersAmount, Double cost) {
         this.ctxRecon = ctxRecon;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
@@ -30,7 +30,7 @@ public class Route {
         this.endDateTime = endDateTime;
         this.plannedDurationInMinutes = plannedDurationInMinutes;
         this.transfersAmount = transfersAmount;
-        this.platformNumber = platformNumber;
+        this.departurePlatformNumber = departurePlatformNumber;
     }
 
     // GETTERS AND SETTERS
@@ -58,8 +58,8 @@ public class Route {
         return routeTransfers;
     }
 
-    public String getPlatformNumber() {
-        return platformNumber;
+    public String getDeparturePlatformNumber() {
+        return departurePlatformNumber;
     }
 
     public int getTransfersAmount() {

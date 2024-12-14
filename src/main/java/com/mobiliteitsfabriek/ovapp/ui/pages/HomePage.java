@@ -1,13 +1,15 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
-import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
+import com.mobiliteitsfabriek.ovapp.translation.Language;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
@@ -15,8 +17,6 @@ import javafx.scene.layout.VBox;
 
 public class HomePage {
     public static Scene getScene() {
-        StationService stationService = new StationService();
-        RouteService routeService = new RouteService();
         DateTimePicker dateTimeComponent = new DateTimePicker(true);
         DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
 
@@ -39,7 +39,7 @@ public class HomePage {
 
             startStationField.setValue(endValue);
             endStationField.setValue(startValue);
-            
+
             if (endValue != null) {
                 startStationField.getSelectionModel().select(endValue);
             }
@@ -53,11 +53,24 @@ public class HomePage {
         });
 
         submitBtn.setOnAction(event -> {
-            RoutesPage.handleSearch(startStationField, endStationField, stationService, routeService, dateTimeComponent, departureToggleComponent);
+            RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent.isArrival());
         });
 
+        Button toggleLanguageBtn = new Button(TranslationHelper.get("toggleLanguage"));
+        toggleLanguageBtn.getStyleClass().add("submit-btn");
+        VBox.setMargin(toggleLanguageBtn, new Insets(50,0,0,0));
+        toggleLanguageBtn.setOnAction((event)->{
+            System.out.println(GlobalConfig.currentLanguage);
+            if(GlobalConfig.currentLanguage == Language.DUTCH){
+                GlobalConfig.setLanguage(Language.ENGLISH);
+                OVAppUI.switchToScene(HomePage.getScene());
+            }else{
+                GlobalConfig.setLanguage(Language.DUTCH);
+                OVAppUI.switchToScene(HomePage.getScene());
+            }
+        });
 
-        root.getChildren().addAll(startStationField, endStationField,  dateTimeComponent, departureToggleComponent.departureToggleButton(),swapBtn, submitBtn);
+        root.getChildren().addAll(startStationField, endStationField, dateTimeComponent, departureToggleComponent.departureToggleButton(), swapBtn, submitBtn,toggleLanguageBtn);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;

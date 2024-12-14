@@ -25,18 +25,16 @@ public class OVAppUI extends Application {
         primaryStage.setTitle(TranslationHelper.get("app.window.title"));
         primaryStage.setScene(scene);
         primaryStage.show();
-        
 
         SeedingService service = new SeedingService();
         service.getAllStations();
     }
 
     public static void switchToScene(Scene scene) {
-        // TODO: setIconified true and then false is the only way i got the screenreader to start reading again
+        // FIXME: setIconified true and then false is the only way i got the screenreader to start reading again
         //       after scene switch, if you find a better way please fix. 
         stage.setIconified(true);
         stage.setScene(scene);
         stage.setIconified(false);
     }
-
 }

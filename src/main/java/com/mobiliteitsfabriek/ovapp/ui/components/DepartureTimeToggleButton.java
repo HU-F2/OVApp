@@ -7,14 +7,10 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 
-public class DepartureTimeToggleButton {    
+public class DepartureTimeToggleButton {
     private ToggleButton selectedButton;
-    
-    public DepartureTimeToggleButton(){
 
-    }
-
-    public HBox departureToggleButton(){
+    public HBox departureToggleButton() {
         ToggleGroup toggleGroup = new ToggleGroup();
 
         ToggleButton vertrekButton = new ToggleButton(TranslationHelper.get("departureTimeToggle.departure"));

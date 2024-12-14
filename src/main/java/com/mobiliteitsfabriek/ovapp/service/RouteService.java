@@ -3,7 +3,6 @@ package com.mobiliteitsfabriek.ovapp.service;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -16,21 +15,21 @@ import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
 public class RouteService {
     private static final String BASE_URL = "https://gateway.apiportal.ns.nl/reisinformatie-api/api/v3/trips";
 
-    public static List<Route> getRoutes(String startStationId, String endStationId, String dateTime, Boolean isArrival) {
-        String queryParams = MessageFormat.format("?fromStation={0}&toStation={1}&dateTime={2}&searchForArrival={3}", startStationId, endStationId,dateTime,isArrival.toString());
+    public static ArrayList<Route> getRoutes(String startStationId, String endStationId, String dateTime, Boolean isArrival) {
+        String queryParams = MessageFormat.format("?fromStation={0}&toStation={1}&dateTime={2}&searchForArrival={3}", startStationId, endStationId, dateTime, isArrival.toString());
         String data = GeneralService.sendApiRequest(BASE_URL, queryParams);
 
-        if (data == null) {
-            return null;
+        if (UtilityFunctions.checkEmpty(data)) {
+            return new ArrayList<>();
         }
 
         return parseRoutes(data);
     }
 
-    private static List<Route> parseRoutes(String jsonString) {
+    private static ArrayList<Route> parseRoutes(String jsonString) {
         JSONArray tripsArray = new JSONObject(new JSONTokener(jsonString)).getJSONArray("trips");
 
-        List<Route> routeList = new ArrayList<>();
+        ArrayList<Route> routeList = new ArrayList<>();
 
         for (int i = 0; i < tripsArray.length(); i++) {
             JSONObject trip = tripsArray.getJSONObject(i);
@@ -48,7 +47,7 @@ public class RouteService {
             int plannedDurationInMinutes = trip.getInt("plannedDurationInMinutes");
             int transfersAmount = trip.getInt("transfers");
 
-            String platformNumber = firstOriginObject.optString("plannedTrack","");
+            String departurePlatformNumber = firstOriginObject.optString("plannedTrack", "");
 
             // TODO: kosten uit de kosten api ophalen en deze hier toevoegen.
             Double cost = null;
@@ -60,8 +59,8 @@ public class RouteService {
                 String departureLocation = leg.getJSONObject("origin").getString("name");
                 String arrivalLocation = leg.getJSONObject("destination").getString("name");
 
-                String departureLocationDetails = leg.getJSONObject("origin").optString("plannedTrack","");
-                String arrivalLocationDetails = leg.getJSONObject("destination").optString("plannedTrack","");
+                String departureLocationDetails = leg.getJSONObject("origin").optString("plannedTrack", "");
+                String arrivalLocationDetails = leg.getJSONObject("destination").optString("plannedTrack", "");
 
                 LocalDateTime plannedDepartureDateTime = UtilityFunctions.getDateTimeFromNS(leg.getJSONObject("origin").getString("plannedDateTime"));
                 LocalDateTime plannedArrivalDateTime = UtilityFunctions.getDateTimeFromNS(leg.getJSONObject("destination").getString("plannedDateTime"));
@@ -74,7 +73,7 @@ public class RouteService {
                 routeTransfers.add(routeTransfersV3);
             }
 
-            Route myRoute = new Route(routeTransfers, ctxRecon, startLocation, endLocation, platformNumber, startDateTime, endDateTime, plannedDurationInMinutes, transfersAmount, cost);
+            Route myRoute = new Route(routeTransfers, ctxRecon, startLocation, endLocation, departurePlatformNumber, startDateTime, endDateTime, plannedDurationInMinutes, transfersAmount, cost);
             routeList.add(myRoute);
         }
         return routeList;
