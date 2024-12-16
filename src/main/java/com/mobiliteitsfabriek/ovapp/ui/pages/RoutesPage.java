@@ -25,7 +25,7 @@ import javafx.scene.layout.VBox;
 public class RoutesPage {
     public static Scene getScene(ArrayList<Route> routes, LocalDate defaultDate, String defaultTime) {
         Route firstRoute = routes.get(0);
-        
+
         VBox root = new VBox();
 
         HBox headerContainer = new HBox();
@@ -79,14 +79,14 @@ public class RoutesPage {
             // TODO: Add error message
             return;
         }
-        String endName = endStationField.getEditor().textProperty().get().replace("’","'");
+        String endName = endStationField.getEditor().textProperty().get().replace("’", "'");
         Station endStation = StationService.getStation(endName);
         if (endStation == null) {
             // TODO: Add error message
             return;
         }
 
-        if(startName.equalsIgnoreCase(endName)){
+        if (startName.equalsIgnoreCase(endName)) {
             // TODO: Add error message
             return;
         }

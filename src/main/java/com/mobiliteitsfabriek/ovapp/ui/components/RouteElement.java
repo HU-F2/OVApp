@@ -21,18 +21,18 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 public class RouteElement extends VBox {
-    public RouteElement(Route route, boolean lastElement,ArrayList<Route> routes) {
+    public RouteElement(Route route, boolean lastElement, ArrayList<Route> routes) {
         this.setBorder(new Border(new BorderStroke(Color.BLACK, Color.BLACK, Color.BLACK, Color.BLACK,
                 BorderStrokeStyle.SOLID, BorderStrokeStyle.NONE,
                 lastElement ? BorderStrokeStyle.SOLID : BorderStrokeStyle.NONE, BorderStrokeStyle.NONE,
                 CornerRadii.EMPTY, new BorderWidths(1), Insets.EMPTY)));
 
         // Time
-        Label timeLabel = new Label(TranslationHelper.get("route.time",UtilityFunctions.formatTime(route.getStartDateTime()),UtilityFunctions.formatTime(route.getEndDateTime())));
+        Label timeLabel = new Label(TranslationHelper.get("route.time", UtilityFunctions.formatTime(route.getStartDateTime()), UtilityFunctions.formatTime(route.getEndDateTime())));
         timeLabel.getStyleClass().add("time-container");
 
         // Duration
-        Label infoLabel = new Label(TranslationHelper.get("route.info",route.getPlannedDurationInMinutes(),route.getTransfersAmount(),route.getDeparturePlatformNumber()));
+        Label infoLabel = new Label(TranslationHelper.get("route.info", route.getPlannedDurationInMinutes(), route.getTransfersAmount(), route.getDeparturePlatformNumber()));
         infoLabel.getStyleClass().add("info-container");
 
         this.getChildren().addAll(timeLabel, infoLabel);

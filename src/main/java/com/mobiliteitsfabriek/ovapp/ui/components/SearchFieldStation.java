@@ -1,6 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
@@ -10,8 +10,8 @@ import javafx.scene.control.ComboBox;
 
 public class SearchFieldStation extends ComboBox<String> {
 
-    public SearchFieldStation(List<String> stationNames, String stationType, String defaultValue) {
-        this.setPromptText(TranslationHelper.get("searchFieldStation.prompt",stationType));
+    public SearchFieldStation(ArrayList<String> stationNames, String stationType, String defaultValue) {
+        this.setPromptText(TranslationHelper.get("searchFieldStation.prompt", stationType));
 
         this.setEditable(true);
         this.getItems().addAll(stationNames);
@@ -42,7 +42,7 @@ public class SearchFieldStation extends ComboBox<String> {
         });
     }
 
-    public SearchFieldStation(List<String> stationNames, String stationType) {
+    public SearchFieldStation(ArrayList<String> stationNames, String stationType) {
         this(stationNames, stationType, null);
     }
 }

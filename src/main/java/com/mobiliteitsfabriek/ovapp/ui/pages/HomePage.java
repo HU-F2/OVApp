@@ -58,19 +58,18 @@ public class HomePage {
 
         Button toggleLanguageBtn = new Button(TranslationHelper.get("toggleLanguage"));
         toggleLanguageBtn.getStyleClass().add("submit-btn");
-        VBox.setMargin(toggleLanguageBtn, new Insets(50,0,0,0));
-        toggleLanguageBtn.setOnAction((event)->{
-            System.out.println(GlobalConfig.currentLanguage);
-            if(GlobalConfig.currentLanguage == Language.DUTCH){
+        VBox.setMargin(toggleLanguageBtn, new Insets(50, 0, 0, 0));
+        toggleLanguageBtn.setOnAction((event) -> {
+            if (GlobalConfig.currentLanguage == Language.DUTCH) {
                 GlobalConfig.setLanguage(Language.ENGLISH);
                 OVAppUI.switchToScene(HomePage.getScene());
-            }else{
+            } else {
                 GlobalConfig.setLanguage(Language.DUTCH);
                 OVAppUI.switchToScene(HomePage.getScene());
             }
         });
 
-        root.getChildren().addAll(startStationField, endStationField, dateTimeComponent, departureToggleComponent.departureToggleButton(), swapBtn, submitBtn,toggleLanguageBtn);
+        root.getChildren().addAll(startStationField, endStationField, dateTimeComponent, departureToggleComponent.departureToggleButton(), swapBtn, submitBtn, toggleLanguageBtn);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;

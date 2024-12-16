@@ -33,7 +33,12 @@ public class DepartureTimeToggleButton {
         return toggleContainer;
     }
 
-    public boolean isArrival(){
+    public boolean isArrival() {
+        // FIXME: de selectedButton wordt niet geintaliseerd samen met de DepartureTimeToggleButton. Hij kan dan dus null zijn bij deze functie.
+        // FIXME: dit is een simpele fix, maar zou verbeterd kunnen worden.
+        if (selectedButton == null) {
+            return false;
+        }
         String buttonText = selectedButton.getText();
         String arrival = TranslationHelper.get("departureTimeToggle.arrival");
         return buttonText.equals(arrival);
