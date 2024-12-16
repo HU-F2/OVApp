@@ -1,6 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
-import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.ToggleButton;
@@ -13,8 +13,8 @@ public class DepartureTimeToggleButton {
     public HBox departureToggleButton() {
         ToggleGroup toggleGroup = new ToggleGroup();
 
-        ToggleButton vertrekButton = new ToggleButton("Vertrek");
-        ToggleButton aankomstButton = new ToggleButton("Aankomst");
+        ToggleButton vertrekButton = new ToggleButton(TranslationHelper.get("departureTimeToggle.departure"));
+        ToggleButton aankomstButton = new ToggleButton(TranslationHelper.get("departureTimeToggle.arrival"));
 
         vertrekButton.setToggleGroup(toggleGroup);
         aankomstButton.setToggleGroup(toggleGroup);
@@ -33,16 +33,15 @@ public class DepartureTimeToggleButton {
         return toggleContainer;
     }
 
-    public boolean isToggleDeparture() {
+    public boolean isArrival() {
+        // FIXME: de selectedButton wordt niet geintaliseerd samen met de DepartureTimeToggleButton. Hij kan dan dus null zijn bij deze functie.
+        // FIXME: dit is een simpele fix, maar zou verbeterd kunnen worden.
         if (selectedButton == null) {
-            return true;
-        }
-        String buttonText = selectedButton.getText();
-        // FIXME: Hier moet een betere oplossing voor komen, want dit is erg foutgevoelig.
-        if (UtilityFunctions.checkStringInArrayList(buttonText, "Vertrek", "Departure")) {
             return false;
         }
-        return true;
+        String buttonText = selectedButton.getText();
+        String arrival = TranslationHelper.get("departureTimeToggle.arrival");
+        return buttonText.equals(arrival);
     }
 
 }

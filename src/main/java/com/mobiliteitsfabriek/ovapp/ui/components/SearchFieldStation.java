@@ -2,6 +2,8 @@ package com.mobiliteitsfabriek.ovapp.ui.components;
 
 import java.util.ArrayList;
 
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
@@ -9,7 +11,7 @@ import javafx.scene.control.ComboBox;
 public class SearchFieldStation extends ComboBox<String> {
 
     public SearchFieldStation(ArrayList<String> stationNames, String stationType, String defaultValue) {
-        this.setPromptText("Vul uw " + stationType + " station in.");
+        this.setPromptText(TranslationHelper.get("searchFieldStation.prompt", stationType));
 
         this.setEditable(true);
         this.getItems().addAll(stationNames);

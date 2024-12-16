@@ -20674,28 +20674,4 @@
     "value" : "VALTGV",
     "type" : "stationV3"
   }
-}, {
-  "id" : {
-    "uicCode" : "8891009",
-    "evaCode" : "8800029"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Brugge",
-    "medium" : "Brugge",
-    "short" : "Brugge",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.1976707,
-    "lng" : 3.217851
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2024-12-15"
 } ]
