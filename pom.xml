@@ -82,6 +82,14 @@
             <version>20240303</version>
         </dependency>
         <!-- END Json packages -->
+
+        <!-- START SECURITY dependencies -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <!-- END SECURITY dependencies -->
     </dependencies>
 
     <build>

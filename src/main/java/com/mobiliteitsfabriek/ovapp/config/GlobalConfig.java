@@ -26,7 +26,12 @@ public class GlobalConfig {
     public static final String FILE_PATH_STATIONS = "src/main/resources/stations.json";
 
     // console output
-    public static final Boolean NO_TRANSLATION_KEY_ERROR_CONSOLE = false;
+    public static final Boolean NO_TRANSLATION_KEY_ERROR_CONSOLE = true;
+
+    // Validation
+    public static final int BCRYPT_STRENGTH = 10;
+    public static final Boolean CHECK_PASSWORD_CREATE_PATTERN = true;
+    public static final String PASSWORD_CREATE_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
 
     // Standaard taal van de applicatie.
     // deze taal wordt gebruikt als de vertaling niet bestaat in de applicatie taal.
