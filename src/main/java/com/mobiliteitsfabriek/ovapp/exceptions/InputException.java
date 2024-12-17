@@ -10,7 +10,7 @@ public abstract class InputException extends Exception {
         this.inputKey = inputKey;
     }
 
-    public InputKey getFieldKey() {
+    public InputKey getInputKey() {
         return inputKey;
     }
 }

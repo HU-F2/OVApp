@@ -24,12 +24,14 @@ public class UserManagement {
         // TODO: add user to database or local json database
     }
 
-    public static void loginUser(String username, String password) throws MissingFieldException, NoUserWithUserNameExistsException, NoUserFoundException, IncorrectPasswordException {
+    public static boolean loginUser(String username, String password) throws MissingFieldException, NoUserWithUserNameExistsException, NoUserFoundException, IncorrectPasswordException {
         User user = ValidationFunctions.validateLogin(username, password);
 
-        if (UtilityFunctions.checkEmpty(user)) {
+        if (!UtilityFunctions.checkEmpty(user)) {
             setLoggedInUser(user);
+            return true;
         }
+        return false;
     }
 
     public static boolean hasPermission(UserType userType) {
