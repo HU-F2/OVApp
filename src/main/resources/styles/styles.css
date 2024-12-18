@@ -184,3 +184,25 @@
     border-color: lightgray; 
     padding: 10;
 }
+
+.swap-btn{
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0 150px;
+    background-color: transparent;
+}
+
+.swap-btn:hover{
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.station-box {
+    -fx-spacing: 10;
+    -fx-alignment: center; 
+}
+
+.swap-container{
+    -fx-alignment: center;
+    -fx-spacing: 20; /* Space between child nodes */
+    -fx-padding: 20;    
+}
