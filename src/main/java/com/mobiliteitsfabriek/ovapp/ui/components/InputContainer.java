@@ -30,7 +30,7 @@ public class InputContainer extends VBox {
 
     private void createLabeledField(String labelText, Control field) {
         Label label = new Label(labelText);
-        label.getStyleClass().add("label");
+        label.getStyleClass().add("login-label");
         this.setSpacing(5);
         this.getChildren().addAll(label, field);
     }

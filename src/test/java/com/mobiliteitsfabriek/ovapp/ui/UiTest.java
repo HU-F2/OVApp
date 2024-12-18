@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
+import com.mobiliteitsfabriek.ovapp.ui.pages.LoginPage;
 import com.mobiliteitsfabriek.ovapp.ui.pages.RouteDetailPage;
 
 import javafx.application.Application;
@@ -19,7 +20,7 @@ import javafx.scene.Scene;
 // 1. comment the @Disabled
 // 2. Then run a test
 // 3. uncomment the @Disabled
-@Disabled("Only manually test functions from the 'UiTest' test class.")
+// @Disabled("Only manually test functions from the 'UiTest' test class.")
 public class UiTest {
 
     public static synchronized void startJavaFXThread(Runnable runnable) {
@@ -56,6 +57,14 @@ public class UiTest {
             RouteDetailPage routeDetailPage = new RouteDetailPage(createTestData(), new ArrayList<>());
             Scene routeDetailPageScene = routeDetailPage.createRouteDetailScene();
             OVAppUI.switchToScene(routeDetailPageScene);
+        });
+    }
+
+    @Test
+    void testLoginPage() {
+        UiTest.startJavaFXThread(() -> {
+            LoginPage loginPage = new LoginPage();
+            OVAppUI.switchToScene(loginPage.getScene());
         });
     }
 

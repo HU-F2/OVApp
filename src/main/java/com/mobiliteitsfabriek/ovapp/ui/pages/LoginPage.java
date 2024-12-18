@@ -24,34 +24,32 @@ public class LoginPage {
 
     private final TextField usernameField;
     private final PasswordField passwordField;
-    private Label usernameError;
-    private Label passwordError;
     private final Button submitButton;
     private final Scene scene;
 
     public LoginPage() {
         layout = new VBox(10);
-        layout.getStyleClass().add("form");
+        layout.getStyleClass().add("login-form");
 
         // Title
         Label title = new Label("Login");
-        title.getStyleClass().add("title");
+        title.getStyleClass().add("login-title");
 
         // Username Field
         usernameField = new TextField();
         usernameField.setPromptText("Username");
-        usernameField.getStyleClass().add("input");
+        usernameField.getStyleClass().add("login-input");
         usernameInputContainer = new InputContainer("Username", usernameField);
 
         // Password Field
         passwordField = new PasswordField();
         passwordField.setPromptText("Password");
-        passwordField.getStyleClass().add("input");
+        passwordField.getStyleClass().add("login-input");
         passwordInputContainer = new InputContainer("Password", passwordField);
 
         // Submit Button
         submitButton = new Button("Login");
-        submitButton.getStyleClass().add("submit");
+        submitButton.getStyleClass().add("login-submit");
         submitButton.setOnAction(actionEvent -> handleLogin());
 
         layout.getChildren().addAll(title, usernameInputContainer, passwordInputContainer, submitButton);
@@ -66,14 +64,15 @@ public class LoginPage {
 
     private void handleLogin() {
         boolean isValid = false;
+        resetErrorFields();
         try {
             isValid = UserManagement.loginUser(usernameField.getText(), passwordField.getText());
         } catch (MissingFieldException e) {
             setErrorFields(e);
         } catch (NoUserWithUserNameExistsException e) {
-            usernameError.setText(e.getMessage());
+            usernameInputContainer.addError(e.getMessage());
         } catch (IncorrectPasswordException e) {
-            passwordError.setText(e.getMessage());
+            passwordInputContainer.addError(e.getMessage());
         } catch (NoUserFoundException e) {
             e.printStackTrace();
         }
@@ -84,11 +83,16 @@ public class LoginPage {
         }
     }
 
+    private void resetErrorFields() {
+        usernameInputContainer.noError();
+        passwordInputContainer.noError();
+    }
+
     private void setErrorFields(InputException exception) {
         if (exception.getInputKey().equals(InputKey.USERNAME)) {
-            usernameError.setText(exception.getMessage());
+            usernameInputContainer.addError(exception.getMessage());
         } else {
-            passwordError.setText(exception.getMessage());
+            passwordInputContainer.addError(exception.getMessage());
         }
     }
 }
