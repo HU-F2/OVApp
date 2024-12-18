@@ -1,17 +1,15 @@
 package com.mobiliteitsfabriek.ovapp.enums;
 
 public enum InputKey {
-    USERNAME("username"),
-    PASSWORD("password");
+    USERNAME("username", "inputKey.username"),
+    PASSWORD("password", "inputKey.password");
 
     private final String inputName;
+    private final String inputTranslation;
 
-    InputKey(String inputName) {
+    InputKey(String inputName, String inputTranslation) {
         this.inputName = inputName;
-    }
-
-    public String getFieldName() {
-        return inputName;
+        this.inputTranslation = inputTranslation;
     }
 
     @Override
@@ -19,6 +17,7 @@ public enum InputKey {
         return this.inputName;
     }
 
+    // Getters and Setters
     public static InputKey getInputKeyFromString(String inputName) {
         for (InputKey fieldKey : InputKey.values()) {
             if (fieldKey.getFieldName().equalsIgnoreCase(inputName)) {
@@ -26,5 +25,13 @@ public enum InputKey {
             }
         }
         return null;
+    }
+
+    public String getInputTranslation() {
+        return inputTranslation;
+    }
+
+    public String getFieldName() {
+        return inputName;
     }
 }

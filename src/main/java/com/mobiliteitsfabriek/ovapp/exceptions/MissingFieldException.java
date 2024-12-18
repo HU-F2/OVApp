@@ -6,6 +6,6 @@ import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 public class MissingFieldException extends InputException {
 
     public MissingFieldException(InputKey inputKey) {
-        super(TranslationHelper.get("validation.missingField", inputKey), inputKey);
+        super(TranslationHelper.get("validation.missingField", TranslationHelper.get(inputKey.getInputTranslation())), inputKey);
     }
 }

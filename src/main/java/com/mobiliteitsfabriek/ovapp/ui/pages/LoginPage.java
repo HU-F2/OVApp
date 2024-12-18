@@ -38,18 +38,18 @@ public class LoginPage {
 
         // Username Field
         usernameField = new TextField();
-        usernameField.setPromptText("Username");
+        usernameField.setPromptText(TranslationHelper.get("login.username.inputPrompt"));
         usernameField.getStyleClass().add("login-input");
         usernameInputContainer = new InputContainer(TranslationHelper.get("login.username.label"), usernameField);
 
         // Password Field
         passwordField = new PasswordField();
-        passwordField.setPromptText("Password");
+        passwordField.setPromptText(TranslationHelper.get("login.password.inputPrompt"));
         passwordField.getStyleClass().add("login-input");
         passwordInputContainer = new InputContainer(TranslationHelper.get("login.password.label"), passwordField);
 
         // Submit Button
-        submitButton = new Button("Login");
+        submitButton = new Button(TranslationHelper.get("login.submit.button"));
         submitButton.getStyleClass().add("login-submit");
         submitButton.setOnAction(actionEvent -> handleLogin());
 
