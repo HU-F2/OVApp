@@ -3045,12 +3045,16 @@
     "uicCode" : "8022610",
     "code" : "NAH"
   },
-  "stationType" : "OPTIONAL_STATION",
+  "stationType" : "EXPRESS_TRAIN_STATION",
   "names" : {
     "long" : "Aschaffenburg",
-    "medium" : "Aschaffenburg",
-    "short" : "Aschaffenburg",
+    "medium" : "Aschaf'brg",
+    "short" : "Aschaf'brg",
     "synonyms" : [ ]
+  },
+  "location" : {
+    "lat" : 49.9805364439886,
+    "lng" : 9.14371490478515
   },
   "tracks" : [ ],
   "hasKnownFacilities" : true,
@@ -3264,36 +3268,6 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "TP",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8029066",
-    "evaCode" : "8000127",
-    "code" : "TGO"
-  },
-  "stationType" : "EXPRESS_TRAIN_STATION",
-  "names" : {
-    "long" : "Berlin-Friedrichstrasse",
-    "medium" : "Berlin-Fr.",
-    "short" : "Berlin-Fr.",
-    "synonyms" : [ "Goppingen" ]
-  },
-  "location" : {
-    "lat" : 48.700191,
-    "lng" : 9.651685
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "D",
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
-  "nearbyMeLocationId" : {
-    "value" : "TGO",
     "type" : "stationV3"
   }
 }, {
@@ -3612,8 +3586,7 @@
   "country" : "B",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2013-05-29",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BRUSN",
     "type" : "stationV3"
@@ -3644,8 +3617,7 @@
   "country" : "B",
   "radius" : 1700,
   "approachingRadius" : 2500,
-  "startDate" : "2013-05-29",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BRUSC",
     "type" : "stationV3"
@@ -3658,7 +3630,7 @@
   },
   "stationType" : "MEGA_STATION",
   "names" : {
-    "long" : "Brussel-Zuid Midi",
+    "long" : "Brussel-Zuid",
     "medium" : "Brussel-Z",
     "short" : "Brussel-Z",
     "synonyms" : [ ]
@@ -3676,8 +3648,7 @@
   "country" : "B",
   "radius" : 525,
   "approachingRadius" : 1600,
-  "startDate" : "2017-04-12",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BRUSZ",
     "type" : "stationV3"
@@ -3739,8 +3710,7 @@
   "country" : "B",
   "radius" : 525,
   "approachingRadius" : 1600,
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ATW",
     "type" : "stationV3"
@@ -3769,8 +3739,7 @@
   "areTracksIndependentlyAccessible" : false,
   "isBorderStop" : false,
   "country" : "B",
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ATWLB",
     "type" : "stationV3"
@@ -3828,8 +3797,7 @@
   "areTracksIndependentlyAccessible" : false,
   "isBorderStop" : false,
   "country" : "B",
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ANDD",
     "type" : "stationV3"
@@ -3891,8 +3859,7 @@
   "country" : "B",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BERCH",
     "type" : "stationV3"
@@ -3949,8 +3916,7 @@
   "areTracksIndependentlyAccessible" : false,
   "isBorderStop" : false,
   "country" : "B",
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "FNZD",
     "type" : "stationV3"
@@ -4268,8 +4234,7 @@
   "country" : "B",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "MECH",
     "type" : "stationV3"
@@ -4353,8 +4318,7 @@
   "areTracksIndependentlyAccessible" : false,
   "isBorderStop" : false,
   "country" : "B",
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "LNK",
     "type" : "stationV3"
@@ -4564,36 +4528,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8831005",
-    "evaCode" : "8800114",
-    "code" : "FHS"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Hasselt",
-    "medium" : "Hasselt",
-    "short" : "Hasselt",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.930555,
-    "lng" : 5.3275
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
-  "nearbyMeLocationId" : {
-    "value" : "FHS",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8831112",
     "evaCode" : "8800240",
     "code" : "GDP"
@@ -4681,36 +4615,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8833001",
-    "evaCode" : "8800011",
-    "code" : "LEUVEN"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Leuven",
-    "medium" : "Leuven",
-    "short" : "Leuven",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.88136,
-    "lng" : 4.71568
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
-  "nearbyMeLocationId" : {
-    "value" : "LEUVEN",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8841004",
     "evaCode" : "8800012",
     "cdCode" : 904,
@@ -4737,66 +4641,6 @@
   "startDate" : "2024-06-09",
   "nearbyMeLocationId" : {
     "value" : "LUIK",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8841525",
-    "evaCode" : "8800586",
-    "code" : "FLGP"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Liège-Saint-Lambert",
-    "medium" : "Liège-St-L",
-    "short" : "Liège-St-L",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.64648,
-    "lng" : 5.57072
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2019-12-15",
-  "endDate" : "2024-12-14",
-  "nearbyMeLocationId" : {
-    "value" : "FLGP",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8841558",
-    "evaCode" : "8800235",
-    "code" : "FLJ"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Liège-Carré",
-    "medium" : "LiègeCarré",
-    "short" : "LiègeCarré",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 50.64051,
-    "lng" : 5.56197
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2019-12-15",
-  "endDate" : "2024-12-14",
-  "nearbyMeLocationId" : {
-    "value" : "FLJ",
     "type" : "stationV3"
   }
 }, {
@@ -4973,36 +4817,6 @@
   "startDate" : "2024-06-09",
   "nearbyMeLocationId" : {
     "value" : "FVS",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8892007",
-    "evaCode" : "8800031",
-    "code" : "FGSP"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Gent-Sint-Pieters",
-    "medium" : "Gent-St.-P",
-    "short" : "Gent-St.-P",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 51.0361744,
-    "lng" : 3.7108469
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "B",
-  "startDate" : "2023-02-01",
-  "endDate" : "2024-12-14",
-  "nearbyMeLocationId" : {
-    "value" : "FGSP",
     "type" : "stationV3"
   }
 }, {
@@ -6145,35 +5959,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8101163",
-    "code" : "KIRCHB"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "TUI Ski Express",
-    "medium" : "Ski Expres",
-    "short" : "Ski Expres",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.44921,
-    "lng" : 12.30953
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
-  "nearbyMeLocationId" : {
-    "value" : "KIRCHB",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8101168",
     "evaCode" : "8100059",
     "code" : "HOPF"
@@ -6318,35 +6103,6 @@
   }
 }, {
   "id" : {
-    "uicCode" : "8101212",
-    "code" : "LAND"
-  },
-  "stationType" : "LOCAL_TRAIN_STATION",
-  "names" : {
-    "long" : "Venezia-Mestre",
-    "medium" : "Venezia",
-    "short" : "Venezia",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 47.14824,
-    "lng" : 10.57839
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "A",
-  "startDate" : "2018-12-16",
-  "endDate" : "2024-12-14",
-  "nearbyMeLocationId" : {
-    "value" : "LAND",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
     "uicCode" : "8101230",
     "code" : "BLUDEN"
   },
@@ -6458,36 +6214,6 @@
   "startDate" : "2022-07-01",
   "nearbyMeLocationId" : {
     "value" : "DOMOD",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8305043",
-    "evaCode" : "8300217",
-    "code" : "ALESS"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Bologna Centrale",
-    "medium" : "Bologna C",
-    "short" : "Bologna C",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 44.506389,
-    "lng" : 11.341944
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "I",
-  "startDate" : "2022-07-01",
-  "endDate" : "2024-12-14",
-  "nearbyMeLocationId" : {
-    "value" : "ALESS",
     "type" : "stationV3"
   }
 }, {
@@ -6608,8 +6334,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "AC",
     "type" : "stationV3"
@@ -6673,8 +6398,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2003-07-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "AMR",
     "type" : "stationV3"
@@ -6738,8 +6462,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1994-12-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "AMRN",
     "type" : "stationV3"
@@ -6771,8 +6494,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2016-12-11",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "APN",
     "type" : "stationV3"
@@ -6900,8 +6622,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ASA",
     "type" : "stationV3"
@@ -6933,8 +6654,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2017-02-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ASD",
     "type" : "stationV3"
@@ -6998,8 +6718,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 800,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ASDM",
     "type" : "stationV3"
@@ -7031,8 +6750,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 1200,
-  "startDate" : "2006-12-10",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ASDZ",
     "type" : "stationV3"
@@ -7064,8 +6782,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ANA",
     "type" : "stationV3"
@@ -7193,8 +6910,7 @@
   "country" : "NL",
   "radius" : 250,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ARN",
     "type" : "stationV3"
@@ -7322,8 +7038,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ASB",
     "type" : "stationV3"
@@ -7419,8 +7134,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ALM",
     "type" : "stationV3"
@@ -7452,8 +7166,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ALMB",
     "type" : "stationV3"
@@ -7606,8 +7319,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BRD",
     "type" : "stationV3"
@@ -7863,8 +7575,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BGN",
     "type" : "stationV3"
@@ -7896,8 +7607,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BET",
     "type" : "stationV3"
@@ -7929,8 +7639,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BV",
     "type" : "stationV3"
@@ -8026,8 +7735,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1000,
-  "startDate" : "2016-12-11",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BR",
     "type" : "stationV3"
@@ -8059,8 +7767,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BLL",
     "type" : "stationV3"
@@ -8092,8 +7799,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BDG",
     "type" : "stationV3"
@@ -8182,8 +7888,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2016-12-11",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BSK",
     "type" : "stationV3"
@@ -8215,8 +7920,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2017-12-10",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BSKS",
     "type" : "stationV3"
@@ -8248,8 +7952,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BKG",
     "type" : "stationV3"
@@ -8313,8 +8016,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 800,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BTL",
     "type" : "stationV3"
@@ -8346,8 +8048,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2018-04-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BD",
     "type" : "stationV3"
@@ -8379,8 +8080,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BDPB",
     "type" : "stationV3"
@@ -8444,8 +8144,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2018-12-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "LLZM",
     "type" : "stationV3"
@@ -8637,8 +8336,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2007-12-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "CPS",
     "type" : "stationV3"
@@ -8670,8 +8368,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "CAS",
     "type" : "stationV3"
@@ -8927,8 +8624,7 @@
   "country" : "NL",
   "radius" : 300,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "DMN",
     "type" : "stationV3"
@@ -8960,8 +8656,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2019-12-15",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "DTCP",
     "type" : "stationV3"
@@ -9089,8 +8784,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2007-12-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "DT",
     "type" : "stationV3"
@@ -9154,8 +8848,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1600,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "DN",
     "type" : "stationV3"
@@ -9379,8 +9072,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2018-12-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "DDR",
     "type" : "stationV3"
@@ -9412,8 +9104,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "DDZD",
     "type" : "stationV3"
@@ -9477,8 +9168,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "DRH",
     "type" : "stationV3"
@@ -9606,8 +9296,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "DVNK",
     "type" : "stationV3"
@@ -9767,8 +9456,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2015-12-13",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "EHS",
     "type" : "stationV3"
@@ -9953,8 +9641,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2019-12-15",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "EHV",
     "type" : "stationV3"
@@ -10050,8 +9737,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "EKZ",
     "type" : "stationV3"
@@ -10211,8 +9897,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2024-06-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "EDN",
     "type" : "stationV3"
@@ -10429,8 +10114,7 @@
   "country" : "NL",
   "radius" : 250,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BKF",
     "type" : "stationV3"
@@ -10462,8 +10146,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ASHD",
     "type" : "stationV3"
@@ -10591,8 +10274,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ASSP",
     "type" : "stationV3"
@@ -10720,8 +10402,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HMBV",
     "type" : "stationV3"
@@ -10785,8 +10466,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "GP",
     "type" : "stationV3"
@@ -10914,8 +10594,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2015-03-18",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "GS",
     "type" : "stationV3"
@@ -11292,8 +10971,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HLMS",
     "type" : "stationV3"
@@ -11325,8 +11003,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "GVM",
     "type" : "stationV3"
@@ -11358,8 +11035,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "GVMW",
     "type" : "stationV3"
@@ -11391,8 +11067,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1600,
-  "startDate" : "2017-02-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "GV",
     "type" : "stationV3"
@@ -11424,8 +11099,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1600,
-  "startDate" : "2015-04-15",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "GVC",
     "type" : "stationV3"
@@ -11457,8 +11131,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2015-03-18",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HLM",
     "type" : "stationV3"
@@ -11714,8 +11387,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HMBH",
     "type" : "stationV3"
@@ -11747,8 +11419,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HMH",
     "type" : "stationV3"
@@ -11812,8 +11483,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HAD",
     "type" : "stationV3"
@@ -11845,8 +11515,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HDRZ",
     "type" : "stationV3"
@@ -11910,8 +11579,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HWD",
     "type" : "stationV3"
@@ -11943,8 +11611,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2022-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HRL",
     "type" : "stationV3"
@@ -11976,8 +11643,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HZE",
     "type" : "stationV3"
@@ -12009,8 +11675,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HLO",
     "type" : "stationV3"
@@ -12074,8 +11739,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 1200,
-  "startDate" : "2016-06-08",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HDR",
     "type" : "stationV3"
@@ -12139,8 +11803,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1600,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HM",
     "type" : "stationV3"
@@ -12236,8 +11899,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HK",
     "type" : "stationV3"
@@ -12269,8 +11931,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2015-03-18",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HT",
     "type" : "stationV3"
@@ -12302,8 +11963,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HTO",
     "type" : "stationV3"
@@ -12527,8 +12187,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HIL",
     "type" : "stationV3"
@@ -12624,8 +12283,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HFD",
     "type" : "stationV3"
@@ -12657,8 +12315,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2008-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HKS",
     "type" : "stationV3"
@@ -12722,8 +12379,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HNK",
     "type" : "stationV3"
@@ -12755,8 +12411,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "1994-12-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HN",
     "type" : "stationV3"
@@ -12820,8 +12475,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1600,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HRT",
     "type" : "stationV3"
@@ -12949,8 +12603,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "BZL",
     "type" : "stationV3"
@@ -13167,8 +12820,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2016-12-11",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "KZ",
     "type" : "stationV3"
@@ -13200,8 +12852,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2016-12-11",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ZZS",
     "type" : "stationV3"
@@ -13265,8 +12916,7 @@
   "country" : "NL",
   "radius" : 250,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "KBD",
     "type" : "stationV3"
@@ -13298,8 +12948,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "KMA",
     "type" : "stationV3"
@@ -13363,8 +13012,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "KRG",
     "type" : "stationV3"
@@ -13396,8 +13044,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "YPB",
     "type" : "stationV3"
@@ -13429,8 +13076,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "LAA",
     "type" : "stationV3"
@@ -13462,8 +13108,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 800,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ZLW",
     "type" : "stationV3"
@@ -13495,8 +13140,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "LDL",
     "type" : "stationV3"
@@ -13656,8 +13300,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1600,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "LEDN",
     "type" : "stationV3"
@@ -13689,8 +13332,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2023-12-10",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "LLS",
     "type" : "stationV3"
@@ -13786,8 +13428,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2012-12-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "HWZB",
     "type" : "stationV3"
@@ -14036,8 +13677,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2022-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "MT",
     "type" : "stationV3"
@@ -14069,8 +13709,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2024-06-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "MTR",
     "type" : "stationV3"
@@ -14198,8 +13837,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "MZ",
     "type" : "stationV3"
@@ -14327,8 +13965,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2015-03-18",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "MDB",
     "type" : "stationV3"
@@ -14513,8 +14150,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 500,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "NML",
     "type" : "stationV3"
@@ -14610,8 +14246,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "NWK",
     "type" : "stationV3"
@@ -14700,8 +14335,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "NVP",
     "type" : "stationV3"
@@ -14861,8 +14495,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2019-10-02",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "NM",
     "type" : "stationV3"
@@ -14926,8 +14559,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "NMD",
     "type" : "stationV3"
@@ -14959,8 +14591,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2014-12-14",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "NMGO",
     "type" : "stationV3"
@@ -14992,8 +14623,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1995-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "OBD",
     "type" : "stationV3"
@@ -15299,8 +14929,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1600,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "O",
     "type" : "stationV3"
@@ -15332,8 +14961,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "OW",
     "type" : "stationV3"
@@ -15397,8 +15025,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ODB",
     "type" : "stationV3"
@@ -15462,8 +15089,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "OVN",
     "type" : "stationV3"
@@ -15495,8 +15121,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RSW",
     "type" : "stationV3"
@@ -15560,8 +15185,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 1600,
-  "startDate" : "2007-12-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RTA",
     "type" : "stationV3"
@@ -15689,8 +15313,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RVS",
     "type" : "stationV3"
@@ -15850,8 +15473,7 @@
   "country" : "NL",
   "radius" : 250,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RB",
     "type" : "stationV3"
@@ -15883,8 +15505,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2022-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RM",
     "type" : "stationV3"
@@ -15916,8 +15537,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RS",
     "type" : "stationV3"
@@ -15981,8 +15601,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2018-04-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RSD",
     "type" : "stationV3"
@@ -16039,8 +15658,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RTB",
     "type" : "stationV3"
@@ -16104,8 +15722,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2007-12-09",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RTN",
     "type" : "stationV3"
@@ -16137,8 +15754,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RTZ",
     "type" : "stationV3"
@@ -16266,8 +15882,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "RLB",
     "type" : "stationV3"
@@ -16299,8 +15914,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "SPTN",
     "type" : "stationV3"
@@ -16332,8 +15946,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "SPTZ",
     "type" : "stationV3"
@@ -16429,8 +16042,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "SGN",
     "type" : "stationV3"
@@ -16494,8 +16106,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2017-04-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "SDM",
     "type" : "stationV3"
@@ -16677,8 +16288,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2022-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "STD",
     "type" : "stationV3"
@@ -17382,8 +16992,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-12-11",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "SSH",
     "type" : "stationV3"
@@ -17573,8 +17182,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "UTG",
     "type" : "stationV3"
@@ -18086,8 +17694,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1000,
-  "startDate" : "2016-12-11",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "VL",
     "type" : "stationV3"
@@ -18208,8 +17815,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "VTN",
     "type" : "stationV3"
@@ -18241,8 +17847,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "VS",
     "type" : "stationV3"
@@ -18274,8 +17879,7 @@
   "country" : "NL",
   "radius" : 250,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "VSS",
     "type" : "stationV3"
@@ -18307,8 +17911,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "VH",
     "type" : "stationV3"
@@ -18372,8 +17975,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "VB",
     "type" : "stationV3"
@@ -18405,8 +18007,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "VST",
     "type" : "stationV3"
@@ -18559,8 +18160,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "VG",
     "type" : "stationV3"
@@ -18679,8 +18279,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2016-12-11",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "WADN",
     "type" : "stationV3"
@@ -18712,8 +18311,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2016-12-11",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "WAD",
     "type" : "stationV3"
@@ -18745,8 +18343,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2018-02-12",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "WADT",
     "type" : "stationV3"
@@ -18835,8 +18432,7 @@
   "country" : "NL",
   "radius" : 260,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "WT",
     "type" : "stationV3"
@@ -19156,8 +18752,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "WD",
     "type" : "stationV3"
@@ -19285,8 +18880,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "1990-01-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "WM",
     "type" : "stationV3"
@@ -19318,8 +18912,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "WC",
     "type" : "stationV3"
@@ -19502,8 +19095,7 @@
   "country" : "NL",
   "radius" : 525,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ZD",
     "type" : "stationV3"
@@ -19567,8 +19159,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2015-03-18",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ZVT",
     "type" : "stationV3"
@@ -19664,8 +19255,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ZVB",
     "type" : "stationV3"
@@ -19697,8 +19287,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ZTMO",
     "type" : "stationV3"
@@ -19730,8 +19319,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ZTM",
     "type" : "stationV3"
@@ -19980,8 +19568,7 @@
   "country" : "NL",
   "radius" : 200,
   "approachingRadius" : 1200,
-  "startDate" : "2011-05-01",
-  "endDate" : "2024-12-14",
+  "startDate" : "2024-12-15",
   "nearbyMeLocationId" : {
     "value" : "ZWD",
     "type" : "stationV3"
