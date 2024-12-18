@@ -7,13 +7,14 @@ import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.LanguagePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
+import com.mobiliteitsfabriek.ovapp.ui.components.SwapButton;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class HomePage {
@@ -24,42 +25,52 @@ public class HomePage {
         SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"));
         SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"));
         Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
-        Button swapBtn = new Button("<->");
-
+        
         startStationField.getStyleClass().add("station-field");
         endStationField.getStyleClass().add("station-field");
         submitBtn.getStyleClass().add("submit-btn");
-        swapBtn.getStyleClass().add("submit-btn");
-
-        swapBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            String startValue = startStationField.getValue().replace("'", "’");
-            String endValue = endStationField.getValue().replace("'", "’");
-
-            startStationField.setValue(endValue);
-            endStationField.setValue(startValue);
-
-            if (endValue != null) {
-                startStationField.getSelectionModel().select(endValue);
-            }
-
-            if (startValue != null) {
-                endStationField.getSelectionModel().select(startValue);
-            }
-
-            startStationField.hide();
-            endStationField.hide();
-        });
 
         submitBtn.setOnAction(event -> {
             RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent.isArrival());
         });
+        
+        SwapButton swapBtn = new SwapButton(() -> {
+            String startValue = startStationField.getValue();
+            String endValue = endStationField.getValue();
+            
+            if (endValue != null) {
+                endValue = endValue.replace("'", "’");
+                startStationField.getSelectionModel().select(endValue);
+            }
+            
+            if (startValue != null) {
+                startValue = startValue.replace("'", "’");
+                endStationField.getSelectionModel().select(startValue);
+            }
+            
+            startStationField.setValue(endValue);
+            endStationField.setValue(startValue);
+            
+            
+            startStationField.hide();
+            endStationField.hide();
+        });
+        swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
+
+        VBox startWithEndStation = new VBox(10); 
+        startWithEndStation.getStyleClass().add("station-box");
+        startWithEndStation.getChildren().addAll(startStationField, endStationField);
+        startWithEndStation.setAlignment(Pos.CENTER);
+
+        StackPane textFieldsWithButton = new StackPane(startWithEndStation, swapBtn);
+        swapBtn.setTranslateX(175);
 
         LanguagePicker languagePicker = new LanguagePicker();
         HBox header = new HBox(languagePicker);
         header.setAlignment(Pos.TOP_RIGHT);
         header.setPadding(new Insets(0, 0, 50, 0)); 
         
-        VBox mainContainer = new VBox(startStationField,endStationField,dateTimeComponent,departureToggleComponent.departureToggleButton(),swapBtn,submitBtn);
+        VBox mainContainer = new VBox(textFieldsWithButton,dateTimeComponent,departureToggleComponent.departureToggleButton(),submitBtn);
         mainContainer.getStyleClass().add("container");
 
         VBox root = new VBox(header,mainContainer);
