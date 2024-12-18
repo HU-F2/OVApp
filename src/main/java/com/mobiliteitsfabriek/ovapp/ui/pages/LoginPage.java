@@ -8,6 +8,7 @@ import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserFoundException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserWithUserNameExistsException;
 import com.mobiliteitsfabriek.ovapp.model.UserManagement;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.components.InputContainer;
 
 import javafx.scene.Scene;
@@ -32,20 +33,20 @@ public class LoginPage {
         layout.getStyleClass().add("login-form");
 
         // Title
-        Label title = new Label("Login");
+        Label title = new Label(TranslationHelper.get("login.title"));
         title.getStyleClass().add("login-title");
 
         // Username Field
         usernameField = new TextField();
         usernameField.setPromptText("Username");
         usernameField.getStyleClass().add("login-input");
-        usernameInputContainer = new InputContainer("Username", usernameField);
+        usernameInputContainer = new InputContainer(TranslationHelper.get("login.username.label"), usernameField);
 
         // Password Field
         passwordField = new PasswordField();
         passwordField.setPromptText("Password");
         passwordField.getStyleClass().add("login-input");
-        passwordInputContainer = new InputContainer("Password", passwordField);
+        passwordInputContainer = new InputContainer(TranslationHelper.get("login.password.label"), passwordField);
 
         // Submit Button
         submitButton = new Button("Login");

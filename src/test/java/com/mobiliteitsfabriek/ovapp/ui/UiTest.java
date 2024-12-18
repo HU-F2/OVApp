@@ -20,7 +20,7 @@ import javafx.scene.Scene;
 // 1. comment the @Disabled
 // 2. Then run a test
 // 3. uncomment the @Disabled
-// @Disabled("Only manually test functions from the 'UiTest' test class.")
+@Disabled("Only manually test functions from the 'UiTest' test class.")
 public class UiTest {
 
     public static synchronized void startJavaFXThread(Runnable runnable) {

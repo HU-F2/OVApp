@@ -180,59 +180,120 @@
 
 /* login page */
 .login-form {
+	-fx-max-width: 320px;
+	-fx-fill-width: true;
+	-fx-background-color: #fff;
+	-fx-padding: 20px;
+	-fx-effect: dropshadow(gaussian, rgba(52, 52, 53, 0.185), 10, 4, 0, 0);
+	-fx-border-radius: 10px;
+	-fx-background-radius: 10px;
+	-fx-spacing: 10;
+	-fx-alignment: center;
 	max-width: 320px;
 	width: 100%;
 	background-color: #fff;
 	padding: 20px;
-	box-shadow: 0px 0px 0px 4px rgba(52, 52, 53, 0.185);
+	/* FIXME: WARNING: CSS Error parsing expected series of <size> while parsing 'box-shadow' */
+	/* box-shadow: 0px 0px 0px 4px rgba(52, 52, 53, 0.185); */
 	display: flex;
 	flex-direction: column;
 	border-radius: 10px;
 }
 
 .login-title {
+	-fx-text-fill: #1a202c;
+	-fx-font-size: 20px;
+	-fx-text-alignment: center;
+	-fx-margin-bottom: 20px;
 	text-align: center;
-	font-size: 2rem;
+	font-size: 20px;
 	margin-bottom: 20px;
 	color: #1a202c;
 }
 
 .login-label {
+	-fx-text-fill: #000;
+	-fx-margin-bottom: 4px;
 	color: rgb(0, 0, 0);
 	margin-bottom: 4px;
 }
 
 .login-input {
+	-fx-padding: 10px;
+	-fx-fill-width: true;
+	-fx-font-size: 14px;
+	-fx-text-fill: #4a5568;
+	-fx-border-color: transparent;
+	-fx-border-radius: 4px;
+	-fx-border-style: solid;
+	-fx-background-radius: 4px;
+	-fx-background-insets: 0;
+	-fx-margin-bottom: 20px;
 	padding: 10px;
 	margin-bottom: 20px;
 	width: 100%;
-	font-size: 1rem;
+	font-size: 14px;
 	color: #4a5568;
 	outline: none;
-	border: 1px solid transparent;
+	border-style: solid;
+	border-width: 1px;
+	border-color: transparent;
 	border-radius: 4px;
 	transition: all 0.2s ease-in-out;
 }
 
 .login-input:focus {
+	-fx-background-color: #fff;
+	-fx-effect: dropshadow(gaussian, #cbd5e0, 5, 2, 0, 0);
 	background-color: #fff;
-	box-shadow: 0 0 0 2px #cbd5e0;
+	/* FIXME: WARNING: CSS Error parsing expected series of <size> while parsing 'box-shadow' */
+	/* box-shadow: 0 0 0 2px #cbd5e0; */
+}
+
+.login-input:valid {
+	-fx-border-color: green;
+	-fx-border-width: 1px;
+	-fx-border-style: solid;
+	border-color: green;
+	border-width: 1px;
+	border-style: solid;
+}
+
+.login-input:invalid {
+	-fx-border-color: rgba(14, 14, 14, 0.205);
+	-fx-border-width: 1px;
+	-fx-border-style: solid;
+	border-color: rgba(14, 14, 14, 0.205);
+	border-width: 1px;
+	border-style: solid;
 }
 
 .login-submit {
+	-fx-background-color: #1a202c;
+	-fx-text-fill: #fff;
+	-fx-border-color: transparent;
+	-fx-border-radius: 4px;
+	-fx-padding: 10px 20px;
+	-fx-font-size: 16px;
+	-fx-cursor: hand; /* Voor een pointer */
+	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 4, 0, 0, 0);
 	background-color: #1a202c;
 	color: #fff;
+	border-color: transparent;
 	border: none;
 	border-radius: 4px;
 	padding: 10px 20px;
-	font-size: 1.2rem;
+	font-size: 16px;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
 }
 
 .error-prompt-heading {
+	-fx-text-fill: #991b1b;
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
 	color: #991b1b;
-	font-size: 0.875rem;
+	font-size: 14px;
 	font-weight: bold;
 	margin-top: -15px;
 }
