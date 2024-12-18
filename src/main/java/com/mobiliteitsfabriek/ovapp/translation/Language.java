@@ -2,7 +2,8 @@ package com.mobiliteitsfabriek.ovapp.translation;
 
 public enum Language {
     DUTCH("nl", "Nederlands"),
-    ENGLISH("en", "Engels");
+    ENGLISH("en", "Engels"),
+    GERMAN("de", "Duits");
 
     private final String code;
     private final String displayName;

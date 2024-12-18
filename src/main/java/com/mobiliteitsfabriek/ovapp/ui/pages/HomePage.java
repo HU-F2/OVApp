@@ -2,26 +2,24 @@ package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
-import com.mobiliteitsfabriek.ovapp.translation.Language;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
-import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
+import com.mobiliteitsfabriek.ovapp.ui.components.LanguagePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class HomePage {
     public static Scene getScene() {
         DateTimePicker dateTimeComponent = new DateTimePicker(true);
         DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
-
-        VBox root = new VBox();
-        root.getStyleClass().add("container");
 
         SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"));
         SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"));
@@ -56,20 +54,15 @@ public class HomePage {
             RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent.isArrival());
         });
 
-        Button toggleLanguageBtn = new Button(TranslationHelper.get("toggleLanguage"));
-        toggleLanguageBtn.getStyleClass().add("submit-btn");
-        VBox.setMargin(toggleLanguageBtn, new Insets(50, 0, 0, 0));
-        toggleLanguageBtn.setOnAction((event) -> {
-            if (GlobalConfig.currentLanguage == Language.DUTCH) {
-                GlobalConfig.setLanguage(Language.ENGLISH);
-                OVAppUI.switchToScene(HomePage.getScene());
-            } else {
-                GlobalConfig.setLanguage(Language.DUTCH);
-                OVAppUI.switchToScene(HomePage.getScene());
-            }
-        });
+        LanguagePicker languagePicker = new LanguagePicker();
+        HBox header = new HBox(languagePicker);
+        header.setAlignment(Pos.TOP_RIGHT);
+        header.setPadding(new Insets(0, 0, 50, 0)); 
+        
+        VBox mainContainer = new VBox(startStationField,endStationField,dateTimeComponent,departureToggleComponent.departureToggleButton(),swapBtn,submitBtn);
+        mainContainer.getStyleClass().add("container");
 
-        root.getChildren().addAll(startStationField, endStationField, dateTimeComponent, departureToggleComponent.departureToggleButton(), swapBtn, submitBtn, toggleLanguageBtn);
+        VBox root = new VBox(header,mainContainer);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;
