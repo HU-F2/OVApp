@@ -120,7 +120,7 @@
     padding: 8px; 
 }
 
-.route:focused{
+.route.selected{
     -fx-padding:16px;
     -fx-font-weight: bold;
     padding:16px;

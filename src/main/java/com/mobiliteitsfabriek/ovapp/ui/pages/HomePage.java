@@ -32,11 +32,11 @@ public class HomePage {
         SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"));
         SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"));
         Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
-
+        
         startStationField.getStyleClass().add("station-field");
         endStationField.getStyleClass().add("station-field");
         submitBtn.getStyleClass().add("submit-btn");
-
+        
         SwapButton swapBtn = new SwapButton(() -> {
             String startValue = startStationField.getValue();
             String endValue = endStationField.getValue();
@@ -50,15 +50,16 @@ public class HomePage {
                 startValue = startValue.replace("'", "’");
                 endStationField.getSelectionModel().select(startValue);
             }
-
+            
             startStationField.setValue(endValue);
             endStationField.setValue(startValue);
-
-
+            
+            
             startStationField.hide();
             endStationField.hide();
         });
-
+        swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
+        
         submitBtn.setOnAction(event -> {
             RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent.isArrival());
         });
