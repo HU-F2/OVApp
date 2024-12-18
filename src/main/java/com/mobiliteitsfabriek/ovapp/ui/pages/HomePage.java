@@ -13,15 +13,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class HomePage {
     public static Scene getScene() {
         DateTimePicker dateTimeComponent = new DateTimePicker(true);
         DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
-
-        VBox root = new VBox();
-        root.getStyleClass().add("container");
 
         SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"));
         SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"));
@@ -69,9 +67,23 @@ public class HomePage {
             }
         });
 
-        root.getChildren().addAll(startStationField, endStationField, dateTimeComponent, departureToggleComponent.departureToggleButton(), swapBtn, submitBtn, toggleLanguageBtn);
+        Button goToLoginButton = new Button(TranslationHelper.get("home.goTo.login.button"));
+        goToLoginButton.getStyleClass().add("goTo-login-page-button");
+        goToLoginButton.setOnAction(actionEvent -> goToLoginPage());
+
+        HBox topBar = new HBox(goToLoginButton);
+        topBar.getStyleClass().add("topBar");
+
+        VBox mainContainer = new VBox(startStationField, endStationField, dateTimeComponent, departureToggleComponent.departureToggleButton(), swapBtn, submitBtn);
+        mainContainer.getStyleClass().add("container");
+
+        VBox root = new VBox(topBar, mainContainer);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;
+    }
+
+    private static void goToLoginPage() {
+        OVAppUI.switchToScene(new LoginPage().getScene());
     }
 }

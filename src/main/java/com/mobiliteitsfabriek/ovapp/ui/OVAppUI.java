@@ -1,7 +1,5 @@
 package com.mobiliteitsfabriek.ovapp.ui;
 
-import java.util.Objects;
-
 import com.mobiliteitsfabriek.ovapp.service.SeedingService;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.pages.HomePage;
@@ -18,9 +16,6 @@ public class OVAppUI extends Application {
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
         final Scene scene = HomePage.getScene();
-        scene.getStylesheets()
-                .add(Objects.requireNonNull(getClass().getResource("/styles/styles.css"))
-                        .toExternalForm());
 
         primaryStage.setTitle(TranslationHelper.get("app.window.title"));
         primaryStage.setScene(scene);

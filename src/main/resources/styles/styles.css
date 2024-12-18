@@ -179,10 +179,26 @@
 }
 
 /* login page */
+.topBar {
+	-fx-alignment: top-right;
+	-fx-padding: 0px, 0px, 50px, 0px;
+	padding: 0px, 0px, 50px, 0px;
+}
+
+.login-layoutOuter {
+	-fx-background-color: #e8e8e8;
+	-fx-alignment: center;
+	background-color: #e8e8e8;
+	width: 100%;
+}
+
 .login-form {
 	-fx-max-width: 320px;
 	-fx-fill-width: true;
-	-fx-background-color: #fff;
+	-fx-background-color: #ffffff;
+	-fx-border-color: #cccccc;
+	-fx-border-style: solid;
+	-fx-border-width: 1px;
 	-fx-padding: 20px;
 	-fx-effect: dropshadow(gaussian, rgba(52, 52, 53, 0.185), 10, 4, 0, 0);
 	-fx-border-radius: 10px;
@@ -191,7 +207,10 @@
 	-fx-alignment: center;
 	max-width: 320px;
 	width: 100%;
-	background-color: #fff;
+	background-color: #ffffff;
+	border-color: #cccccc;
+	border-width: 1px;
+	border-style: solid;
 	padding: 20px;
 	/* FIXME: WARNING: CSS Error parsing expected series of <size> while parsing 'box-shadow' */
 	/* box-shadow: 0px 0px 0px 4px rgba(52, 52, 53, 0.185); */
@@ -214,7 +233,7 @@
 .login-label {
 	-fx-text-fill: #000;
 	-fx-margin-bottom: 4px;
-	color: rgb(0, 0, 0);
+	color: #000;
 	margin-bottom: 4px;
 }
 
@@ -223,7 +242,7 @@
 	-fx-fill-width: true;
 	-fx-font-size: 14px;
 	-fx-text-fill: #4a5568;
-	-fx-border-color: transparent;
+	-fx-border-color: #cecece;
 	-fx-border-radius: 4px;
 	-fx-border-style: solid;
 	-fx-background-radius: 4px;
@@ -237,7 +256,7 @@
 	outline: none;
 	border-style: solid;
 	border-width: 1px;
-	border-color: transparent;
+	border-color: #cecece;
 	border-radius: 4px;
 	transition: all 0.2s ease-in-out;
 }
@@ -260,40 +279,52 @@
 }
 
 .login-input:invalid {
-	-fx-border-color: rgba(14, 14, 14, 0.205);
+	-fx-border-color: #000;
 	-fx-border-width: 1px;
 	-fx-border-style: solid;
-	border-color: rgba(14, 14, 14, 0.205);
+	border-color: #000;
 	border-width: 1px;
 	border-style: solid;
 }
 
-.login-submit {
-	-fx-background-color: #1a202c;
+.login-submit,
+.login-guestLogin,
+.goTo-login-page-button {
+	-fx-background-color: #000;
 	-fx-text-fill: #fff;
 	-fx-border-color: transparent;
 	-fx-border-radius: 4px;
-	-fx-padding: 10px 20px;
 	-fx-font-size: 16px;
 	-fx-cursor: hand; /* Voor een pointer */
 	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 4, 0, 0, 0);
-	background-color: #1a202c;
+	background-color: #000;
 	color: #fff;
 	border-color: transparent;
 	border: none;
 	border-radius: 4px;
-	padding: 10px 20px;
 	font-size: 16px;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
+}
+
+.login-submit {
+	-fx-padding: 10px 20px;
+	padding: 10px 20px;
+}
+
+.goTo-login-page-button, .login-guestLogin {
+	-fx-padding: 5px 10px;
+	padding: 5px 10px;
 }
 
 .error-prompt-heading {
 	-fx-text-fill: #991b1b;
 	-fx-font-size: 14px;
 	-fx-font-weight: bold;
+	-fx-wrap-text: true;
 	color: #991b1b;
 	font-size: 14px;
 	font-weight: bold;
 	margin-top: -15px;
+	word-wrap: normal;
 }

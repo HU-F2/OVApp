@@ -33,6 +33,9 @@ public class GlobalConfig {
     public static final Boolean CHECK_PASSWORD_CREATE_PATTERN = true;
     public static final String PASSWORD_CREATE_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
 
+    // functionalities
+    public static final Boolean GUEST_LOGIN_BUTTON = true;
+
     // Standaard taal van de applicatie.
     // deze taal wordt gebruikt als de vertaling niet bestaat in de applicatie taal.
     public static final Language DEFAULT_LANGUAGE = Language.DUTCH;

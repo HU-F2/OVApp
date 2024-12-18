@@ -9,6 +9,7 @@ import com.mobiliteitsfabriek.ovapp.exceptions.NoUserFoundException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserWithUserNameExistsException;
 import com.mobiliteitsfabriek.ovapp.model.UserManagement;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.InputContainer;
 
 import javafx.scene.Scene;
@@ -19,6 +20,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class LoginPage {
+    private final Scene scene;
+
+    private final VBox layoutOuter;
     private final VBox layout;
     private final InputContainer usernameInputContainer;
     private final InputContainer passwordInputContainer;
@@ -26,9 +30,11 @@ public class LoginPage {
     private final TextField usernameField;
     private final PasswordField passwordField;
     private final Button submitButton;
-    private final Scene scene;
+    private Button guestLoginButton;
 
     public LoginPage() {
+        layoutOuter = new VBox(10);
+        layoutOuter.getStyleClass().add("login-layoutOuter");
         layout = new VBox(10);
         layout.getStyleClass().add("login-form");
 
@@ -48,14 +54,27 @@ public class LoginPage {
         passwordField.getStyleClass().add("login-input");
         passwordInputContainer = new InputContainer(TranslationHelper.get("login.password.label"), passwordField);
 
+        // guest login Button
+        guestLoginButton = null;
+        if (GlobalConfig.GUEST_LOGIN_BUTTON) {
+            guestLoginButton = new Button(TranslationHelper.get("login.guestLogin.button"));
+            guestLoginButton.getStyleClass().add("login-guestLogin");
+            guestLoginButton.setOnAction(actionEvent -> handleLoginGuest());
+        }
+
         // Submit Button
         submitButton = new Button(TranslationHelper.get("login.submit.button"));
         submitButton.getStyleClass().add("login-submit");
         submitButton.setOnAction(actionEvent -> handleLogin());
 
-        layout.getChildren().addAll(title, usernameInputContainer, passwordInputContainer, submitButton);
+        if (GlobalConfig.GUEST_LOGIN_BUTTON) {
+            layout.getChildren().addAll(title, usernameInputContainer, passwordInputContainer, submitButton, guestLoginButton);
+        } else {
+            layout.getChildren().addAll(title, usernameInputContainer, passwordInputContainer, submitButton);
+        }
+        layoutOuter.getChildren().add(layout);
 
-        scene = new Scene(layout, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
+        scene = new Scene(layoutOuter, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(RoutesPage.class.getResource("/styles/styles.css").toExternalForm());
     }
 
@@ -80,8 +99,12 @@ public class LoginPage {
 
         if (isValid) {
             System.out.println("Login successful");
-            // TODO: Navigate to another page
+            OVAppUI.switchToScene(HomePage.getScene());
         }
+    }
+
+    private void handleLoginGuest() {
+        OVAppUI.switchToScene(HomePage.getScene());
     }
 
     private void resetErrorFields() {
