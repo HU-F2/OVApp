@@ -2,6 +2,7 @@ package com.mobiliteitsfabriek.ovapp.ui;
 
 import java.util.Objects;
 
+import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.service.SeedingService;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.pages.HomePage;
@@ -33,8 +34,12 @@ public class OVAppUI extends Application {
     public static void switchToScene(Scene scene) {
         // FIXME: setIconified true and then false is the only way i got the screenreader to start reading again
         //       after scene switch, if you find a better way please fix. 
-        stage.setIconified(true);
+        if(GlobalConfig.isUsingScreenreader){
+            stage.setIconified(true);
+        }
         stage.setScene(scene);
-        stage.setIconified(false);
+        if(GlobalConfig.isUsingScreenreader){
+            stage.setIconified(false);
+        }
     }
 }

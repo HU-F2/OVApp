@@ -27,6 +27,7 @@ public class HomePage {
         SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"));
         Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
         Button swapBtn = new Button("<->");
+        swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
 
         startStationField.getStyleClass().add("station-field");
         endStationField.getStyleClass().add("station-field");
