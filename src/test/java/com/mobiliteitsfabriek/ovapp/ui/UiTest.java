@@ -1,9 +1,5 @@
 package com.mobiliteitsfabriek.ovapp.ui;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,13 +8,8 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
-import com.mobiliteitsfabriek.ovapp.exceptions.ExistingUserException;
-import com.mobiliteitsfabriek.ovapp.exceptions.InvalidPasswordException;
-import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
-import com.mobiliteitsfabriek.ovapp.model.UserManagement;
-import com.mobiliteitsfabriek.ovapp.service.UserService;
 import com.mobiliteitsfabriek.ovapp.ui.pages.LoginPage;
 import com.mobiliteitsfabriek.ovapp.ui.pages.RouteDetailPage;
 

@@ -90,14 +90,6 @@
             <version>${spring-security.version}</version>
         </dependency>
         <!-- END SECURITY dependencies -->
-
-        <!-- START PATTERN-STRING-GENERATION dependencies -->
-        <dependency>
-            <groupId>com.github.mifmif</groupId>
-            <artifactId>generex</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-        <!-- END PATTERN-STRING-GENERATION dependencies -->
     </dependencies>
 
     <build>

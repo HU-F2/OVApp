@@ -34,13 +34,15 @@ public class GlobalConfig {
     public static final Boolean CHECK_PASSWORD_CREATE_PATTERN = false;
     public static final Boolean CHECK_USERNAME_CREATE_PATTERN = false;
     public static final String USERNAME_CREATE_PATTERN = "^[A-Za-z\\d]{5,}$";
-    public static final String PASSWORD_CREATE_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&:-+'`])[A-Za-z\\d@$!%*?&:-+'`]{8,}$";
+    public static final String PASSWORD_CREATE_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&:-+'`=#;^])[A-Za-z\\d@$!%*?&:-+'`=#;^]{8,}$";
 
     // functionalities
     public static final Boolean GUEST_LOGIN_BUTTON = true;
 
     // tests
     public static final String TEST_USERNAME_PREFIX = "TempTest";
+    public static final String TEST_USERNAME = "TempTest1";
+    public static final String TEST_PASSWORD = "`5Aw5MY6BCnjA-!51OrB";
 
     // Standaard taal van de applicatie.
     // deze taal wordt gebruikt als de vertaling niet bestaat in de applicatie taal.
