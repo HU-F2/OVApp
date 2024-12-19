@@ -24,17 +24,23 @@ public class GlobalConfig {
 
     // Data File Paths
     public static final String FILE_PATH_STATIONS = "src/main/resources/stations.json";
+    public static final String FILE_PATH_USERS = "src/main/resources/users.json";
 
     // console output
     public static final Boolean NO_TRANSLATION_KEY_ERROR_CONSOLE = true;
 
     // Validation
     public static final int BCRYPT_STRENGTH = 10;
-    public static final Boolean CHECK_PASSWORD_CREATE_PATTERN = true;
-    public static final String PASSWORD_CREATE_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+    public static final Boolean CHECK_PASSWORD_CREATE_PATTERN = false;
+    public static final Boolean CHECK_USERNAME_CREATE_PATTERN = false;
+    public static final String USERNAME_CREATE_PATTERN = "^[A-Za-z\\d]{5,}$";
+    public static final String PASSWORD_CREATE_PATTERN = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&:-+'`])[A-Za-z\\d@$!%*?&:-+'`]{8,}$";
 
     // functionalities
     public static final Boolean GUEST_LOGIN_BUTTON = true;
+
+    // tests
+    public static final String TEST_USERNAME_PREFIX = "TempTest";
 
     // Standaard taal van de applicatie.
     // deze taal wordt gebruikt als de vertaling niet bestaat in de applicatie taal.

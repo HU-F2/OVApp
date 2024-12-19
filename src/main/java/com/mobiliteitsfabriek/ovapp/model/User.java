@@ -1,14 +1,20 @@
 package com.mobiliteitsfabriek.ovapp.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 import com.mobiliteitsfabriek.ovapp.enums.UserType;
 import com.mobiliteitsfabriek.ovapp.general.ValidationFunctions;
 
+@JsonRootName(value = "user")
 public class User {
     private String id;
     private String username;
     private String password;
 
-    public User(String id, String username, String password) {
+    @JsonCreator
+    public User(@JsonProperty("id") String id, @JsonProperty("username") String username, @JsonProperty("password") String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -31,7 +37,13 @@ public class User {
         return this.password;
     }
 
+    @JsonIgnore
     public UserType getUserType() {
         return UserType.USER;
+    }
+
+    @JsonProperty("userType")
+    public UserType serializeUserType() {
+        return getUserType();
     }
 }

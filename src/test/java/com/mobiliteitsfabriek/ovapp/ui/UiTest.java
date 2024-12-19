@@ -1,5 +1,9 @@
 package com.mobiliteitsfabriek.ovapp.ui;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +12,13 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
+import com.mobiliteitsfabriek.ovapp.exceptions.ExistingUserException;
+import com.mobiliteitsfabriek.ovapp.exceptions.InvalidPasswordException;
+import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
+import com.mobiliteitsfabriek.ovapp.model.UserManagement;
+import com.mobiliteitsfabriek.ovapp.service.UserService;
 import com.mobiliteitsfabriek.ovapp.ui.pages.LoginPage;
 import com.mobiliteitsfabriek.ovapp.ui.pages.RouteDetailPage;
 
@@ -17,13 +26,9 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 
-// 1. comment the @Disabled
-// 2. Then run a test
-// 3. uncomment the @Disabled
-@Disabled("Only manually test functions from the 'UiTest' test class.")
 public class UiTest {
 
-    public static synchronized void startJavaFXThread(Runnable runnable) {
+    private static synchronized void startJavaFXThread(Runnable runnable) {
         // Start JavaFX-runtime in een nieuwe thread
         new Thread(() -> Application.launch(OVAppUI.class)).start();
 
@@ -51,6 +56,7 @@ public class UiTest {
         }
     }
 
+    @Disabled("Only manually test this function by temporary removing the disabled annotation.")
     @Test
     void testRouteDetailPageV4WithCustomTestData() {
         UiTest.startJavaFXThread(() -> {
@@ -60,6 +66,7 @@ public class UiTest {
         });
     }
 
+    @Disabled("Only manually test this function by temporary removing the disabled annotation.")
     @Test
     void testLoginPage() {
         UiTest.startJavaFXThread(() -> {

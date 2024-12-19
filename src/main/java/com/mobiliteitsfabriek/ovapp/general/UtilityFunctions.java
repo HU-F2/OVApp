@@ -19,7 +19,9 @@ import java.util.UUID;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.mifmif.common.regex.Generex;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
+import com.mobiliteitsfabriek.ovapp.exceptions.FailedPatternGeneration;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.model.User;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
@@ -104,6 +106,27 @@ public class UtilityFunctions {
         return UUID.randomUUID().toString();
     }
 
+    public static String generatePassword() throws FailedPatternGeneration {
+        Generex generex = new Generex(GlobalConfig.PASSWORD_CREATE_PATTERN);
+
+        String generatedString = generex.random(8, 10);
+
+        if (!generatedString.matches(GlobalConfig.PASSWORD_CREATE_PATTERN)) {
+            throw new FailedPatternGeneration();
+        }
+        return generatedString;
+    }
+
+    public static String generateUsername(String prefixString) throws FailedPatternGeneration {
+        Generex generex = new Generex(GlobalConfig.USERNAME_CREATE_PATTERN);
+        String generatedStringWithPrefix = MessageFormat.format("{0}{1}", prefixString, generex.random(5, 6));
+
+        if (!generatedStringWithPrefix.matches(GlobalConfig.USERNAME_CREATE_PATTERN)) {
+            throw new FailedPatternGeneration();
+        }
+        return generatedStringWithPrefix;
+    }
+
     public static String encodePassword(String password) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(GlobalConfig.BCRYPT_STRENGTH, new SecureRandom());
         String encodedPassword = bCryptPasswordEncoder.encode(password);
@@ -112,11 +135,6 @@ public class UtilityFunctions {
     }
 
     // Checking
-    public static boolean doesUserExist(String userName) {
-        // TODO: implement this function
-        return true;
-    }
-
     public static boolean checkStringInArrayList(String valueToCheck, String... strings) {
         ArrayList<String> stringArrayList = UtilityFunctions.toArrayList(strings);
         return stringArrayList.stream().anyMatch(s -> s.equalsIgnoreCase(valueToCheck));

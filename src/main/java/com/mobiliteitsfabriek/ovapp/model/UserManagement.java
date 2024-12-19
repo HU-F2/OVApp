@@ -4,16 +4,18 @@ import com.mobiliteitsfabriek.ovapp.enums.UserType;
 import com.mobiliteitsfabriek.ovapp.exceptions.ExistingUserException;
 import com.mobiliteitsfabriek.ovapp.exceptions.IncorrectPasswordException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidPasswordException;
+import com.mobiliteitsfabriek.ovapp.exceptions.InvalidUsernameException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserFoundException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserWithUserNameExistsException;
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.general.ValidationFunctions;
+import com.mobiliteitsfabriek.ovapp.service.UserService;
 
 public class UserManagement {
     private static User loggedInUser;
 
-    public static void createUser(String username, String password) throws ExistingUserException, MissingFieldException, InvalidPasswordException {
+    public static void createUser(String username, String password) throws ExistingUserException, MissingFieldException, InvalidPasswordException, InvalidUsernameException {
         // Validate the gegevens bij het aanmaken van een account
         ValidationFunctions.validateAccountCreation(username, password);
 
@@ -21,7 +23,7 @@ public class UserManagement {
         String encryptedPassword = UtilityFunctions.encodePassword(password);
 
         User user = new User(UtilityFunctions.generateID(), username, encryptedPassword);
-        // TODO: add user to database or local json database
+        UserService.addUser(user);
     }
 
     public static boolean loginUser(String username, String password) throws MissingFieldException, NoUserWithUserNameExistsException, NoUserFoundException, IncorrectPasswordException {
