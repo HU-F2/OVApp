@@ -31,13 +31,14 @@ public class InputContainer extends VBox {
     private void createLabeledField(String labelText, Control field) {
         Label label = new Label(labelText);
         label.getStyleClass().add("login-label");
-        this.setSpacing(5);
+        this.getStyleClass().add("input-container");
         this.getChildren().addAll(label, field);
     }
 
     private Label createErrorLabel(String invalidValidationMessage) {
-        Label error = new Label(invalidValidationMessage);
-        error.getStyleClass().add("error-prompt-heading");
-        return error;
+        Label invalidInputLabel = new Label(invalidValidationMessage);
+        invalidInputLabel.getStyleClass().add("invalid-input-label");
+        invalidInputLabel.setAccessibleHelp(invalidValidationMessage);
+        return invalidInputLabel;
     }
 }

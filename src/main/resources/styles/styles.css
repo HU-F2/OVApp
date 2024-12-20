@@ -178,6 +178,11 @@
 	padding: 10;
 }
 
+/* input container class */
+.input-container {
+	-fx-spacing: 5px;
+}
+
 /* login page */
 .topBar {
 	-fx-alignment: top-right;
@@ -186,6 +191,7 @@
 }
 
 .login-layoutOuter {
+	-fx-spacing: 10px;
 	-fx-background-color: #e8e8e8;
 	-fx-alignment: center;
 	background-color: #e8e8e8;
@@ -312,12 +318,13 @@
 	padding: 10px 20px;
 }
 
-.goTo-login-page-button, .login-guestLogin {
+.goTo-login-page-button,
+.login-guestLogin {
 	-fx-padding: 5px 10px;
 	padding: 5px 10px;
 }
 
-.error-prompt-heading {
+.invalid-input-label {
 	-fx-text-fill: #991b1b;
 	-fx-font-size: 14px;
 	-fx-font-weight: bold;

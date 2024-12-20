@@ -33,25 +33,28 @@ public class LoginPage {
     private Button guestLoginButton;
 
     public LoginPage() {
-        layoutOuter = new VBox(10);
+        layoutOuter = new VBox();
         layoutOuter.getStyleClass().add("login-layoutOuter");
-        layout = new VBox(10);
+        layout = new VBox();
         layout.getStyleClass().add("login-form");
 
         // Title
         Label title = new Label(TranslationHelper.get("login.title"));
         title.getStyleClass().add("login-title");
+        title.setAccessibleText(TranslationHelper.get("screenreader.login.title"));
 
         // Username Field
         usernameField = new TextField();
         usernameField.setPromptText(TranslationHelper.get("login.username.inputPrompt"));
         usernameField.getStyleClass().add("login-input");
+        usernameField.setAccessibleHelp(TranslationHelper.get("screenreader.login.username.input"));
         usernameInputContainer = new InputContainer(TranslationHelper.get("login.username.label"), usernameField);
 
         // Password Field
         passwordField = new PasswordField();
         passwordField.setPromptText(TranslationHelper.get("login.password.inputPrompt"));
         passwordField.getStyleClass().add("login-input");
+        passwordField.setAccessibleHelp(TranslationHelper.get("screenreader.login.password.input"));
         passwordInputContainer = new InputContainer(TranslationHelper.get("login.password.label"), passwordField);
 
         // guest login Button
@@ -60,12 +63,14 @@ public class LoginPage {
             guestLoginButton = new Button(TranslationHelper.get("login.guestLogin.button"));
             guestLoginButton.getStyleClass().add("login-guestLogin");
             guestLoginButton.setOnAction(actionEvent -> handleLoginGuest());
+            guestLoginButton.setAccessibleHelp(TranslationHelper.get("screenreader.login.guestLogin.button"));
         }
 
         // Submit Button
         submitButton = new Button(TranslationHelper.get("login.submit.button"));
         submitButton.getStyleClass().add("login-submit");
         submitButton.setOnAction(actionEvent -> handleLogin());
+        submitButton.setAccessibleHelp(TranslationHelper.get("screenreader.login.submit.button"));
 
         if (GlobalConfig.GUEST_LOGIN_BUTTON) {
             layout.getChildren().addAll(title, usernameInputContainer, passwordInputContainer, submitButton, guestLoginButton);
