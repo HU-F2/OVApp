@@ -25,7 +25,7 @@ public class HomePage {
         SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"));
         SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"));
         Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
-        
+
         startStationField.getStyleClass().add("station-field");
         endStationField.getStyleClass().add("station-field");
         submitBtn.getStyleClass().add("submit-btn");
@@ -33,31 +33,30 @@ public class HomePage {
         submitBtn.setOnAction(event -> {
             RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent.isArrival());
         });
-        
+
         SwapButton swapBtn = new SwapButton(() -> {
             String startValue = startStationField.getValue();
             String endValue = endStationField.getValue();
-            
+
             if (endValue != null) {
                 endValue = endValue.replace("'", "’");
                 startStationField.getSelectionModel().select(endValue);
             }
-            
+
             if (startValue != null) {
                 startValue = startValue.replace("'", "’");
                 endStationField.getSelectionModel().select(startValue);
             }
-            
+
             startStationField.setValue(endValue);
             endStationField.setValue(startValue);
-            
-            
+
             startStationField.hide();
             endStationField.hide();
         });
         swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
 
-        VBox startWithEndStation = new VBox(10); 
+        VBox startWithEndStation = new VBox(10);
         startWithEndStation.getStyleClass().add("station-box");
         startWithEndStation.getChildren().addAll(startStationField, endStationField);
         startWithEndStation.setAlignment(Pos.CENTER);
@@ -68,12 +67,12 @@ public class HomePage {
         LanguagePicker languagePicker = new LanguagePicker();
         HBox header = new HBox(languagePicker);
         header.setAlignment(Pos.TOP_RIGHT);
-        header.setPadding(new Insets(0, 0, 50, 0)); 
-        
-        VBox mainContainer = new VBox(textFieldsWithButton,dateTimeComponent,departureToggleComponent.departureToggleButton(),submitBtn);
+        header.setPadding(new Insets(0, 0, 50, 0));
+
+        VBox mainContainer = new VBox(textFieldsWithButton, dateTimeComponent, departureToggleComponent.departureToggleButton(), submitBtn);
         mainContainer.getStyleClass().add("container");
 
-        VBox root = new VBox(header,mainContainer);
+        VBox root = new VBox(header, mainContainer);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;

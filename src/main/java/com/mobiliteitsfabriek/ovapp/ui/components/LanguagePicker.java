@@ -13,9 +13,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.util.StringConverter;
 
-public class LanguagePicker extends ComboBox<Language>{
-    
-    public LanguagePicker(){
+public class LanguagePicker extends ComboBox<Language> {
+
+    public LanguagePicker() {
         ObservableList<Language> options = FXCollections.observableArrayList(Language.values());
         this.setItems(options);
         this.setValue(GlobalConfig.currentLanguage);
@@ -31,12 +31,12 @@ public class LanguagePicker extends ComboBox<Language>{
         // List with translations
         this.setCellFactory(param -> new ListCell<>() {
             @Override
-            protected void updateItem(Language item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
+            protected void updateItem(Language languageItem, boolean empty) {
+                super.updateItem(languageItem, empty);
+                if (empty || languageItem == null) {
                     setText(null);
                 } else {
-                    setText(TranslationHelper.get("language."+item.getCode())); // Customize the display
+                    setText(TranslationHelper.get(languageItem.getTranslationKey())); // Customize the display
                 }
             }
         });
@@ -44,13 +44,13 @@ public class LanguagePicker extends ComboBox<Language>{
         // Selected value translations
         this.setConverter(new StringConverter<>() {
             @Override
-            public String toString(Language object) {
-                return object == null ? null : TranslationHelper.get("language."+object.getCode());
+            public String toString(Language languageItem) {
+                return languageItem == null ? null : TranslationHelper.get(languageItem.getTranslationKey());
             }
 
             @Override
             public Language fromString(String string) {
-                return null;
+                return Language.getLanguageFromTranslationKey(string);
             }
         });
     }
