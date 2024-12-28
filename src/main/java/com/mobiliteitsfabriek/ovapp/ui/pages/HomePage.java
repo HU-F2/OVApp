@@ -14,9 +14,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -29,34 +26,33 @@ public class HomePage {
         SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"));
         SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"));
         Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
-        
+
         startStationField.getStyleClass().add("station-field");
         endStationField.getStyleClass().add("station-field");
         submitBtn.getStyleClass().add("submit-btn");
-        
+
         SwapButton swapBtn = new SwapButton(() -> {
             String startValue = startStationField.getValue();
             String endValue = endStationField.getValue();
-            
+
             if (endValue != null) {
                 endValue = endValue.replace("'", "’");
                 startStationField.getSelectionModel().select(endValue);
             }
-            
+
             if (startValue != null) {
                 startValue = startValue.replace("'", "’");
                 endStationField.getSelectionModel().select(startValue);
             }
-            
+
             startStationField.setValue(endValue);
             endStationField.setValue(startValue);
-            
-            
+
             startStationField.hide();
             endStationField.hide();
         });
         swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
-        
+
         submitBtn.setOnAction(event -> {
             RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent.isArrival());
         });
@@ -73,8 +69,8 @@ public class HomePage {
                 OVAppUI.switchToScene(HomePage.getScene());
             }
         });
-        
-        VBox startWithEndStation = new VBox(10); 
+
+        VBox startWithEndStation = new VBox(10);
         startWithEndStation.getStyleClass().add("station-box");
         startWithEndStation.getChildren().addAll(startStationField, endStationField);
         startWithEndStation.setAlignment(Pos.CENTER);

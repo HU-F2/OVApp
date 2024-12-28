@@ -1,11 +1,9 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.transform.Rotate;
 
 public class SwapButton extends Button {
 
@@ -18,9 +16,9 @@ public class SwapButton extends Button {
         this.imageView.setFitHeight(32);
 
         this.setGraphic(imageView);
-        
+
         this.getStyleClass().add("swap-btn");
-        
+
         this.setMinWidth(imageView.getFitWidth());
         this.setMinHeight(imageView.getFitHeight());
         this.setMaxWidth(imageView.getFitWidth());
