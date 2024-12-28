@@ -203,6 +203,25 @@
 	-fx-spacing: 5px;
 }
 
+.input-container-label {
+	-fx-text-fill: #000;
+	-fx-margin-bottom: 4px;
+	color: #000;
+	margin-bottom: 4px;
+}
+
+.invalid-input-label {
+	-fx-text-fill: #991b1b;
+	-fx-font-size: 14px;
+	-fx-font-weight: bold;
+	-fx-wrap-text: true;
+	color: #991b1b;
+	font-size: 14px;
+	font-weight: bold;
+	margin-top: -15px;
+	word-wrap: normal;
+}
+
 /* login page */
 .topBar {
 	-fx-alignment: top-right;
@@ -254,13 +273,6 @@
 	font-size: 20px;
 	margin-bottom: 20px;
 	color: #1a202c;
-}
-
-.login-label {
-	-fx-text-fill: #000;
-	-fx-margin-bottom: 4px;
-	color: #000;
-	margin-bottom: 4px;
 }
 
 .login-input {
@@ -342,16 +354,4 @@
 .login-guestLogin {
 	-fx-padding: 5px 10px;
 	padding: 5px 10px;
-}
-
-.invalid-input-label {
-	-fx-text-fill: #991b1b;
-	-fx-font-size: 14px;
-	-fx-font-weight: bold;
-	-fx-wrap-text: true;
-	color: #991b1b;
-	font-size: 14px;
-	font-weight: bold;
-	margin-top: -15px;
-	word-wrap: normal;
 }

@@ -42,6 +42,10 @@ public class SearchFieldStation extends ComboBox<String> {
         });
     }
 
+    public String getValidValueString() {
+        return this.getEditor().textProperty().get().replace("’", "'");
+    }
+
     public SearchFieldStation(ArrayList<String> stationNames, String stationType) {
         this(stationNames, stationType, null);
     }

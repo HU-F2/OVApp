@@ -11,9 +11,14 @@ import com.mobiliteitsfabriek.ovapp.exceptions.IncorrectPasswordException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidPasswordException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidUsernameException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
+import com.mobiliteitsfabriek.ovapp.exceptions.NoStationFoundException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserFoundException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserWithUserNameExistsException;
+import com.mobiliteitsfabriek.ovapp.exceptions.SameStationsSearchException;
+import com.mobiliteitsfabriek.ovapp.model.Pair;
+import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.model.User;
+import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.service.UserService;
 
 public class ValidationFunctions {
@@ -69,13 +74,39 @@ public class ValidationFunctions {
             if (!ValidationFunctions.checkUsernameMatchesPattern(username)) {
                 throw new InvalidUsernameException();
             }
-        }        
+        }
 
         if (GlobalConfig.CHECK_PASSWORD_CREATE_PATTERN) {
             if (!ValidationFunctions.checkPasswordMatchesPattern(password)) {
                 throw new InvalidPasswordException();
             }
         }
+    }
+
+    public static Pair<Station> validateSearch(String startName, String endName) throws MissingFieldException, SameStationsSearchException, NoStationFoundException {
+        if (UtilityFunctions.checkEmpty(startName)) {
+            throw new MissingFieldException(InputKey.STARTSTATION);
+        }
+
+        if (UtilityFunctions.checkEmpty(endName)) {
+            throw new MissingFieldException(InputKey.ENDSTATION);
+        }
+
+        if (startName.equalsIgnoreCase(endName)) {
+            throw new SameStationsSearchException();
+        }
+
+        Station startStation = StationService.getStation(startName);
+        if (UtilityFunctions.checkEmpty(startStation)) {
+            throw new NoStationFoundException();
+        }
+
+        Station endStation = StationService.getStation(endName);
+        if (UtilityFunctions.checkEmpty(endStation)) {
+            throw new NoStationFoundException();
+        }
+
+        return new Pair<Station>(startStation, endStation);
     }
 
     // Password validations

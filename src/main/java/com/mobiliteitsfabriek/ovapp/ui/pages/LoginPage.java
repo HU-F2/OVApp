@@ -108,10 +108,6 @@ public class LoginPage {
         }
     }
 
-    private void handleLoginGuest() {
-        OVAppUI.switchToScene(HomePage.getScene());
-    }
-
     private void resetErrorFields() {
         usernameInputContainer.noError();
         passwordInputContainer.noError();
@@ -124,4 +120,8 @@ public class LoginPage {
             passwordInputContainer.addError(exception.getMessage());
         }
     }
+
+    private void handleLoginGuest() {
+        OVAppUI.switchToScene(HomePage.getScene());
+    }    
 }

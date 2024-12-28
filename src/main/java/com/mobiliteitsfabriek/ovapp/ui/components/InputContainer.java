@@ -1,5 +1,7 @@
 package com.mobiliteitsfabriek.ovapp.ui.components;
 
+import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
+
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -9,7 +11,11 @@ public class InputContainer extends VBox {
 
     public InputContainer(String labelText, Control field) {
         invalidValidationLabel = null;
-        createLabeledField(labelText, field);
+        if (!UtilityFunctions.checkEmpty(labelText)) {
+            createLabeledField(labelText, field);
+        } else {
+            addControlToContainer(field);
+        }
     }
 
     public void addError(String invalidValidationMessage) {
@@ -30,9 +36,14 @@ public class InputContainer extends VBox {
 
     private void createLabeledField(String labelText, Control field) {
         Label label = new Label(labelText);
-        label.getStyleClass().add("login-label");
+        label.getStyleClass().add("input-container-label");
         this.getStyleClass().add("input-container");
         this.getChildren().addAll(label, field);
+    }
+
+    private void addControlToContainer(Control field) {
+        this.getStyleClass().add("input-container");
+        this.getChildren().addAll(field);
     }
 
     private Label createErrorLabel(String invalidValidationMessage) {

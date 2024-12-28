@@ -4,6 +4,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
+import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
+import com.mobiliteitsfabriek.ovapp.exceptions.NoStationFoundException;
+import com.mobiliteitsfabriek.ovapp.exceptions.SameStationsSearchException;
+import com.mobiliteitsfabriek.ovapp.general.ValidationFunctions;
+import com.mobiliteitsfabriek.ovapp.model.Pair;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
@@ -23,9 +28,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class RoutesPage {
-    public static Scene getScene(ArrayList<Route> routes, LocalDate defaultDate, String defaultTime) {
-        Route firstRoute = routes.get(0);
-
+    public static Scene getScene(String startStation, String endStation, ArrayList<Route> routes, LocalDate defaultDate, String defaultTime) {
         VBox root = new VBox();
 
         HBox headerContainer = new HBox();
@@ -42,8 +45,8 @@ public class RoutesPage {
 
         // Locations
         VBox locationContainer = new VBox();
-        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"), firstRoute.getStartLocation());
-        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"), firstRoute.getEndLocation());
+        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"), startStation);
+        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"), endStation);
         locationContainer.getChildren().addAll(startStationField, endStationField);
         centerContainer.getChildren().addAll(dateTimeContainer, locationContainer);
         centerContainer.setAlignment(Pos.CENTER);
@@ -53,7 +56,11 @@ public class RoutesPage {
         Button searchButton = new Button(TranslationHelper.get("app.common.search"));
         searchButton.getStyleClass().add("submit-btn");
         searchButton.setOnAction(event -> {
-            handleSearch(startStationField, endStationField, dateTimePicker, false);
+            try {
+                handleSearch(startStationField.getValidValueString(), endStationField.getValidValueString(), dateTimePicker, false);
+            } catch (MissingFieldException | SameStationsSearchException | NoStationFoundException e) {
+                System.out.println(e.getMessage());
+            }
         });
         headerContainer.getChildren().addAll(backButton, centerContainer, searchButton);
         HBox.setHgrow(centerContainer, Priority.ALWAYS);
@@ -72,30 +79,17 @@ public class RoutesPage {
         return scene;
     }
 
-    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField, DateTimePicker dateTimePicker, boolean isToggleDeparture) {
-        String startName = startStationField.getEditor().textProperty().get().replace("’", "'");
-        Station startStation = StationService.getStation(startName);
-        if (startStation == null) {
-            // TODO: Add error message
-            return;
-        }
-        String endName = endStationField.getEditor().textProperty().get().replace("’", "'");
-        Station endStation = StationService.getStation(endName);
-        if (endStation == null) {
-            // TODO: Add error message
-            return;
-        }
+    public static void handleSearch(String startName, String endName, DateTimePicker dateTimePicker, boolean isToggleDeparture) throws MissingFieldException, SameStationsSearchException, NoStationFoundException {
+        Pair<Station> stations = ValidationFunctions.validateSearch(startName, endName);
 
-        if (startName.equalsIgnoreCase(endName)) {
-            // TODO: Add error message
-            return;
-        }
+        String startStationId = stations.getFirstObject().getId();
+        String endStationId = stations.getFirstObject().getId();
 
         LocalDate selectedDate = dateTimePicker.getDatePicker().getValue();
         String selectedTime = dateTimePicker.getTimeSpinner().getValue();
-        ArrayList<Route> newRoutes = RouteService.getRoutes(startStation.getId(), endStation.getId(), dateTimePicker.getDateTimeRFC3339Format(), isToggleDeparture);
-        Scene routesPage = RoutesPage.getScene(newRoutes, selectedDate, selectedTime);
 
+        ArrayList<Route> newRoutes = RouteService.getRoutes(startStationId, endStationId, dateTimePicker.getDateTimeRFC3339Format(), isToggleDeparture);
+        Scene routesPage = RoutesPage.getScene(startName, endName, newRoutes, selectedDate, selectedTime);
         OVAppUI.switchToScene(routesPage);
     }
 

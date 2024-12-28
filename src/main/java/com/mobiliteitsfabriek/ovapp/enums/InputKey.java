@@ -1,15 +1,15 @@
 package com.mobiliteitsfabriek.ovapp.enums;
 
 public enum InputKey {
-    USERNAME("username", "inputKey.username"),
-    PASSWORD("password", "inputKey.password");
+    USERNAME("username"),
+    PASSWORD("password"),
+    STARTSTATION("vertrek station"),
+    ENDSTATION("eindbestemming");
 
     private final String inputName;
-    private final String inputTranslation;
 
-    InputKey(String inputName, String inputTranslation) {
+    InputKey(String inputName) {
         this.inputName = inputName;
-        this.inputTranslation = inputTranslation;
     }
 
     @Override
@@ -25,10 +25,6 @@ public enum InputKey {
             }
         }
         return null;
-    }
-
-    public String getInputTranslation() {
-        return inputTranslation;
     }
 
     public String getFieldName() {
