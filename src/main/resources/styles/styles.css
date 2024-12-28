@@ -107,13 +107,33 @@
 	padding: 10;
 }
 
+.swap-btn {
+	-fx-background-color: transparent;
+	-fx-padding: 0 0 0 0 150px;
+	background-color: transparent;
+	padding: 0 0 0 0 150px;
+}
+
+.swap-btn:hover {
+	-fx-background-color: rgba(0, 0, 0, 0.2);
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.swap-container {
+	-fx-alignment: center;
+	-fx-spacing: 20; /* Space between child nodes */
+	-fx-padding: 20;
+	padding: 20;
+}
+
 /* Route page */
 .route {
 	-fx-padding: 8px;
 	padding: 8px;
 }
 
-.route:focused {
+.route:focused,
+.route.selected {
 	-fx-padding: 16px;
 	-fx-font-weight: bold;
 	padding: 16px;
@@ -139,7 +159,7 @@
 
 .station-box {
 	-fx-spacing: 10;
-	-fx-alignment: center_left;
+	-fx-alignment: center;
 }
 
 /* Route detail page */
