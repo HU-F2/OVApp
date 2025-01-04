@@ -47,7 +47,6 @@ public class LoginPage {
         usernameField = new TextField();
         usernameField.setPromptText(TranslationHelper.get("login.username.inputPrompt"));
         usernameField.getStyleClass().add("login-input");
-        usernameField.setId("usernameField");
         usernameField.setAccessibleHelp(TranslationHelper.get("screenreader.login.username.input"));
         usernameInputContainer = new InputContainer(TranslationHelper.get("login.username.label"), usernameField);
 
@@ -55,7 +54,6 @@ public class LoginPage {
         passwordField = new PasswordField();
         passwordField.setPromptText(TranslationHelper.get("login.password.inputPrompt"));
         passwordField.getStyleClass().add("login-input");
-        passwordField.setId("passwordField");
         passwordField.setAccessibleHelp(TranslationHelper.get("screenreader.login.password.input"));
         passwordInputContainer = new InputContainer(TranslationHelper.get("login.password.label"), passwordField);
 
@@ -71,7 +69,6 @@ public class LoginPage {
         // Submit Button
         submitButton = new Button(TranslationHelper.get("login.submit.button"));
         submitButton.getStyleClass().add("login-submit");
-        submitButton.setId("submitButton");
         submitButton.setOnAction(actionEvent -> handleLogin());
         submitButton.setAccessibleHelp(TranslationHelper.get("screenreader.login.submit.button"));
 
