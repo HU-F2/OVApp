@@ -65,6 +65,15 @@
         </dependency>
         <!-- END JUnit 5 for unit testing -->
 
+        <!-- START TestFX for interface tests -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- END TestFX for interface tests -->
+
         <!-- START Json packages -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -103,7 +112,6 @@
                         <core.hooksPath>hooks/</core.hooksPath>
                         <custom.configuration>true</custom.configuration>
                     </gitConfig>
-
                 </configuration>
                 <executions>
                     <execution>

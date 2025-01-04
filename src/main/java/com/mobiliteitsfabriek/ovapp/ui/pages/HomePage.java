@@ -80,6 +80,7 @@ public class HomePage {
 
         Button goToLoginButton = new Button(TranslationHelper.get("home.goTo.login.button"));
         goToLoginButton.getStyleClass().add("goTo-login-page-button");
+        goToLoginButton.setId("loginButton");
         goToLoginButton.setOnAction(actionEvent -> goToLoginPage());
 
         HBox topBar = new HBox(goToLoginButton);
@@ -87,6 +88,7 @@ public class HomePage {
 
         VBox mainContainer = new VBox(textFieldsWithButton, dateTimeComponent, departureToggleComponent.departureToggleButton(), submitBtn, toggleLanguageBtn);
         mainContainer.getStyleClass().add("container");
+        mainContainer.setId("homePageMainContainer");
 
         VBox root = new VBox(topBar, mainContainer);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);

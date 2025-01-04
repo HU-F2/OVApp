@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.assertj.core.util.VisibleForTesting;
 import org.junit.jupiter.api.Test;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
@@ -17,7 +18,8 @@ import com.mobiliteitsfabriek.ovapp.model.UserManagement;
 
 public class ServiceTest {
 
-    private static void executeUserWorkflow(Runnable testLogic) {
+    @VisibleForTesting
+    static void executeUserWorkflow(Runnable testLogic) {
         String username = GlobalConfig.TEST_USERNAME;
         String password = GlobalConfig.TEST_PASSWORD;
         try {
