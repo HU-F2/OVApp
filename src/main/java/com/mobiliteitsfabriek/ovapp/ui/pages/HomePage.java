@@ -80,6 +80,7 @@ public class HomePage {
 
         Button goToLoginButton = new Button(TranslationHelper.get("home.goTo.login.button"));
         goToLoginButton.getStyleClass().add("goTo-login-page-button");
+        goToLoginButton.setId("loginButton");
         goToLoginButton.setOnAction(actionEvent -> goToLoginPage());
 
         HBox topBar = new HBox(goToLoginButton);

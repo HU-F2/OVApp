@@ -1,73 +1,66 @@
 package com.mobiliteitsfabriek.ovapp.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import org.testfx.api.FxRobot;
 import org.testfx.framework.junit5.ApplicationTest;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
-import com.mobiliteitsfabriek.ovapp.ui.pages.LoginPage;
+import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 
 import javafx.stage.Stage;
 
 public class LoginUITest extends ApplicationTest {
 
     @Override
-    public void start(Stage stage) {
-        LoginPage loginPage = new LoginPage();
-        stage.setScene(loginPage.getScene());
-        stage.show();
+    public void start(Stage stage) throws Exception {
+        OVAppUI ovAppUI = new OVAppUI();
+        ovAppUI.start(stage);
     }
 
     @Test
-    void testValidLogin(FxRobot robot) {
+    void testValidLogin() {
         ServiceTest.executeUserWorkflow(() -> {
-            robot.clickOn("#usernameField").write(GlobalConfig.TEST_USERNAME);
-            robot.clickOn("#passwordField").write(GlobalConfig.TEST_PASSWORD);
-            robot.clickOn("#submitButton");
-    
-            // Assert that the login was successful
-            assertTrue(robot.lookup("#homePageMainContainer").tryQuery().isPresent(), "Home page should be loaded after a successful login.");
-        });       
+            // Ga naar de login pagina
+            clickOn("#loginButton");
+
+            // Voer een geldige gebruikersnaam en wachtwoord in
+            clickOn("#usernameField").write(GlobalConfig.TEST_USERNAME);
+            clickOn("#passwordField").write(GlobalConfig.TEST_PASSWORD);
+
+            // Klik op de login-knop
+            clickOn("#submitButton");
+
+            // Controleer of de Home-pagina is geladen
+            assertTrue(lookup("#homePageMainContainer").tryQuery().isPresent(), "Home page should be loaded after a successful login.");
+        });
     }
 
-    // @Test
-    // void testValidLogin() {
-    //     ServiceTest.executeUserWorkflow(() -> {
-    //         // Voer een geldige gebruikersnaam en wachtwoord in
-    //         clickOn("#usernameField").write(GlobalConfig.TEST_USERNAME);
-    //         clickOn("#passwordField").write(GlobalConfig.TEST_PASSWORD);
+    @Test
+    void testInvalidPassword() {
+        // Ga naar de login pagina
+        clickOn("#loginButton");
 
-    //         // Klik op de login-knop
-    //         clickOn("#submitButton");
+        // Voer een geldige gebruikersnaam en een ongeldig wachtwoord in
+        clickOn("#usernameField").write(GlobalConfig.TEST_USERNAME);
+        clickOn("#passwordField").write("WrongPassword");
 
-    //         // Controleer of de Home-pagina is geladen
-    //         assertTrue(lookup("#homePageMainContainer").tryQuery().isPresent(), "Home page should be loaded after a successful login.");
-    //     });
-    // }
+        // Klik op de login-knop
+        clickOn("#submitButton");
 
-    // @Test
-    // void testInvalidPassword() {
-    //     // Voer een geldige gebruikersnaam en een ongeldig wachtwoord in
-    //     clickOn("#usernameField").write("TestUserBas1");
-    //     clickOn("#passwordField").write("WrongPassword");
+        // Controleer of een foutmelding wordt weergegeven
+        assertTrue(lookup(".invalid-input-label").tryQuery().isPresent(), "An error message should be displayed for invalid login.");
+    }
 
-    //     // Klik op de login-knop
-    //     clickOn("#submitButton");
+    @Test
+    void testEmptyFields() {
+        // Ga naar de login pagina
+        clickOn("#loginButton");
 
-    //     // Controleer of een foutmelding wordt weergegeven
-    //     assertTrue(lookup(".invalid-input-label").tryQuery().isPresent(), "An error message should be displayed for invalid login.");
-    //     assertEquals("Incorrect password", lookup(".invalid-input-label").queryLabeled().getText());
-    // }
+        // Laat beide velden leeg en klik op de login-knop
+        clickOn("#submitButton");
 
-    // @Test
-    // void testEmptyFields() {
-    //     // Laat beide velden leeg en klik op de login-knop
-    //     clickOn("#submitButton");
-
-    //     // Controleer of foutmeldingen voor beide velden worden weergegeven
-    //     assertTrue(lookup(".invalid-input-label").tryQuery().isPresent(), "Error messages should be displayed for empty fields.");
-    // }
+        // Controleer of foutmeldingen voor beide velden worden weergegeven
+        assertTrue(lookup(".invalid-input-label").tryQuery().isPresent(), "Error messages should be displayed for empty fields.");
+    }
 }

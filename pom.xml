@@ -121,19 +121,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.1.2</version>
-                <configuration>
-                    <argLine>
-                        --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
-                        <!-- add-exports javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED -->
-                        <!-- add-exports javafx.graphics/com.sun.javafx.application=org.testfx -->
-                        <!-- add-opens javafx.graphics/com.sun.javafx.tk=org.testfx -->
-                    </argLine>
-                </configuration>
-            </plugin>
         </plugins>
         <resources>
             <!-- if you have more resource files (not java) in a different folder you can add them here -->
