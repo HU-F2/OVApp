@@ -87,6 +87,7 @@ public class HomePage {
 
         VBox mainContainer = new VBox(textFieldsWithButton, dateTimeComponent, departureToggleComponent.departureToggleButton(), submitBtn, toggleLanguageBtn);
         mainContainer.getStyleClass().add("container");
+        mainContainer.setId("homePageMainContainer");
 
         VBox root = new VBox(topBar, mainContainer);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);

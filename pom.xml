@@ -65,6 +65,15 @@
         </dependency>
         <!-- END JUnit 5 for unit testing -->
 
+        <!-- START TestFX for interface tests -->
+        <dependency>
+            <groupId>org.testfx</groupId>
+            <artifactId>testfx-junit5</artifactId>
+            <version>4.0.18</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- END TestFX for interface tests -->
+
         <!-- START Json packages -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -103,7 +112,6 @@
                         <core.hooksPath>hooks/</core.hooksPath>
                         <custom.configuration>true</custom.configuration>
                     </gitConfig>
-
                 </configuration>
                 <executions>
                     <execution>
@@ -112,6 +120,19 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version>
+                <configuration>
+                    <argLine>
+                        --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+                        <!-- add-exports javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED -->
+                        <!-- add-exports javafx.graphics/com.sun.javafx.application=org.testfx -->
+                        <!-- add-opens javafx.graphics/com.sun.javafx.tk=org.testfx -->
+                    </argLine>
+                </configuration>
             </plugin>
         </plugins>
         <resources>
