@@ -1,8 +1,10 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
-import com.mobiliteitsfabriek.ovapp.service.FavoriteService;
+import com.mobiliteitsfabriek.ovapp.service.InvalidStationHandler;
+import com.mobiliteitsfabriek.ovapp.service.StationHandler;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
+import com.mobiliteitsfabriek.ovapp.service.ValidStationHandler;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
@@ -29,8 +31,6 @@ public class HomePage {
         Button favoriteBtn = new Button("☆");
         favoriteBtn.getStyleClass().add("favorite-btn");
 
-        System.out.println("Favorite button created: " + (favoriteBtn != null));
-
         Button favoritesPageBtn = new Button("Favorites");
         favoritesPageBtn.getStyleClass().add("submit-btn");
 
@@ -38,14 +38,16 @@ public class HomePage {
             String startValue = startStationField.getValue();
             String endValue = endStationField.getValue();
 
+            StationHandler stationHandler;
+
             if (startValue != null && !startValue.isEmpty() && endValue != null && !endValue.isEmpty()) {
-                FavoriteService.saveFavorite(startValue, endValue);
-                System.out.println("Favorited route: " + startValue + " -> " + endValue);
+                stationHandler = new ValidStationHandler();
             } else {
-                System.out.println("Start and end stations must be selected.");
+                stationHandler = new InvalidStationHandler();
             }
+
+            stationHandler.handle(startValue, endValue);
         });
-        System.out.println("Button created and event handler attached!");
 
         startStationField.getStyleClass().add("station-field");
         endStationField.getStyleClass().add("station-field");
@@ -77,16 +79,13 @@ public class HomePage {
         });
 
         favoritesPageBtn.setOnAction(event -> {
-            System.out.println("Navigating to Favorites Page");
-        
             FavoritePage favoritePage = new FavoritePage();
-        
+
             Scene favoritesScene = new Scene(favoritePage, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
-        
+
             Stage primaryStage = (Stage) root.getScene().getWindow();
             primaryStage.setScene(favoritesScene);
         });
-        
 
         root.getChildren().addAll(startStationField, endStationField, dateTimeComponent,
                 departureToggleComponent.departureToggleButton(), swapBtn, submitBtn, favoriteBtn, favoritesPageBtn);

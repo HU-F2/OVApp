@@ -381,7 +381,7 @@
     "long" : "Düsseldorf Hbf",
     "medium" : "Düsseldrf",
     "short" : "Düsseldrf",
-    "synonyms" : [ "Dusseldorf" ]
+    "synonyms" : [ "Dusseldorf", "Dusseldorf Hbf" ]
   },
   "location" : {
     "lat" : 51.220146,
@@ -1655,7 +1655,7 @@
     "long" : "Mönchengladbach Hbf",
     "medium" : "Mönchengl",
     "short" : "Mönchengl",
-    "synonyms" : [ "Monchengladbach" ]
+    "synonyms" : [ "Monchengladbach Hbf", "Monchengladbach" ]
   },
   "location" : {
     "lat" : 51.196583,
@@ -1831,7 +1831,7 @@
     "long" : "Köln Hbf",
     "medium" : "Köln Hbf",
     "short" : "Köln Hbf",
-    "synonyms" : [ "Koln", "Keulen" ]
+    "synonyms" : [ "Koln", "Koln Hbf", "Keulen" ]
   },
   "location" : {
     "lat" : 50.9432158,
@@ -2207,7 +2207,7 @@
     "long" : "München Hbf",
     "medium" : "München",
     "short" : "München",
-    "synonyms" : [ "Munchen" ]
+    "synonyms" : [ "Munchen Hbf", "Munchen" ]
   },
   "location" : {
     "lat" : 48.1402033359505,
@@ -2294,7 +2294,7 @@
     "long" : "Osnabrück Hbf",
     "medium" : "Osnabrück",
     "short" : "Osnabrück",
-    "synonyms" : [ ]
+    "synonyms" : [ "Osnabruck Hbf" ]
   },
   "location" : {
     "lat" : 52.272851,
@@ -3268,6 +3268,35 @@
   "startDate" : "2018-12-16",
   "nearbyMeLocationId" : {
     "value" : "TP",
+    "type" : "stationV3"
+  }
+}, {
+  "id" : {
+    "uicCode" : "8029066",
+    "evaCode" : "8000127",
+    "code" : "TGO"
+  },
+  "stationType" : "EXPRESS_TRAIN_STATION",
+  "names" : {
+    "long" : "Göppingen",
+    "medium" : "Göppingen",
+    "short" : "Göppingen",
+    "synonyms" : [ "Goppingen" ]
+  },
+  "location" : {
+    "lat" : 48.700191,
+    "lng" : 9.651685
+  },
+  "tracks" : [ ],
+  "hasKnownFacilities" : true,
+  "availableForAccessibleTravel" : false,
+  "hasTravelAssistance" : false,
+  "areTracksIndependentlyAccessible" : false,
+  "isBorderStop" : false,
+  "country" : "D",
+  "startDate" : "2024-12-31",
+  "nearbyMeLocationId" : {
+    "value" : "TGO",
     "type" : "stationV3"
   }
 }, {
@@ -4625,7 +4654,7 @@
     "long" : "Liège-Guillemins",
     "medium" : "Liège-G.",
     "short" : "Liège-G.",
-    "synonyms" : [ "Luik" ]
+    "synonyms" : [ "Luik", "Liege-Guilemins" ]
   },
   "location" : {
     "lat" : 50.62436,
@@ -4801,7 +4830,7 @@
     "long" : "Visé",
     "medium" : "Visé",
     "short" : "Visé",
-    "synonyms" : [ ]
+    "synonyms" : [ "Vise" ]
   },
   "location" : {
     "lat" : 50.73781,
@@ -13550,7 +13579,7 @@
   "tracks" : [ "1", "2" ],
   "hasKnownFacilities" : true,
   "availableForAccessibleTravel" : true,
-  "hasTravelAssistance" : true,
+  "hasTravelAssistance" : false,
   "areTracksIndependentlyAccessible" : true,
   "isBorderStop" : false,
   "country" : "NL",
@@ -13758,7 +13787,7 @@
     "long" : "Mariënberg",
     "medium" : "Mariënberg",
     "short" : "Mariënberg",
-    "synonyms" : [ ]
+    "synonyms" : [ "Marienberg" ]
   },
   "location" : {
     "lat" : 52.5094451904297,
@@ -19743,6 +19772,35 @@
   }
 }, {
   "id" : {
+    "uicCode" : "8600512",
+    "evaCode" : "8601770",
+    "code" : "ODENS"
+  },
+  "stationType" : "INTERCITY_STATION",
+  "names" : {
+    "long" : "Odense",
+    "medium" : "Odense",
+    "short" : "Odense",
+    "synonyms" : [ ]
+  },
+  "location" : {
+    "lat" : 55.63,
+    "lng" : 12.649167
+  },
+  "tracks" : [ ],
+  "hasKnownFacilities" : true,
+  "availableForAccessibleTravel" : false,
+  "hasTravelAssistance" : false,
+  "areTracksIndependentlyAccessible" : false,
+  "isBorderStop" : false,
+  "country" : "DK",
+  "startDate" : "2024-12-31",
+  "nearbyMeLocationId" : {
+    "value" : "ODENS",
+    "type" : "stationV3"
+  }
+}, {
+  "id" : {
     "uicCode" : "8600611",
     "evaCode" : "8601979",
     "code" : "RINGS"
@@ -19768,35 +19826,6 @@
   "startDate" : "2024-03-22",
   "nearbyMeLocationId" : {
     "value" : "RINGS",
-    "type" : "stationV3"
-  }
-}, {
-  "id" : {
-    "uicCode" : "8600858",
-    "evaCode" : "8601242",
-    "code" : "ODENS"
-  },
-  "stationType" : "INTERCITY_STATION",
-  "names" : {
-    "long" : "Odens",
-    "medium" : "Odens",
-    "short" : "Odens",
-    "synonyms" : [ ]
-  },
-  "location" : {
-    "lat" : 55.63,
-    "lng" : 12.649167
-  },
-  "tracks" : [ ],
-  "hasKnownFacilities" : true,
-  "availableForAccessibleTravel" : false,
-  "hasTravelAssistance" : false,
-  "areTracksIndependentlyAccessible" : false,
-  "isBorderStop" : false,
-  "country" : "DK",
-  "startDate" : "2022-05-28",
-  "nearbyMeLocationId" : {
-    "value" : "ODENS",
     "type" : "stationV3"
   }
 }, {
@@ -19983,7 +20012,7 @@
     "long" : "Marne-la-Vallée-Chessy",
     "medium" : "Marne-la-V",
     "short" : "Marne-la-V",
-    "synonyms" : [ "Disneyland Parijs" ]
+    "synonyms" : [ "Marne-la-Vallee-Chessy", "Disneyland Parijs" ]
   },
   "location" : {
     "lat" : 48.86826,

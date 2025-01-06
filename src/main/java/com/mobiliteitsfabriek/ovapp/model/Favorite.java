@@ -29,13 +29,15 @@ public class Favorite {
 
     @Override
     public String toString() {
-        return "FavoriteRoute [startStation=" + startStation + ", endStation=" + endStation + "]";
+        return String.format("FavoriteRoute [startStation=%s, endStation=%s]", startStation, endStation);
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Favorite that = (Favorite) o;
         return startStation.equals(that.startStation) && endStation.equals(that.endStation);
     }

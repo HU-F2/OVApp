@@ -10,32 +10,24 @@ import java.util.List;
 
 public class FavoriteService {
 
-    private static final String FAVORITES_FILE_PATH = "src/main/resources/favorite.json"; 
+    private static final String FAVORITES_FILE_PATH = "src/main/resources/favorite.json";
 
     public static List<Favorite> loadFavorites() {
         List<Favorite> favorites = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(FAVORITES_FILE_PATH))) {
-            StringBuilder content = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                content.append(line);
-            }
+            String content = reader.lines().reduce("", String::concat);
+            if (content.isEmpty())
+                content = "[]";
 
-            if (content.length() == 0 || content.toString().trim().startsWith("[")) {
-                content.append("[]");
-            }
-
-            JSONArray jsonArray = new JSONArray(content.toString());
+            JSONArray jsonArray = new JSONArray(content);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String startStation = jsonObject.getString("startStation");
-                String endStation = jsonObject.getString("endStation");
-                favorites.add(new Favorite(startStation, endStation));
+                favorites.add(new Favorite(jsonObject.getString("startStation"), jsonObject.getString("endStation")));
             }
 
         } catch (IOException e) {
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
 
         return favorites;
@@ -48,23 +40,24 @@ public class FavoriteService {
 
         if (!favorites.contains(newFavorite)) {
             favorites.add(newFavorite);
-            saveFavoritesToFile(favorites);
+            writeFavoritesToFile(favorites);
+        } else {
+            System.out.println("This route is already added as a favorite.");
         }
     }
 
-    private static void saveFavoritesToFile(List<Favorite> favorites) {
+    private static void writeFavoritesToFile(List<Favorite> favorites) {
         JSONArray jsonArray = new JSONArray();
 
-        for (Favorite favorite : favorites) {
+        for (Favorite fav : favorites) {
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("startStation", favorite.getStartStation());
-            jsonObject.put("endStation", favorite.getEndStation());
+            jsonObject.put("startStation", fav.getStartStation());
+            jsonObject.put("endStation", fav.getEndStation());
             jsonArray.put(jsonObject);
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FAVORITES_FILE_PATH))) {
             writer.write(jsonArray.toString(4));
-            System.out.println("Favorites saved to file at " + FAVORITES_FILE_PATH);
         } catch (IOException e) {
             e.printStackTrace();
         }

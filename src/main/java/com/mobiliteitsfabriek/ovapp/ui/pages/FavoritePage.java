@@ -30,9 +30,8 @@ public class FavoritePage extends VBox {
 
         Button backBtn = new Button("Back");
         backBtn.setOnAction(event -> {
-            System.out.println("Navigating back to Home Page");
 
-            Scene homePageScene = HomePage.getScene(); 
+            Scene homePageScene = HomePage.getScene();
 
             Stage primaryStage = (Stage) this.getScene().getWindow();
             primaryStage.setScene(homePageScene);
