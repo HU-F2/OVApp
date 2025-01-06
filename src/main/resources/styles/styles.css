@@ -120,7 +120,7 @@
     padding: 8px; 
 }
 
-.route:focused{
+.route.selected{
     -fx-padding:16px;
     -fx-font-weight: bold;
     padding:16px;
@@ -184,6 +184,28 @@
     border-color: lightgray; 
     padding: 10;
 }
+
+.swap-btn{
+    -fx-background-color: transparent;
+    background-color: transparent;
+}
+
+.swap-btn:hover,.swap-btn:focused{
+    -fx-background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.station-box {
+    -fx-spacing: 10;
+    -fx-alignment: center; 
+}
+
+.swap-container{
+    -fx-alignment: center;
+    -fx-spacing: 20; /* Space between child nodes */
+    -fx-padding: 20;    
+}
+
 
 .favorite-btn {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0);

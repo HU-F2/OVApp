@@ -8,6 +8,7 @@ import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.RouteElement;
@@ -29,7 +30,7 @@ public class RoutesPage {
 
         HBox headerContainer = new HBox();
         // Backbutton
-        Button backButton = new Button("<--");
+        Button backButton = new Button(TranslationHelper.get("app.common.back"));
         backButton.getStyleClass().add("submit-btn");
         backButton.setOnAction((event) -> handleBackButton(event));
         // Center
@@ -41,15 +42,15 @@ public class RoutesPage {
 
         // Locations
         VBox locationContainer = new VBox();
-        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), "begin", firstRoute.getStartLocation());
-        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), "end", firstRoute.getEndLocation());
+        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"), firstRoute.getStartLocation());
+        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"), firstRoute.getEndLocation());
         locationContainer.getChildren().addAll(startStationField, endStationField);
         centerContainer.getChildren().addAll(dateTimeContainer, locationContainer);
         centerContainer.setAlignment(Pos.CENTER);
 
         DateTimePicker dateTimePicker = new DateTimePicker(true);
         // Search again
-        Button searchButton = new Button("Zoek");
+        Button searchButton = new Button(TranslationHelper.get("app.common.search"));
         searchButton.getStyleClass().add("submit-btn");
         searchButton.setOnAction(event -> {
             handleSearch(startStationField, endStationField, dateTimePicker, false);
@@ -79,7 +80,6 @@ public class RoutesPage {
             return;
         }
         String endName = endStationField.getEditor().textProperty().get().replace("’", "'");
-        ;
         Station endStation = StationService.getStation(endName);
         if (endStation == null) {
             // TODO: Add error message

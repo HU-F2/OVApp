@@ -32,7 +32,7 @@ public class StationService {
 
                 // Json values to java classes
                 JSONObject idObject = jsonObject.getJSONObject("id");
-                String id = idObject.optString("code","");
+                String id = idObject.optString("code", "");
 
                 JSONObject namesObject = jsonObject.getJSONObject("names");
                 String name = namesObject.getString("long");
@@ -49,7 +49,9 @@ public class StationService {
 
     public static ArrayList<Station> getStationByName(String name) {
         Pattern pattern = Pattern.compile(name, Pattern.CASE_INSENSITIVE);
-        ArrayList<Station> result = new ArrayList<>(stations.stream().filter((station -> pattern.matcher(station.getName()).find())).sorted((s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName())).toList());
+        ArrayList<Station> result = new ArrayList<>(
+                stations.stream().filter((station -> pattern.matcher(station.getName()).find()))
+                        .sorted((s1, s2) -> s1.getName().compareToIgnoreCase(s2.getName())).toList());
         return result;
     }
 
