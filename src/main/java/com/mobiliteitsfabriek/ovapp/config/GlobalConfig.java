@@ -36,7 +36,7 @@ public class GlobalConfig {
     public static Language currentLanguage = DEFAULT_LANGUAGE;
 
     // Screenreader compabiliteit
-    public static boolean isUsingScreenreader = false;
+    public static boolean isUsingScreenreader = true;
 
     // Methode om de huidige taal te wijzigen
     public static void setLanguage(Language language) {

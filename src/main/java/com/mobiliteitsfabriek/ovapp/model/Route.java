@@ -10,7 +10,7 @@ public class Route {
     private String startLocation;
     private String endLocation;
 
-    private Double cost;
+    private FarePrices cost;
     private ArrayList<RouteTransfers> routeTransfers;
 
     private LocalDateTime startDateTime;
@@ -19,7 +19,7 @@ public class Route {
     private String departurePlatformNumber;
     private int transfersAmount;
 
-    public Route(ArrayList<RouteTransfers> routeTransfers, String ctxRecon, String startLocation, String endLocation, String departurePlatformNumber, LocalDateTime startDateTime, LocalDateTime endDateTime, int plannedDurationInMinutes, int transfersAmount, Double cost) {
+    public Route(ArrayList<RouteTransfers> routeTransfers, String ctxRecon, String startLocation, String endLocation, String departurePlatformNumber, LocalDateTime startDateTime, LocalDateTime endDateTime, int plannedDurationInMinutes, int transfersAmount, FarePrices cost) {
         this.ctxRecon = ctxRecon;
         this.startLocation = startLocation;
         this.endLocation = endLocation;
@@ -50,7 +50,7 @@ public class Route {
         return plannedDurationInMinutes;
     }
 
-    public Double getCost() {
+    public FarePrices getCost() {
         return cost;
     }
 

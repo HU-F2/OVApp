@@ -16,6 +16,7 @@ import java.util.Collections;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
+import com.mobiliteitsfabriek.ovapp.model.FarePrices;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
@@ -123,5 +124,9 @@ public class UtilityFunctions {
 
     public static boolean checkEmpty(Station valueToCheck) {
         return valueToCheck == null || UtilityFunctions.checkEmpty(valueToCheck.getId()) || UtilityFunctions.checkEmpty(valueToCheck.getName());
+    }
+
+    public static boolean checkEmpty(FarePrices valueToCheck) {
+        return valueToCheck == null;
     }
 }

@@ -33,6 +33,7 @@ public class RouteService {
         JSONArray tripsArray = new JSONObject(new JSONTokener(jsonString)).getJSONArray("trips");
 
         ArrayList<Route> routeList = new ArrayList<>();
+        FarePrices farePrices = null;
 
         for (int i = 0; i < tripsArray.length(); i++) {
             JSONObject trip = tripsArray.getJSONObject(i);
@@ -41,6 +42,9 @@ public class RouteService {
             JSONObject lastDestinationObject = legsArray.getJSONObject(legsArray.length() - 1).getJSONObject("destination");
 
             String ctxRecon = trip.getString("ctxRecon");
+            if(farePrices == null){
+                farePrices = routePrice(ctxRecon);
+            }
 
             String startLocation = firstOriginObject.getString("name");
             String endLocation = lastDestinationObject.getString("name");
@@ -51,10 +55,6 @@ public class RouteService {
             int transfersAmount = trip.getInt("transfers");
 
             String departurePlatformNumber = firstOriginObject.optString("plannedTrack", "");
-
-//Hiervoor hebben we per loop een API call gemaakt. Hier moeten we nog opzoek gaan naar een betere methode voor een snellere applicatie
-            FarePrices farePrices = routePrice(ctxRecon);
-            Double cost = Double.valueOf(farePrices.getFirstClassPriceInCents());
 
             ArrayList<RouteTransfers> routeTransfers = new ArrayList<>();
             for (int j = 0; j < legsArray.length(); j++) {
@@ -77,7 +77,7 @@ public class RouteService {
                 routeTransfers.add(routeTransfersV3);
             }
 
-            Route myRoute = new Route(routeTransfers, ctxRecon, startLocation, endLocation, departurePlatformNumber, startDateTime, endDateTime, plannedDurationInMinutes, transfersAmount, cost);
+            Route myRoute = new Route(routeTransfers, ctxRecon, startLocation, endLocation, departurePlatformNumber, startDateTime, endDateTime, plannedDurationInMinutes, transfersAmount, farePrices);
             routeList.add(myRoute);
         }
         return routeList;

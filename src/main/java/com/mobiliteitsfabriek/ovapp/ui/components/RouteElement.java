@@ -11,7 +11,6 @@ import com.mobiliteitsfabriek.ovapp.ui.pages.RouteDetailPage;
 
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.AccessibleRole;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
@@ -49,7 +48,7 @@ public class RouteElement extends HBox {
         
         VBox container = new VBox(timeLabel, infoLabel);
 
-        Label priceLabel = new Label("€" + String.valueOf(route.getCost()/100));
+        Label priceLabel = new Label("€" + String.valueOf(route.getCost().getFirstClassPriceInCents()/100.0f));
         HBox.setHgrow(container, Priority.ALWAYS);
 
         this.getChildren().addAll(container, priceLabel);
