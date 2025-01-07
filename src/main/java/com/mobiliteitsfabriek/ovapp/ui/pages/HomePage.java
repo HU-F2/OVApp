@@ -1,7 +1,8 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
-import com.mobiliteitsfabriek.ovapp.service.InvalidStationHandler;
+import com.mobiliteitsfabriek.ovapp.exceptions.InvalidRouteException;
+import com.mobiliteitsfabriek.ovapp.general.ValidationFunctions;
 import com.mobiliteitsfabriek.ovapp.service.StationHandler;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.service.ValidStationHandler;
@@ -9,11 +10,11 @@ import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
+import com.mobiliteitsfabriek.ovapp.ui.components.InputContainer;
 import com.mobiliteitsfabriek.ovapp.ui.components.LanguagePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 import com.mobiliteitsfabriek.ovapp.ui.components.SwapButton;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,7 +23,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class HomePage {
-    private static VBox root;
 
     public static Scene getScene() {
         DateTimePicker dateTimeComponent = new DateTimePicker(true);
@@ -34,24 +34,27 @@ public class HomePage {
                 TranslationHelper.get("searchFieldStation.end"));
         Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
 
-        Button favoriteBtn = new Button("☆");
+        Button favoriteBtn = new Button(TranslationHelper.get("favorites.add"));
         favoriteBtn.getStyleClass().add("favorite-btn");
 
         Button favoritesPageBtn = new Button(TranslationHelper.get("favorites"));
         favoritesPageBtn.getStyleClass().add("submit-btn");
 
+        InputContainer favoriteContainer = new InputContainer(favoriteBtn);
+        favoriteContainer.setAlignment(Pos.CENTER);
         favoriteBtn.setOnAction(event -> {
             String startValue = startStationField.getValue();
             String endValue = endStationField.getValue();
 
-            StationHandler stationHandler;
+            favoriteContainer.noError();
+            try {
+                ValidationFunctions.validateFavoriteRoute(startValue, endValue);
+            } catch (InvalidRouteException e) {
+                favoriteContainer.addError(e.getMessage());
+                return; 
+            } 
 
-            if (startValue != null && !startValue.isEmpty() && endValue != null && !endValue.isEmpty()) {
-                stationHandler = new ValidStationHandler();
-            } else {
-                stationHandler = new InvalidStationHandler();
-            }
-
+            StationHandler stationHandler = new ValidStationHandler();
             stationHandler.handle(startValue, endValue);
         });
 
@@ -98,18 +101,26 @@ public class HomePage {
         StackPane textFieldsWithButton = new StackPane(startWithEndStation, swapBtn);
         swapBtn.setTranslateX(175);
 
+        Button goToLoginButton = new Button(TranslationHelper.get("home.goTo.login.button"));
+        goToLoginButton.getStyleClass().add("goTo-login-page-button");
+        goToLoginButton.setOnAction(actionEvent -> goToLoginPage());
+
         LanguagePicker languagePicker = new LanguagePicker();
-        HBox header = new HBox(languagePicker);
-        header.setAlignment(Pos.TOP_RIGHT);
-        header.setPadding(new Insets(0, 0, 50, 0));
+
+        HBox topBar = new HBox(languagePicker, goToLoginButton);
+        topBar.getStyleClass().add("topBar");
 
         VBox mainContainer = new VBox(textFieldsWithButton, dateTimeComponent,
-                departureToggleComponent.departureToggleButton(), submitBtn, favoriteBtn, favoritesPageBtn);
+                departureToggleComponent.departureToggleButton(), submitBtn, favoriteContainer, favoritesPageBtn);
         mainContainer.getStyleClass().add("container");
 
-        root = new VBox(header, mainContainer);
+        VBox root = new VBox(topBar, mainContainer);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;
+    }
+
+    private static void goToLoginPage() {
+        OVAppUI.switchToScene(new LoginPage().getScene());
     }
 }

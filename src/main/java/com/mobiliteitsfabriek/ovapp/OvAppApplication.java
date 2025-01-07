@@ -7,5 +7,4 @@ public class OvAppApplication {
     public static void main(String[] args) {
         OVAppUI.launch(OVAppUI.class, args);
     }
-
 }
