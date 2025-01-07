@@ -2,7 +2,8 @@ package com.mobiliteitsfabriek.ovapp.enums;
 
 public enum InputKey {
     USERNAME("username", "inputKey.username"),
-    PASSWORD("password", "inputKey.password");
+    PASSWORD("password", "inputKey.password"),
+    FAVORITE("favorite","inputKey.favorite");
 
     private final String inputName;
     private final String inputTranslation;

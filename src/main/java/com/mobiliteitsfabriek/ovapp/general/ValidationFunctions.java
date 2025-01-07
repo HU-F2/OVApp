@@ -9,6 +9,7 @@ import com.mobiliteitsfabriek.ovapp.enums.InputKey;
 import com.mobiliteitsfabriek.ovapp.exceptions.ExistingUserException;
 import com.mobiliteitsfabriek.ovapp.exceptions.IncorrectPasswordException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidPasswordException;
+import com.mobiliteitsfabriek.ovapp.exceptions.InvalidRouteException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidUsernameException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserFoundException;
@@ -82,5 +83,13 @@ public class ValidationFunctions {
     public static boolean checkCorrectPassword(String password, String encodedPassword) {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(GlobalConfig.BCRYPT_STRENGTH, new SecureRandom());
         return bCryptPasswordEncoder.matches(password, encodedPassword);
+    }
+
+    // Favorite routes
+    public static boolean validateFavoriteRoute(String startValue, String endValue) throws InvalidRouteException{
+        if(startValue == null || endValue == null || UtilityFunctions.checkEmpty(startValue) || UtilityFunctions.checkEmpty(endValue)){
+            throw new InvalidRouteException(InputKey.FAVORITE);
+        }
+        return true;
     }
 }
