@@ -1,42 +1,42 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
-import com.mobiliteitsfabriek.ovapp.service.FavoriteService;
-import com.mobiliteitsfabriek.ovapp.model.Favorite;
-import javafx.scene.Scene;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Label;
-import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 import java.util.List;
 
-public class FavoritePage extends VBox {
+import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
+import com.mobiliteitsfabriek.ovapp.model.Favorite;
+import com.mobiliteitsfabriek.ovapp.service.FavoriteService;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 
-    public FavoritePage() {
-        Label title = new Label("Your Favorite Routes");
-        this.getChildren().add(title);
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.VBox;
+
+public class FavoritePage {
+
+    public static Scene getScene() {
+        VBox root = new VBox();
+        Label title = new Label(TranslationHelper.get("favorites.header"));
+        title.getStyleClass().add("favorite-page-header");
 
         ListView<String> favoriteListView = new ListView<>();
-
         List<Favorite> favorites = FavoriteService.loadFavorites();
-
         for (Favorite favorite : favorites) {
-            String favoriteText = "From " + favorite.getStartStation() + " to " + favorite.getEndStation();
-            favoriteListView.getItems().add(favoriteText);
+            favoriteListView.getItems().add(TranslationHelper.get("favorites.route",favorite.getStartStation(),favorite.getEndStation()));
         }
 
-        this.getChildren().add(favoriteListView);
-
-        Button backBtn = new Button("Back");
+        Button backBtn = new Button(TranslationHelper.get("app.common.back"));
+        backBtn.getStyleClass().add("submit-btn");
         backBtn.setOnAction(event -> {
-
             Scene homePageScene = HomePage.getScene();
-
-            Stage primaryStage = (Stage) this.getScene().getWindow();
-            primaryStage.setScene(homePageScene);
+            OVAppUI.switchToScene(homePageScene);
         });
 
-        this.getChildren().add(backBtn);
+        root.getChildren().addAll(title,favoriteListView,backBtn);
+        Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
+        scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
+        return scene;
     }
 }

@@ -1,4 +1,10 @@
-[{
-    "endStation": "Zwolle",
-    "startStation": "Amsterdam Amstel"
-}]
+[
+    {
+        "endStation": "Zwolle",
+        "startStation": "Amsterdam Amstel"
+    },
+    {
+        "endStation": "Utrecht Centraal",
+        "startStation": "Amsterdam Centraal"
+    }
+]

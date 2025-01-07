@@ -4,8 +4,9 @@ import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.service.InvalidStationHandler;
 import com.mobiliteitsfabriek.ovapp.service.StationHandler;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
-import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.service.ValidStationHandler;
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.LanguagePicker;
@@ -19,7 +20,6 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class HomePage {
     private static VBox root;
@@ -37,7 +37,7 @@ public class HomePage {
         Button favoriteBtn = new Button("☆");
         favoriteBtn.getStyleClass().add("favorite-btn");
 
-        Button favoritesPageBtn = new Button("Favorites");
+        Button favoritesPageBtn = new Button(TranslationHelper.get("favorites"));
         favoritesPageBtn.getStyleClass().add("submit-btn");
 
         favoriteBtn.setOnAction(event -> {
@@ -56,14 +56,7 @@ public class HomePage {
         });
 
         favoritesPageBtn.setOnAction(event -> {
-            if (root != null && root.getScene() != null) {
-                Stage primaryStage = (Stage) root.getScene().getWindow();
-                FavoritePage favoritePage = new FavoritePage();
-                Scene favoritesScene = new Scene(favoritePage, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
-                primaryStage.setScene(favoritesScene);
-            } else {
-                System.err.println("Error: Root is not initialized or scene is null.");
-            }
+            OVAppUI.switchToScene(FavoritePage.getScene());
         });
 
         startStationField.getStyleClass().add("station-field");
