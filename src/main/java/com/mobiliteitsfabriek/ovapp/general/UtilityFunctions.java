@@ -1,5 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.general;
 
+import java.security.SecureRandom;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.time.DateTimeException;
@@ -13,11 +14,15 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.UUID;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.FarePrices;
 import com.mobiliteitsfabriek.ovapp.model.Station;
+import com.mobiliteitsfabriek.ovapp.model.User;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
 public class UtilityFunctions {
@@ -96,6 +101,17 @@ public class UtilityFunctions {
         return list;
     }
 
+    public static String generateID() {
+        return UUID.randomUUID().toString();
+    }
+
+    public static String encodePassword(String password) {
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(GlobalConfig.BCRYPT_STRENGTH, new SecureRandom());
+        String encodedPassword = bCryptPasswordEncoder.encode(password);
+
+        return encodedPassword;
+    }
+
     // Checking
     public static boolean checkStringInArrayList(String valueToCheck, String... strings) {
         ArrayList<String> stringArrayList = UtilityFunctions.toArrayList(strings);
@@ -124,6 +140,10 @@ public class UtilityFunctions {
 
     public static boolean checkEmpty(Station valueToCheck) {
         return valueToCheck == null || UtilityFunctions.checkEmpty(valueToCheck.getId()) || UtilityFunctions.checkEmpty(valueToCheck.getName());
+    }
+
+    public static boolean checkEmpty(User valueToCheck) {
+        return valueToCheck == null;
     }
 
     public static boolean checkEmpty(FarePrices valueToCheck) {

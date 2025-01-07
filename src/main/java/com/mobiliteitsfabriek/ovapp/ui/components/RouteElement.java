@@ -34,14 +34,14 @@ public class RouteElement extends HBox {
 
         // Time
         Label timeLabel = new Label(TranslationHelper.get("route.time", UtilityFunctions.formatTime(route.getStartDateTime()), UtilityFunctions.formatTime(route.getEndDateTime())));
-        timeLabel.setAccessibleText(TranslationHelper.get("route.time.accessibleText",UtilityFunctions.formatTime(route.getStartDateTime()), UtilityFunctions.formatTime(route.getEndDateTime())));
+        timeLabel.setAccessibleText(TranslationHelper.get("route.time.accessibleText", UtilityFunctions.formatTime(route.getStartDateTime()), UtilityFunctions.formatTime(route.getEndDateTime())));
         timeLabel.getStyleClass().add("time-container");
         timeLabel.setFocusTraversable(GlobalConfig.isUsingScreenreader);
         timeLabel.focusedProperty().addListener(this::handleFocusChange);//Workaround for focus-within
-        
+
         // Duration
         Label infoLabel = new Label(TranslationHelper.get("route.info", route.getPlannedDurationInMinutes(), route.getTransfersAmount(), route.getDeparturePlatformNumber()));
-        infoLabel.setAccessibleText(TranslationHelper.get("route.info.accessibleText",route.getPlannedDurationInMinutes(), route.getTransfersAmount(), route.getDeparturePlatformNumber()));
+        infoLabel.setAccessibleText(TranslationHelper.get("route.info.accessibleText", route.getPlannedDurationInMinutes(), route.getTransfersAmount(), route.getDeparturePlatformNumber()));
         infoLabel.getStyleClass().add("info-container");
         infoLabel.setFocusTraversable(GlobalConfig.isUsingScreenreader);
         infoLabel.focusedProperty().addListener(this::handleFocusChange);//Workaround for focus-within
@@ -53,7 +53,7 @@ public class RouteElement extends HBox {
 
         this.getChildren().addAll(container, priceLabel);
         this.getStyleClass().add("route");
-        
+
         this.setOnMouseClicked((e) -> {
             this.requestFocus();
             handleGoToDetailedRoute(route, routes);

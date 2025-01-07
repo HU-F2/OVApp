@@ -20,7 +20,11 @@ import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
 public class GeneralService {
-    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper;
+
+    static {
+        objectMapper = createObjectMapper();
+    }
 
     static String sendApiRequest(String baseUrl, String queryParams) {
         try {
@@ -74,5 +78,9 @@ public class GeneralService {
             String response = in.lines().collect(Collectors.joining());
             return response;
         }
+    }
+
+    private static ObjectMapper createObjectMapper() {
+        return new ObjectMapper();
     }
 }
