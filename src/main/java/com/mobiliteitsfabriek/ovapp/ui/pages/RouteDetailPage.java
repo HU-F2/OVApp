@@ -1,40 +1,20 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import java.util.ArrayList;
-import java.util.Optional;
-
-import com.gluonhq.maps.MapLayer;
-import com.gluonhq.maps.MapPoint;
-import com.gluonhq.maps.MapView;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
-import com.mobiliteitsfabriek.ovapp.model.Station;
-import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.components.MapViewer;
-import com.mobiliteitsfabriek.ovapp.ui.components.SwapButton;
 import com.mobiliteitsfabriek.ovapp.ui.controllers.RouteDetailController;
 
-import javafx.geometry.Point2D;
 import javafx.scene.AccessibleRole;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 
 public class RouteDetailPage {
 

@@ -37,11 +37,6 @@
             <optional>true</optional>
         </dependency>
 
-        <dependency>
-            <groupId>com.gluonhq</groupId>
-            <artifactId>maps</artifactId>
-            <version>1.0.1</version>
-        </dependency>
 
         <!-- START JavaFX packages -->
         <dependency>

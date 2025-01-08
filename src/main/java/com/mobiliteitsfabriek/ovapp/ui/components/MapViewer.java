@@ -100,7 +100,6 @@ public class MapViewer {
         return new VBox(mapContainer);
     }
     
-
     private ArrayList<Station> getStationsFromRoute() {
         ArrayList<Station> stations = new ArrayList<>();
         for (RouteTransfers transfer : route.getRouteTransfers()) {
