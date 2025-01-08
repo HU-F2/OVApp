@@ -26,54 +26,43 @@ import javafx.scene.layout.VBox;
 public class HomePage {
 
     public static Scene getScene() {
+        // Top bar
+        String authText = UserManagement.userLoggedIn() ? TranslationHelper.get("home.logout") : TranslationHelper.get("home.goTo.login.button");
+        Button authButton = new Button(authText);
+        authButton.getStyleClass().add("goTo-login-page-button");
+        authButton.setOnAction(actionEvent -> {
+            if(UserManagement.userLoggedIn()){
+                logout();
+            }else{
+                goToLoginPage();
+            }
+        });
+        LanguagePicker languagePicker = new LanguagePicker();
+
+        HBox topBar = new HBox(languagePicker, authButton);
+        topBar.getStyleClass().add("topBar");
+
+        // Search fields
+        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(),
+                TranslationHelper.get("searchFieldStation.start"));
+        startStationField.getStyleClass().add("station-field");
+        InputContainer startFieldContainer = new InputContainer(startStationField);
+        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(),
+                TranslationHelper.get("searchFieldStation.end"));
+        endStationField.getStyleClass().add("station-field");
+        InputContainer endFieldContainer = new InputContainer(endStationField);
+        Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
+        submitBtn.getStyleClass().add("submit-btn");
+        InputContainer submitBtnContainer = new InputContainer(submitBtn);
+
+        VBox startWithEndStation = new VBox(10);
+        startWithEndStation.getStyleClass().add("station-box");
+        startWithEndStation.getChildren().addAll(startFieldContainer, endFieldContainer);
+        
         DateTimePicker dateTimeComponent = new DateTimePicker(true);
         DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
 
-        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(),
-                TranslationHelper.get("searchFieldStation.start"));
-        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(),
-                TranslationHelper.get("searchFieldStation.end"));
-        Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
-
-        Button favoriteBtn = new Button(TranslationHelper.get("favorites.add"));
-        favoriteBtn.getStyleClass().add("favorite-btn");
-
-        Button favoritesPageBtn = new Button(TranslationHelper.get("favorites"));
-        favoritesPageBtn.getStyleClass().add("submit-btn");
-
-        InputContainer addFavoriteBtn = new InputContainer(favoriteBtn);
-        addFavoriteBtn.setAlignment(Pos.CENTER);
-        favoriteBtn.setOnAction(event -> {
-            String startValue = startStationField.getValue();
-            String endValue = endStationField.getValue();
-            
-            addFavoriteBtn.noError();
-            try {
-                ValidationFunctions.validateFavoriteRoute(startValue, endValue);
-            } catch (InvalidRouteException e) {
-                addFavoriteBtn.addError(e.getMessage());
-                return; 
-            } 
-
-            StationHandler stationHandler = new ValidStationHandler();
-            stationHandler.handle(startValue, endValue);
-        });
-        
-        favoritesPageBtn.setOnAction(event -> {
-            OVAppUI.switchToScene(FavoritePage.getScene());
-        });
-        VBox favoritesContainer = new VBox(addFavoriteBtn,favoritesPageBtn);
-        favoritesContainer.setAlignment(Pos.CENTER);
-        favoritesContainer.setSpacing(8);
-        
-        startStationField.getStyleClass().add("station-field");
-        endStationField.getStyleClass().add("station-field");
-        submitBtn.getStyleClass().add("submit-btn");
-
-        submitBtn.setOnAction(event -> {
-            RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent,
-                    departureToggleComponent.isArrival());
-        });
+        submitBtn.setOnAction(event->RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent.isArrival(), startFieldContainer, endFieldContainer, submitBtnContainer));
 
         SwapButton swapBtn = new SwapButton(() -> {
             String startValue = startStationField.getValue();
@@ -96,33 +85,44 @@ public class HomePage {
             endStationField.hide();
         });
         swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
-
-        VBox startWithEndStation = new VBox(10);
-        startWithEndStation.getStyleClass().add("station-box");
-        startWithEndStation.getChildren().addAll(startStationField, endStationField);
-        startWithEndStation.setAlignment(Pos.CENTER);
-
-        StackPane textFieldsWithButton = new StackPane(startWithEndStation, swapBtn);
         swapBtn.setTranslateX(175);
 
-        String authText = UserManagement.userLoggedIn() ? TranslationHelper.get("home.logout") : TranslationHelper.get("home.goTo.login.button");
-        Button authButton = new Button(authText);
-        authButton.getStyleClass().add("goTo-login-page-button");
-        authButton.setOnAction(actionEvent -> {
-            if(UserManagement.userLoggedIn()){
-                logout();
-            }else{
-                goToLoginPage();
-            }
+        StackPane textFieldsWithButton = new StackPane(startWithEndStation, swapBtn);
+
+        // Favorites
+        Button favoriteBtn = new Button(TranslationHelper.get("favorites.add"));
+        favoriteBtn.getStyleClass().add("favorite-btn");
+        Button favoritesPageBtn = new Button(TranslationHelper.get("favorites"));
+        favoritesPageBtn.getStyleClass().add("submit-btn");
+        InputContainer addFavoriteBtn = new InputContainer(favoriteBtn);
+        addFavoriteBtn.setAlignment(Pos.CENTER);
+
+        favoriteBtn.setOnAction(event -> {
+            String startValue = startStationField.getValue();
+            String endValue = endStationField.getValue();
+            
+            addFavoriteBtn.noError();
+            try {
+                ValidationFunctions.validateFavoriteRoute(startValue, endValue);
+            } catch (InvalidRouteException e) {
+                addFavoriteBtn.addError(e.getMessage());
+                return; 
+            } 
+
+            StationHandler stationHandler = new ValidStationHandler();
+            stationHandler.handle(startValue, endValue);
         });
+        
+        favoritesPageBtn.setOnAction(event -> {
+            OVAppUI.switchToScene(FavoritePage.getScene());
+        });
+        VBox favoritesContainer = new VBox(addFavoriteBtn,favoritesPageBtn);
+        favoritesContainer.setAlignment(Pos.CENTER);
+        favoritesContainer.setSpacing(8);
 
-        LanguagePicker languagePicker = new LanguagePicker();
-
-        HBox topBar = new HBox(languagePicker, authButton);
-        topBar.getStyleClass().add("topBar");
-
+        // Putting it together
         VBox mainContainer = new VBox(textFieldsWithButton, dateTimeComponent,
-                departureToggleComponent.departureToggleButton(), submitBtn);
+                departureToggleComponent.departureToggleButton(), submitBtnContainer);
         mainContainer.getStyleClass().add("container");
         if(UserManagement.userLoggedIn()){
             mainContainer.getChildren().add(favoritesContainer);
@@ -142,4 +142,21 @@ public class HomePage {
         UserManagement.logout();
         OVAppUI.switchToScene(HomePage.getScene());
     }
+
+    // private static void onSubmit(SearchFieldStation startStation, SearchFieldStation endStation, DateTimePicker dateTimePicker, boolean isArrival,InputContainer startContainer, InputContainer endContainer, InputContainer submitContainer){
+    //     try {
+    //         startContainer.noError();
+    //         endContainer.noError();
+    //         submitContainer.noError();
+    //         RoutesPage.handleSearch(startStation, endStation, dateTimePicker, isArrival);
+    //     } catch (MissingFieldException | StationNotFoundException e) {
+    //         if(e.getInputKey().equals(InputKey.START_STATION)){
+    //             startContainer.addError(e.getMessage());
+    //         }else if(e.getInputKey().equals(InputKey.END_STATION)){
+    //             endContainer.addError(e.getMessage());
+    //         }
+    //     }catch(MatchingStationsException e){
+    //         submitContainer.addError(e.getMessage());
+    //     }
+    // }
 }

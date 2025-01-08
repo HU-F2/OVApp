@@ -51,8 +51,14 @@ public class UtilityFunctions {
         ZonedDateTime amsterdamZonedDateTime = localDateTime.atZone(ZoneId.of("Europe/Amsterdam"));
 
         // Format to RFC3339
-        DateTimeFormatter rfc3339Formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
+        DateTimeFormatter rfc3339Formatter = DateTimeFormatter.ofPattern(GlobalConfig.RFC3339_TIME_FORMAT);
         return amsterdamZonedDateTime.format(rfc3339Formatter);
+    }
+
+    public static LocalDateTime getLocalDateFromRFC3339String(String value){        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(GlobalConfig.RFC3339_TIME_FORMAT);
+        LocalDateTime dateTime = LocalDateTime.parse(value, formatter);
+        return dateTime;
     }
 
     public static String formatDateTime(LocalDateTime dateTime) throws DateTimeException, IllegalArgumentException {

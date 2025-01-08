@@ -3,6 +3,7 @@ package com.mobiliteitsfabriek.ovapp.config;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+import com.mobiliteitsfabriek.ovapp.model.Search;
 import com.mobiliteitsfabriek.ovapp.translation.Language;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
@@ -13,6 +14,7 @@ public class GlobalConfig {
     // UtilityFunctions
     public static final String DATE_TIME_FORMAT = "dd-MM-yyyy HH:mm";
     public static final String TIME_FORMAT = "HH:mm";
+    public static final String RFC3339_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssXXX";
     public static final Locale NETHERLANDS_LOCAL = Locale.forLanguageTag("nl-NL");
 
     // API
@@ -54,9 +56,20 @@ public class GlobalConfig {
     // Screenreader compabiliteit
     public static boolean isUsingScreenreader = false;
 
+    // Huidige zoekopdracht
+    private static Search currentSearch = null;
+
     // Methode om de huidige taal te wijzigen
     public static void setLanguage(Language language) {
         currentLanguage = language;
         TranslationHelper.setLanguage(language);
+    }
+
+    public static void setCurrentSearch(Search value){
+        currentSearch = value;
+    }
+
+    public static Search getCurrentSearch(){
+        return currentSearch;
     }
 }

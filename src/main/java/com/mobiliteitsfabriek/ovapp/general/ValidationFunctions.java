@@ -1,20 +1,27 @@
 package com.mobiliteitsfabriek.ovapp.general;
 
 import java.security.SecureRandom;
+import java.time.LocalDateTime;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.enums.InputKey;
+import com.mobiliteitsfabriek.ovapp.exceptions.DateInPastException;
 import com.mobiliteitsfabriek.ovapp.exceptions.ExistingUserException;
 import com.mobiliteitsfabriek.ovapp.exceptions.IncorrectPasswordException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidPasswordException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidRouteException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidUsernameException;
+import com.mobiliteitsfabriek.ovapp.exceptions.MatchingStationsException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserFoundException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserWithUserNameExistsException;
+import com.mobiliteitsfabriek.ovapp.exceptions.StationNotFoundException;
+import com.mobiliteitsfabriek.ovapp.model.Search;
+import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.model.User;
+import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.service.UserService;
 
 public class ValidationFunctions {
@@ -86,10 +93,40 @@ public class ValidationFunctions {
     }
 
     // Favorite routes
-    public static boolean validateFavoriteRoute(String startValue, String endValue) throws InvalidRouteException{
+    public static void validateFavoriteRoute(String startValue, String endValue) throws InvalidRouteException{
         if(startValue == null || endValue == null || UtilityFunctions.checkEmpty(startValue) || UtilityFunctions.checkEmpty(endValue)){
             throw new InvalidRouteException(InputKey.FAVORITE);
         }
-        return true;
+    }
+
+    // Search route
+    public static Search validateSearchRoute(String startValue, String endValue,LocalDateTime selectedDate,boolean isArrival) throws MissingFieldException,MatchingStationsException,StationNotFoundException,DateInPastException{
+        if(startValue == null || UtilityFunctions.checkEmpty(startValue)){
+            throw new MissingFieldException(InputKey.START_STATION);
+        }
+
+        Station startStation = StationService.getStation(startValue);
+        if (startStation == null) {
+            throw new StationNotFoundException(InputKey.START_STATION);
+        }
+
+        if(endValue == null || UtilityFunctions.checkEmpty(endValue)){
+            throw new MissingFieldException(InputKey.END_STATION);
+        }
+
+        Station endStation = StationService.getStation(endValue);
+        if (endStation == null) {
+            throw new StationNotFoundException(InputKey.END_STATION);
+        }
+
+        if(startValue.equals(endValue)){
+            throw new MatchingStationsException(InputKey.SEARCH_ROUTE);
+        }
+
+        if(selectedDate.isBefore(LocalDateTime.now().minusMinutes(5))){
+            throw new DateInPastException(InputKey.TRAVEL_DATE);
+        }
+
+        return new Search(startStation,endStation,isArrival,selectedDate);
     }
 }
