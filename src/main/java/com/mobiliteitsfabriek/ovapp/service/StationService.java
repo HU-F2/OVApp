@@ -37,8 +37,27 @@ public class StationService {
                 JSONObject namesObject = jsonObject.getJSONObject("names");
                 String name = namesObject.getString("long");
                 String country = jsonObject.getString("country");
+                
+                
+                double latitude = 0.0;
+                double longitude = 0.0;
 
-                stations.add(new Station(id, name, country));
+                // Check if "location" exists and is not null
+                if (jsonObject.has("location") && !jsonObject.isNull("location")) {
+                    JSONObject locationCoordinates = jsonObject.getJSONObject("location");
+
+                    // Check if latitude and longitude are present
+                    if (locationCoordinates.has("lat") && locationCoordinates.has("lng")) {
+                        latitude = locationCoordinates.getDouble("lat");
+                        longitude = locationCoordinates.getDouble("lng");}
+                    //} else {
+                    //     System.out.println("Missing latitude or longitude for station: " + name);
+                    // }
+                    }
+                // } else {
+                //     System.out.println("Missing location for station: " + name);
+                // }
+                stations.add(new Station(id, name, country, latitude, longitude));
             }
             return stations;
         } catch (IOException e) {
@@ -68,6 +87,13 @@ public class StationService {
                 .filter(station -> station.getName().equalsIgnoreCase(name))
                 .findFirst();
         return stationValidation.orElse(null);
+    }
+
+    public static Optional<double[]> getStationLocation(String stationName) {
+        return stations.stream()
+                .filter(station -> station.getName().equalsIgnoreCase(stationName))
+                .findFirst()
+                .map(station -> new double[]{station.getLatitude(), station.getLongitude()});
     }
 
 }
