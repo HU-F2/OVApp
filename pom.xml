@@ -37,7 +37,6 @@
             <optional>true</optional>
         </dependency>
 
-
         <!-- START JavaFX packages -->
         <dependency>
             <groupId>org.openjfx</groupId>

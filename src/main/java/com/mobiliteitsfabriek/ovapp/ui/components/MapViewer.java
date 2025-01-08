@@ -8,10 +8,7 @@ import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
-import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
-import com.mobiliteitsfabriek.ovapp.ui.pages.RouteDetailPage;
 
-import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
