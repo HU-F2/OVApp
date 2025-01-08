@@ -103,7 +103,9 @@ public class LoginPage {
         }
 
         if (isValid) {
-            System.out.println("Login successful");
+            if (GlobalConfig.DEBUG_LOGIN) {
+                System.out.println("Login successful");
+            }
             OVAppUI.switchToScene(HomePage.getScene());
         }
     }

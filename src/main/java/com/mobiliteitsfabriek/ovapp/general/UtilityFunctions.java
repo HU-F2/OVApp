@@ -21,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.FarePrices;
+import com.mobiliteitsfabriek.ovapp.model.Search;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.model.User;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
@@ -55,7 +56,7 @@ public class UtilityFunctions {
         return amsterdamZonedDateTime.format(rfc3339Formatter);
     }
 
-    public static LocalDateTime getLocalDateFromRFC3339String(String value){        
+    public static LocalDateTime getLocalDateFromRFC3339String(String value) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(GlobalConfig.RFC3339_TIME_FORMAT);
         LocalDateTime dateTime = LocalDateTime.parse(value, formatter);
         return dateTime;
@@ -154,5 +155,9 @@ public class UtilityFunctions {
 
     public static boolean checkEmpty(FarePrices valueToCheck) {
         return valueToCheck == null;
+    }
+
+    public static boolean checkEmpty(Search valueToCheck) {
+        return valueToCheck == null || UtilityFunctions.checkEmpty(valueToCheck.getStartStation()) || UtilityFunctions.checkEmpty(valueToCheck.getEndStation());
     }
 }

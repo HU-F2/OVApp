@@ -60,14 +60,13 @@ public class RouteDetailPage {
 
         Label travelInfo = new Label(TranslationHelper.get("detail.travelInfo", route.getStartLocation(), route.getEndLocation()));
         travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfo.accessibleText", route.getStartLocation(), route.getEndLocation()));
-        
+
         travelInfo.getStyleClass().add("info");
         travelInfo.setFocusTraversable(GlobalConfig.isUsingScreenreader);
-        
-        
+
         VBox headerContent = new VBox(title, travelInfo);
-        if(!UtilityFunctions.checkEmpty(route.getCost())){
-            Label priceLabel = new Label(TranslationHelper.get("detail.price",UtilityFunctions.formatValueAsCurrency(route.getCost().getFirstClassPriceInCents()/100.0),UtilityFunctions.formatValueAsCurrency(route.getCost().getSecondClassPriceInCents()/100.0)));
+        if (!UtilityFunctions.checkEmpty(route.getCost())) {
+            Label priceLabel = new Label(TranslationHelper.get("detail.price", UtilityFunctions.formatValueAsCurrency(route.getCost().getFirstClassPriceInCents() / 100.0), UtilityFunctions.formatValueAsCurrency(route.getCost().getSecondClassPriceInCents() / 100.0)));
             priceLabel.getStyleClass().add("info");
             headerContent.getChildren().add(priceLabel);
         }

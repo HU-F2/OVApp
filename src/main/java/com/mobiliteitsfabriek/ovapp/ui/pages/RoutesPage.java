@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.enums.InputKey;
 import com.mobiliteitsfabriek.ovapp.exceptions.DateInPastException;
+import com.mobiliteitsfabriek.ovapp.exceptions.InputException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MatchingStationsException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
 import com.mobiliteitsfabriek.ovapp.exceptions.StationNotFoundException;
@@ -12,6 +13,7 @@ import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.general.ValidationFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.Search;
+import com.mobiliteitsfabriek.ovapp.model.SearchManagement;
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
@@ -30,7 +32,11 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class RoutesPage {
+
     public static Scene getScene(ArrayList<Route> routes, Search search) {
+        if (UtilityFunctions.checkEmpty(search)) {
+            throw new IllegalArgumentException();
+        }
         Route firstRoute = routes.get(0);
 
         VBox root = new VBox();
@@ -63,7 +69,7 @@ public class RoutesPage {
         searchButton.getStyleClass().add("submit-btn");
         InputContainer submitContainer = new InputContainer(searchButton);
         searchButton.setOnAction(event -> {
-            handleSearch(startStationField, endStationField, dateTimePicker.getDateTimeRFC3339Format(), false,startContainer,endContainer,submitContainer);
+            handleSearch(startStationField, endStationField, dateTimePicker.getDateTimeRFC3339Format(), false, startContainer, endContainer, submitContainer);
         });
         headerContainer.getChildren().addAll(backButton, centerContainer, submitContainer);
         HBox.setHgrow(centerContainer, Priority.ALWAYS);
@@ -82,30 +88,34 @@ public class RoutesPage {
         return scene;
     }
 
-    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField, String dateTimeRFC3339, boolean isToggleDeparture,InputContainer startContainer, InputContainer endContainer, InputContainer submitContainer) {
+    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField, String dateTimeRFC3339, boolean isToggleDeparture, InputContainer startContainer, InputContainer endContainer, InputContainer submitContainer) {
         try {
             startContainer.noError();
             endContainer.noError();
             submitContainer.noError();
             search(startStationField, endStationField, dateTimeRFC3339, isToggleDeparture);
         } catch (MissingFieldException | StationNotFoundException e) {
-            if(e.getInputKey().equals(InputKey.START_STATION)){
-                startContainer.addError(e.getMessage());
-            }else if(e.getInputKey().equals(InputKey.END_STATION)){
-                endContainer.addError(e.getMessage());
-            }
-        }catch(MatchingStationsException|DateInPastException e){
+            setErrorFields(e, startContainer, endContainer);
+        } catch (MatchingStationsException | DateInPastException e) {
             submitContainer.addError(e.getMessage());
         }
     }
 
-    private static void search(SearchFieldStation startStationField, SearchFieldStation endStationField, String dateTimeRFC3339, boolean isToggleDeparture) throws MissingFieldException, StationNotFoundException, MatchingStationsException, DateInPastException{
+    private static void setErrorFields(InputException exception, InputContainer startContainer, InputContainer endContainer) {
+        if (exception.getInputKey().equals(InputKey.START_STATION)) {
+            startContainer.addError(exception.getMessage());
+        } else {
+            endContainer.addError(exception.getMessage());
+        }
+    }
+
+    private static void search(SearchFieldStation startStationField, SearchFieldStation endStationField, String dateTimeRFC3339, boolean isToggleDeparture) throws MissingFieldException, StationNotFoundException, MatchingStationsException, DateInPastException {
         String startName = startStationField.getEditor().textProperty().get().replace("’", "'");
         String endName = endStationField.getEditor().textProperty().get().replace("’", "'");
-        
-        Search search = ValidationFunctions.validateSearchRoute(startName, endName,UtilityFunctions.getLocalDateFromRFC3339String(dateTimeRFC3339),isToggleDeparture);
 
-        GlobalConfig.setCurrentSearch(search);
+        Search search = ValidationFunctions.validateSearchRoute(startName, endName, UtilityFunctions.getLocalDateFromRFC3339String(dateTimeRFC3339), isToggleDeparture);
+
+        SearchManagement.setCurrentSearch(search);
         ArrayList<Route> newRoutes = RouteService.getRoutes(search.getStartStation().getId(), search.getEndStation().getId(), dateTimeRFC3339, isToggleDeparture);
         Scene routesPage = RoutesPage.getScene(newRoutes, search);
 

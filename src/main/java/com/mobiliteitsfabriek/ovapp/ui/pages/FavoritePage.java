@@ -1,6 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.Favorite;
@@ -22,9 +22,9 @@ public class FavoritePage {
         title.getStyleClass().add("favorite-page-header");
 
         ListView<String> favoriteListView = new ListView<>();
-        List<Favorite> favorites = FavoriteService.loadFavorites();
+        ArrayList<Favorite> favorites = FavoriteService.loadFavorites();
         for (Favorite favorite : favorites) {
-            favoriteListView.getItems().add(TranslationHelper.get("favorites.route",favorite.getStartStation(),favorite.getEndStation()));
+            favoriteListView.getItems().add(TranslationHelper.get("favorites.route", favorite.getStartStation(), favorite.getEndStation()));
         }
 
         Button backBtn = new Button(TranslationHelper.get("app.common.back"));
@@ -34,7 +34,7 @@ public class FavoritePage {
             OVAppUI.switchToScene(homePageScene);
         });
 
-        root.getChildren().addAll(title,favoriteListView,backBtn);
+        root.getChildren().addAll(title, favoriteListView, backBtn);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;

@@ -30,6 +30,8 @@ public class GlobalConfig {
 
     // console output
     public static final Boolean NO_TRANSLATION_KEY_ERROR_CONSOLE = true;
+    public static final Boolean DEBUG_FAVORITE = true;
+    public static final Boolean DEBUG_LOGIN = true;
 
     // Validation
     public static final int BCRYPT_STRENGTH = 10;
@@ -54,22 +56,11 @@ public class GlobalConfig {
     public static Language currentLanguage = DEFAULT_LANGUAGE;
 
     // Screenreader compabiliteit
-    public static boolean isUsingScreenreader = false;
-
-    // Huidige zoekopdracht
-    private static Search currentSearch = null;
+    public static boolean isUsingScreenreader = false;    
 
     // Methode om de huidige taal te wijzigen
     public static void setLanguage(Language language) {
         currentLanguage = language;
         TranslationHelper.setLanguage(language);
-    }
-
-    public static void setCurrentSearch(Search value){
-        currentSearch = value;
-    }
-
-    public static Search getCurrentSearch(){
-        return currentSearch;
     }
 }

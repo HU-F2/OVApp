@@ -1,13 +1,12 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
+import com.mobiliteitsfabriek.ovapp.exceptions.ExistingFavoriteException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidRouteException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MatchingStationsException;
-import com.mobiliteitsfabriek.ovapp.general.ValidationFunctions;
+import com.mobiliteitsfabriek.ovapp.model.FavoritesManagement;
 import com.mobiliteitsfabriek.ovapp.model.UserManagement;
-import com.mobiliteitsfabriek.ovapp.service.StationHandler;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
-import com.mobiliteitsfabriek.ovapp.service.ValidStationHandler;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
@@ -25,6 +24,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class HomePage {
+    private static VBox mainContainer;
+    private static InputContainer addFavoriteBtnInputContainer;
+    private static SearchFieldStation startStationField;
+    private static SearchFieldStation endStationField;
 
     public static Scene getScene() {
         // Top bar
@@ -32,9 +35,9 @@ public class HomePage {
         Button authButton = new Button(authText);
         authButton.getStyleClass().add("goTo-login-page-button");
         authButton.setOnAction(actionEvent -> {
-            if(UserManagement.userLoggedIn()){
+            if (UserManagement.userLoggedIn()) {
                 logout();
-            }else{
+            } else {
                 goToLoginPage();
             }
         });
@@ -44,59 +47,60 @@ public class HomePage {
         topBar.getStyleClass().add("topBar");
 
         // Search fields
-        SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(),
-                TranslationHelper.get("searchFieldStation.start"));
+        startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"));
         startStationField.getStyleClass().add("station-field");
         InputContainer startFieldContainer = new InputContainer(startStationField);
-        SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(),
-                TranslationHelper.get("searchFieldStation.end"));
+
+        endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"));
         endStationField.getStyleClass().add("station-field");
         InputContainer endFieldContainer = new InputContainer(endStationField);
-        Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
-        submitBtn.getStyleClass().add("submit-btn");
-        InputContainer submitBtnContainer = new InputContainer(submitBtn);
+
+        SwapButton swapBtn = new SwapButton(() -> onSwap());
+        swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
+        swapBtn.setTranslateX(175);
 
         VBox startWithEndStation = new VBox(10);
         startWithEndStation.getStyleClass().add("station-box");
         startWithEndStation.getChildren().addAll(startFieldContainer, endFieldContainer);
-        
-        DateTimePicker dateTimeComponent = new DateTimePicker(true);
-        DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
-
-        submitBtn.setOnAction(event->RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent.getDateTimeRFC3339Format(), departureToggleComponent.isArrival(), startFieldContainer, endFieldContainer, submitBtnContainer));
-
-        SwapButton swapBtn = new SwapButton(() -> onSwap(startStationField, endStationField));
-        swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
-        swapBtn.setTranslateX(175);
 
         StackPane textFieldsWithButton = new StackPane(startWithEndStation, swapBtn);
 
+        DateTimePicker dateTimeComponent = new DateTimePicker(true);
+        DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
+
+        Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
+        submitBtn.getStyleClass().add("submit-btn");
+        InputContainer submitBtnContainer = new InputContainer(submitBtn);
+
+        submitBtn.setOnAction(event -> RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent.getDateTimeRFC3339Format(), departureToggleComponent.isArrival(), startFieldContainer, endFieldContainer, submitBtnContainer));
+
         // Favorites
-        Button favoriteBtn = new Button(TranslationHelper.get("favorites.add"));
-        favoriteBtn.getStyleClass().add("favorite-btn");
-        Button favoritesPageBtn = new Button(TranslationHelper.get("favorites"));
-        favoritesPageBtn.getStyleClass().add("submit-btn");
-        InputContainer addFavoriteBtn = new InputContainer(favoriteBtn);
-        addFavoriteBtn.setAlignment(Pos.CENTER);
+        if (UserManagement.userLoggedIn()) {
+            Button addFavoriteBtn = new Button(TranslationHelper.get("favorites.add"));
+            addFavoriteBtn.getStyleClass().add("favorite-btn");
+            addFavoriteBtn.setOnAction(event -> onAddFavorite(startStationField.getValue(), endStationField.getValue()));
 
-        favoriteBtn.setOnAction(event -> onAddFavorite(startStationField, endStationField, addFavoriteBtn));
-        
-        favoritesPageBtn.setOnAction(event -> {
-            OVAppUI.switchToScene(FavoritePage.getScene());
-        });
-        VBox favoritesContainer = new VBox(addFavoriteBtn,favoritesPageBtn);
-        favoritesContainer.setAlignment(Pos.CENTER);
-        favoritesContainer.setSpacing(8);
+            addFavoriteBtnInputContainer = new InputContainer(addFavoriteBtn);
+            addFavoriteBtnInputContainer.setAlignment(Pos.CENTER);
 
-        // Putting it together
-        VBox mainContainer = new VBox(textFieldsWithButton, dateTimeComponent,
-                departureToggleComponent.departureToggleButton(), submitBtnContainer);
-        mainContainer.getStyleClass().add("container");
-        if(UserManagement.userLoggedIn()){
-            mainContainer.getChildren().add(favoritesContainer);
+            Button favoritesPageBtn = new Button(TranslationHelper.get("favorites"));
+            favoritesPageBtn.getStyleClass().add("submit-btn");
+            favoritesPageBtn.setOnAction(event -> {
+                OVAppUI.switchToScene(FavoritePage.getScene());
+            });
+
+            VBox favoritesContainer = new VBox(addFavoriteBtn, favoritesPageBtn);
+            favoritesContainer.setAlignment(Pos.CENTER);
+            favoritesContainer.setSpacing(8);
+
+            mainContainer = new VBox(textFieldsWithButton, dateTimeComponent, departureToggleComponent.departureToggleButton(), submitBtnContainer, favoritesContainer);
+        } else {
+            mainContainer = new VBox(textFieldsWithButton, dateTimeComponent, departureToggleComponent.departureToggleButton(), submitBtnContainer);
         }
+        mainContainer.getStyleClass().add("container");
 
         VBox root = new VBox(topBar, mainContainer);
+
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;
@@ -106,28 +110,26 @@ public class HomePage {
         OVAppUI.switchToScene(new LoginPage().getScene());
     }
 
-    private static void logout(){
+    private static void logout() {
         UserManagement.logout();
         OVAppUI.switchToScene(HomePage.getScene());
     }
 
-    private static void onAddFavorite(SearchFieldStation startStation, SearchFieldStation endStation, InputContainer favoriteContainer){
-        String startValue = startStation.getValue();
-        String endValue = endStation.getValue();
-        
-        favoriteContainer.noError();
+    private static void onAddFavorite(String startValue, String endValue) {
+        addFavoriteBtnInputContainer.noError();
         try {
-            ValidationFunctions.validateFavoriteRoute(startValue, endValue);
-        } catch (InvalidRouteException|MatchingStationsException e) {
-            favoriteContainer.addError(e.getMessage());
-            return; 
-        } 
-
-        StationHandler stationHandler = new ValidStationHandler();
-        stationHandler.handle(startValue, endValue);
+            FavoritesManagement.addFavorite(startValue, endValue);
+        } catch (InvalidRouteException | MatchingStationsException e) {
+            addFavoriteBtnInputContainer.addError(e.getMessage());
+        } catch (ExistingFavoriteException e) {
+            addFavoriteBtnInputContainer.addError(e.getMessage());
+            if (GlobalConfig.DEBUG_FAVORITE) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
-    private static void onSwap(SearchFieldStation startStationField, SearchFieldStation endStationField){
+    private static void onSwap() {
         String startValue = startStationField.getValue();
         String endValue = endStationField.getValue();
 

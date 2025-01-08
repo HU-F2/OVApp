@@ -2,12 +2,14 @@ package com.mobiliteitsfabriek.ovapp.general;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.enums.InputKey;
 import com.mobiliteitsfabriek.ovapp.exceptions.DateInPastException;
+import com.mobiliteitsfabriek.ovapp.exceptions.ExistingFavoriteException;
 import com.mobiliteitsfabriek.ovapp.exceptions.ExistingUserException;
 import com.mobiliteitsfabriek.ovapp.exceptions.IncorrectPasswordException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidPasswordException;
@@ -18,9 +20,11 @@ import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserFoundException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserWithUserNameExistsException;
 import com.mobiliteitsfabriek.ovapp.exceptions.StationNotFoundException;
+import com.mobiliteitsfabriek.ovapp.model.Favorite;
 import com.mobiliteitsfabriek.ovapp.model.Search;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.model.User;
+import com.mobiliteitsfabriek.ovapp.service.FavoriteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.service.UserService;
 
@@ -77,7 +81,7 @@ public class ValidationFunctions {
             if (!ValidationFunctions.checkUsernameMatchesPattern(username)) {
                 throw new InvalidUsernameException();
             }
-        }        
+        }
 
         if (GlobalConfig.CHECK_PASSWORD_CREATE_PATTERN) {
             if (!ValidationFunctions.checkPasswordMatchesPattern(password)) {
@@ -93,44 +97,52 @@ public class ValidationFunctions {
     }
 
     // Favorite routes
-    public static void validateFavoriteRoute(String startValue, String endValue) throws InvalidRouteException, MatchingStationsException{
-        if(startValue == null || endValue == null || UtilityFunctions.checkEmpty(startValue) || UtilityFunctions.checkEmpty(endValue)){
+    public static Favorite validateFavoriteRoute(String startValue, String endValue) throws InvalidRouteException, MatchingStationsException, ExistingFavoriteException {
+        if (UtilityFunctions.checkEmpty(startValue) || UtilityFunctions.checkEmpty(endValue)) {
             throw new InvalidRouteException(InputKey.FAVORITE);
         }
 
-        if(startValue.equals(endValue)){
+        if (startValue.equals(endValue)) {
             throw new MatchingStationsException(InputKey.FAVORITE);
         }
+
+        ArrayList<Favorite> favorites = FavoriteService.loadFavorites();
+        Favorite newFavorite = new Favorite(startValue, endValue);
+        if (favorites.contains(newFavorite)) {
+            throw new ExistingFavoriteException();
+        }
+
+        return newFavorite;
     }
 
     // Search route
-    public static Search validateSearchRoute(String startValue, String endValue,LocalDateTime selectedDate,boolean isArrival) throws MissingFieldException,MatchingStationsException,StationNotFoundException,DateInPastException{
-        if(startValue == null || UtilityFunctions.checkEmpty(startValue)){
+    public static Search validateSearchRoute(String startValue, String endValue, LocalDateTime selectedDate, boolean isArrival) throws MissingFieldException, MatchingStationsException, StationNotFoundException, DateInPastException {
+        if (UtilityFunctions.checkEmpty(startValue)) {
             throw new MissingFieldException(InputKey.START_STATION);
         }
 
-        Station startStation = StationService.getStation(startValue);
-        if (startStation == null) {
-            throw new StationNotFoundException(InputKey.START_STATION);
-        }
-
-        if(endValue == null || UtilityFunctions.checkEmpty(endValue)){
+        if (UtilityFunctions.checkEmpty(endValue)) {
             throw new MissingFieldException(InputKey.END_STATION);
         }
 
-        Station endStation = StationService.getStation(endValue);
-        if (endStation == null) {
-            throw new StationNotFoundException(InputKey.END_STATION);
-        }
-
-        if(startValue.equals(endValue)){
+        if (startValue.equals(endValue)) {
             throw new MatchingStationsException(InputKey.SEARCH_ROUTE);
         }
 
-        if(selectedDate.isBefore(LocalDateTime.now().minusMinutes(5))){
+        if (selectedDate.isBefore(LocalDateTime.now().minusMinutes(5))) {
             throw new DateInPastException(InputKey.TRAVEL_DATE);
         }
 
-        return new Search(startStation,endStation,isArrival,selectedDate);
+        Station startStation = StationService.getStation(startValue);
+        if (UtilityFunctions.checkEmpty(startStation)) {
+            throw new StationNotFoundException(InputKey.START_STATION);
+        }
+
+        Station endStation = StationService.getStation(endValue);
+        if (UtilityFunctions.checkEmpty(endStation)) {
+            throw new StationNotFoundException(InputKey.END_STATION);
+        }
+
+        return new Search(startStation, endStation, isArrival, selectedDate);
     }
 }

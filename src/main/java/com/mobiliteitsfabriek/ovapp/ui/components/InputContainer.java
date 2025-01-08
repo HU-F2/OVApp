@@ -15,8 +15,8 @@ public class InputContainer extends VBox {
         createLabeledField(labelText, field);
     }
 
-    public InputContainer(Control field){
-        this(null,field);
+    public InputContainer(Control field) {
+        this(null, field);
     }
 
     public void addError(String invalidValidationMessage) {
@@ -36,7 +36,7 @@ public class InputContainer extends VBox {
     }
 
     private void createLabeledField(String labelText, Control field) {
-        if(UtilityFunctions.checkEmpty(labelText)){
+        if (UtilityFunctions.checkEmpty(labelText)) {
             this.getChildren().add(field);
             this.setAlignment(Pos.CENTER);
             return;

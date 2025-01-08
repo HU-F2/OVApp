@@ -42,7 +42,7 @@ public class RouteService {
             JSONObject lastDestinationObject = legsArray.getJSONObject(legsArray.length() - 1).getJSONObject("destination");
 
             String ctxRecon = trip.getString("ctxRecon");
-            if(farePrices == null){
+            if (farePrices == null) {
                 farePrices = routePrice(ctxRecon);
             }
 
@@ -85,7 +85,7 @@ public class RouteService {
 
     // Hier maken we de API call
     private static FarePrices routePrice(String ctxRecon) {
-        try{
+        try {
             String queryParams = MessageFormat.format("?ctxRecon={0}", URLEncoder.encode(ctxRecon, "UTF-8"));
             String data = GeneralService.sendApiRequest(TRIP_BASE_URL, queryParams);
 
@@ -94,12 +94,10 @@ public class RouteService {
             }
 
             return parseSingleRoute(data);
-        }
-        catch(Exception exception) {
+        } catch (Exception exception) {
             return null;
         }
     }
- 
 
     public static FarePrices parseSingleRoute(String jsonString) {
         JSONArray faresArray = new JSONObject(new JSONTokener(jsonString)).getJSONArray("fares");
@@ -115,11 +113,11 @@ public class RouteService {
             String travelClass = fare.getString("travelClass");
             String discountType = fare.getString("discountType");
 
-            if (product.equals("OVCHIPKAART_ENKELE_REIS")&&travelClass.equals("FIRST_CLASS")&&discountType.equals("NO_DISCOUNT")){
+            if (product.equals("OVCHIPKAART_ENKELE_REIS") && travelClass.equals("FIRST_CLASS") && discountType.equals("NO_DISCOUNT")) {
                 firstClassPriceInCents = priceInCents;
             }
 
-            if (product.equals("OVCHIPKAART_ENKELE_REIS")&&travelClass.equals("SECOND_CLASS")&&discountType.equals("NO_DISCOUNT")){
+            if (product.equals("OVCHIPKAART_ENKELE_REIS") && travelClass.equals("SECOND_CLASS") && discountType.equals("NO_DISCOUNT")) {
                 secondClassPriceInCents = priceInCents;
             }
         }

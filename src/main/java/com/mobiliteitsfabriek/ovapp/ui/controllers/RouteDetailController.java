@@ -2,8 +2,8 @@ package com.mobiliteitsfabriek.ovapp.ui.controllers;
 
 import java.util.ArrayList;
 
-import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.Route;
+import com.mobiliteitsfabriek.ovapp.model.SearchManagement;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.pages.RoutesPage;
 
@@ -25,7 +25,7 @@ public class RouteDetailController {
     }
 
     public void handleBackButton(ActionEvent actionEvent, ArrayList<Route> routes) {
-        Scene routesPage = RoutesPage.getScene(routes, GlobalConfig.getCurrentSearch());
+        Scene routesPage = RoutesPage.getScene(routes, SearchManagement.getCurrentSearch());
         OVAppUI.switchToScene(routesPage);
     }
 }
