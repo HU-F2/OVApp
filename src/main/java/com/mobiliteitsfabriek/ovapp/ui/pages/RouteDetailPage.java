@@ -1,12 +1,12 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import java.util.ArrayList;
-
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+import com.mobiliteitsfabriek.ovapp.ui.components.MapViewer;
 import com.mobiliteitsfabriek.ovapp.ui.controllers.RouteDetailController;
 
 import javafx.scene.AccessibleRole;
@@ -43,9 +43,17 @@ public class RouteDetailPage {
         backButton.setPrefSize(120, 40);
 
         VBox layoutData = new VBox(0, header, listGroup);
+        
+        // Open Map button
+        Button openMapButton = new Button(TranslationHelper.get("detail.mapviewer"));
+        openMapButton.setOnAction(actionEvent -> {
+            MapViewer mapViewer = new MapViewer(controller.getRoute());
+            mapViewer.showMap();
+        });
+        openMapButton.setPrefSize(120, 40);
 
         // Layout
-        VBox layout = new VBox(10, layoutData, backButton);
+        VBox layout = new VBox(10, layoutData, new HBox(10, backButton, openMapButton));
         layout.getStyleClass().add("detailedRoute-container");
 
         Scene scene = new Scene(layout, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
@@ -109,4 +117,6 @@ public class RouteDetailPage {
 
         return listGroup;
     }
+    
 }
+
