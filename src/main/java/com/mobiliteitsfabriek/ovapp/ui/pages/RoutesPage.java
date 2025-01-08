@@ -1,6 +1,5 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
@@ -31,7 +30,7 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class RoutesPage {
-    public static Scene getScene(ArrayList<Route> routes, LocalDate defaultDate, String defaultTime) {
+    public static Scene getScene(ArrayList<Route> routes, Search search) {
         Route firstRoute = routes.get(0);
 
         VBox root = new VBox();
@@ -45,8 +44,8 @@ public class RoutesPage {
         HBox centerContainer = new HBox();
         // Datetime picker
         DateTimePicker dateTimeContainer = new DateTimePicker();
-        dateTimeContainer.getDatePicker().setValue(defaultDate);
-        dateTimeContainer.getTimeSpinner().getValueFactory().setValue(defaultTime);
+        dateTimeContainer.getDatePicker().setValue(search.getSelectedDate().toLocalDate());
+        dateTimeContainer.getTimeSpinner().getValueFactory().setValue(UtilityFunctions.formatTime(search.getSelectedDate()));
 
         // Locations
         VBox locationContainer = new VBox();
@@ -64,7 +63,7 @@ public class RoutesPage {
         searchButton.getStyleClass().add("submit-btn");
         InputContainer submitContainer = new InputContainer(searchButton);
         searchButton.setOnAction(event -> {
-            handleSearch(startStationField, endStationField, dateTimePicker, false,startContainer,endContainer,submitContainer);
+            handleSearch(startStationField, endStationField, dateTimePicker.getDateTimeRFC3339Format(), false,startContainer,endContainer,submitContainer);
         });
         headerContainer.getChildren().addAll(backButton, centerContainer, submitContainer);
         HBox.setHgrow(centerContainer, Priority.ALWAYS);
@@ -83,12 +82,12 @@ public class RoutesPage {
         return scene;
     }
 
-    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField, DateTimePicker dateTimePicker, boolean isToggleDeparture,InputContainer startContainer, InputContainer endContainer, InputContainer submitContainer) {
+    public static void handleSearch(SearchFieldStation startStationField, SearchFieldStation endStationField, String dateTimeRFC3339, boolean isToggleDeparture,InputContainer startContainer, InputContainer endContainer, InputContainer submitContainer) {
         try {
             startContainer.noError();
             endContainer.noError();
             submitContainer.noError();
-            search(startStationField, endStationField, dateTimePicker, isToggleDeparture);
+            search(startStationField, endStationField, dateTimeRFC3339, isToggleDeparture);
         } catch (MissingFieldException | StationNotFoundException e) {
             if(e.getInputKey().equals(InputKey.START_STATION)){
                 startContainer.addError(e.getMessage());
@@ -100,18 +99,15 @@ public class RoutesPage {
         }
     }
 
-    private static void search(SearchFieldStation startStationField, SearchFieldStation endStationField, DateTimePicker dateTimePicker, boolean isToggleDeparture) throws MissingFieldException, StationNotFoundException, MatchingStationsException, DateInPastException{
+    private static void search(SearchFieldStation startStationField, SearchFieldStation endStationField, String dateTimeRFC3339, boolean isToggleDeparture) throws MissingFieldException, StationNotFoundException, MatchingStationsException, DateInPastException{
         String startName = startStationField.getEditor().textProperty().get().replace("’", "'");
         String endName = endStationField.getEditor().textProperty().get().replace("’", "'");
         
-        Search search = ValidationFunctions.validateSearchRoute(startName, endName,UtilityFunctions.getLocalDateFromRFC3339String(dateTimePicker.getDateTimeRFC3339Format()),isToggleDeparture);
+        Search search = ValidationFunctions.validateSearchRoute(startName, endName,UtilityFunctions.getLocalDateFromRFC3339String(dateTimeRFC3339),isToggleDeparture);
 
         GlobalConfig.setCurrentSearch(search);
-
-        LocalDate selectedDate = dateTimePicker.getDatePicker().getValue();
-        String selectedTime = dateTimePicker.getTimeSpinner().getValue();
-        ArrayList<Route> newRoutes = RouteService.getRoutes(search.getStartStation().getId(), search.getEndStation().getId(), dateTimePicker.getDateTimeRFC3339Format(), isToggleDeparture);
-        Scene routesPage = RoutesPage.getScene(newRoutes, selectedDate, selectedTime);
+        ArrayList<Route> newRoutes = RouteService.getRoutes(search.getStartStation().getId(), search.getEndStation().getId(), dateTimeRFC3339, isToggleDeparture);
+        Scene routesPage = RoutesPage.getScene(newRoutes, search);
 
         OVAppUI.switchToScene(routesPage);
     }

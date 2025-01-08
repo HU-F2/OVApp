@@ -2,6 +2,7 @@ package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidRouteException;
+import com.mobiliteitsfabriek.ovapp.exceptions.MatchingStationsException;
 import com.mobiliteitsfabriek.ovapp.general.ValidationFunctions;
 import com.mobiliteitsfabriek.ovapp.model.UserManagement;
 import com.mobiliteitsfabriek.ovapp.service.StationHandler;
@@ -62,28 +63,9 @@ public class HomePage {
         DateTimePicker dateTimeComponent = new DateTimePicker(true);
         DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
 
-        submitBtn.setOnAction(event->RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent, departureToggleComponent.isArrival(), startFieldContainer, endFieldContainer, submitBtnContainer));
+        submitBtn.setOnAction(event->RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent.getDateTimeRFC3339Format(), departureToggleComponent.isArrival(), startFieldContainer, endFieldContainer, submitBtnContainer));
 
-        SwapButton swapBtn = new SwapButton(() -> {
-            String startValue = startStationField.getValue();
-            String endValue = endStationField.getValue();
-
-            if (endValue != null) {
-                endValue = endValue.replace("'", "’");
-                startStationField.getSelectionModel().select(endValue);
-            }
-
-            if (startValue != null) {
-                startValue = startValue.replace("'", "’");
-                endStationField.getSelectionModel().select(startValue);
-            }
-
-            startStationField.setValue(endValue);
-            endStationField.setValue(startValue);
-
-            startStationField.hide();
-            endStationField.hide();
-        });
+        SwapButton swapBtn = new SwapButton(() -> onSwap(startStationField, endStationField));
         swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
         swapBtn.setTranslateX(175);
 
@@ -97,21 +79,7 @@ public class HomePage {
         InputContainer addFavoriteBtn = new InputContainer(favoriteBtn);
         addFavoriteBtn.setAlignment(Pos.CENTER);
 
-        favoriteBtn.setOnAction(event -> {
-            String startValue = startStationField.getValue();
-            String endValue = endStationField.getValue();
-            
-            addFavoriteBtn.noError();
-            try {
-                ValidationFunctions.validateFavoriteRoute(startValue, endValue);
-            } catch (InvalidRouteException e) {
-                addFavoriteBtn.addError(e.getMessage());
-                return; 
-            } 
-
-            StationHandler stationHandler = new ValidStationHandler();
-            stationHandler.handle(startValue, endValue);
-        });
+        favoriteBtn.setOnAction(event -> onAddFavorite(startStationField, endStationField, addFavoriteBtn));
         
         favoritesPageBtn.setOnAction(event -> {
             OVAppUI.switchToScene(FavoritePage.getScene());
@@ -143,20 +111,40 @@ public class HomePage {
         OVAppUI.switchToScene(HomePage.getScene());
     }
 
-    // private static void onSubmit(SearchFieldStation startStation, SearchFieldStation endStation, DateTimePicker dateTimePicker, boolean isArrival,InputContainer startContainer, InputContainer endContainer, InputContainer submitContainer){
-    //     try {
-    //         startContainer.noError();
-    //         endContainer.noError();
-    //         submitContainer.noError();
-    //         RoutesPage.handleSearch(startStation, endStation, dateTimePicker, isArrival);
-    //     } catch (MissingFieldException | StationNotFoundException e) {
-    //         if(e.getInputKey().equals(InputKey.START_STATION)){
-    //             startContainer.addError(e.getMessage());
-    //         }else if(e.getInputKey().equals(InputKey.END_STATION)){
-    //             endContainer.addError(e.getMessage());
-    //         }
-    //     }catch(MatchingStationsException e){
-    //         submitContainer.addError(e.getMessage());
-    //     }
-    // }
+    private static void onAddFavorite(SearchFieldStation startStation, SearchFieldStation endStation, InputContainer favoriteContainer){
+        String startValue = startStation.getValue();
+        String endValue = endStation.getValue();
+        
+        favoriteContainer.noError();
+        try {
+            ValidationFunctions.validateFavoriteRoute(startValue, endValue);
+        } catch (InvalidRouteException|MatchingStationsException e) {
+            favoriteContainer.addError(e.getMessage());
+            return; 
+        } 
+
+        StationHandler stationHandler = new ValidStationHandler();
+        stationHandler.handle(startValue, endValue);
+    }
+
+    private static void onSwap(SearchFieldStation startStationField, SearchFieldStation endStationField){
+        String startValue = startStationField.getValue();
+        String endValue = endStationField.getValue();
+
+        if (endValue != null) {
+            endValue = endValue.replace("'", "’");
+            startStationField.getSelectionModel().select(endValue);
+        }
+
+        if (startValue != null) {
+            startValue = startValue.replace("'", "’");
+            endStationField.getSelectionModel().select(startValue);
+        }
+
+        startStationField.setValue(endValue);
+        endStationField.setValue(startValue);
+
+        startStationField.hide();
+        endStationField.hide();
+    }
 }

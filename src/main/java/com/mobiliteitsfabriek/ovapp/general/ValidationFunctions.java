@@ -93,9 +93,13 @@ public class ValidationFunctions {
     }
 
     // Favorite routes
-    public static void validateFavoriteRoute(String startValue, String endValue) throws InvalidRouteException{
+    public static void validateFavoriteRoute(String startValue, String endValue) throws InvalidRouteException, MatchingStationsException{
         if(startValue == null || endValue == null || UtilityFunctions.checkEmpty(startValue) || UtilityFunctions.checkEmpty(endValue)){
             throw new InvalidRouteException(InputKey.FAVORITE);
+        }
+
+        if(startValue.equals(endValue)){
+            throw new MatchingStationsException(InputKey.FAVORITE);
         }
     }
 
