@@ -58,18 +58,20 @@ public class RouteDetailPage {
         title.getStyleClass().add("title");
         title.setFocusTraversable(GlobalConfig.isUsingScreenreader);
 
-        Label travelInfo;
-        if (UtilityFunctions.checkEmpty(route.getCost())) {
-            travelInfo = new Label(TranslationHelper.get("detail.travelInfo", route.getStartLocation(), route.getEndLocation()));
-            travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfo.accessibleText", route.getStartLocation(), route.getEndLocation()));
-        } else {
-            travelInfo = new Label(TranslationHelper.get("detail.travelInfoPrice", route.getStartLocation(), route.getEndLocation(), UtilityFunctions.formatValueAsCurrency(route.getCost())));
-            travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfoPrice.accessibleText", route.getStartLocation(), route.getEndLocation(), UtilityFunctions.formatValueAsCurrency(route.getCost())));
-        }
+        Label travelInfo = new Label(TranslationHelper.get("detail.travelInfo", route.getStartLocation(), route.getEndLocation()));
+        travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfo.accessibleText", route.getStartLocation(), route.getEndLocation()));
+        
         travelInfo.getStyleClass().add("info");
         travelInfo.setFocusTraversable(GlobalConfig.isUsingScreenreader);
-
+        
+        
         VBox headerContent = new VBox(title, travelInfo);
+        if(!UtilityFunctions.checkEmpty(route.getCost())){
+            Label priceLabel = new Label(TranslationHelper.get("detail.price",UtilityFunctions.formatValueAsCurrency(route.getCost().getFirstClassPriceInCents()/100.0),UtilityFunctions.formatValueAsCurrency(route.getCost().getSecondClassPriceInCents()/100.0)));
+            priceLabel.getStyleClass().add("info");
+            headerContent.getChildren().add(priceLabel);
+        }
+
         headerContent.setSpacing(5);
 
         HBox header = new HBox(headerContent);
