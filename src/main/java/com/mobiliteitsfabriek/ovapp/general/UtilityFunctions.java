@@ -78,9 +78,9 @@ public class UtilityFunctions {
         return String.format("%02d:%02d uur", hours, minutes);
     }
 
-    public static String formatValueAsCurrency(double value) {
+    public static String formatValueInCentsAsCurrency(double valueInCents) {
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(GlobalConfig.NETHERLANDS_LOCAL);
-        return currencyFormatter.format(value);
+        return currencyFormatter.format(valueInCents / 100.0);
     }
 
     public static String formatTransport(String transportName, String transportType, String transportDirection) {

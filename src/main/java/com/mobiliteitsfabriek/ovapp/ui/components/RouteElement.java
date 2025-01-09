@@ -48,7 +48,7 @@ public class RouteElement extends HBox {
 
         VBox container = new VBox(timeLabel, infoLabel);
 
-        Label priceLabel = new Label("€" + String.valueOf(route.getCost().getFirstClassPriceInCents() / 100.0f));
+        Label priceLabel = new Label(UtilityFunctions.formatValueInCentsAsCurrency(route.getCost().getFirstClassPriceInCents()));
         HBox.setHgrow(container, Priority.ALWAYS);
 
         this.getChildren().addAll(container, priceLabel);
