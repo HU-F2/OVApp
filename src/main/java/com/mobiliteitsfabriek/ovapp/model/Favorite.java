@@ -15,16 +15,8 @@ public class Favorite {
         return startStation;
     }
 
-    public void setStartStation(String startStation) {
-        this.startStation = startStation;
-    }
-
     public String getEndStation() {
         return endStation;
-    }
-
-    public void setEndStation(String endStation) {
-        this.endStation = endStation;
     }
 
     @Override

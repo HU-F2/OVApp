@@ -45,10 +45,10 @@ public class RouteElement extends HBox {
         infoLabel.getStyleClass().add("info-container");
         infoLabel.setFocusTraversable(GlobalConfig.isUsingScreenreader);
         infoLabel.focusedProperty().addListener(this::handleFocusChange);//Workaround for focus-within
-        
+
         VBox container = new VBox(timeLabel, infoLabel);
 
-        Label priceLabel = new Label("€" + String.valueOf(route.getCost().getFirstClassPriceInCents()/100.0f));
+        Label priceLabel = new Label(UtilityFunctions.formatValueInCentsAsCurrency(route.getCost().getFirstClassPriceInCents()));
         HBox.setHgrow(container, Priority.ALWAYS);
 
         this.getChildren().addAll(container, priceLabel);

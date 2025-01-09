@@ -13,6 +13,7 @@ public class GlobalConfig {
     // UtilityFunctions
     public static final String DATE_TIME_FORMAT = "dd-MM-yyyy HH:mm";
     public static final String TIME_FORMAT = "HH:mm";
+    public static final String RFC3339_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssXXX";
     public static final Locale NETHERLANDS_LOCAL = Locale.forLanguageTag("nl-NL");
 
     // API
@@ -28,6 +29,8 @@ public class GlobalConfig {
 
     // console output
     public static final Boolean NO_TRANSLATION_KEY_ERROR_CONSOLE = true;
+    public static final Boolean DEBUG_FAVORITE = true;
+    public static final Boolean DEBUG_LOGIN = true;
 
     // Validation
     public static final int BCRYPT_STRENGTH = 10;

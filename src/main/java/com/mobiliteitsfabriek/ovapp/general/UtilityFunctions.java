@@ -21,6 +21,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.FarePrices;
+import com.mobiliteitsfabriek.ovapp.model.Search;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.model.User;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
@@ -51,8 +52,14 @@ public class UtilityFunctions {
         ZonedDateTime amsterdamZonedDateTime = localDateTime.atZone(ZoneId.of("Europe/Amsterdam"));
 
         // Format to RFC3339
-        DateTimeFormatter rfc3339Formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
+        DateTimeFormatter rfc3339Formatter = DateTimeFormatter.ofPattern(GlobalConfig.RFC3339_TIME_FORMAT);
         return amsterdamZonedDateTime.format(rfc3339Formatter);
+    }
+
+    public static LocalDateTime getLocalDateFromRFC3339String(String value) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(GlobalConfig.RFC3339_TIME_FORMAT);
+        LocalDateTime dateTime = LocalDateTime.parse(value, formatter);
+        return dateTime;
     }
 
     public static String formatDateTime(LocalDateTime dateTime) throws DateTimeException, IllegalArgumentException {
@@ -71,9 +78,9 @@ public class UtilityFunctions {
         return String.format("%02d:%02d uur", hours, minutes);
     }
 
-    public static String formatValueAsCurrency(double value) {
+    public static String formatValueInCentsAsCurrency(double valueInCents) {
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(GlobalConfig.NETHERLANDS_LOCAL);
-        return currencyFormatter.format(value);
+        return currencyFormatter.format(valueInCents / 100.0);
     }
 
     public static String formatTransport(String transportName, String transportType, String transportDirection) {
@@ -148,5 +155,9 @@ public class UtilityFunctions {
 
     public static boolean checkEmpty(FarePrices valueToCheck) {
         return valueToCheck == null;
+    }
+
+    public static boolean checkEmpty(Search valueToCheck) {
+        return valueToCheck == null || UtilityFunctions.checkEmpty(valueToCheck.getStartStation()) || UtilityFunctions.checkEmpty(valueToCheck.getEndStation());
     }
 }

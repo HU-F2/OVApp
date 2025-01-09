@@ -1,19 +1,24 @@
 package com.mobiliteitsfabriek.ovapp.service;
 
-import com.mobiliteitsfabriek.ovapp.model.Favorite;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import com.mobiliteitsfabriek.ovapp.model.Favorite;
 
 public class FavoriteService {
 
     private static final String FAVORITES_FILE_PATH = "src/main/resources/favorite.json";
 
-    public static List<Favorite> loadFavorites() {
-        List<Favorite> favorites = new ArrayList<>();
+    public static ArrayList<Favorite> loadFavorites() {
+        ArrayList<Favorite> favorites = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(FAVORITES_FILE_PATH))) {
             String content = reader.lines().reduce("", String::concat);
@@ -33,17 +38,10 @@ public class FavoriteService {
         return favorites;
     }
 
-    public static void saveFavorite(String startStation, String endStation) {
-        List<Favorite> favorites = loadFavorites();
-
-        Favorite newFavorite = new Favorite(startStation, endStation);
-
-        if (!favorites.contains(newFavorite)) {
-            favorites.add(newFavorite);
-            writeFavoritesToFile(favorites);
-        } else {
-            System.out.println("This route is already added as a favorite.");
-        }
+    public static void saveFavorite(Favorite newFavorite) {
+        ArrayList<Favorite> favorites = loadFavorites();
+        favorites.add(newFavorite);
+        writeFavoritesToFile(favorites);
     }
 
     private static void writeFavoritesToFile(List<Favorite> favorites) {

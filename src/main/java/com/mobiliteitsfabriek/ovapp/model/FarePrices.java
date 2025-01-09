@@ -13,18 +13,7 @@ public class FarePrices {
         return firstClassPriceInCents;
     }
 
-    public void setFirstClassPriceInCents(int firstClassPriceInCents) {
-        this.firstClassPriceInCents = firstClassPriceInCents;
-    }
-
     public int getSecondClassPriceInCents() {
         return secondClassPriceInCents;
     }
-
-    public void setSecondClassPriceInCents(int secondClassPriceInCents) {
-        this.secondClassPriceInCents = secondClassPriceInCents;
-    }
-
-
-
 }

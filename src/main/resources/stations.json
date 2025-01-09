@@ -3708,7 +3708,7 @@
   "country" : "B",
   "radius" : 525,
   "approachingRadius" : 1600,
-  "startDate" : "2017-04-12",
+  "startDate" : "2025-01-08",
   "nearbyMeLocationId" : {
     "value" : "FBNL",
     "type" : "stationV3"
@@ -3739,7 +3739,7 @@
   "country" : "B",
   "radius" : 525,
   "approachingRadius" : 1600,
-  "startDate" : "2024-12-15",
+  "startDate" : "2025-01-08",
   "nearbyMeLocationId" : {
     "value" : "ATW",
     "type" : "stationV3"
@@ -19784,8 +19784,8 @@
     "synonyms" : [ ]
   },
   "location" : {
-    "lat" : 55.63,
-    "lng" : 12.649167
+    "lat" : 55.24359,
+    "lng" : 10.23719
   },
   "tracks" : [ ],
   "hasKnownFacilities" : true,

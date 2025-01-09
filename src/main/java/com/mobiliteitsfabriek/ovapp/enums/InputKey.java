@@ -3,7 +3,11 @@ package com.mobiliteitsfabriek.ovapp.enums;
 public enum InputKey {
     USERNAME("username", "inputKey.username"),
     PASSWORD("password", "inputKey.password"),
-    FAVORITE("favorite","inputKey.favorite");
+    FAVORITE("favorite", "inputKey.favorite"),
+    START_STATION("startStation", "inputKey.startStation"),
+    END_STATION("endStation", "inputKey.endStation"),
+    TRAVEL_DATE("travelDate", "inputKey.travelDate"),
+    SEARCH_ROUTE("searchRoute", "inputKey.searchRoute");
 
     private final String inputName;
     private final String inputTranslation;

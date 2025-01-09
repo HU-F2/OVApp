@@ -2,6 +2,7 @@ package com.mobiliteitsfabriek.ovapp.ui.components;
 
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -14,8 +15,8 @@ public class InputContainer extends VBox {
         createLabeledField(labelText, field);
     }
 
-    public InputContainer(Control field){
-        this(null,field);
+    public InputContainer(Control field) {
+        this(null, field);
     }
 
     public void addError(String invalidValidationMessage) {
@@ -35,8 +36,9 @@ public class InputContainer extends VBox {
     }
 
     private void createLabeledField(String labelText, Control field) {
-        if(UtilityFunctions.checkEmpty(labelText)){
+        if (UtilityFunctions.checkEmpty(labelText)) {
             this.getChildren().add(field);
+            this.setAlignment(Pos.CENTER);
             return;
         }
         Label label = new Label(labelText);
