@@ -3,4 +3,9 @@
   "username" : "UserBas1",
   "password" : "$2a$10$2n2hytEkABxriN1N5B6SjOFUZbYjHuKob1caBlaQgKpFnyOusGuUq",
   "userType" : "USER"
+}, {
+  "id" : "2016c2e6-23bf-46e4-884c-b92754eefb6e",
+  "username" : "test",
+  "password" : "$2a$10$2a17iAZzWrq2JtIV0V6bxeq/NbVBjMpjca3hjYDEao1rlW16SZ.2K",
+  "userType" : "USER"
 } ]

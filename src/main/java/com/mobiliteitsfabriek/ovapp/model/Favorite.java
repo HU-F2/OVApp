@@ -3,12 +3,25 @@ package com.mobiliteitsfabriek.ovapp.model;
 import java.util.Objects;
 
 public class Favorite {
-    private String startStation;
-    private String endStation;
+    // routeId is called ctxRecon in NSApi
+    private final String routeId;
+    private final String userId;
+    private final String startStation;
+    private final String endStation;
 
-    public Favorite(String startStation, String endStation) {
+    public Favorite(String routeId, String userId, String startStation, String endStation) {
+        this.routeId = routeId;
+        this.userId = userId;
         this.startStation = startStation;
         this.endStation = endStation;
+    }
+
+    public String getRouteId(){
+        return routeId;
+    }
+
+    public String getUserId(){
+        return userId;
     }
 
     public String getStartStation() {
@@ -31,7 +44,7 @@ public class Favorite {
         if (o == null || getClass() != o.getClass())
             return false;
         Favorite that = (Favorite) o;
-        return startStation.equals(that.startStation) && endStation.equals(that.endStation);
+        return startStation.equals(that.startStation) && endStation.equals(that.endStation) && userId.equals(that.userId);
     }
 
     @Override

@@ -1,10 +1,6 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
-import com.mobiliteitsfabriek.ovapp.exceptions.ExistingFavoriteException;
-import com.mobiliteitsfabriek.ovapp.exceptions.InvalidRouteException;
-import com.mobiliteitsfabriek.ovapp.exceptions.MatchingStationsException;
-import com.mobiliteitsfabriek.ovapp.model.FavoritesManagement;
 import com.mobiliteitsfabriek.ovapp.model.UserManagement;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
@@ -76,12 +72,12 @@ public class HomePage {
 
         // Favorites
         if (UserManagement.userLoggedIn()) {
-            Button addFavoriteBtn = new Button(TranslationHelper.get("favorites.add"));
-            addFavoriteBtn.getStyleClass().add("favorite-btn");
-            addFavoriteBtn.setOnAction(event -> onAddFavorite(startStationField.getValue(), endStationField.getValue()));
+            // Button addFavoriteBtn = new Button(TranslationHelper.get("favorites.add"));
+            // addFavoriteBtn.getStyleClass().add("favorite-btn");
+            // addFavoriteBtn.setOnAction(event -> onAddFavorite(startStationField.getValue(), endStationField.getValue()));
 
-            addFavoriteBtnInputContainer = new InputContainer(addFavoriteBtn);
-            addFavoriteBtnInputContainer.setAlignment(Pos.CENTER);
+            // addFavoriteBtnInputContainer = new InputContainer(addFavoriteBtn);
+            // addFavoriteBtnInputContainer.setAlignment(Pos.CENTER);
 
             Button favoritesPageBtn = new Button(TranslationHelper.get("favorites"));
             favoritesPageBtn.getStyleClass().add("submit-btn");
@@ -89,7 +85,8 @@ public class HomePage {
                 OVAppUI.switchToScene(FavoritePage.getScene());
             });
 
-            VBox favoritesContainer = new VBox(addFavoriteBtn, favoritesPageBtn);
+            // VBox favoritesContainer = new VBox(addFavoriteBtn, favoritesPageBtn);
+            VBox favoritesContainer = new VBox(favoritesPageBtn);
             favoritesContainer.setAlignment(Pos.CENTER);
             favoritesContainer.setSpacing(8);
 
@@ -115,19 +112,7 @@ public class HomePage {
         OVAppUI.switchToScene(HomePage.getScene());
     }
 
-    private static void onAddFavorite(String startValue, String endValue) {
-        addFavoriteBtnInputContainer.noError();
-        try {
-            FavoritesManagement.addFavorite(startValue, endValue);
-        } catch (InvalidRouteException | MatchingStationsException e) {
-            addFavoriteBtnInputContainer.addError(e.getMessage());
-        } catch (ExistingFavoriteException e) {
-            addFavoriteBtnInputContainer.addError(e.getMessage());
-            if (GlobalConfig.DEBUG_FAVORITE) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
+    
 
     private static void onSwap() {
         String startValue = startStationField.getValue();

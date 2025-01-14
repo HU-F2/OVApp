@@ -1,19 +1,28 @@
 package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import java.util.ArrayList;
+
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
+import com.mobiliteitsfabriek.ovapp.exceptions.ExistingFavoriteException;
+import com.mobiliteitsfabriek.ovapp.exceptions.InvalidRouteException;
+import com.mobiliteitsfabriek.ovapp.exceptions.MatchingStationsException;
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
+import com.mobiliteitsfabriek.ovapp.model.FavoritesManagement;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.RouteTransfers;
+import com.mobiliteitsfabriek.ovapp.model.UserManagement;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.MapViewer;
 import com.mobiliteitsfabriek.ovapp.ui.controllers.RouteDetailController;
 
+import javafx.geometry.Pos;
 import javafx.scene.AccessibleRole;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 public class RouteDetailPage {
@@ -66,13 +75,26 @@ public class RouteDetailPage {
         title.getStyleClass().add("title");
         title.setFocusTraversable(GlobalConfig.isUsingScreenreader);
 
+        HBox spacer = new HBox();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        Button favoritesBtn = createFavoriteButton(route.getStartLocation(), route.getEndLocation());
+        
+        HBox container = new HBox(title, spacer);
+        if(favoritesBtn != null){
+            container.getChildren().add(favoritesBtn);
+        }
+        container.getStyleClass().add("detail-container");
+        container.setAlignment(Pos.BOTTOM_LEFT);
+
         Label travelInfo = new Label(TranslationHelper.get("detail.travelInfo", route.getStartLocation(), route.getEndLocation()));
         travelInfo.setAccessibleText(TranslationHelper.get("detail.travelInfo.accessibleText", route.getStartLocation(), route.getEndLocation()));
 
         travelInfo.getStyleClass().add("info");
         travelInfo.setFocusTraversable(GlobalConfig.isUsingScreenreader);
 
-        VBox headerContent = new VBox(title, travelInfo);
+        // VBox headerContent = new VBox(title, travelInfo);
+        VBox headerContent = new VBox(container, travelInfo);
         if (!UtilityFunctions.checkEmpty(route.getCost())) {
             Label priceLabel = new Label(TranslationHelper.get("detail.price", UtilityFunctions.formatValueInCentsAsCurrency(route.getCost().getFirstClassPriceInCents()), UtilityFunctions.formatValueInCentsAsCurrency(route.getCost().getSecondClassPriceInCents())));
             priceLabel.getStyleClass().add("info");
@@ -83,6 +105,11 @@ public class RouteDetailPage {
 
         HBox header = new HBox(headerContent);
         header.getStyleClass().add("header");
+
+        // Note: I couldn't get it to take up the whole space without this
+        header.widthProperty().addListener((observable, oldValue, newValue) -> {
+            container.setPrefWidth((Double)newValue);
+        });
         return header;
     }
 
@@ -115,6 +142,39 @@ public class RouteDetailPage {
         }
 
         return listGroup;
+    }
+
+    private Button createFavoriteButton(String startValue, String endValue){
+        if(!UserManagement.userLoggedIn()){
+            return null;
+        }
+
+        boolean favoriteExists = FavoritesManagement.favoriteExists(startValue, endValue);
+
+        if(favoriteExists){
+            // TODO: Add remove button here
+            return null;
+        }
+
+        Button addToFavoritesBtn = new Button(TranslationHelper.get("favorites.add"));
+        addToFavoritesBtn.getStyleClass().add("favorite-btn");
+        addToFavoritesBtn.setOnAction(event -> onAddFavorite(startValue, endValue));
+        return addToFavoritesBtn;
+    }
+
+    public void onAddFavorite(String startValue, String endValue) {
+        // addFavoriteBtnInputContainer.noError();
+        try {
+            FavoritesManagement.addFavorite(startValue, endValue);
+            OVAppUI.switchToScene(createRouteDetailScene());
+        } catch (InvalidRouteException | MatchingStationsException e) {
+            // addFavoriteBtnInputContainer.addError(e.getMessage());
+        } catch (ExistingFavoriteException e) {
+            // addFavoriteBtnInputContainer.addError(e.getMessage());
+            if (GlobalConfig.DEBUG_FAVORITE) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
     
 }

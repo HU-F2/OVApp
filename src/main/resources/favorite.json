@@ -1,10 +1,38 @@
 [
     {
         "endStation": "Zwolle",
-        "startStation": "Amsterdam Amstel"
+        "routeId": "0",
+        "startStation": "Amsterdam Amstel",
+        "userId": "ed127087-48ff-4102-bed6-559b2343ee8e"
     },
     {
         "endStation": "Utrecht Centraal",
-        "startStation": "Amsterdam Centraal"
+        "routeId": "1",
+        "startStation": "Amsterdam Centraal",
+        "userId": "ed127087-48ff-4102-bed6-559b2343ee8e"
+    },
+    {
+        "endStation": "Utrecht Centraal",
+        "routeId": "2",
+        "startStation": "Amersfoort Centraal",
+        "userId": "ed127087-48ff-4102-bed6-559b2343ee8e"
+    },
+    {
+        "endStation": "Groningen",
+        "routeId": "90876b0f-1f11-42f5-bec7-f2cda842f350",
+        "startStation": "Hoevelaken",
+        "userId": "ed127087-48ff-4102-bed6-559b2343ee8e"
+    },
+    {
+        "endStation": "Amersfoort Centraal",
+        "routeId": "3c3d9ae3-6325-47c9-a1cd-41b0933707fe",
+        "startStation": "Arnhem Centraal",
+        "userId": "2016c2e6-23bf-46e4-884c-b92754eefb6e"
+    },
+    {
+        "endStation": "Amersfoort Centraal",
+        "routeId": "6b8c1f82-d888-4063-8689-a17ba9ef587b",
+        "startStation": "Nijkerk",
+        "userId": "ed127087-48ff-4102-bed6-559b2343ee8e"
     }
 ]

@@ -28,4 +28,6 @@ public class RouteDetailController {
         Scene routesPage = RoutesPage.getScene(routes, SearchManagement.getCurrentSearch());
         OVAppUI.switchToScene(routesPage);
     }
+
+    
 }

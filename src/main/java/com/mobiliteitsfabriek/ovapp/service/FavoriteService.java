@@ -28,7 +28,7 @@ public class FavoriteService {
             JSONArray jsonArray = new JSONArray(content);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                favorites.add(new Favorite(jsonObject.getString("startStation"), jsonObject.getString("endStation")));
+                favorites.add(new Favorite(jsonObject.getString("routeId"),jsonObject.getString("userId"),jsonObject.getString("startStation"), jsonObject.getString("endStation")));
             }
 
         } catch (IOException e) {
@@ -49,6 +49,8 @@ public class FavoriteService {
 
         for (Favorite fav : favorites) {
             JSONObject jsonObject = new JSONObject();
+            jsonObject.put("routeId", fav.getRouteId());
+            jsonObject.put("userId", fav.getUserId());
             jsonObject.put("startStation", fav.getStartStation());
             jsonObject.put("endStation", fav.getEndStation());
             jsonArray.put(jsonObject);
