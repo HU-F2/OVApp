@@ -21,7 +21,7 @@ public class DepartureTimeToggleButton {
 
         vertrekButton.setSelected(true);
         selectedButton = vertrekButton;
-        HBox toggleContainer = new HBox(0, vertrekButton, aankomstButton);
+        HBox toggleContainer = new HBox(20, vertrekButton, aankomstButton);
 
         toggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {

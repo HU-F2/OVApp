@@ -13,6 +13,7 @@ import com.mobiliteitsfabriek.ovapp.ui.components.LanguagePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 import com.mobiliteitsfabriek.ovapp.ui.components.SwapButton;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -30,9 +31,6 @@ public class HomePage {
         // Top bar
         FavoritePageButton favoritesPageBtn = new FavoritePageButton();
 
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
-
         String authText = UserManagement.userLoggedIn() ? TranslationHelper.get("home.logout") : TranslationHelper.get("home.goTo.login.button");
         Button authButton = new Button(authText);
         authButton.getStyleClass().add("goTo-login-page-button");
@@ -45,10 +43,10 @@ public class HomePage {
         });
         LanguagePicker languagePicker = new LanguagePicker();
 
-        HBox topBar = new HBox(languagePicker, authButton);
-        if(UserManagement.userLoggedIn()){
-            topBar.getChildren().addFirst(spacer);
-            topBar.getChildren().addFirst(favoritesPageBtn);
+        HBox topBar = new HBox(20, languagePicker, authButton);
+        topBar.setAlignment(Pos.CENTER);
+        if (UserManagement.userLoggedIn()) {
+            topBar.getChildren().add(favoritesPageBtn);
         }
         topBar.getStyleClass().add("topBar");
 
