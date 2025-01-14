@@ -7,26 +7,32 @@ import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
+import com.mobiliteitsfabriek.ovapp.ui.components.FavoritePageButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.InputContainer;
 import com.mobiliteitsfabriek.ovapp.ui.components.LanguagePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 import com.mobiliteitsfabriek.ovapp.ui.components.SwapButton;
 
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class HomePage {
     private static VBox mainContainer;
-    private static InputContainer addFavoriteBtnInputContainer;
     private static SearchFieldStation startStationField;
     private static SearchFieldStation endStationField;
 
     public static Scene getScene() {
         // Top bar
+        FavoritePageButton favoritesPageBtn = new FavoritePageButton();
+
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
         String authText = UserManagement.userLoggedIn() ? TranslationHelper.get("home.logout") : TranslationHelper.get("home.goTo.login.button");
         Button authButton = new Button(authText);
         authButton.getStyleClass().add("goTo-login-page-button");
@@ -40,6 +46,10 @@ public class HomePage {
         LanguagePicker languagePicker = new LanguagePicker();
 
         HBox topBar = new HBox(languagePicker, authButton);
+        if(UserManagement.userLoggedIn()){
+            topBar.getChildren().addFirst(spacer);
+            topBar.getChildren().addFirst(favoritesPageBtn);
+        }
         topBar.getStyleClass().add("topBar");
 
         // Search fields
@@ -71,29 +81,7 @@ public class HomePage {
         submitBtn.setOnAction(event -> RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent.getDateTimeRFC3339Format(), departureToggleComponent.isArrival(), startFieldContainer, endFieldContainer, submitBtnContainer));
 
         // Favorites
-        if (UserManagement.userLoggedIn()) {
-            // Button addFavoriteBtn = new Button(TranslationHelper.get("favorites.add"));
-            // addFavoriteBtn.getStyleClass().add("favorite-btn");
-            // addFavoriteBtn.setOnAction(event -> onAddFavorite(startStationField.getValue(), endStationField.getValue()));
-
-            // addFavoriteBtnInputContainer = new InputContainer(addFavoriteBtn);
-            // addFavoriteBtnInputContainer.setAlignment(Pos.CENTER);
-
-            Button favoritesPageBtn = new Button(TranslationHelper.get("favorites"));
-            favoritesPageBtn.getStyleClass().add("submit-btn");
-            favoritesPageBtn.setOnAction(event -> {
-                OVAppUI.switchToScene(FavoritePage.getScene());
-            });
-
-            // VBox favoritesContainer = new VBox(addFavoriteBtn, favoritesPageBtn);
-            VBox favoritesContainer = new VBox(favoritesPageBtn);
-            favoritesContainer.setAlignment(Pos.CENTER);
-            favoritesContainer.setSpacing(8);
-
-            mainContainer = new VBox(textFieldsWithButton, dateTimeComponent, departureToggleComponent.departureToggleButton(), submitBtnContainer, favoritesContainer);
-        } else {
-            mainContainer = new VBox(textFieldsWithButton, dateTimeComponent, departureToggleComponent.departureToggleButton(), submitBtnContainer);
-        }
+        mainContainer = new VBox(textFieldsWithButton, dateTimeComponent, departureToggleComponent.departureToggleButton(), submitBtnContainer);
         mainContainer.getStyleClass().add("container");
 
         VBox root = new VBox(topBar, mainContainer);

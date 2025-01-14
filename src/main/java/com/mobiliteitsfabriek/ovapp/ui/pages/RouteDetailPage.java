@@ -78,7 +78,7 @@ public class RouteDetailPage {
         HBox spacer = new HBox();
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
-        Button favoritesBtn = createFavoriteButton(route.getStartLocation(), route.getEndLocation());
+        Button favoritesBtn = createFavoriteButton(route.getStartLocation(), route.getEndLocation(), route.getCtxRecon());
         
         HBox container = new HBox(title, spacer);
         if(favoritesBtn != null){
@@ -144,7 +144,7 @@ public class RouteDetailPage {
         return listGroup;
     }
 
-    private Button createFavoriteButton(String startValue, String endValue){
+    private Button createFavoriteButton(String startValue, String endValue, String routeId){
         if(!UserManagement.userLoggedIn()){
             return null;
         }
@@ -158,14 +158,14 @@ public class RouteDetailPage {
 
         Button addToFavoritesBtn = new Button(TranslationHelper.get("favorites.add"));
         addToFavoritesBtn.getStyleClass().add("favorite-btn");
-        addToFavoritesBtn.setOnAction(event -> onAddFavorite(startValue, endValue));
+        addToFavoritesBtn.setOnAction(event -> onAddFavorite(startValue, endValue, routeId));
         return addToFavoritesBtn;
     }
 
-    public void onAddFavorite(String startValue, String endValue) {
+    public void onAddFavorite(String startValue, String endValue, String routeId) {
         // addFavoriteBtnInputContainer.noError();
         try {
-            FavoritesManagement.addFavorite(startValue, endValue);
+            FavoritesManagement.addFavorite(startValue, endValue, routeId);
             OVAppUI.switchToScene(createRouteDetailScene());
         } catch (InvalidRouteException | MatchingStationsException e) {
             // addFavoriteBtnInputContainer.addError(e.getMessage());

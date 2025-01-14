@@ -7,11 +7,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mobiliteitsfabriek.ovapp.model.Favorite;
+import com.mobiliteitsfabriek.ovapp.model.User;
+import com.mobiliteitsfabriek.ovapp.model.UserManagement;
 
 public class FavoriteService {
 
@@ -36,6 +39,12 @@ public class FavoriteService {
         }
 
         return favorites;
+    }
+
+    public static ArrayList<Favorite> loadFavoriteByUser(){
+        ArrayList<Favorite> allFavorites = loadFavorites();
+        User loggedInUser = UserManagement.getLoggedInUser();
+        return allFavorites.stream().filter((favorite)->favorite.getUserId().equals(loggedInUser.getId())).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public static void saveFavorite(Favorite newFavorite) {

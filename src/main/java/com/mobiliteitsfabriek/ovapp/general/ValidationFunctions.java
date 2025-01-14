@@ -96,7 +96,7 @@ public class ValidationFunctions {
     }
 
     // Favorite routes
-    public static Favorite validateFavoriteRoute(String startValue, String endValue) throws InvalidRouteException, MatchingStationsException, ExistingFavoriteException {
+    public static Favorite validateFavoriteRoute(String startValue, String endValue, String routeId) throws InvalidRouteException, MatchingStationsException, ExistingFavoriteException {
         if (UtilityFunctions.checkEmpty(startValue) || UtilityFunctions.checkEmpty(endValue)) {
             throw new InvalidRouteException(InputKey.FAVORITE);
         }
@@ -105,7 +105,7 @@ public class ValidationFunctions {
             throw new MatchingStationsException(InputKey.FAVORITE);
         }
 
-        Favorite newFavorite = FavoritesManagement.getFavoriteIfUnique(startValue, endValue);
+        Favorite newFavorite = FavoritesManagement.getFavoriteIfUnique(startValue, endValue, routeId);
         if(newFavorite == null){
             throw new ExistingFavoriteException();
         }

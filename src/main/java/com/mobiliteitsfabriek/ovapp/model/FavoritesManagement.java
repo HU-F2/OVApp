@@ -13,8 +13,8 @@ import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
 public class FavoritesManagement {
 
-    public static void addFavorite(String startStation, String endStation) throws InvalidRouteException, MatchingStationsException, ExistingFavoriteException {
-        Favorite newFavorite = ValidationFunctions.validateFavoriteRoute(startStation, endStation);
+    public static void addFavorite(String startStation, String endStation, String routeId) throws InvalidRouteException, MatchingStationsException, ExistingFavoriteException {
+        Favorite newFavorite = ValidationFunctions.validateFavoriteRoute(startStation, endStation, routeId);
 
         if (GlobalConfig.DEBUG_FAVORITE) {
             System.out.println(TranslationHelper.get("debug.addFavorite", startStation, endStation));
@@ -22,10 +22,10 @@ public class FavoritesManagement {
         FavoriteService.saveFavorite(newFavorite);
     }
 
-    public static Favorite getFavoriteIfUnique(String startStation, String endStation){
+    public static Favorite getFavoriteIfUnique(String startStation, String endStation, String routeId){
         ArrayList<Favorite> favorites = FavoriteService.loadFavorites();
         User user = UserManagement.getLoggedInUser();
-        Favorite newFavorite = new Favorite(UtilityFunctions.generateID(), user.getId(), startStation, endStation);
+        Favorite newFavorite = new Favorite(routeId, user.getId(), startStation, endStation);
         if(favorites.contains(newFavorite)){
             return null;
         }

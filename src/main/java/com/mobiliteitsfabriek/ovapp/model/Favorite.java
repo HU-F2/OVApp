@@ -2,6 +2,8 @@ package com.mobiliteitsfabriek.ovapp.model;
 
 import java.util.Objects;
 
+import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
+
 public class Favorite {
     // routeId is called ctxRecon in NSApi
     private final String routeId;
@@ -34,7 +36,7 @@ public class Favorite {
 
     @Override
     public String toString() {
-        return String.format("FavoriteRoute [startStation=%s, endStation=%s]", startStation, endStation);
+        return TranslationHelper.get("favorites.route", this.getStartStation(), this.getEndStation());
     }
 
     @Override
