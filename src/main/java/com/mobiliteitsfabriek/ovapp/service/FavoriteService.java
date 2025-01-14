@@ -53,7 +53,7 @@ public class FavoriteService {
         writeFavoritesToFile(favorites);
     }
 
-    private static void writeFavoritesToFile(List<Favorite> favorites) {
+    public static void writeFavoritesToFile(List<Favorite> favorites) {
         JSONArray jsonArray = new JSONArray();
 
         for (Favorite fav : favorites) {

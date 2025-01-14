@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.model.Favorite;
+import com.mobiliteitsfabriek.ovapp.model.FavoritesManagement;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.service.FavoriteService;
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
@@ -27,9 +28,6 @@ public class FavoritePage {
 
         ListView<Favorite> favoriteListView = new ListView<>();
         ArrayList<Favorite> favorites = FavoriteService.loadFavoriteByUser();
-        // for (Favorite favorite : favorites) {
-        //     favoriteListView.getItems().add(TranslationHelper.get("favorites.route", favorite.getStartStation(), favorite.getEndStation()));
-        // }
         favoriteListView.getItems().addAll(favorites);
 
         Button backBtn = new Button(TranslationHelper.get("app.common.back"));
@@ -47,14 +45,25 @@ public class FavoritePage {
             Route route = RouteService.getRoute(favoriteListView.getSelectionModel().getSelectedItem().getRouteId());
             RouteElement.handleGoToDetailedRoute(route, null);
         });
+        
+        Button deleteRouteBtn = new Button(TranslationHelper.get("favorites.delete"));
+        deleteRouteBtn.getStyleClass().add("submit-btn");
+        deleteRouteBtn.setDisable(true);
+
+        deleteRouteBtn.setOnAction((e)->{
+            Favorite favorite = favoriteListView.getSelectionModel().getSelectedItem();
+            favoriteListView.getItems().remove(favorite);
+            FavoritesManagement.deleteFavorite(favorite.getRouteId());
+        });
 
         favoriteListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 showRouteBtn.setDisable(false);
+                deleteRouteBtn.setDisable(false);
             }
         });
         
-        HBox actionContainer = new HBox(showRouteBtn,backBtn);
+        HBox actionContainer = new HBox(showRouteBtn, deleteRouteBtn, backBtn);
         actionContainer.setSpacing(10);
         root.getChildren().addAll(title, favoriteListView, actionContainer);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);

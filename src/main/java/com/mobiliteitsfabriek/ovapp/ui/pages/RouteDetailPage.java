@@ -93,7 +93,6 @@ public class RouteDetailPage {
         travelInfo.getStyleClass().add("info");
         travelInfo.setFocusTraversable(GlobalConfig.isUsingScreenreader);
 
-        // VBox headerContent = new VBox(title, travelInfo);
         VBox headerContent = new VBox(container, travelInfo);
         if (!UtilityFunctions.checkEmpty(route.getCost())) {
             Label priceLabel = new Label(TranslationHelper.get("detail.price", UtilityFunctions.formatValueInCentsAsCurrency(route.getCost().getFirstClassPriceInCents()), UtilityFunctions.formatValueInCentsAsCurrency(route.getCost().getSecondClassPriceInCents())));
@@ -149,11 +148,16 @@ public class RouteDetailPage {
             return null;
         }
 
-        boolean favoriteExists = FavoritesManagement.favoriteExists(startValue, endValue);
+        boolean favoriteExists = FavoritesManagement.favoriteExists(routeId);
 
         if(favoriteExists){
-            // TODO: Add remove button here
-            return null;
+            Button removeFavoriteBtn = new Button(TranslationHelper.get("favorites.delete"));
+            removeFavoriteBtn.getStyleClass().add("submit-btn");
+            removeFavoriteBtn.setOnAction((e)->{
+                FavoritesManagement.deleteFavorite(routeId);
+                OVAppUI.switchToScene(createRouteDetailScene());
+            });
+            return removeFavoriteBtn;
         }
 
         Button addToFavoritesBtn = new Button(TranslationHelper.get("favorites.add"));
@@ -163,14 +167,10 @@ public class RouteDetailPage {
     }
 
     public void onAddFavorite(String startValue, String endValue, String routeId) {
-        // addFavoriteBtnInputContainer.noError();
         try {
             FavoritesManagement.addFavorite(startValue, endValue, routeId);
             OVAppUI.switchToScene(createRouteDetailScene());
-        } catch (InvalidRouteException | MatchingStationsException e) {
-            // addFavoriteBtnInputContainer.addError(e.getMessage());
-        } catch (ExistingFavoriteException e) {
-            // addFavoriteBtnInputContainer.addError(e.getMessage());
+        } catch (InvalidRouteException | MatchingStationsException | ExistingFavoriteException e) {
             if (GlobalConfig.DEBUG_FAVORITE) {
                 System.out.println(e.getMessage());
             }
