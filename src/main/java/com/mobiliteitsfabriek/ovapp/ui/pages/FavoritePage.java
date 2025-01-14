@@ -55,6 +55,7 @@ public class FavoritePage {
         });
         
         HBox actionContainer = new HBox(showRouteBtn,backBtn);
+        actionContainer.setSpacing(10);
         root.getChildren().addAll(title, favoriteListView, actionContainer);
         Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(HomePage.class.getResource("/styles/styles.css").toExternalForm());

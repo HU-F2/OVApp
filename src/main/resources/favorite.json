@@ -16,5 +16,11 @@
         "routeId": "arnu|fromStation=8400058|toStation=8400055|plannedFromTime=2025-01-14T12:38:00+01:00|plannedArrivalTime=2025-01-14T13:20:00+01:00|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|localTrainsOnly=false|disabledTransportModalities=BUS,FERRY,TRAM,METRO|travelAssistance=false|tripSummaryHash=794898396",
         "startStation": "Amsterdam Centraal",
         "userId": "ed127087-48ff-4102-bed6-559b2343ee8e"
+    },
+    {
+        "endStation": "Utrecht Centraal",
+        "routeId": "arnu|fromStation=8400057|toStation=8400621|plannedFromTime=2025-01-14T12:53:00+01:00|plannedArrivalTime=2025-01-14T13:11:00+01:00|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|localTrainsOnly=false|disabledTransportModalities=BUS,FERRY,TRAM,METRO|travelAssistance=false|tripSummaryHash=2722313396",
+        "startStation": "Amsterdam Amstel",
+        "userId": "2016c2e6-23bf-46e4-884c-b92754eefb6e"
     }
 ]

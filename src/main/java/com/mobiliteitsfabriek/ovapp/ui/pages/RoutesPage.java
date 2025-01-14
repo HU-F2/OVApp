@@ -14,11 +14,14 @@ import com.mobiliteitsfabriek.ovapp.general.ValidationFunctions;
 import com.mobiliteitsfabriek.ovapp.model.Route;
 import com.mobiliteitsfabriek.ovapp.model.Search;
 import com.mobiliteitsfabriek.ovapp.model.SearchManagement;
+import com.mobiliteitsfabriek.ovapp.model.UserManagement;
 import com.mobiliteitsfabriek.ovapp.service.RouteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 import com.mobiliteitsfabriek.ovapp.ui.OVAppUI;
 import com.mobiliteitsfabriek.ovapp.ui.components.DateTimePicker;
+import com.mobiliteitsfabriek.ovapp.ui.components.DepartureTimeToggleButton;
+import com.mobiliteitsfabriek.ovapp.ui.components.FavoritePageButton;
 import com.mobiliteitsfabriek.ovapp.ui.components.InputContainer;
 import com.mobiliteitsfabriek.ovapp.ui.components.RouteElement;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
@@ -29,6 +32,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public class RoutesPage {
@@ -42,16 +46,31 @@ public class RoutesPage {
         VBox root = new VBox();
 
         HBox headerContainer = new HBox();
+        VBox navigationContainer = new VBox();
         // Backbutton
         Button backButton = new Button(TranslationHelper.get("app.common.back"));
         backButton.getStyleClass().add("submit-btn");
         backButton.setOnAction((event) -> handleBackButton(event));
-        // Center
-        HBox centerContainer = new HBox();
+        // Favorite button
+        FavoritePageButton favoritePageBtn = new FavoritePageButton();
+        favoritePageBtn.setWrapText(true);
+        navigationContainer.getChildren().add(backButton);
+        if(UserManagement.userLoggedIn()){
+            navigationContainer.getChildren().add(favoritePageBtn);
+        }
+        navigationContainer.setSpacing(10);
+
         // Datetime picker
-        DateTimePicker dateTimeContainer = new DateTimePicker();
+        DateTimePicker dateTimeContainer = new DateTimePicker(true);
         dateTimeContainer.getDatePicker().setValue(search.getSelectedDate().toLocalDate());
         dateTimeContainer.getTimeSpinner().getValueFactory().setValue(UtilityFunctions.formatTime(search.getSelectedDate()));
+
+        Region departureSpacer = new Region();
+        HBox.setHgrow(departureSpacer, Priority.ALWAYS);
+        Region locationSpacer = new Region();
+        HBox.setHgrow(locationSpacer, Priority.ALWAYS);
+
+        DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
 
         // Locations
         VBox locationContainer = new VBox();
@@ -60,21 +79,31 @@ public class RoutesPage {
         InputContainer startContainer = new InputContainer(startStationField);
         InputContainer endContainer = new InputContainer(endStationField);
         locationContainer.getChildren().addAll(startContainer, endContainer);
-        centerContainer.getChildren().addAll(dateTimeContainer, locationContainer);
-        centerContainer.setAlignment(Pos.CENTER);
-
-        DateTimePicker dateTimePicker = new DateTimePicker(true);
+        
         // Search again
         Button searchButton = new Button(TranslationHelper.get("app.common.search"));
         searchButton.getStyleClass().add("submit-btn");
         InputContainer submitContainer = new InputContainer(searchButton);
         searchButton.setOnAction(event -> {
-            handleSearch(startStationField, endStationField, dateTimePicker.getDateTimeRFC3339Format(), false, startContainer, endContainer, submitContainer);
+            handleSearch(startStationField, endStationField, dateTimeContainer.getDateTimeRFC3339Format(), false, startContainer, endContainer, submitContainer);
         });
-        headerContainer.getChildren().addAll(backButton, centerContainer, submitContainer);
-        HBox.setHgrow(centerContainer, Priority.ALWAYS);
-        headerContainer.getStyleClass().add("header-container");
+        
+        // Search container
+        HBox departureContainer = new HBox(dateTimeContainer, departureSpacer, departureToggleComponent.departureToggleButton());
+        HBox searchContainer = new HBox(locationContainer, locationSpacer, searchButton);
+        VBox searchForm = new VBox(searchContainer,departureContainer);
+        searchForm.setSpacing(15);
 
+        HBox.setHgrow(departureContainer, Priority.ALWAYS);
+        HBox.setHgrow(searchForm, Priority.ALWAYS);
+
+        searchContainer.setAlignment(Pos.TOP_RIGHT);
+        departureContainer.setAlignment(Pos.BOTTOM_RIGHT);
+
+        headerContainer.getChildren().addAll(navigationContainer, searchForm);
+        headerContainer.setSpacing(10);
+        headerContainer.getStyleClass().add("header-container");
+        
         root.getChildren().addAll(headerContainer);
 
         for (int i = 0; i < routes.size() - 1; i++) {
