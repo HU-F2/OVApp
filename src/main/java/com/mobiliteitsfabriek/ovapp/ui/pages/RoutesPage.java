@@ -113,7 +113,7 @@ public class RoutesPage {
             root.getChildren().addAll(routeElement);
         }
 
-        Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH + 175, GlobalConfig.SCENE_HEIGHT + 175);
+        Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH + 175, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(RoutesPage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;
     }

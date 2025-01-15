@@ -49,7 +49,6 @@ public class RouteDetailPage {
         backButton.setOnAction((actionEvent) -> {
             controller.handleBackButton(actionEvent, previousRoutes);
         });
-        backButton.setPrefSize(120, 40);
 
         VBox layoutData = new VBox(0, header, listGroup);
         
@@ -59,7 +58,6 @@ public class RouteDetailPage {
             MapViewer mapViewer = new MapViewer(controller.getRoute());
             mapViewer.showMap();
         });
-        openMapButton.setPrefSize(120, 40);
 
         // Layout
         VBox layout = new VBox(10, layoutData, new HBox(10, backButton, openMapButton));

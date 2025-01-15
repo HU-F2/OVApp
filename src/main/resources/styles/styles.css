@@ -28,7 +28,7 @@
 .station-field {
     -fx-font-size: 18px;
     -fx-padding: 12px 18px;
-    -fx-min-width: 450px;
+    -fx-min-width: 400px;
     -fx-background-color: white;
     -fx-border-radius: 8px;
     -fx-border-color: #ccc;
@@ -267,8 +267,7 @@
 	border-radius: 5;
 }
 
-.submit-btn:hover,
-.submit-btn:focused {
+.submit-btn:hover {
 	-fx-background-color: #45a049;
 	background-color: #45a049;
 }
@@ -683,7 +682,8 @@
     -fx-border-radius: 8px;
 }
 
-.submit-btn:hover {
+.submit-btn:hover,
+.submit-btn:focused {
     -fx-background-color: #d32f2f;
 }
 
