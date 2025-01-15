@@ -174,8 +174,10 @@
 .detailedRoute-container .title {
 	-fx-font-size: 24px;
 	-fx-font-weight: bold;
+	-fx-padding: 0 0 -5px 0;
 	font-size: 24px;
 	font-weight: bold;
+	padding: 0 0 -5px 0;
 }
 
 .detailedRoute-container .header {
@@ -183,6 +185,11 @@
 	-fx-padding: 10px;
 	background-color: lightgray;
 	padding: 10px;
+}
+
+.detailedRoute-container .detail-container{
+	-fx-padding: 0 0 5px 0;
+	padding: 0 0 5px 0;
 }
 
 .detailedRoute-container .header .info {

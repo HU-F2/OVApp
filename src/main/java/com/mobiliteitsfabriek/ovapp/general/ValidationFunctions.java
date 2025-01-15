@@ -2,7 +2,6 @@ package com.mobiliteitsfabriek.ovapp.general;
 
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -21,10 +20,10 @@ import com.mobiliteitsfabriek.ovapp.exceptions.NoUserFoundException;
 import com.mobiliteitsfabriek.ovapp.exceptions.NoUserWithUserNameExistsException;
 import com.mobiliteitsfabriek.ovapp.exceptions.StationNotFoundException;
 import com.mobiliteitsfabriek.ovapp.model.Favorite;
+import com.mobiliteitsfabriek.ovapp.model.FavoritesManagement;
 import com.mobiliteitsfabriek.ovapp.model.Search;
 import com.mobiliteitsfabriek.ovapp.model.Station;
 import com.mobiliteitsfabriek.ovapp.model.User;
-import com.mobiliteitsfabriek.ovapp.service.FavoriteService;
 import com.mobiliteitsfabriek.ovapp.service.StationService;
 import com.mobiliteitsfabriek.ovapp.service.UserService;
 
@@ -97,7 +96,7 @@ public class ValidationFunctions {
     }
 
     // Favorite routes
-    public static Favorite validateFavoriteRoute(String startValue, String endValue) throws InvalidRouteException, MatchingStationsException, ExistingFavoriteException {
+    public static Favorite validateFavoriteRoute(String startValue, String endValue, String routeId) throws InvalidRouteException, MatchingStationsException, ExistingFavoriteException {
         if (UtilityFunctions.checkEmpty(startValue) || UtilityFunctions.checkEmpty(endValue)) {
             throw new InvalidRouteException(InputKey.FAVORITE);
         }
@@ -106,9 +105,8 @@ public class ValidationFunctions {
             throw new MatchingStationsException(InputKey.FAVORITE);
         }
 
-        ArrayList<Favorite> favorites = FavoriteService.loadFavorites();
-        Favorite newFavorite = new Favorite(startValue, endValue);
-        if (favorites.contains(newFavorite)) {
+        Favorite newFavorite = FavoritesManagement.getFavoriteIfUnique(startValue, endValue, routeId);
+        if(newFavorite == null){
             throw new ExistingFavoriteException();
         }
 
