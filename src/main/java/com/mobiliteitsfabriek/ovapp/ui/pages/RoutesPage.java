@@ -49,7 +49,7 @@ public class RoutesPage {
         VBox navigationContainer = new VBox();
         // Backbutton
         Button backButton = new Button(TranslationHelper.get("app.common.back"));
-        backButton.getStyleClass().add("submit-btn");
+        backButton.getStyleClass().add("goTo-login-page-button");
         backButton.setOnAction((event) -> handleBackButton(event));
         // Favorite button
         FavoritePageButton favoritePageBtn = new FavoritePageButton();
@@ -67,30 +67,31 @@ public class RoutesPage {
 
         Region departureSpacer = new Region();
         HBox.setHgrow(departureSpacer, Priority.ALWAYS);
-        Region locationSpacer = new Region();
-        HBox.setHgrow(locationSpacer, Priority.ALWAYS);
 
         DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
 
         // Locations
         VBox locationContainer = new VBox();
         SearchFieldStation startStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.start"), firstRoute.getStartLocation());
+        startStationField.getStyleClass().add("station-field");
         SearchFieldStation endStationField = new SearchFieldStation(StationService.getAllStationNames(), TranslationHelper.get("searchFieldStation.end"), firstRoute.getEndLocation());
+        endStationField.getStyleClass().add("station-field");
         InputContainer startContainer = new InputContainer(startStationField);
         InputContainer endContainer = new InputContainer(endStationField);
         locationContainer.getChildren().addAll(startContainer, endContainer);
-        
+
         // Search again
         Button searchButton = new Button(TranslationHelper.get("app.common.search"));
-        searchButton.getStyleClass().add("submit-btn");
+        searchButton.getStyleClass().add("goTo-login-page-button");
         InputContainer submitContainer = new InputContainer(searchButton);
         searchButton.setOnAction(event -> {
             handleSearch(startStationField, endStationField, dateTimeContainer.getDateTimeRFC3339Format(), false, startContainer, endContainer, submitContainer);
         });
-        
+
+        locationContainer.setTranslateX(-40);
         // Search container
         HBox departureContainer = new HBox(dateTimeContainer, departureSpacer, departureToggleComponent.departureToggleButton());
-        HBox searchContainer = new HBox(locationContainer, locationSpacer, searchButton);
+        HBox searchContainer = new HBox(locationContainer, searchButton);
         VBox searchForm = new VBox(searchContainer,departureContainer);
         searchForm.setSpacing(15);
 
@@ -103,7 +104,7 @@ public class RoutesPage {
         headerContainer.getChildren().addAll(navigationContainer, searchForm);
         headerContainer.setSpacing(10);
         headerContainer.getStyleClass().add("header-container");
-        
+
         root.getChildren().addAll(headerContainer);
 
         for (int i = 0; i < routes.size() - 1; i++) {
@@ -112,7 +113,7 @@ public class RoutesPage {
             root.getChildren().addAll(routeElement);
         }
 
-        Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH, GlobalConfig.SCENE_HEIGHT);
+        Scene scene = new Scene(root, GlobalConfig.SCENE_WIDTH + 175, GlobalConfig.SCENE_HEIGHT);
         scene.getStylesheets().add(RoutesPage.class.getResource("/styles/styles.css").toExternalForm());
         return scene;
     }

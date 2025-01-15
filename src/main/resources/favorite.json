@@ -22,5 +22,11 @@
         "routeId": "arnu|fromStation=8400058|toStation=8400263|plannedFromTime=2025-01-14T15:08:00+01:00|plannedArrivalTime=2025-01-14T17:12:00+01:00|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|localTrainsOnly=false|disabledTransportModalities=BUS,FERRY,TRAM,METRO|travelAssistance=false|tripSummaryHash=1029530012",
         "startStation": "Amsterdam Centraal",
         "userId": "2016c2e6-23bf-46e4-884c-b92754eefb6e"
+    },
+    {
+        "endStation": "Amsterdam Centraal",
+        "routeId": "arnu|fromStation=8400490|toStation=8400058|plannedFromTime=2025-01-15T20:09:00+01:00|plannedArrivalTime=2025-01-15T20:59:00+01:00|excludeHighSpeedTrains=false|searchForAccessibleTrip=false|localTrainsOnly=false|disabledTransportModalities=BUS,FERRY,TRAM,METRO|travelAssistance=false|tripSummaryHash=3559904329",
+        "startStation": "Hoevelaken",
+        "userId": "ed127087-48ff-4102-bed6-559b2343ee8e"
     }
 ]

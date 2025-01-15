@@ -49,7 +49,7 @@ public class RouteDetailPage {
         backButton.setOnAction((actionEvent) -> {
             controller.handleBackButton(actionEvent, previousRoutes);
         });
-        backButton.setPrefSize(120, 40);
+        backButton.getStyleClass().add("goTo-login-page-button");
 
         VBox layoutData = new VBox(0, header, listGroup);
         
@@ -59,7 +59,7 @@ public class RouteDetailPage {
             MapViewer mapViewer = new MapViewer(controller.getRoute());
             mapViewer.showMap();
         });
-        openMapButton.setPrefSize(120, 40);
+        openMapButton.getStyleClass().add("goTo-login-page-button");
 
         // Layout
         VBox layout = new VBox(10, layoutData, new HBox(10, backButton, openMapButton));
@@ -152,7 +152,7 @@ public class RouteDetailPage {
 
         if(favoriteExists){
             Button removeFavoriteBtn = new Button(TranslationHelper.get("favorites.delete"));
-            removeFavoriteBtn.getStyleClass().add("submit-btn");
+            removeFavoriteBtn.getStyleClass().add("goTo-login-page-button");
             removeFavoriteBtn.setOnAction((e)->{
                 FavoritesManagement.deleteFavorite(routeId);
                 OVAppUI.switchToScene(createRouteDetailScene());
@@ -161,7 +161,7 @@ public class RouteDetailPage {
         }
 
         Button addToFavoritesBtn = new Button(TranslationHelper.get("favorites.add"));
-        addToFavoritesBtn.getStyleClass().add("favorite-btn");
+        addToFavoritesBtn.getStyleClass().add("goTo-login-page-button");
         addToFavoritesBtn.setOnAction(event -> onAddFavorite(startValue, endValue, routeId));
         return addToFavoritesBtn;
     }

@@ -31,14 +31,14 @@ public class FavoritePage {
         favoriteListView.getItems().addAll(favorites);
 
         Button backBtn = new Button(TranslationHelper.get("app.common.back"));
-        backBtn.getStyleClass().add("submit-btn");
+        backBtn.getStyleClass().add("goTo-login-page-button");
         backBtn.setOnAction(event -> {
             Scene homePageScene = HomePage.getScene();
             OVAppUI.switchToScene(homePageScene);
         });
 
         Button showRouteBtn = new Button(TranslationHelper.get("favorites.showRoute"));
-        showRouteBtn.getStyleClass().add("submit-btn");
+        showRouteBtn.getStyleClass().add("goTo-login-page-button");
         showRouteBtn.setDisable(true);
 
         showRouteBtn.setOnAction((e)->{
@@ -47,7 +47,7 @@ public class FavoritePage {
         });
         
         Button deleteRouteBtn = new Button(TranslationHelper.get("favorites.delete"));
-        deleteRouteBtn.getStyleClass().add("submit-btn");
+        deleteRouteBtn.getStyleClass().add("goTo-login-page-button");
         deleteRouteBtn.setDisable(true);
 
         deleteRouteBtn.setOnAction((e)->{

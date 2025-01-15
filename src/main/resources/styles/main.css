@@ -4,78 +4,80 @@
     -fx-primary-dark: #1557b0;
     -fx-accent: #ea4335;
     -fx-grey-background: #f8f9fa;
-    -fx-text-color: #202124;
+    -fx-text-color: #212121; /* Darker text color for better contrast */
     -fx-font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont;
     font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont;
+    -fx-font-size: 18px;
 }
 
 /* Menu Bar styling */
 .menu-bar {
     -fx-background-color: white;
     background-color: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 2);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 4, 0, 0, 2);
+    -fx-padding: 10px;
 }
 
 .menu-bar .label {
     -fx-text-fill: -fx-text-color;
-    -fx-font-size: 13px;
-    font-size: 13px;
+    -fx-font-size: 16px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .menu-item:hover {
-    -fx-background-color: -fx-grey-background;
-    background-color: #f8f9fa;
+    -fx-background-color: #f0f0f0;
+    background-color: #f0f0f0;
 }
 
 /* Navigation panel styling */
 .nav-panel {
     -fx-background-color: white;
     background-color: white;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 8, 0, 2, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.08), 8, 0, 2, 0);
     -fx-border-width: 0 1 0 0;
     -fx-border-color: #e8eaed;
     border-width: 0 1px 0 0;
     border-color: #e8eaed;
+    padding: 10px;
 }
 
 .nav-button {
     -fx-background-color: transparent;
     background-color: transparent;
     -fx-text-fill: -fx-text-color;
-    -fx-font-size: 14px;
-    font-size: 14px;
+    -fx-font-size: 18px; /* Larger font size */
     -fx-padding: 12 20;
     padding: 12px 20px;
     -fx-border-radius: 8;
     -fx-background-radius: 8;
     border-radius: 8px;
-    -fx-font-weight: normal;
-    font-weight: normal;
+    -fx-font-weight: bold;
+    font-weight: bold;
     -fx-alignment: CENTER-LEFT;
 }
 
 .nav-button:hover {
-    -fx-background-color: derive(-fx-grey-background, 50%);
-    background-color: #fbfbfc;
+    -fx-background-color: #e0e0e0;
+    background-color: #e0e0e0;
 }
 
 .nav-button:pressed {
-    -fx-background-color: derive(-fx-grey-background, 20%);
-    background-color: #f1f2f4;
+    -fx-background-color: #c0c0c0;
+    background-color: #c0c0c0;
 }
 
 /* Content area styling */
 .content-area {
-    -fx-background-color: -fx-grey-background;
-    background-color: #f8f9fa;
+    -fx-background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .welcome-text {
-    -fx-font-size: 28px;
-    font-size: 28px;
-    -fx-font-weight: bold;
+    -fx-font-size: 32px;
+    font-size: 32px;
     font-weight: bold;
-    -fx-text-fill: -fx-text-color;
+    -fx-text-fill: #212121;
 }
 
 /* Status bar styling */
@@ -88,22 +90,16 @@
     border-width: 1px 0 0 0;
     -fx-border-color: #e8eaed;
     border-color: #e8eaed;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 4, 0, 0, -2);
-}
-
-.status-label {
-    -fx-text-fill: #5f6368;
-    -fx-font-size: 12px;
-    font-size: 12px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.05), 4, 0, 0, -2);
 }
 
 /* Add these new utility classes */
 .elevation-1 {
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 4, 0, 0, 1);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 4, 0, 0, 1);
 }
 
 .rounded-panel {
     -fx-background-radius: 12;
     -fx-border-radius: 12;
     border-radius: 12px;
-} 
+}

@@ -13,11 +13,10 @@ import com.mobiliteitsfabriek.ovapp.ui.components.LanguagePicker;
 import com.mobiliteitsfabriek.ovapp.ui.components.SearchFieldStation;
 import com.mobiliteitsfabriek.ovapp.ui.components.SwapButton;
 
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -29,9 +28,6 @@ public class HomePage {
     public static Scene getScene() {
         // Top bar
         FavoritePageButton favoritesPageBtn = new FavoritePageButton();
-
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
 
         String authText = UserManagement.userLoggedIn() ? TranslationHelper.get("home.logout") : TranslationHelper.get("home.goTo.login.button");
         Button authButton = new Button(authText);
@@ -45,9 +41,9 @@ public class HomePage {
         });
         LanguagePicker languagePicker = new LanguagePicker();
 
-        HBox topBar = new HBox(languagePicker, authButton);
-        if(UserManagement.userLoggedIn()){
-            topBar.getChildren().addFirst(spacer);
+        HBox topBar = new HBox(20, languagePicker, authButton);
+        topBar.setAlignment(Pos.CENTER);
+        if (UserManagement.userLoggedIn()) {
             topBar.getChildren().addFirst(favoritesPageBtn);
         }
         topBar.getStyleClass().add("topBar");
@@ -75,7 +71,7 @@ public class HomePage {
         DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
 
         Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
-        submitBtn.getStyleClass().add("submit-btn");
+        submitBtn.getStyleClass().add("goTo-login-page-button");
         InputContainer submitBtnContainer = new InputContainer(submitBtn);
 
         submitBtn.setOnAction(event -> RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent.getDateTimeRFC3339Format(), departureToggleComponent.isArrival(), startFieldContainer, endFieldContainer, submitBtnContainer));
