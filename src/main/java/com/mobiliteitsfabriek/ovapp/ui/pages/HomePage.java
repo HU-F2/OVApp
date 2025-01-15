@@ -17,8 +17,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -46,7 +44,7 @@ public class HomePage {
         HBox topBar = new HBox(20, languagePicker, authButton);
         topBar.setAlignment(Pos.CENTER);
         if (UserManagement.userLoggedIn()) {
-            topBar.getChildren().add(favoritesPageBtn);
+            topBar.getChildren().addFirst(favoritesPageBtn);
         }
         topBar.getStyleClass().add("topBar");
 
@@ -73,7 +71,7 @@ public class HomePage {
         DepartureTimeToggleButton departureToggleComponent = new DepartureTimeToggleButton();
 
         Button submitBtn = new Button(TranslationHelper.get("app.common.search"));
-        submitBtn.getStyleClass().add("submit-btn");
+        submitBtn.getStyleClass().add("goTo-login-page-button");
         InputContainer submitBtnContainer = new InputContainer(submitBtn);
 
         submitBtn.setOnAction(event -> RoutesPage.handleSearch(startStationField, endStationField, dateTimeComponent.getDateTimeRFC3339Format(), departureToggleComponent.isArrival(), startFieldContainer, endFieldContainer, submitBtnContainer));

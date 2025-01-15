@@ -46,13 +46,13 @@
 }
 
 .language-picker {
-    -fx-font-size: 18px;
-    -fx-padding: 12px 18px;
-    -fx-min-width: 350px;
+    -fx-font-size: 24px;
+    /* -fx-padding: 10px 20px; */
+    /* -fx-min-width: 350px;
     -fx-background-color: white;
     -fx-border-radius: 8px;
     -fx-border-color: #ccc;
-    -fx-border-width: 2px;
+    -fx-border-width: 2px; */
 }
 
 .spinner {
@@ -509,7 +509,8 @@
 	-fx-text-fill: #fff;
 	-fx-border-color: transparent;
 	-fx-border-radius: 4px;
-	-fx-font-size: 16px;
+	-fx-font-size: 18px;
+    -fx-padding: 10px 20px;
 	-fx-cursor: hand; /* Voor een pointer */
 	-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 4, 0, 0, 0);
 	background-color: #000;
@@ -517,6 +518,7 @@
 	border-color: transparent;
 	border: none;
 	border-radius: 4px;
+	padding: 10px 20px;
 	font-size: 16px;
 	cursor: pointer;
 	transition: all 0.2s ease-in-out;
@@ -527,7 +529,6 @@
 	padding: 10px 20px;
 }
 
-.goTo-login-page-button,
 .login-guestLogin {
 	-fx-padding: 5px 10px;
 	padding: 5px 10px;

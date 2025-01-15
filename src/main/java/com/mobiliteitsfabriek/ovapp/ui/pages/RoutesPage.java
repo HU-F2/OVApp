@@ -49,7 +49,7 @@ public class RoutesPage {
         VBox navigationContainer = new VBox();
         // Backbutton
         Button backButton = new Button(TranslationHelper.get("app.common.back"));
-        backButton.getStyleClass().add("submit-btn");
+        backButton.getStyleClass().add("goTo-login-page-button");
         backButton.setOnAction((event) -> handleBackButton(event));
         // Favorite button
         FavoritePageButton favoritePageBtn = new FavoritePageButton();
@@ -82,7 +82,7 @@ public class RoutesPage {
 
         // Search again
         Button searchButton = new Button(TranslationHelper.get("app.common.search"));
-        searchButton.getStyleClass().add("submit-btn");  // Apply larger button styling
+        searchButton.getStyleClass().add("goTo-login-page-button");
         InputContainer submitContainer = new InputContainer(searchButton);
         searchButton.setOnAction(event -> {
             handleSearch(startStationField, endStationField, dateTimeContainer.getDateTimeRFC3339Format(), false, startContainer, endContainer, submitContainer);
