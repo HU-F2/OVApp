@@ -25,14 +25,32 @@ public class MapViewer {
     private static final double maxLat = 53.67; // Northernmost latitude
     private static final double minLon = 3.11;  // Westernmost longitude
     private static final double maxLon = 7.6024;  // Easternmost longitude
+    private static MapViewer instance;
+    private Route route;
+    private ImageView mapView;
+    private static double mapWidth = 2775;
+    private static double mapHeight = 3128;
 
-    private final Route route;
 
-    public MapViewer(Route route){
-        this.route = route;
+    private MapViewer(){
+        Image netherlandsMap = new Image(MapViewer.class.getResource("/NL_removed.jpg").toExternalForm());
+        mapView = new ImageView(netherlandsMap);
+    
+        double initialWidth = 800;
+        double initialHeight = 600; 
+        mapView.setFitWidth(initialWidth);
+        mapView.setFitHeight(initialHeight);
     }
 
-    public void showMap() {
+    public static MapViewer getInstance(){
+        if (instance == null) {
+            instance = new MapViewer();
+        }
+        return instance;
+    }
+
+    public void showMap(Route route) {
+        this.route = route;
         Stage mapStage = new Stage();
         mapStage.setTitle("Map Viewer");
         VBox mapView = createNetherlandsMapWithStations();
@@ -42,16 +60,6 @@ public class MapViewer {
     }
 
     private VBox createNetherlandsMapWithStations() {
-        Image netherlandsMap = new Image(MapViewer.class.getResource("/NL_removed.jpg").toExternalForm());
-        ImageView mapView = new ImageView(netherlandsMap);
-    
-        double mapWidth = 2775;
-        double mapHeight = 3128;
-    
-        double initialWidth = 800;
-        double initialHeight = 600; 
-        mapView.setFitWidth(initialWidth);
-        mapView.setFitHeight(initialHeight);
     
         Pane overlayPane = new Pane();
     
