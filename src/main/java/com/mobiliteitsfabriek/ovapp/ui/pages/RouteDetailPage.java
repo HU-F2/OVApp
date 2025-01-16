@@ -56,8 +56,7 @@ public class RouteDetailPage {
         // Open Map button
         Button openMapButton = new Button(TranslationHelper.get("detail.mapviewer"));
         openMapButton.setOnAction(actionEvent -> {
-            MapViewer mapViewer = new MapViewer(controller.getRoute());
-            mapViewer.showMap();
+            MapViewer.getInstance().showMap(route);
         });
         openMapButton.getStyleClass().add("goTo-login-page-button");
 

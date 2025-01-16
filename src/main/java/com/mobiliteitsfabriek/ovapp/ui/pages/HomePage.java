@@ -59,7 +59,7 @@ public class HomePage {
 
         SwapButton swapBtn = new SwapButton(() -> onSwap());
         swapBtn.setAccessibleText(TranslationHelper.get("home.swap.accessibleText"));
-        swapBtn.setTranslateX(175);
+        swapBtn.setTranslateX(225);
 
         VBox startWithEndStation = new VBox(10);
         startWithEndStation.getStyleClass().add("station-box");
