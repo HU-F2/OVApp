@@ -3,6 +3,7 @@ package com.mobiliteitsfabriek.ovapp.ui.pages;
 import java.util.ArrayList;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
+import com.mobiliteitsfabriek.ovapp.exceptions.NotLoggedInFavoritePermissionException;
 import com.mobiliteitsfabriek.ovapp.model.Favorite;
 import com.mobiliteitsfabriek.ovapp.model.FavoritesManagement;
 import com.mobiliteitsfabriek.ovapp.model.Route;
@@ -41,19 +42,23 @@ public class FavoritePage {
         showRouteBtn.getStyleClass().add("goTo-login-page-button");
         showRouteBtn.setDisable(true);
 
-        showRouteBtn.setOnAction((e)->{
+        showRouteBtn.setOnAction((e) -> {
             Route route = RouteService.getRoute(favoriteListView.getSelectionModel().getSelectedItem().getRouteId());
             RouteElement.handleGoToDetailedRoute(route, null);
         });
-        
+
         Button deleteRouteBtn = new Button(TranslationHelper.get("favorites.delete"));
         deleteRouteBtn.getStyleClass().add("goTo-login-page-button");
         deleteRouteBtn.setDisable(true);
 
-        deleteRouteBtn.setOnAction((e)->{
+        deleteRouteBtn.setOnAction((e) -> {
             Favorite favorite = favoriteListView.getSelectionModel().getSelectedItem();
             favoriteListView.getItems().remove(favorite);
-            FavoritesManagement.deleteFavorite(favorite.getRouteId());
+            try {
+                FavoritesManagement.deleteFavorite(favorite.getRouteId());
+            } catch (NotLoggedInFavoritePermissionException e1) {
+                e1.printStackTrace();
+            }
         });
 
         favoriteListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -62,7 +67,7 @@ public class FavoritePage {
                 deleteRouteBtn.setDisable(false);
             }
         });
-        
+
         HBox actionContainer = new HBox(showRouteBtn, deleteRouteBtn, backBtn);
         actionContainer.setSpacing(10);
         root.getChildren().addAll(title, favoriteListView, actionContainer);

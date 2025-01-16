@@ -6,23 +6,29 @@ import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
 public class Favorite {
     // routeId is called ctxRecon in NSApi
+    private final String id;
     private final String routeId;
     private final String userId;
     private final String startStation;
     private final String endStation;
 
-    public Favorite(String routeId, String userId, String startStation, String endStation) {
+    public Favorite(String id, String routeId, String userId, String startStation, String endStation) {
+        this.id = id;
         this.routeId = routeId;
         this.userId = userId;
         this.startStation = startStation;
         this.endStation = endStation;
     }
 
-    public String getRouteId(){
+    public String getId() {
+        return id;
+    }
+
+    public String getRouteId() {
         return routeId;
     }
 
-    public String getUserId(){
+    public String getUserId() {
         return userId;
     }
 

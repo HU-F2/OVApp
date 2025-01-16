@@ -6,6 +6,7 @@ import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.exceptions.ExistingFavoriteException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidRouteException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MatchingStationsException;
+import com.mobiliteitsfabriek.ovapp.exceptions.NotLoggedInFavoritePermissionException;
 import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.model.FavoritesManagement;
 import com.mobiliteitsfabriek.ovapp.model.Route;
@@ -52,7 +53,7 @@ public class RouteDetailPage {
         backButton.getStyleClass().add("goTo-login-page-button");
 
         VBox layoutData = new VBox(0, header, listGroup);
-        
+
         // Open Map button
         Button openMapButton = new Button(TranslationHelper.get("detail.mapviewer"));
         openMapButton.setOnAction(actionEvent -> {
@@ -78,9 +79,9 @@ public class RouteDetailPage {
         HBox.setHgrow(spacer, Priority.ALWAYS);
 
         Button favoritesBtn = createFavoriteButton(route.getStartLocation(), route.getEndLocation(), route.getCtxRecon());
-        
+
         HBox container = new HBox(title, spacer);
-        if(favoritesBtn != null){
+        if (favoritesBtn != null) {
             container.getChildren().add(favoritesBtn);
         }
         container.getStyleClass().add("detail-container");
@@ -106,7 +107,7 @@ public class RouteDetailPage {
 
         // Note: I couldn't get it to take up the whole space without this
         header.widthProperty().addListener((observable, oldValue, newValue) -> {
-            container.setPrefWidth((Double)newValue);
+            container.setPrefWidth((Double) newValue);
         });
         return header;
     }
@@ -142,18 +143,27 @@ public class RouteDetailPage {
         return listGroup;
     }
 
-    private Button createFavoriteButton(String startValue, String endValue, String routeId){
-        if(!UserManagement.userLoggedIn()){
+    private Button createFavoriteButton(String startValue, String endValue, String routeId) {
+        if (!UserManagement.userLoggedIn()) {
             return null;
         }
 
-        boolean favoriteExists = FavoritesManagement.favoriteExists(routeId);
+        boolean favoriteExists;
+        try {
+            favoriteExists = FavoritesManagement.favoriteExists(routeId);
+        } catch (NotLoggedInFavoritePermissionException e) {
+            return null;
+        }
 
-        if(favoriteExists){
+        if (favoriteExists) {
             Button removeFavoriteBtn = new Button(TranslationHelper.get("favorites.delete"));
             removeFavoriteBtn.getStyleClass().add("goTo-login-page-button");
-            removeFavoriteBtn.setOnAction((e)->{
-                FavoritesManagement.deleteFavorite(routeId);
+            removeFavoriteBtn.setOnAction((e) -> {
+                try {
+                    FavoritesManagement.deleteFavorite(routeId);
+                } catch (NotLoggedInFavoritePermissionException e1) {
+                    e1.printStackTrace();
+                }
                 OVAppUI.switchToScene(createRouteDetailScene());
             });
             return removeFavoriteBtn;
@@ -169,12 +179,11 @@ public class RouteDetailPage {
         try {
             FavoritesManagement.addFavorite(startValue, endValue, routeId);
             OVAppUI.switchToScene(createRouteDetailScene());
-        } catch (InvalidRouteException | MatchingStationsException | ExistingFavoriteException e) {
+        } catch (InvalidRouteException | MatchingStationsException | ExistingFavoriteException | NotLoggedInFavoritePermissionException e) {
             if (GlobalConfig.DEBUG_FAVORITE) {
                 System.out.println(e.getMessage());
             }
         }
     }
-    
-}
 
+}

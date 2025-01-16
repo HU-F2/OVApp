@@ -1,19 +1,20 @@
 package com.mobiliteitsfabriek.ovapp.model;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.exceptions.ExistingFavoriteException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InvalidRouteException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MatchingStationsException;
+import com.mobiliteitsfabriek.ovapp.exceptions.NotLoggedInFavoritePermissionException;
+import com.mobiliteitsfabriek.ovapp.general.UtilityFunctions;
 import com.mobiliteitsfabriek.ovapp.general.ValidationFunctions;
 import com.mobiliteitsfabriek.ovapp.service.FavoriteService;
 import com.mobiliteitsfabriek.ovapp.translation.TranslationHelper;
 
 public class FavoritesManagement {
 
-    public static void addFavorite(String startStation, String endStation, String routeId) throws InvalidRouteException, MatchingStationsException, ExistingFavoriteException {
+    public static void addFavorite(String startStation, String endStation, String routeId) throws InvalidRouteException, MatchingStationsException, ExistingFavoriteException, NotLoggedInFavoritePermissionException {
         Favorite newFavorite = ValidationFunctions.validateFavoriteRoute(startStation, endStation, routeId);
 
         if (GlobalConfig.DEBUG_FAVORITE) {
@@ -22,31 +23,32 @@ public class FavoritesManagement {
         FavoriteService.saveFavorite(newFavorite);
     }
 
-    public static void deleteFavorite(String routeId){
-        ArrayList<Favorite> favorites = FavoriteService.loadFavorites();
-        User user = UserManagement.getLoggedInUser();
-        favorites.removeIf(favorite -> favorite.getRouteId().equals(routeId) && favorite.getUserId().equals(user.getId()));
-
-        if(GlobalConfig.DEBUG_FAVORITE){
-            System.out.println(TranslationHelper.get("debug.deleteFavorite", routeId));
-        }
-
-        FavoriteService.writeFavoritesToFile(favorites);
+    public static void deleteFavorite(String routeId) throws NotLoggedInFavoritePermissionException {
+        FavoriteService.deleteFavorite(routeId);
     }
 
-    public static Favorite getFavoriteIfUnique(String startValue, String endValue, String routeId){
+    public static Favorite getFavoriteIfUnique(String startValue, String endValue, String routeId) throws NotLoggedInFavoritePermissionException {
+        if (!UserManagement.userLoggedIn()) {
+            throw new NotLoggedInFavoritePermissionException();
+        }
+
         ArrayList<Favorite> favorites = FavoriteService.loadFavorites();
         User user = UserManagement.getLoggedInUser();
-        Optional<Favorite> newFavorite = favorites.stream().filter((fav)->fav.getRouteId().equals(routeId) && fav.getUserId().equals(user.getId())).findFirst();
-        if(newFavorite.isPresent()){
+
+        boolean exists = favorites.stream().anyMatch(fav -> fav.getRouteId().equals(routeId) && fav.getUserId().equals(user.getId()));
+        if (exists) {
             return null;
         }
-        return new Favorite(routeId, user.getId(), startValue, endValue);
+
+        return new Favorite(UtilityFunctions.generateID(), routeId, user.getId(), startValue, endValue);
     }
 
-    public static boolean favoriteExists(String routeId){
+    public static boolean favoriteExists(String routeId) throws NotLoggedInFavoritePermissionException {
+        if (!UserManagement.userLoggedIn()) {
+            throw new NotLoggedInFavoritePermissionException();
+        }
         ArrayList<Favorite> favorites = FavoriteService.loadFavorites();
         User user = UserManagement.getLoggedInUser();
-        return favorites.stream().filter((fav)->fav.getRouteId().equals(routeId) && fav.getUserId().equals(user.getId())).findFirst().isPresent();
+        return favorites.stream().filter((fav) -> fav.getRouteId().equals(routeId) && fav.getUserId().equals(user.getId())).findFirst().isPresent();
     }
 }

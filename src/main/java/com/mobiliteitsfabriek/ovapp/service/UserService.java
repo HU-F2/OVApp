@@ -62,13 +62,27 @@ public class UserService {
                 .orElseThrow(() -> new NoUserWithUserNameExistsException(username));
     }
 
-    public static void deleteUser(String username) {
+    public static void deleteUser(String username) throws NoUserWithUserNameExistsException {
         ArrayList<User> users = loadUsers();
-        users.removeIf(user -> user.getUsername().equals(username));
+    
+        // Controleer of er gebruikers met de opgegeven username zijn
+        if (!doesUserExist(username)) {
+            throw new NoUserWithUserNameExistsException(username);
+        }
+        
+        // Verwijder alle gebruikers met de opgegeven username en hun favorieten
+        users.removeIf(user -> {
+            boolean isMatch = user.getUsername().equals(username);
+            if (isMatch) {
+                FavoriteService.deleteFavoritesOfUser(user.getId());
+            }
+            return isMatch;
+        });
+
         saveUsers(users);
     }
 
-    public static void updateUser(User user) {
+    public static void updateUser(User user) throws NoUserWithUserNameExistsException {
         deleteUser(user.getUsername());
         addUser(user);
     }
