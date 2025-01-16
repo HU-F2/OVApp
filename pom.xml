@@ -93,6 +93,7 @@
     </dependencies>
 
     <build>
+        <finalName>OVApp</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -104,7 +105,7 @@
                 </configuration>
             </plugin>
 
-            <!-- Maven Assembly Plugin for creating a runnable JAR with dependencies -->
+            <!-- Maven Assembly Plugin to create a runnable JAR with dependencies -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -150,6 +151,24 @@
                 </executions>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>3.3.0</version>
+                    <executions>
+                        <execution>
+                            <id>make-assembly</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>single</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <resources>
             <!-- if you have more resource files (not java) in a different folder you can add them here -->
             <!-- Standaard Maven resources directory -->
