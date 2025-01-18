@@ -59,7 +59,7 @@ public class UserService {
         return loadUsers().stream()
                 .filter(user -> user.getUsername().equals(username))
                 .findFirst()
-                .orElseThrow(() -> new NoUserWithUserNameExistsException(username));
+                .orElseThrow(() -> new NoUserWithUserNameExistsException());
     }
 
     public static void deleteUser(String username) {

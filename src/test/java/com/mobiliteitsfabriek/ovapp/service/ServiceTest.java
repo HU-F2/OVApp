@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.util.Random;
+
 import org.junit.jupiter.api.Test;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
@@ -56,6 +58,9 @@ public class ServiceTest {
                 assertTrue(UserManagement.loginUser(username, password), "User should be able to log in with correct credentials");
             } catch (MissingFieldException | NoUserWithUserNameExistsException | NoUserFoundException | IncorrectPasswordException e) {
                 fail(e.getMessage());
+            } catch (Exception e) {
+                fail("Unexpected Exception, see stackTrace");
+                e.printStackTrace();
             }
         });
     }
@@ -71,6 +76,27 @@ public class ServiceTest {
                 assertTrue(e != null, "User should not be able to log in with incorrect credentials");
             } catch (MissingFieldException | NoUserWithUserNameExistsException | NoUserFoundException e) {
                 fail(e.getMessage());
+            } catch (Exception e) {
+                fail("Unexpected Exception, see stackTrace");
+                e.printStackTrace();
+            }
+        });
+    }
+
+    @Test
+    void testLoginInCorrectUsername() throws MissingFieldException, ExistingUserException, InvalidPasswordException {
+        ServiceTest.executeUserWorkflow(() -> {
+            try {
+                String username = findNonExistentUsername();
+                String password = "inCorrectPassword";
+                assertFalse(UserManagement.loginUser(username, password), "User should not be able to log in with incorrect credentials");
+            } catch (NoUserWithUserNameExistsException e) {
+                assertTrue(e != null, "User should not be able to log in with incorrect credentials");
+            } catch (MissingFieldException | IncorrectPasswordException | NoUserFoundException | AssertionError e) {
+                fail(e.getMessage());
+            } catch (Exception e) {
+                fail("Unexpected Exception, see stackTrace");
+                e.printStackTrace();
             }
         });
     }
@@ -86,7 +112,25 @@ public class ServiceTest {
                 assertTrue(e != null, "User should not be able to log in with incorrect credentials");
             } catch (NoUserWithUserNameExistsException | NoUserFoundException | IncorrectPasswordException e) {
                 fail(e.getMessage());
+            } catch (Exception e) {
+                fail("Unexpected Exception, see stackTrace");
+                e.printStackTrace();
             }
         });
+    }
+
+    // Helper test functions
+    private static String findNonExistentUsername() {
+        Random random = new Random();
+        for (int i = 0; i < 10; i++) {
+            long randomNumber = Math.abs(random.nextLong());
+            String username = "inCorrectUsername-" + randomNumber;
+
+            if (!UserService.doesUserExist(username)) {
+                return username;
+            }
+        }
+
+        throw new AssertionError("Failed to find a non-existent username after 10 attempts.");
     }
 }
