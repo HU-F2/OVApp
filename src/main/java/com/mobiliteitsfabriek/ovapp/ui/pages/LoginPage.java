@@ -2,6 +2,7 @@ package com.mobiliteitsfabriek.ovapp.ui.pages;
 
 import com.mobiliteitsfabriek.ovapp.config.GlobalConfig;
 import com.mobiliteitsfabriek.ovapp.enums.InputKey;
+import com.mobiliteitsfabriek.ovapp.exceptions.IncorrectLoginCredentialsException;
 import com.mobiliteitsfabriek.ovapp.exceptions.IncorrectPasswordException;
 import com.mobiliteitsfabriek.ovapp.exceptions.InputException;
 import com.mobiliteitsfabriek.ovapp.exceptions.MissingFieldException;
@@ -94,10 +95,8 @@ public class LoginPage {
             isValid = UserManagement.loginUser(usernameField.getText(), passwordField.getText());
         } catch (MissingFieldException e) {
             setErrorFields(e);
-        } catch (NoUserWithUserNameExistsException e) {
-            usernameInputContainer.addError(e.getMessage());
-        } catch (IncorrectPasswordException e) {
-            passwordInputContainer.addError(e.getMessage());
+        } catch (IncorrectPasswordException | NoUserWithUserNameExistsException e) {
+            passwordInputContainer.addError(new IncorrectLoginCredentialsException().getMessage());
         } catch (NoUserFoundException e) {
             e.printStackTrace();
         }

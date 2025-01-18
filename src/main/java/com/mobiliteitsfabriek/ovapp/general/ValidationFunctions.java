@@ -47,7 +47,7 @@ public class ValidationFunctions {
         }
 
         if (!UserService.doesUserExist(username)) {
-            throw new NoUserWithUserNameExistsException(username);
+            throw new NoUserWithUserNameExistsException();
         }
 
         User user = UserService.getUserByUsername(username);
